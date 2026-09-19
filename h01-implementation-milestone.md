@@ -1,6 +1,6 @@
 # H01 实施 Milestone：任务证据胶囊与三臂对照实验
 
-- 状态：实施中（Milestone M0-M3 已完成）
+- 状态：实施中（Milestone M0-M4 已完成）
 - 面向对象：后续编码 Agent
 - Octos 基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
 - 设计依据：[H01 竞品调研](./h01-context-evidence-competitor-research.md)
@@ -10,7 +10,7 @@
 - [x] 实现 H01a：task-local typed `TaskEvidenceCapsule`，压缩后确定性重注入。
 - [x] 实现 H01b：默认确定性摘要改为证据优先，不再让旧消息按时间顺序先占满预算。
 - [x] 实现 H01c：精确保留当前需求契约；长原文使用规范化引用与哈希。
-- [ ] 实现 H01d：复用现有 artifact 机制保存长日志，capsule 只放结构化字段和可恢复引用。
+- [x] 实现 H01d：复用现有 artifact 机制保存长日志，capsule 只放结构化字段和可恢复引用。
 - [ ] **H01e 可以实验实现，但必须放在独立分支。**它不能混入无模型调用的 H01a–d 分支。
 - [ ] **H01f 不实现。**不照搬竞品的固定 token 阈值、跨题 memory、todo/goal 架构或完整插件体系。
 - [ ] 最终使用三个变体做对照：原始基线、H01a–d、H01a–e。
@@ -52,7 +52,7 @@
 - [x] capsule 只在当前 ARC task/output 目录内生效，不进入跨题 memory。
 - [x] 同一失败按稳定 signature 去重，保留出现次数和最新 run，而不是重复粘贴完整日志。
 - [x] `pass` 必须绑定 `run_id` 和被测 source/tree hash。代码发生变化后，旧 pass 只能作为历史证据，不能继续代表当前状态。
-- [ ] 长原文先持久化成功，再在 capsule 中写引用。引用至少带路径或 artifact ID、SHA-256 和字节数。
+- [x] 长原文先持久化成功，再在 capsule 中写引用。引用至少带路径或 artifact ID、SHA-256 和字节数。
 - [x] 压缩先构造 candidate，完成 schema/预算/引用校验并持久化后，再原子替换 model-visible history。
 - [x] 任意失败、超时、空结果、缺字段或超预算都保留原历史或回退 B 的确定性结果，不能留下半替换状态。
 - [x] 最新用户请求、system/developer instructions、tool call/result 配对和现有 plan snapshot 不变量继续成立。
@@ -106,10 +106,10 @@ next_action: "inspect the redirect and dashboard render after login"
 字段规则：
 
 - [x] `acceptance_conditions` 来自规范化后的官方 requirement/scenario，不从模型总结中提取。
-- [ ] `expected`/`actual` 只有 runner 能可靠拆出时才填写；不可靠时保留为空并引用原始 artifact，禁止编造。
+- [x] `expected`/`actual` 只有 runner 能可靠拆出时才填写；不可靠时保留为空并引用原始 artifact，禁止编造。
 - [x] `command` 使用 allowlist 后的测试命令；不把环境变量、密钥或任意 shell 参数复制进模型上下文。
 - [x] 所有列表使用稳定排序；重复序列化必须字节稳定，便于哈希、缓存和 A/B 对照。
-- [ ] capsule 设置独立字节/token 上限。超限时按“当前需求 → active failures → 最新验证 → 改动文件 → next action”顺序保留，长内容转引用。
+- [x] capsule 设置独立字节/token 上限。超限时按“当前需求 → active failures → 最新验证 → 改动文件 → next action”顺序保留，长内容转引用。
 - [x] schema 版本不从 workspace-policy 或 compaction schema 借用，使用独立常量和兼容性测试。
 
 ## 4. Milestone M0：冻结基线并确认真实调用链（已完成）
@@ -197,14 +197,16 @@ M3 实现与验证记录：`./h01-m3-implementation-verification.md`。
 
 H01d 只做 H01 需要的最小衔接，不在本分支重做完整 H03。
 
-- [ ] 复用 `ToolOutputEnvelope.raw_artifact_ref/raw_sha256` 和现有 artifact store；禁止创建第二套通用工具日志仓库。
-- [ ] acceptance 侧复用 Playwright `report.json`/action errors，或把等价完整 `RunSummary` 写到 `.arc/evidence/<run_id>.json`。
-- [ ] capsule 对长日志仅保存失败摘要、artifact ref、SHA-256、字节数和必要范围信息。
-- [ ] 引用写入前验证 artifact 已存在且哈希匹配；丢失引用不能标成“可恢复”。
-- [ ] 默认模型输入不展开完整 artifact。只有既有 recall/read 工具被显式调用时才读取原文。
-- [ ] 测试覆盖 artifact 存在、缺失、哈希不一致、超长 UTF-8 输出、重复失败共用引用和 replay。
+- [x] 复用 `ToolOutputEnvelope.raw_artifact_ref/raw_sha256` 和现有 artifact store；禁止创建第二套通用工具日志仓库。
+- [x] acceptance 侧复用 Playwright `report.json`/action errors，或把等价完整 `RunSummary` 写到 `.arc/evidence/<run_id>.json`。
+- [x] capsule 对长日志仅保存失败摘要、artifact ref、SHA-256、字节数和必要范围信息。
+- [x] 引用写入前验证 artifact 已存在且哈希匹配；丢失引用不能标成“可恢复”。
+- [x] 默认模型输入不展开完整 artifact。只有既有 recall/read 工具被显式调用时才读取原文。
+- [x] 测试覆盖 artifact 存在、缺失、哈希不一致、超长 UTF-8 输出、重复失败共用引用和 replay。
 
 完成条件：长测试日志不会直接塞满 capsule；通过引用可以定位到原始证据，且不修改官方测试文件。
+
+M4 实现与验证记录：`./h01-m4-implementation-verification.md`。
 
 ## 9. Milestone M5：B 分支测试、观测和冻结
 
