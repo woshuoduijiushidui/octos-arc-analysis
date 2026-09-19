@@ -1,6 +1,6 @@
 # H01 实施 Milestone：任务证据胶囊与三臂对照实验
 
-- 状态：实施中（Milestone M0-M2 已完成）
+- 状态：实施中（Milestone M0-M3 已完成）
 - 面向对象：后续编码 Agent
 - Octos 基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
 - 设计依据：[H01 竞品调研](./h01-context-evidence-competitor-research.md)
@@ -8,7 +8,7 @@
 ## 0. 已确定的决策
 
 - [x] 实现 H01a：task-local typed `TaskEvidenceCapsule`，压缩后确定性重注入。
-- [ ] 实现 H01b：默认确定性摘要改为证据优先，不再让旧消息按时间顺序先占满预算。
+- [x] 实现 H01b：默认确定性摘要改为证据优先，不再让旧消息按时间顺序先占满预算。
 - [x] 实现 H01c：精确保留当前需求契约；长原文使用规范化引用与哈希。
 - [ ] 实现 H01d：复用现有 artifact 机制保存长日志，capsule 只放结构化字段和可恢复引用。
 - [ ] **H01e 可以实验实现，但必须放在独立分支。**它不能混入无模型调用的 H01a–d 分支。
@@ -53,9 +53,9 @@
 - [x] 同一失败按稳定 signature 去重，保留出现次数和最新 run，而不是重复粘贴完整日志。
 - [x] `pass` 必须绑定 `run_id` 和被测 source/tree hash。代码发生变化后，旧 pass 只能作为历史证据，不能继续代表当前状态。
 - [ ] 长原文先持久化成功，再在 capsule 中写引用。引用至少带路径或 artifact ID、SHA-256 和字节数。
-- [ ] 压缩先构造 candidate，完成 schema/预算/引用校验并持久化后，再原子替换 model-visible history。
-- [ ] 任意失败、超时、空结果、缺字段或超预算都保留原历史或回退 B 的确定性结果，不能留下半替换状态。
-- [ ] 最新用户请求、system/developer instructions、tool call/result 配对和现有 plan snapshot 不变量继续成立。
+- [x] 压缩先构造 candidate，完成 schema/预算/引用校验并持久化后，再原子替换 model-visible history。
+- [x] 任意失败、超时、空结果、缺字段或超预算都保留原历史或回退 B 的确定性结果，不能留下半替换状态。
+- [x] 最新用户请求、system/developer instructions、tool call/result 配对和现有 plan snapshot 不变量继续成立。
 
 ## 3. 最小数据契约
 
@@ -175,21 +175,23 @@ M1 实现与验证记录：`./h01-m1-implementation-verification.md`。
 
 M2 实现与验证记录：`./h01-m2-implementation-verification.md`。
 
-## 7. Milestone M3：H01b——确定性证据优先压缩
+## 7. Milestone M3：H01b——确定性证据优先压缩（已完成）
 
 主要落点预计包括 [compaction.rs](https://github.com/woshuoduijiushidui/octos-arc/blob/c599d18c5acd2b846f049ffea2be84e72fe60fac/crates/octos-agent/src/compaction.rs) 和 [context_manager.rs](https://github.com/woshuoduijiushidui/octos-arc/blob/c599d18c5acd2b846f049ffea2be84e72fe60fac/crates/octos-cli/src/api/context_manager.rs)。以 M0 找到的真实路径为准。
 
-- [ ] 给 capsule 单独预留预算，方式与现有 plan snapshot 类似，但 plan 和 capsule 分别计量，不能叠加后突破总 budget。
-- [ ] 生成摘要前剥离旧的 capsule block；摘要完成后只附加最新 typed capsule。
-- [ ] 把 fallback/extractive 选择顺序改为：当前需求契约、active failures、最新 verification、当前 source/change facts、next action、最近叙事、较旧叙事。
-- [ ] recent zone 和当前用户请求继续原样保留；不得把当前 request 重新总结成 background 指令。
-- [ ] 工具成功/失败优先使用 typed tool result 或执行状态。只有旧数据没有结构化状态时，才允许保守的文本 fallback。
-- [ ] 工具调用只保留 allowlist 后的诊断字段，例如工具名、目标相对路径、测试 ID和无敏感信息的命令摘要。
-- [ ] 连续压缩不得重复嵌套 `Conversation Summary`、plan 或 capsule。
-- [ ] candidate 未真正减少 token 时拒绝安装；overflow recovery 只有在输入 hash/长度确实变化时才重试。
-- [ ] 安装 replacement history 前完成所有校验；失败后保留上一份可用历史。
+- [x] 给 capsule 单独预留预算，方式与现有 plan snapshot 类似，但 plan 和 capsule 分别计量，不能叠加后突破总 budget。
+- [x] 生成摘要前剥离旧的 capsule block；摘要完成后只附加最新 typed capsule。
+- [x] 把 fallback/extractive 选择顺序改为：当前需求契约、active failures、最新 verification、当前 source/change facts、next action、最近叙事、较旧叙事。
+- [x] recent zone 和当前用户请求继续原样保留；不得把当前 request 重新总结成 background 指令。
+- [x] 工具成功/失败优先使用 typed tool result 或执行状态。只有旧数据没有结构化状态时，才允许保守的文本 fallback。
+- [x] 工具调用只保留 allowlist 后的诊断字段，例如工具名、目标相对路径、测试 ID和无敏感信息的命令摘要。
+- [x] 连续压缩不得重复嵌套 `Conversation Summary`、plan 或 capsule。
+- [x] candidate 未真正减少 token 时拒绝安装；overflow recovery 只有在输入 hash/长度确实变化时才重试。
+- [x] 安装 replacement history 前完成所有校验；失败后保留上一份可用历史。
 
-完成条件：研究文档第 8.1 节的九个确定性场景全部变成自动化测试，并覆盖真实 ARC stdio 路径中的至少一个集成场景。
+- [x] 完成条件：研究文档第 8.1 节的九个确定性场景全部变成自动化测试，并覆盖真实 ARC stdio 路径中的至少一个集成场景。
+
+M3 实现与验证记录：`./h01-m3-implementation-verification.md`。
 
 ## 8. Milestone M4：H01d——长日志外置与引用
 
