@@ -1,6 +1,6 @@
 # H01 实施 Milestone：任务证据胶囊与三臂对照实验
 
-- 状态：实施中（Milestone M0-M5 已完成）
+- 状态：实施中（Milestone M0-M6 已完成）
 - 面向对象：后续编码 Agent
 - Octos 基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
 - 设计依据：[H01 竞品调研](./h01-context-evidence-competitor-research.md)
@@ -11,7 +11,7 @@
 - [x] 实现 H01b：默认确定性摘要改为证据优先，不再让旧消息按时间顺序先占满预算。
 - [x] 实现 H01c：精确保留当前需求契约；长原文使用规范化引用与哈希。
 - [x] 实现 H01d：复用现有 artifact 机制保存长日志，capsule 只放结构化字段和可恢复引用。
-- [ ] **H01e 可以实验实现，但必须放在独立分支。**它不能混入无模型调用的 H01a–d 分支。
+- [x] **H01e 可以实验实现，但必须放在独立分支。**它不能混入无模型调用的 H01a–d 分支。
 - [ ] **H01f 不实现。**不照搬竞品的固定 token 阈值、跨题 memory、todo/goal 架构或完整插件体系。
 - [ ] 最终使用三个变体做对照：原始基线、H01a–d、H01a–e。
 - [ ] 评价顺序固定为：官方测试通过情况第一，总 token 第二。
@@ -31,8 +31,8 @@
 - [x] 开工前确认 A 的工作树干净，并把基线 SHA 写入实验 manifest。
 - [x] B 完成并通过确定性测试后先冻结一个 commit，记为
   `B_SHA=6d7d1559b72c3b0a34789909d3056527fdc9d42d`。
-- [ ] C 必须执行 `git switch -c exp/h01e-llm-checkpoint B_SHA`；不得直接从 `main` 或未冻结的工作树切出。
-- [ ] C 相对 B 的 diff 只允许包含 H01e 的 summarizer、配置、观测字段、测试和必要文档。
+- [x] C 必须执行 `git switch -c exp/h01e-llm-checkpoint B_SHA`；不得直接从 `main` 或未冻结的工作树切出。
+- [x] C 相对 B 的 diff 只允许包含 H01e 的 summarizer、配置、观测字段、测试和必要文档。
 - [ ] 如果 B 后续修复，先把相同修复同步到 C，再生成新的 `B_SHA`/`C_SHA` 实验配对；不能拿不同基础实现比较。
 - [ ] A/B/C 都用干净 commit 运行。实验 manifest 中记录 `git status --porcelain`，非空则该次结果无效。
 - [ ] 不创建 H01f 分支，也不为 H01f 预留抽象层。
@@ -234,18 +234,21 @@ M5 行为说明与验证记录：`./h01-m5-b-variant-freeze.md`。
 
 从冻结的 `B_SHA` 创建 `exp/h01e-llm-checkpoint` 后再开始以下工作。
 
-- [ ] 新增独立 summarizer kind，例如 `llm_structured_checkpoint`；不要偷偷改变已有 `extractive` 的含义。
-- [ ] H01e 只总结可丢失的叙事历史。task contract、测试 verdict、active failures 和 artifact metadata 仍以 B 的 typed capsule 为准。
-- [ ] prompt 使用固定短结构，至少包含：historical decisions、completed work、unresolved investigation、next suggested action、critical file references。
-- [ ] 返回值必须可解析并通过 schema 校验；模型生成内容不能覆盖 trusted capsule 字段。
-- [ ] 接受 candidate 前检查：非空、无图片、字段齐全、未截断、在预算内、比被替换区域更小、引用格式合法。
-- [ ] 模型超时、provider error、空输出、malformed JSON、缺字段、超预算或“不变小”时，直接使用 B 的确定性摘要。
-- [ ] H01e 失败不触发无界重试；一次 compaction 最多一次 H01e 摘要请求。
-- [ ] 额外请求必须进入 `.arc/llm-usage.jsonl` 或同口径 usage 流，不能从总 token 中漏记。
-- [ ] mock provider 测试覆盖：有效结果、空结果、字段缺失、截断、超长、timeout、provider error、提示注入文本和 fallback 等价性。
-- [ ] 检查 `git diff B_SHA...HEAD`，确认没有顺手修改 H01a–d、ARC prompt、官方测试或实验预算。
+- [x] 新增独立 summarizer kind，例如 `llm_structured_checkpoint`；不要偷偷改变已有 `extractive` 的含义。
+- [x] H01e 只总结可丢失的叙事历史。task contract、测试 verdict、active failures 和 artifact metadata 仍以 B 的 typed capsule 为准。
+- [x] prompt 使用固定短结构，至少包含：historical decisions、completed work、unresolved investigation、next suggested action、critical file references。
+- [x] 返回值必须可解析并通过 schema 校验；模型生成内容不能覆盖 trusted capsule 字段。
+- [x] 接受 candidate 前检查：非空、无图片、字段齐全、未截断、在预算内、比被替换区域更小、引用格式合法。
+- [x] 模型超时、provider error、空输出、malformed JSON、缺字段、超预算或“不变小”时，直接使用 B 的确定性摘要。
+- [x] H01e 失败不触发无界重试；一次 compaction 最多一次 H01e 摘要请求。
+- [x] 额外请求必须进入 `.arc/llm-usage.jsonl` 或同口径 usage 流，不能从总 token 中漏记。
+- [x] mock provider 测试覆盖：有效结果、空结果、字段缺失、截断、超长、timeout、provider error、提示注入文本和 fallback 等价性。
+- [x] 检查 `git diff B_SHA...HEAD`，确认没有顺手修改 H01a–d、ARC prompt、官方测试或实验预算。
 
 完成条件：关闭新 summarizer 时 C 与 B 行为等价；开启时每次压缩至多多一个可计量请求，任何失败都安全退回 B。
+
+M6 实现与验证记录：`./h01-m6-structured-checkpoint.md`。冻结提交：
+`C_SHA=804e42a8d42b5e570a5d1d2cb78b01d0a73059d7`。
 
 ## 11. Milestone M7：三臂 A/B/C 实验
 
