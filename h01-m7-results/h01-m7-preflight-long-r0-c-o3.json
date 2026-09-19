@@ -1,0 +1,395 @@
+{
+  "manifest": {
+    "experiment": "h01-abc-v1",
+    "phase": "preflight",
+    "variant": "C",
+    "branch": "exp/h01e-llm-checkpoint",
+    "git_sha": "804e42a8d42b5e570a5d1d2cb78b01d0a73059d7",
+    "git_dirty": false,
+    "git_status_porcelain": "",
+    "task_size": "long",
+    "task_id": "arc-bench-web--keep",
+    "requirements_sha256": "sha256:0ee5e976f513ba19dff5348d0eb4813bcc3c1d4229ed28b3beb2cb51af90ea0e",
+    "tests_sha256": "sha256:3d568edcf1d6c4488e600b7f01fe79fa8b3951e7f5249b553cba3f11493d00b2",
+    "template_kind": "empty",
+    "template_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "dependency_lock_present": false,
+    "dependency_lock_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "binary_sha256": "sha256:9edc04286662ccb62ce67478eb060eee6efefd3fe631e04364cab3d14840e5eb",
+    "model": "deepseek-v4-flash",
+    "endpoint_id": "https://api.arc-bench.com",
+    "reasoning": "low",
+    "temperature": "runtime_default",
+    "max_output_tokens": 32768,
+    "session_scope": "node",
+    "compaction_policy": {
+      "threshold_tokens": 1200,
+      "target_tokens": 800,
+      "semantic_mode": "on"
+    },
+    "time_budget_s": 180,
+    "node_time_budget_s": 180,
+    "node_timeout_s": 150,
+    "design_timeout_s": 60,
+    "repair_rounds": 1,
+    "playwright_workers": {
+      "generation": 1,
+      "final_grade": 4
+    },
+    "tool_permissions": "octos serve --stdio --solo --danger-full-access",
+    "machine": "macOS-26.6.2-arm64-arm-64bit",
+    "repetition": 0,
+    "run_order": 3,
+    "run_started_at": "2026-09-19T13:04:26.099+00:00",
+    "generation_started_at": "2026-09-19T13:04:26.106+00:00",
+    "generation_ended_at": "2026-09-19T13:09:14.605+00:00",
+    "grading_started_at": "2026-09-19T13:09:14.605+00:00",
+    "grading_ended_at": "2026-09-19T13:15:29.347+00:00",
+    "run_ended_at": "2026-09-19T13:15:29.360+00:00",
+    "generation_exit_code": 0,
+    "grading_exit_code": 0,
+    "compaction_count": 6,
+    "usage": {
+      "requests": 31,
+      "prompt_tokens": 328066,
+      "completion_tokens": 20114,
+      "reasoning_tokens": 8694,
+      "prompt_cache_hit_tokens": 261632,
+      "h01e_extra_requests": 0,
+      "h01e_extra_tokens": 0,
+      "provider_tokens": 348180
+    },
+    "grade": {
+      "passed": 5,
+      "total": 32
+    },
+    "test_timing_count": 32,
+    "valid": true,
+    "invalid_reasons": [],
+    "output_dir": "/Users/bytedance/arc-bench/.h01-m7/worktrees/C/arc/arc-output/h01-m7-preflight-long-r0-c-o3",
+    "generation_log": "/Users/bytedance/arc-bench/octos-arc-analysis/h01-m7-results/logs/h01-m7-preflight-long-r0-c-o3.log",
+    "grading_log": "/Users/bytedance/arc-bench/octos-arc-analysis/h01-m7-results/logs/h01-m7-preflight-long-r0-c-o3-grade.log"
+  },
+  "test_timings": [
+    {
+      "title": "REQ-1.1: Enter Website",
+      "file": "REQ-1.1.spec.ts",
+      "project": "",
+      "status": "passed",
+      "ok": true,
+      "started_at": "2026-09-19T13:09:17.686+00:00",
+      "ended_at": "2026-09-19T13:09:17.983+00:00",
+      "duration_ms": 297
+    },
+    {
+      "title": "REQ-2.1: Note Listing",
+      "file": "REQ-2.1.spec.ts",
+      "project": "",
+      "status": "passed",
+      "ok": true,
+      "started_at": "2026-09-19T13:09:17.686+00:00",
+      "ended_at": "2026-09-19T13:09:18.041+00:00",
+      "duration_ms": 355
+    },
+    {
+      "title": "REQ-2.2: Create Note",
+      "file": "REQ-2.2.spec.ts",
+      "project": "",
+      "status": "passed",
+      "ok": true,
+      "started_at": "2026-09-19T13:09:17.687+00:00",
+      "ended_at": "2026-09-19T13:09:18.452+00:00",
+      "duration_ms": 765
+    },
+    {
+      "title": "REQ-2.3.1: Delete",
+      "file": "REQ-2.3.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:09:17.686+00:00",
+      "ended_at": "2026-09-19T13:10:17.704+00:00",
+      "duration_ms": 60018
+    },
+    {
+      "title": "REQ-2.3.2: Notification and Undo",
+      "file": "REQ-2.3.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:09:18.622+00:00",
+      "ended_at": "2026-09-19T13:10:18.630+00:00",
+      "duration_ms": 60008
+    },
+    {
+      "title": "REQ-2.3.3: Trash list",
+      "file": "REQ-2.3.3.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:09:18.631+00:00",
+      "ended_at": "2026-09-19T13:10:18.640+00:00",
+      "duration_ms": 60009
+    },
+    {
+      "title": "REQ-2.4: Update Note",
+      "file": "REQ-2.4.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:09:19.128+00:00",
+      "ended_at": "2026-09-19T13:10:19.138+00:00",
+      "duration_ms": 60010
+    },
+    {
+      "title": "REQ-2.5.1: Archive",
+      "file": "REQ-2.5.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:10:18.609+00:00",
+      "ended_at": "2026-09-19T13:11:18.628+00:00",
+      "duration_ms": 60019
+    },
+    {
+      "title": "REQ-2.5.2: Archive Undo",
+      "file": "REQ-2.5.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:10:18.914+00:00",
+      "ended_at": "2026-09-19T13:11:18.925+00:00",
+      "duration_ms": 60011
+    },
+    {
+      "title": "REQ-2.5.3: Show archived notes",
+      "file": "REQ-2.5.3.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:10:18.927+00:00",
+      "ended_at": "2026-09-19T13:11:18.939+00:00",
+      "duration_ms": 60012
+    },
+    {
+      "title": "REQ-2.5.4: Unarchive",
+      "file": "REQ-2.5.4.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:10:19.456+00:00",
+      "ended_at": "2026-09-19T13:11:19.472+00:00",
+      "duration_ms": 60016
+    },
+    {
+      "title": "REQ-2.6.1: Change note color",
+      "file": "REQ-2.6.1.spec.ts",
+      "project": "",
+      "status": "failed",
+      "ok": false,
+      "started_at": "2026-09-19T13:11:19.235+00:00",
+      "ended_at": "2026-09-19T13:11:24.405+00:00",
+      "duration_ms": 5170
+    },
+    {
+      "title": "REQ-2.6.2: Choose note color when created",
+      "file": "REQ-2.6.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:11:19.815+00:00",
+      "ended_at": "2026-09-19T13:12:19.829+00:00",
+      "duration_ms": 60014
+    },
+    {
+      "title": "REQ-2.7.1: Assign label to a note",
+      "file": "REQ-2.7.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:11:19.829+00:00",
+      "ended_at": "2026-09-19T13:12:19.850+00:00",
+      "duration_ms": 60021
+    },
+    {
+      "title": "REQ-2.7.2: Remove label from a note",
+      "file": "REQ-2.7.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:11:20.379+00:00",
+      "ended_at": "2026-09-19T13:12:20.390+00:00",
+      "duration_ms": 60011
+    },
+    {
+      "title": "REQ-2.7.3: Default label",
+      "file": "REQ-2.7.3.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:11:25.002+00:00",
+      "ended_at": "2026-09-19T13:12:25.015+00:00",
+      "duration_ms": 60013
+    },
+    {
+      "title": "REQ-2.7.4: Assign default label when creating note",
+      "file": "REQ-2.7.4.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:12:20.626+00:00",
+      "ended_at": "2026-09-19T13:13:20.638+00:00",
+      "duration_ms": 60012
+    },
+    {
+      "title": "REQ-2.7.5: Edit labels",
+      "file": "REQ-2.7.5.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:12:20.634+00:00",
+      "ended_at": "2026-09-19T13:13:20.642+00:00",
+      "duration_ms": 60008
+    },
+    {
+      "title": "REQ-2.7.6.1: View list filtered by label",
+      "file": "REQ-2.7.6.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:12:21.178+00:00",
+      "ended_at": "2026-09-19T13:13:21.188+00:00",
+      "duration_ms": 60010
+    },
+    {
+      "title": "REQ-2.7.6.2: View all notes",
+      "file": "REQ-2.7.6.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:12:25.571+00:00",
+      "ended_at": "2026-09-19T13:13:25.585+00:00",
+      "duration_ms": 60014
+    },
+    {
+      "title": "REQ-2.7.6.3: View Reminders",
+      "file": "REQ-2.7.6.3.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:13:21.333+00:00",
+      "ended_at": "2026-09-19T13:14:21.348+00:00",
+      "duration_ms": 60015
+    },
+    {
+      "title": "REQ-2.8.1: Pin note",
+      "file": "REQ-2.8.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:13:21.394+00:00",
+      "ended_at": "2026-09-19T13:14:21.404+00:00",
+      "duration_ms": 60010
+    },
+    {
+      "title": "REQ-2.8.2: Unpin note",
+      "file": "REQ-2.8.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:13:22.006+00:00",
+      "ended_at": "2026-09-19T13:14:22.026+00:00",
+      "duration_ms": 60020
+    },
+    {
+      "title": "REQ-2.8.3: Pin note when creating it",
+      "file": "REQ-2.8.3.spec.ts",
+      "project": "",
+      "status": "passed",
+      "ok": true,
+      "started_at": "2026-09-19T13:13:26.135+00:00",
+      "ended_at": "2026-09-19T13:13:26.647+00:00",
+      "duration_ms": 512
+    },
+    {
+      "title": "REQ-3.1: Initial suggested filters",
+      "file": "REQ-3.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:13:26.988+00:00",
+      "ended_at": "2026-09-19T13:14:27.001+00:00",
+      "duration_ms": 60013
+    },
+    {
+      "title": "REQ-3.2: Search by keyword",
+      "file": "REQ-3.2.spec.ts",
+      "project": "",
+      "status": "failed",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:22.013+00:00",
+      "ended_at": "2026-09-19T13:14:27.273+00:00",
+      "duration_ms": 5260
+    },
+    {
+      "title": "REQ-4.1: Setting options list",
+      "file": "REQ-4.1.spec.ts",
+      "project": "",
+      "status": "passed",
+      "ok": true,
+      "started_at": "2026-09-19T13:14:22.101+00:00",
+      "ended_at": "2026-09-19T13:14:22.600+00:00",
+      "duration_ms": 499
+    },
+    {
+      "title": "REQ-4.2: Detailed settings",
+      "file": "REQ-4.2.spec.ts",
+      "project": "",
+      "status": "failed",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:22.773+00:00",
+      "ended_at": "2026-09-19T13:14:28.194+00:00",
+      "duration_ms": 5421
+    },
+    {
+      "title": "REQ-5.1: Toggle between list and grid views",
+      "file": "REQ-5.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:23.065+00:00",
+      "ended_at": "2026-09-19T13:15:23.077+00:00",
+      "duration_ms": 60012
+    },
+    {
+      "title": "REQ-5.2: Grid View by default",
+      "file": "REQ-5.2.spec.ts",
+      "project": "",
+      "status": "failed",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:27.252+00:00",
+      "ended_at": "2026-09-19T13:14:32.451+00:00",
+      "duration_ms": 5199
+    },
+    {
+      "title": "REQ-6.1: Items and styling",
+      "file": "REQ-6.1.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:27.938+00:00",
+      "ended_at": "2026-09-19T13:15:27.953+00:00",
+      "duration_ms": 60015
+    },
+    {
+      "title": "REQ-6.2: Collapsible Sidebar",
+      "file": "REQ-6.2.spec.ts",
+      "project": "",
+      "status": "timedOut",
+      "ok": false,
+      "started_at": "2026-09-19T13:14:28.857+00:00",
+      "ended_at": "2026-09-19T13:15:28.872+00:00",
+      "duration_ms": 60015
+    }
+  ]
+}

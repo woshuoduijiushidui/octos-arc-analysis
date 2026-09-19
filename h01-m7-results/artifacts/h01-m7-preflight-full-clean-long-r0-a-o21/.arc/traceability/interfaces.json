@@ -1,0 +1,28 @@
+{
+  "REQ-1.1:route:0": {
+    "interface_id": "REQ-1.1:route:0",
+    "req_ids": [
+      "REQ-1.1"
+    ],
+    "type": "http",
+    "content": "GET /",
+    "file_path": null,
+    "first_line": null,
+    "implemented": true,
+    "callers": [],
+    "callees": []
+  },
+  "REQ-2.1:route:0": {
+    "interface_id": "REQ-2.1:route:0",
+    "req_ids": [
+      "REQ-2.1"
+    ],
+    "type": "http",
+    "content": "GET /api/notes",
+    "file_path": null,
+    "first_line": null,
+    "implemented": false,
+    "callers": [],
+    "callees": []
+  }
+}

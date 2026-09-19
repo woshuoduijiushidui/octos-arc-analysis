@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "experiment": "h01-abc-v1",
+    "phase": "preflight-full-clean",
+    "variant": "A",
+    "branch": "main@baseline",
+    "git_sha": "c599d18c5acd2b846f049ffea2be84e72fe60fac",
+    "git_dirty": false,
+    "git_status_porcelain": "",
+    "task_size": "long",
+    "task_id": "arc-bench-web--keep",
+    "requirements_sha256": "sha256:0ee5e976f513ba19dff5348d0eb4813bcc3c1d4229ed28b3beb2cb51af90ea0e",
+    "tests_sha256": "sha256:3d568edcf1d6c4488e600b7f01fe79fa8b3951e7f5249b553cba3f11493d00b2",
+    "template_kind": "empty",
+    "template_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "dependency_lock_present": false,
+    "dependency_lock_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "binary_sha256": "sha256:9321c6abef0174aabb4c6550b7fd4b2a7e45453d458323046cbe5c5a0ed1bed5",
+    "model": "deepseek-v4-flash",
+    "endpoint_id": "https://api.arc-bench.com",
+    "reasoning": "low",
+    "temperature": "runtime_default",
+    "max_output_tokens": 32768,
+    "session_scope": "node",
+    "generation_mode": {
+      "codegen": false,
+      "design": "separate"
+    },
+    "compaction_policy": {
+      "threshold_tokens": 1200,
+      "target_tokens": 800,
+      "semantic_mode": "on"
+    },
+    "time_budget_s": 48000,
+    "node_time_budget_s": 1500,
+    "node_timeout_s": 1200,
+    "design_timeout_s": 1200,
+    "repair_rounds": 1,
+    "playwright_workers": {
+      "generation": 1,
+      "final_grade": 4
+    },
+    "scoring_priority": [
+      "official_test_accuracy",
+      "provider_tokens"
+    ],
+    "elapsed_time_scored": false,
+    "tool_permissions": "octos serve --stdio --solo --danger-full-access",
+    "machine": "macOS-26.6.2-arm64-arm-64bit",
+    "repetition": 0,
+    "run_order": 21,
+    "run_started_at": "2026-09-19T15:01:16.723+00:00",
+    "generation_started_at": "2026-09-19T15:01:16.728+00:00",
+    "generation_ended_at": "2026-09-19T15:31:09.002+00:00",
+    "grading_started_at": "2026-09-19T15:31:09.002+00:00",
+    "grading_ended_at": "2026-09-19T15:31:09.040+00:00",
+    "run_ended_at": "2026-09-19T15:31:09.056+00:00",
+    "generation_exit_code": -9,
+    "grading_exit_code": -9,
+    "compaction_attempt_count": 4,
+    "compaction_count": 2,
+    "usage": {
+      "requests": 82,
+      "prompt_tokens": 1367620,
+      "completion_tokens": 41741,
+      "reasoning_tokens": 18785,
+      "prompt_cache_hit_tokens": 1182464,
+      "h01e_extra_requests": 0,
+      "h01e_extra_tokens": 0,
+      "provider_tokens": 1409361
+    },
+    "grade": {
+      "passed": 0,
+      "total": 0
+    },
+    "test_timing_count": 0,
+    "valid": false,
+    "invalid_reasons": [
+      "generation_process_error",
+      "grading_infrastructure_error"
+    ],
+    "output_dir": "/Users/bytedance/arc-bench/.h01-m7/worktrees/A/arc/arc-output/h01-m7-preflight-full-clean-long-r0-a-o21",
+    "output_retention": "arc_artifacts_only",
+    "generation_log": "/Users/bytedance/arc-bench/octos-arc-analysis/h01-m7-results/logs/h01-m7-preflight-full-clean-long-r0-a-o21.log",
+    "grading_log": "/Users/bytedance/arc-bench/octos-arc-analysis/h01-m7-results/logs/h01-m7-preflight-full-clean-long-r0-a-o21-grade.log",
+    "archived_arc_dir": "/Users/bytedance/arc-bench/octos-arc-analysis/h01-m7-results/artifacts/h01-m7-preflight-full-clean-long-r0-a-o21/.arc"
+  },
+  "test_timings": []
+}

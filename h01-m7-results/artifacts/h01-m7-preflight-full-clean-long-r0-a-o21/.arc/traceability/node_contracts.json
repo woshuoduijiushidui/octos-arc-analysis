@@ -1,0 +1,156 @@
+{
+  "REQ-1.1": {
+    "req_id": "REQ-1.1",
+    "content": {
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/",
+          "request": {},
+          "response": {
+            "200": "Serves the SPA home page (index.html). All data on this view is rendered client-side from the notes API; the home page itself exposes no mutating endpoint."
+          },
+          "errors": []
+        }
+      ],
+      "pages": [
+        {
+          "path": "/",
+          "elements": [
+            {
+              "role": "textbox",
+              "name": "Take a note...",
+              "notes": "Composer trigger; regex /take a note/i and /note/i used by openComposer. Also the note content textbox must satisfy getByLabel/getByPlaceholder /take a note/i, /note/i, /content/i."
+            },
+            {
+              "role": "searchbox",
+              "name": "Search",
+              "notes": "Header search entry; must match getByRole searchbox|textbox name /search/i and getByPlaceholder /search/i."
+            },
+            {
+              "role": "button",
+              "name": "Main menu",
+              "notes": "Sidebar toggle; regex /main menu/i, /menu/i, /sidebar/i (openSidebar/toggleSidebar/REQ-6.2)."
+            },
+            {
+              "role": "button",
+              "name": "Settings",
+              "notes": "Settings menu entry; regex /settings/i (openSettingsMenu/REQ-4.x)."
+            },
+            {
+              "role": "button",
+              "name": "List view",
+              "notes": "View toggle; /list view/i or /grid view/i (toggleView/REQ-5.x). Default state must expose /list view/i text per REQ-5.2."
+            }
+          ]
+        }
+      ],
+      "data_model": {
+        "notes": {
+          "id": "string",
+          "title": "string",
+          "content": "string",
+          "pinned": "boolean",
+          "archived": "boolean",
+          "deleted": "boolean",
+          "color": "string",
+          "labels": "string[]",
+          "createdAt": "string",
+          "updatedAt": "string"
+        },
+        "labels": {
+          "id": "string",
+          "name": "string",
+          "isDefault": "boolean"
+        },
+        "settings": {
+          "view": "string",
+          "enableBottom": "boolean"
+        }
+      },
+      "files": [
+        "backend/server.js",
+        "frontend/src/App.js",
+        "frontend/src/components/HomePage.js",
+        "frontend/src/components/Sidebar.js",
+        "frontend/src/components/NoteComposer.js"
+      ],
+      "notes": "REQ-1.1 (fixture public_homepage) only asserts page.goto('/') then expectHomePage: both visible texts /take a note/i and /search/i, plus the home page must render without JS errors. No API call is required for this node, so / is a static SPA route; data endpoints (GET /api/notes etc.) belong to dependent nodes. The two matchers are text-only (getByText), so 'Take a note...' and 'Search' must be visible text on load. For downstream REQ-2.x/3.x/5.x/6.x tests that also openHome and require openSidebar to be a no-op when /notes/i is visible, the sidebar should already be expanded by default and contain Notes text; the Main menu toggle reopens it after collapse (REQ-6.2). Public tests are authoritative; any conflict between this design and the fixtures must be reported rather than silently dropped."
+    },
+    "updated_at": "2026-09-19 15:04:11"
+  },
+  "REQ-2.1": {
+    "req_id": "REQ-2.1",
+    "content": {
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/notes",
+          "request": {},
+          "response": {
+            "200": "{ \"notes\": [ { \"id\": \"string\", \"title\": \"Sprint goals\", \"content\": \"\", \"pinned\": true, \"archived\": false, \"deleted\": false, \"color\": \"\", \"labels\": [], \"createdAt\": \"string\", \"updatedAt\": \"string\" }, { \"id\": \"string\", \"title\": \"Groceries\", \"content\": \"\", \"pinned\": false, \"archived\": false, \"deleted\": false, \"color\": \"\", \"labels\": [], \"createdAt\": \"string\", \"updatedAt\": \"string\" } ] }"
+          },
+          "errors": []
+        }
+      ],
+      "pages": [
+        {
+          "path": "/",
+          "elements": [
+            {
+              "role": "heading",
+              "name": "Pinned",
+              "notes": "Section label for pinned notes. Must expose visible text matching /pinned/i (expectTextsVisible resolves getByText/getByRole heading). Only pinned notes (pinned===true, not deleted/archived) render under it."
+            },
+            {
+              "role": "heading",
+              "name": "Others",
+              "notes": "Section label for regular notes. Must expose visible text matching /others|notes/i. Renders all non-pinned, non-deleted, non-archived notes."
+            },
+            {
+              "role": "text",
+              "name": "Sprint goals",
+              "notes": "Pinned note title (FIXTURES.notes.pinnedTitle). Must be visible text; copied verbatim. Shown in the Pinned section."
+            },
+            {
+              "role": "text",
+              "name": "Groceries",
+              "notes": "Regular note title (FIXTURES.notes.regularTitle). Must be visible text; copied verbatim. Shown in the Others section."
+            }
+          ]
+        }
+      ],
+      "data_model": {
+        "notes": {
+          "id": "string",
+          "title": "string",
+          "content": "string",
+          "pinned": "boolean",
+          "archived": "boolean",
+          "deleted": "boolean",
+          "color": "string",
+          "labels": "string[]",
+          "createdAt": "string",
+          "updatedAt": "string"
+        },
+        "labels": {
+          "id": "string",
+          "name": "string",
+          "isDefault": "boolean"
+        },
+        "settings": {
+          "view": "string",
+          "enableBottom": "boolean"
+        }
+      },
+      "files": [
+        "backend/server.js",
+        "backend/data/db.json",
+        "frontend/src/App.js",
+        "frontend/src/components/HomePage.js"
+      ],
+      "notes": "REQ-2.1 (fixture notes_overview) is read-only: openHome then expectTextsVisible('Sprint goals','Groceries') and expectTextsVisible(/pinned/i, /others|notes/i). Reuse the existing GET /api/notes route; the home page must fetch it on load and render two separated sections headed 'Pinned' and 'Others'. Seed data: for a NEW store (and the checked-in backend/data/db.json) initialize exactly the two required records — 'Sprint goals' (pinned:true) and 'Groceries' (pinned:false) — per UI_CONTRACT_DATA (initialize required records only for a new store; never overwrite existing user data). Both titles must be visible text on /; use actual heading elements for 'Pinned' and 'Others' so /pinned/i and /others/i match. Keep every REQ-1.1 element (Take a note..., Search, Main menu, Settings, List view) intact and the sidebar Notes label visible so openSidebar stays a no-op. Downstream nodes (REQ-2.2 create, REQ-2.8 pin) will render note cards in the notes-area; design the sections so note titles remain individually reachable by getByText/getByRole. Public tests are authoritative; report any conflict with the fixtures instead of silently dropping requirements."
+    },
+    "updated_at": "2026-09-19 15:22:22"
+  }
+}
