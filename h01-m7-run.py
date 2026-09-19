@@ -4,13 +4,18 @@
 from __future__ import annotations
 
 import argparse
+import atexit
 import hashlib
 import json
 import os
 import platform
+import re
+import signal
 import shutil
 import subprocess
 import sys
+import tempfile
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -25,6 +30,9 @@ BIN_DIR = STATE_ROOT / "bin"
 PLAYWRIGHT_ROOT = STATE_ROOT / "playwright"
 PREPARED_PATH = STATE_ROOT / "prepared.json"
 RESULT_ROOT = Path(__file__).resolve().parent / "h01-m7-results"
+ARTIFACT_ROOT = RESULT_ROOT / "artifacts"
+ISOLATED_ROOT = Path(tempfile.gettempdir()) / "h01-m7-isolated"
+ACTIVE_WORKTREES: set[Path] = set()
 
 VARIANTS = {
     "A": "c599d18c5acd2b846f049ffea2be84e72fe60fac",
@@ -35,34 +43,40 @@ VARIANTS = {
 TASKS = {
     "small": {
         "id": "smoke--counter",
-        "time_budget_s": 180,
-        "node_time_budget_s": 180,
+        "time_budget_s": 3600,
+        "node_time_budget_s": 1500,
+        "grading_hard_timeout_s": 600,
+        "token_safety_limit": 3_000_000,
     },
     "medium": {
         "id": "ticket-booking--ticket-booking",
-        "time_budget_s": 360,
-        "node_time_budget_s": 210,
+        "time_budget_s": 3600,
+        "node_time_budget_s": 1500,
+        "grading_hard_timeout_s": 1200,
+        "token_safety_limit": 10_000_000,
     },
     "long": {
         "id": "arc-bench-web--keep",
-        "time_budget_s": 480,
-        "node_time_budget_s": 180,
+        "time_budget_s": 48000,
+        "node_time_budget_s": 1500,
+        "grading_hard_timeout_s": 3600,
+        "token_safety_limit": 30_000_000,
     },
 }
 
 FIXED_ENV = {
     "OCTOS_ARC_REASONING": "low",
     "OCTOS_ARC_MAX_TOKENS": "32768",
-    "OCTOS_NODE_TIMEOUT": "150",
-    "OCTOS_DESIGN_TIMEOUT": "60",
+    "OCTOS_NODE_TIMEOUT": "1200",
+    "OCTOS_DESIGN_TIMEOUT": "1200",
     "OCTOS_REPAIR_ROUNDS": "1",
     "OCTOS_FINAL_REPAIR_ROUNDS": "0",
     "OCTOS_MIN_REPAIR_SECONDS": "30",
-    "OCTOS_DESIGN_TURN": "0",
+    "OCTOS_DESIGN_TURN": "1",
     "OCTOS_DESIGN_MIN_NODES": "1",
     "OCTOS_DESIGN_MODE": "separate",
     "OCTOS_SKELETON_MIN_NODES": "999",
-    "OCTOS_IMPLEMENT_FRACTION": "1.0",
+    "OCTOS_IMPLEMENT_FRACTION": "0.6",
     "OCTOS_ARC_TEST_WORKERS": "1",
     "OCTOS_ARC_FINAL_WORKERS": "4",
     "OCTOS_ARC_REGRESSION_CHECKPOINT": "0",
@@ -70,8 +84,14 @@ FIXED_ENV = {
     "OCTOS_CONTEXT_COMPACT_THRESHOLD_TOKENS": "1200",
     "OCTOS_CONTEXT_COMPACT_TARGET_TOKENS": "800",
     "OCTOS_OUP_SEMANTIC_CONTEXT_MODE": "on",
-    "OCTOS_MAX_ITERATIONS": "8",
+    "OCTOS_MAX_ITERATIONS": "500",
     "OCTOS_ARC_INSTALL_PLAYWRIGHT": "0",
+    "OCTOS_ARC_EXTRA_RULES": (
+        "Experiment isolation is mandatory. Inspect only the current Application "
+        "directory and the read-only requirement/test paths in the prompt. Never "
+        "search for or read sibling arc-output, h01-m7-results, prior runs, or "
+        "other worktrees."
+    ),
 }
 
 
@@ -396,6 +416,178 @@ def write_json(path: Path, value: object) -> None:
     temporary.replace(path)
 
 
+def run_with_hard_timeout(
+    command: list[str],
+    cwd: Path,
+    env: dict[str, str],
+    log_path: Path,
+    timeout_s: int,
+    usage_path: Path | None = None,
+    token_safety_limit: int = 0,
+) -> tuple[int, bool, str]:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with log_path.open("w", encoding="utf-8") as log:
+        process = subprocess.Popen(
+            command,
+            cwd=cwd,
+            env=env,
+            stdout=log,
+            stderr=subprocess.STDOUT,
+            start_new_session=True,
+        )
+        deadline = time.monotonic() + timeout_s
+        stop_reason = ""
+        try:
+            while process.poll() is None:
+                if time.monotonic() >= deadline:
+                    stop_reason = f"hard_timeout_after_{timeout_s}s"
+                    break
+                if (
+                    usage_path is not None
+                    and token_safety_limit > 0
+                    and usage_totals(usage_path)["provider_tokens"]
+                    >= token_safety_limit
+                ):
+                    stop_reason = f"token_safety_limit_{token_safety_limit}"
+                    break
+                time.sleep(5)
+        except BaseException:
+            terminate_process_tree(process)
+            raise
+        if not stop_reason:
+            return int(process.returncode or 0), False, ""
+        terminate_process_tree(process)
+        return process.returncode, True, stop_reason
+
+
+def process_descendants(root_pid: int) -> list[int]:
+    result = subprocess.run(
+        ["ps", "-axo", "pid=,ppid="],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    children: dict[int, list[int]] = {}
+    for line in result.stdout.splitlines():
+        fields = line.split()
+        if len(fields) != 2:
+            continue
+        pid, parent = map(int, fields)
+        children.setdefault(parent, []).append(pid)
+    descendants = []
+    pending = list(children.get(root_pid, []))
+    while pending:
+        pid = pending.pop()
+        descendants.append(pid)
+        pending.extend(children.get(pid, []))
+    return descendants
+
+
+def terminate_process_tree(process: subprocess.Popen) -> None:
+    descendants = process_descendants(process.pid)
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    for pid in reversed(descendants):
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+    try:
+        process.wait(timeout=10)
+        return
+    except subprocess.TimeoutExpired:
+        pass
+    for pid in reversed(descendants):
+        try:
+            os.kill(pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    process.wait()
+
+
+def runtime_anomalies(log_text: str) -> list[dict]:
+    anomalies = []
+    patterns = (
+        ("turn_timeout", r"(?m)^.*(?:turn timed out|timed out after).*$"),
+        ("turn_loop", r"(?m)^.*turn still running \((\d+)s elapsed\).*$"),
+        ("provider_error", r"(?mi)^.*(?:provider error|HTTP (?:4|5)\d\d).*$"),
+        ("infrastructure_error", r"(?mi)^.*infrastructure error.*$"),
+    )
+    for kind, pattern in patterns:
+        matches = re.findall(pattern, log_text)
+        if not matches:
+            continue
+        anomaly = {"kind": kind, "occurrences": len(matches)}
+        if kind == "turn_loop":
+            anomaly["max_elapsed_s"] = max(int(value) for value in matches)
+        anomalies.append(anomaly)
+    return anomalies
+
+
+def archive_run_artifacts(output: Path, output_name: str) -> Path | None:
+    source = output / ".arc"
+    if not source.is_dir():
+        return None
+    destination = ARTIFACT_ROOT / output_name / ".arc"
+    if destination.exists():
+        raise RuntimeError(f"refusing to reuse artifact directory: {destination}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(source, destination)
+    return destination
+
+
+def create_isolated_worktree(variant: str, output_name: str) -> Path:
+    ISOLATED_ROOT.mkdir(parents=True, exist_ok=True)
+    worktree = ISOLATED_ROOT / output_name
+    if worktree.exists():
+        raise RuntimeError(f"isolated worktree already exists: {worktree}")
+    run_checked(
+        ["git", "worktree", "add", "--detach", str(worktree), VARIANTS[variant]],
+        SOURCE_REPO,
+    )
+    ACTIVE_WORKTREES.add(worktree)
+    prepare_grader_dir(worktree)
+    return worktree
+
+
+def remove_isolated_worktree(worktree: Path) -> None:
+    if not worktree.exists():
+        return
+    subprocess.run(
+        ["git", "worktree", "remove", "--force", str(worktree)],
+        cwd=SOURCE_REPO,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    shutil.rmtree(worktree, ignore_errors=True)
+    ACTIVE_WORKTREES.discard(worktree)
+
+
+def cleanup_active_worktrees() -> None:
+    for worktree in list(ACTIVE_WORKTREES):
+        remove_isolated_worktree(worktree)
+
+
+atexit.register(cleanup_active_worktrees)
+
+
+def output_name_for(
+    variant: str,
+    task_size: str,
+    repetition: int,
+    run_order: int,
+    phase: str,
+) -> str:
+    return f"h01-m7-{phase}-{task_size}-r{repetition}-{variant.lower()}-o{run_order}"
+
+
 def run_one(
     variant: str,
     task_size: str,
@@ -407,24 +599,21 @@ def run_one(
 ) -> dict:
     config = TASKS[task_size]
     task_id = config["id"]
-    worktree = WORKTREE_ROOT / variant
+    binary = BIN_DIR / f"octos-{variant}"
+    output_name = output_name_for(
+        variant, task_size, repetition, run_order, phase
+    )
+    worktree = create_isolated_worktree(variant, output_name)
     task_dir = worktree / "arc" / "tasks" / task_id
     tests_dir = worktree / "arc" / "public-tests" / task_id
-    binary = BIN_DIR / f"octos-{variant}"
-    output_name = (
-        f"h01-m7-{phase}-{task_size}-r{repetition}-{variant.lower()}-o{run_order}"
-    )
     output = worktree / "arc" / "arc-output" / output_name
-    if output.exists():
-        raise RuntimeError(f"refusing to reuse output directory: {output}")
-    if git_output(worktree, "status", "--porcelain"):
-        raise RuntimeError(f"{variant} worktree is dirty before {output_name}")
 
     endpoint = urlparse(os.environ["OPENAI_BASE_URL"])
-    time_budget = (
-        180 if phase in {"preflight", "default-scope"} else config["time_budget_s"]
-    )
-    node_budget = min(config["node_time_budget_s"], time_budget)
+    time_budget = config["time_budget_s"]
+    node_budget = config["node_time_budget_s"]
+    generation_hard_timeout_s = time_budget + 300
+    grading_hard_timeout_s = config["grading_hard_timeout_s"]
+    token_safety_limit = config["token_safety_limit"]
     manifest = {
         "experiment": "h01-abc-v1",
         "phase": phase,
@@ -469,12 +658,22 @@ def run_one(
         "node_time_budget_s": node_budget,
         "node_timeout_s": int(FIXED_ENV["OCTOS_NODE_TIMEOUT"]),
         "design_timeout_s": int(FIXED_ENV["OCTOS_DESIGN_TIMEOUT"]),
+        "generation_hard_timeout_s": generation_hard_timeout_s,
+        "grading_hard_timeout_s": grading_hard_timeout_s,
+        "token_safety_limit": token_safety_limit,
         "repair_rounds": int(FIXED_ENV["OCTOS_REPAIR_ROUNDS"]),
         "playwright_workers": {
             "generation": int(FIXED_ENV["OCTOS_ARC_TEST_WORKERS"]),
             "final_grade": int(FIXED_ENV["OCTOS_ARC_FINAL_WORKERS"]),
         },
-        "tool_permissions": "octos serve --stdio --solo --danger-full-access",
+        "tool_permissions": "octos serve --stdio --solo; sandbox enabled",
+        "isolation": {
+            "kind": "fresh_detached_git_worktree",
+            "worktree": str(worktree),
+            "prior_outputs_present_at_start": False,
+        },
+        "scoring_priority": ["official_test_accuracy", "provider_tokens"],
+        "elapsed_time_scored": False,
         "machine": platform.platform(),
         "repetition": repetition,
         "run_order": run_order,
@@ -492,11 +691,15 @@ def run_one(
     env.update(
         {
             "OCTOS_BIN": str(binary),
+            "OCTOS_MODEL": os.environ["MODEL"],
+            "OCTOS_PROVIDER": "custom",
             "OCTOS_H01_VARIANT": variant,
             "OCTOS_SESSION_SCOPE": scope,
             "OCTOS_TIME_BUDGET": str(time_budget),
             "OCTOS_NODE_TIME_BUDGET": str(node_budget),
             "OCTOS_ARC_PLAYWRIGHT_ROOT": str(PLAYWRIGHT_ROOT),
+            "OCTOS_DANGER_FULL_ACCESS": "0",
+            "OCTOS_SMOKE_PORT": str(port + 1),
         }
     )
     if variant == "C":
@@ -508,31 +711,41 @@ def run_one(
     log_path.parent.mkdir(parents=True, exist_ok=True)
     manifest["generation_started_at"] = now()
     write_json(output / ".arc" / "experiment-manifest.json", manifest)
-    with log_path.open("w", encoding="utf-8") as log:
-        generation = subprocess.run(
+    generation_exit_code, generation_stopped, generation_stop_reason = (
+        run_with_hard_timeout(
             [
                 sys.executable,
-                str(worktree / "arc" / "run-task-local.py"),
+                str(worktree / "arc" / "main.py"),
                 str(task_dir),
-                "--name",
-                output_name,
-                "--port",
+                "--output-dir",
+                str(output),
+                "--type",
+                "web",
+                "--web-port",
                 str(port),
-                "--smoke-port",
-                str(port + 1),
             ],
-            cwd=worktree,
-            env=env,
-            stdout=log,
-            stderr=subprocess.STDOUT,
+            worktree / "arc",
+            env,
+            log_path,
+            generation_hard_timeout_s,
+            output / ".arc" / "llm-usage.jsonl",
+            token_safety_limit,
         )
+    )
     manifest["generation_ended_at"] = now()
-    manifest["generation_exit_code"] = generation.returncode
+    manifest["generation_exit_code"] = generation_exit_code
+    manifest["generation_hard_timeout"] = generation_stop_reason.startswith(
+        "hard_timeout_"
+    )
+    manifest["token_safety_stop"] = generation_stop_reason.startswith(
+        "token_safety_limit_"
+    )
+    manifest["generation_stop_reason"] = generation_stop_reason
 
     grade_log = RESULT_ROOT / "logs" / f"{output_name}-grade.log"
     manifest["grading_started_at"] = now()
-    with grade_log.open("w", encoding="utf-8") as log:
-        grading = subprocess.run(
+    grading_exit_code, grading_stopped, grading_stop_reason = (
+        run_with_hard_timeout(
             [
                 sys.executable,
                 str(worktree / "arc" / "grade-local.py"),
@@ -540,13 +753,16 @@ def run_one(
                 task_id,
                 str(port),
             ],
-            cwd=worktree,
-            env=env,
-            stdout=log,
-            stderr=subprocess.STDOUT,
+            worktree,
+            env,
+            grade_log,
+            grading_hard_timeout_s,
         )
+    )
     manifest["grading_ended_at"] = now()
-    manifest["grading_exit_code"] = grading.returncode
+    manifest["grading_exit_code"] = grading_exit_code
+    manifest["grading_hard_timeout"] = grading_stopped
+    manifest["grading_stop_reason"] = grading_stop_reason
 
     report_path = (
         worktree
@@ -585,10 +801,18 @@ def run_one(
         grade = json.loads(grade_path.read_text(encoding="utf-8"))
 
     invalid_reasons = []
-    if generation.returncode != 0:
+    if generation_exit_code != 0:
         invalid_reasons.append("generation_process_error")
-    if grading.returncode != 0 or not grade:
+    if grading_exit_code != 0 or not grade:
         invalid_reasons.append("grading_infrastructure_error")
+    if generation_stopped:
+        invalid_reasons.append(
+            "token_safety_stop"
+            if manifest["token_safety_stop"]
+            else "generation_hard_timeout"
+        )
+    if grading_stopped:
+        invalid_reasons.append("grading_hard_timeout")
     if not compactions:
         invalid_reasons.append("no_installed_compaction")
     if variant == "C" and compactions and usage["h01e_extra_requests"] == 0:
@@ -600,6 +824,7 @@ def run_one(
         invalid_reasons.append("provider_account_error")
     if "out of memory" in log_text.lower() or "likely out of memory" in log_text.lower():
         invalid_reasons.append("oom")
+    anomalies = runtime_anomalies(log_text)
 
     manifest.update(
         {
@@ -612,6 +837,7 @@ def run_one(
                 "total": int(grade.get("total") or 0),
             },
             "test_timing_count": len(timings),
+            "runtime_anomalies": anomalies,
             "valid": not invalid_reasons,
             "invalid_reasons": invalid_reasons,
             "output_dir": str(output),
@@ -625,6 +851,19 @@ def run_one(
         RESULT_ROOT / f"{output_name}.json",
         {"manifest": manifest, "test_timings": timings},
     )
+    archived_arc_dir = archive_run_artifacts(output, output_name)
+    manifest["archived_arc_dir"] = (
+        str(archived_arc_dir) if archived_arc_dir is not None else None
+    )
+    if archived_arc_dir is not None:
+        write_json(archived_arc_dir / "experiment-manifest.json", manifest)
+    write_json(
+        RESULT_ROOT / f"{output_name}.json",
+        {"manifest": manifest, "test_timings": timings},
+    )
+    if report_path.parent.is_dir():
+        shutil.rmtree(report_path.parent)
+    remove_isolated_worktree(worktree)
     print(
         f"[{now()}] completed {output_name}: "
         f"grade={manifest['grade']['passed']}/{manifest['grade']['total']} "
@@ -635,26 +874,142 @@ def run_one(
     return manifest
 
 
+def run_continuing(
+    variant: str,
+    task_size: str,
+    repetition: int,
+    run_order: int,
+    scope: str,
+    phase: str,
+    port: int,
+) -> dict:
+    try:
+        return run_one(
+            variant,
+            task_size,
+            repetition,
+            run_order,
+            scope,
+            phase,
+            port,
+        )
+    except KeyboardInterrupt:
+        raise
+    except Exception as exc:
+        output_name = output_name_for(
+            variant, task_size, repetition, run_order, phase
+        )
+        worktree = ISOLATED_ROOT / output_name
+        output = worktree / "arc" / "arc-output" / output_name
+        archived_arc_dir = None
+        archive_error = None
+        try:
+            archived_arc_dir = archive_run_artifacts(output, output_name)
+        except Exception as archive_exc:
+            archive_error = f"{type(archive_exc).__name__}: {archive_exc}"
+        log_path = RESULT_ROOT / "logs" / f"{output_name}.log"
+        log_text = (
+            log_path.read_text(encoding="utf-8", errors="replace")
+            if log_path.is_file()
+            else ""
+        )
+        arc_dir = archived_arc_dir or (output / ".arc")
+        manifest = {
+            "experiment": "h01-abc-v1",
+            "phase": phase,
+            "variant": variant,
+            "git_sha": VARIANTS[variant],
+            "task_size": task_size,
+            "task_id": TASKS[task_size]["id"],
+            "session_scope": scope,
+            "repetition": repetition,
+            "run_order": run_order,
+            "run_ended_at": now(),
+            "valid": False,
+            "invalid_reasons": ["controller_exception"],
+            "controller_exception": {
+                "type": type(exc).__name__,
+                "message": str(exc),
+                "archive_error": archive_error,
+            },
+            "runtime_anomalies": runtime_anomalies(log_text),
+            "usage": usage_totals(arc_dir / "llm-usage.jsonl"),
+            "archived_arc_dir": (
+                str(archived_arc_dir) if archived_arc_dir is not None else None
+            ),
+        }
+        write_json(
+            RESULT_ROOT / f"{output_name}.json",
+            {"manifest": manifest, "test_timings": []},
+        )
+        with (RESULT_ROOT / "controller-events.jsonl").open(
+            "a", encoding="utf-8"
+        ) as events:
+            events.write(json.dumps(manifest, ensure_ascii=False) + "\n")
+        remove_isolated_worktree(worktree)
+        print(
+            f"[{now()}] failed {output_name}: "
+            f"{type(exc).__name__}: {exc}; continuing",
+            flush=True,
+        )
+        return manifest
+
+
+def run_abc(
+    task_size: str,
+    repetition: int,
+    order: int,
+    scope: str,
+    phase: str,
+    port: int,
+) -> None:
+    for variant in ("A", "B", "C"):
+        run_continuing(
+            variant,
+            task_size,
+            repetition,
+            order,
+            scope,
+            phase,
+            port,
+        )
+        order += 1
+
+
 def run_suite(port: int) -> None:
     order = 0
     preflight = []
     for variant in ("A", "B", "C"):
         order += 1
         preflight.append(
-            run_one(variant, "long", 0, order, "node", "preflight", port)
+            run_continuing(variant, "long", 0, order, "node", "preflight", port)
         )
-    if any(item["compaction_count"] == 0 for item in preflight):
-        raise RuntimeError(
-            "preflight did not trigger compaction for every variant; "
-            "inspect h01-m7-results before changing the frozen threshold"
-        )
+    if any(item.get("compaction_count", 0) == 0 for item in preflight):
+        with (RESULT_ROOT / "controller-events.jsonl").open(
+            "a", encoding="utf-8"
+        ) as events:
+            events.write(
+                json.dumps(
+                    {
+                        "recorded_at": now(),
+                        "kind": "preflight_without_installed_compaction",
+                        "variants": [
+                            item.get("variant")
+                            for item in preflight
+                            if item.get("compaction_count", 0) == 0
+                        ],
+                        "action": "recorded_and_continued",
+                    }
+                )
+                + "\n"
+            )
 
     rotations = (("A", "B", "C"), ("B", "C", "A"), ("C", "A", "B"))
     for task_size in ("small", "medium", "long"):
         for repetition, variants in enumerate(rotations, 1):
             for variant in variants:
                 order += 1
-                run_one(
+                run_continuing(
                     variant,
                     task_size,
                     repetition,
@@ -666,7 +1021,7 @@ def run_suite(port: int) -> None:
 
     for variant in ("A", "B", "C"):
         order += 1
-        run_one(
+        run_continuing(
             variant,
             "long",
             1,
@@ -679,7 +1034,7 @@ def run_suite(port: int) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("prepare", "run-all", "run-one"))
+    parser.add_argument("command", choices=("prepare", "run-all", "run-one", "run-abc"))
     parser.add_argument("--variant", choices=tuple(VARIANTS))
     parser.add_argument("--task-size", choices=tuple(TASKS))
     parser.add_argument("--repetition", type=int, default=1)
@@ -700,6 +1055,17 @@ def main() -> int:
     verify_prepared()
     if args.command == "run-all":
         run_suite(args.port)
+    elif args.command == "run-abc":
+        if not args.task_size:
+            parser.error("run-abc requires --task-size")
+        run_abc(
+            args.task_size,
+            args.repetition,
+            args.run_order,
+            args.scope,
+            args.phase,
+            args.port,
+        )
     else:
         if not args.variant or not args.task_size:
             parser.error("run-one requires --variant and --task-size")
