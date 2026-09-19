@@ -1,6 +1,6 @@
 # H01 实施 Milestone：任务证据胶囊与三臂对照实验
 
-- 状态：实施中（Milestone M0-M4 已完成）
+- 状态：实施中（Milestone M0-M5 已完成）
 - 面向对象：后续编码 Agent
 - Octos 基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
 - 设计依据：[H01 竞品调研](./h01-context-evidence-competitor-research.md)
@@ -29,7 +29,8 @@
 分支纪律：
 
 - [x] 开工前确认 A 的工作树干净，并把基线 SHA 写入实验 manifest。
-- [ ] B 完成并通过确定性测试后先冻结一个 commit，记为 `B_SHA`。
+- [x] B 完成并通过确定性测试后先冻结一个 commit，记为
+  `B_SHA=6d7d1559b72c3b0a34789909d3056527fdc9d42d`。
 - [ ] C 必须执行 `git switch -c exp/h01e-llm-checkpoint B_SHA`；不得直接从 `main` 或未冻结的工作树切出。
 - [ ] C 相对 B 的 diff 只允许包含 H01e 的 summarizer、配置、观测字段、测试和必要文档。
 - [ ] 如果 B 后续修复，先把相同修复同步到 C，再生成新的 `B_SHA`/`C_SHA` 实验配对；不能拿不同基础实现比较。
@@ -210,22 +211,24 @@ M4 实现与验证记录：`./h01-m4-implementation-verification.md`。
 
 ## 9. Milestone M5：B 分支测试、观测和冻结
 
-- [ ] 在 harness event 或等价日志中记录：
+- [x] 在 harness event 或等价日志中记录：
   - `variant=A|B|C`；
   - capsule schema、字节数、估算 token；
   - compaction 次数、前后 token、summarizer kind；
   - candidate 接受/拒绝及枚举化原因；
   - artifact 写入/找回状态；
   - H01e 额外请求数与 token（B 必须为 0）。
-- [ ] 日志不记录密钥、完整任意 shell 参数或未裁剪的用户数据。
-- [ ] 聚焦测试通过：ARC reducer、UI protocol、context manager、agent compaction、artifact replay。
-- [ ] 运行 `cargo fmt --all -- --check` 和受影响 crates 的 Clippy/测试。
-- [ ] 运行 `python -m unittest discover -s arc/tests`。
-- [ ] 运行与改动路径相关的 Rust tests 后，再运行仓库要求的完整回归；不要用重复跑同一测试代替缺失的端到端覆盖。
-- [ ] 生成 B 的行为说明、配置示例和已知限制。
-- [ ] 提交并冻结 `B_SHA`，确认 B 中没有 structured LLM checkpoint 或额外摘要请求。
+- [x] 日志不记录密钥、完整任意 shell 参数或未裁剪的用户数据。
+- [x] 聚焦测试通过：ARC reducer、UI protocol、context manager、agent compaction、artifact replay。
+- [x] 运行 `cargo fmt --all -- --check` 和受影响 crates 的 Clippy/测试。
+- [x] 运行 `python -m unittest discover -s arc/tests`。
+- [x] 运行与改动路径相关的 Rust tests 后，再运行仓库要求的完整回归；不要用重复跑同一测试代替缺失的端到端覆盖。
+- [x] 生成 B 的行为说明、配置示例和已知限制。
+- [x] 提交并冻结 `B_SHA`，确认 B 中没有 structured LLM checkpoint 或额外摘要请求。
 
 完成条件：B 在关闭 H01 typed input 时兼容原行为；启用后所有确定性不变量通过，且每次压缩不会新增 provider 请求。
+
+M5 行为说明与验证记录：`./h01-m5-b-variant-freeze.md`。
 
 ## 10. Milestone M6：H01e 独立实验分支
 
