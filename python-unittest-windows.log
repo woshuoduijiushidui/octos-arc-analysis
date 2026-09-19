@@ -1,0 +1,1100 @@
+E.....sss...E.......FE.E.......C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py:2217: ResourceWarning: unclosed <socket.socket fd=664, family=2, type=1, proto=0, laddr=('127.0.0.1', 64560)>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.s.sEEEEE.....EEEEEEEEEE..EEEEE.......E.................EEEE..E..F..E...........EE....EsEE
+======================================================================
+ERROR: test_should_bound_diagnostics_without_mutating_results (tests.test_acceptance.ActionReporterBoundsTests.test_should_bound_diagnostics_without_mutating_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 388, in test_should_bound_diagnostics_without_mutating_results
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 1 != 0 : [action diagnostics] EPERM: operation not permitted, open 'D:\projects\arc-bench\octos-arc-analysis\test-temp\tmpzt4uf85c\actions.json'
+node:fs:622
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'D:\projects\arc-bench\octos-arc-analysis\test-temp\tmpzt4uf85c\actions.json'
+    at Object.openSync (node:fs:622:18)
+    at Object.readFileSync (node:fs:488:35)
+    at [eval]:9:28
+    at runScriptInThisContext (node:internal/vm:219:10)
+    at node:internal/process/execution:451:12
+    at [eval]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:449:60)
+    at evalFunction (node:internal/process/execution:283:30)
+    at evalTypeScript (node:internal/process/execution:295:3)
+    at node:internal/main/eval_string:71:3 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpzt4uf85c\\actions.json'
+}
+
+Node.js v24.19.0
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpzt4uf85c'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 385, in test_should_bound_diagnostics_without_mutating_results
+    with tempfile.TemporaryDirectory() as root:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpzt4uf85c'
+
+======================================================================
+ERROR: test_should_reap_only_node_processes_inside_app_dirs (tests.test_acceptance.FinalWorkersAndReapTests.test_should_reap_only_node_processes_inside_app_dirs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 269, in test_should_reap_only_node_processes_inside_app_dirs
+    (root / "backend").mkdir(); (root / ".octos").mkdir()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpg8bmd92y\\backend'
+
+======================================================================
+ERROR: test_should_pin_version_from_tests_package_lock_or_fallback (tests.test_acceptance.PrivateInstallTests.test_should_pin_version_from_tests_package_lock_or_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 148, in test_should_pin_version_from_tests_package_lock_or_fallback
+    tests = Path(tmp) / "tests"; tests.mkdir()
+                                 ^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp7mc302wa\\tests'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp7mc302wa'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 147, in test_should_pin_version_from_tests_package_lock_or_fallback
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp7mc302wa'
+
+======================================================================
+ERROR: test_should_restore_changed_deleted_and_added_files (tests.test_acceptance.ProtectedTreeTests.test_should_restore_changed_deleted_and_added_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] ϵͳ�Ҳ���ָ����·����: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpmmhnvae7\\tests\\support'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 167, in test_should_restore_changed_deleted_and_added_files
+    live = Path(tmp) / "tests"; (live / "support").mkdir(parents=True)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpmmhnvae7\\tests'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpmmhnvae7'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 166, in test_should_restore_changed_deleted_and_added_files
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpmmhnvae7'
+
+======================================================================
+ERROR: test_should_undo_test_run_mutations_but_keep_uncommitted_edits (tests.test_acceptance.WorktreeSnapshotTests.test_should_undo_test_run_mutations_but_keep_uncommitted_edits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 116, in test_should_undo_test_run_mutations_but_keep_uncommitted_edits
+    (root / "backend").mkdir()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpcwxl5yeh\\backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpcwxl5yeh'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 110, in test_should_undo_test_run_mutations_but_keep_uncommitted_edits
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpcwxl5yeh'
+
+======================================================================
+ERROR: test_restores_uncommitted_regression_even_when_commit_id_is_unchanged (tests.test_codegen.BestRepairStateTests.test_restores_uncommitted_regression_even_when_commit_id_is_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 158, in test_restores_uncommitted_regression_even_when_commit_id_is_unchanged
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_use_tools_when_complete_evidence_does_not_fit (tests.test_codegen.CodegenRepairEvidenceTests.test_should_use_tools_when_complete_evidence_does_not_fit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 405, in test_should_use_tools_when_complete_evidence_does_not_fit
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_preserve_legitimate_links_with_shared_destinations (tests.test_codegen.DedupeNavLinksTests.test_should_preserve_legitimate_links_with_shared_destinations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] ϵͳ�Ҳ���ָ����·����: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp37wnfx1b\\frontend\\src'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 92, in test_should_preserve_legitimate_links_with_shared_destinations
+    (root / "frontend/src").mkdir(parents=True); (root / "backend").mkdir()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp37wnfx1b\\frontend'
+
+======================================================================
+ERROR: test_should_apply_to_written_html_files (tests.test_codegen.EnsureCharsetTests.test_should_apply_to_written_html_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [WinError 3] ϵͳ�Ҳ���ָ����·����: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpsbhnwzwx\\frontend\\src'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 50, in test_should_apply_to_written_html_files
+    write_files(root, {"frontend/src/index.html": "<html><head></head><body></body></html>", "backend/server.js": "x"})
+  File "D:\projects\arc-bench\octos-arc\arc\codegen.py", line 122, in write_files
+    dest.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpsbhnwzwx\\frontend'
+
+======================================================================
+ERROR: test_should_write_files_under_root (tests.test_codegen.ParseTests.test_should_write_files_under_root)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 26, in test_should_write_files_under_root
+    written = write_files(Path(tmp), {"backend/server.js": "x\n"})
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\projects\arc-bench\octos-arc\arc\codegen.py", line 122, in write_files
+    dest.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6vom7d14\\backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6vom7d14'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 25, in test_should_write_files_under_root
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6vom7d14'
+
+======================================================================
+ERROR: test_should_preserve_escape_heavy_valid_javascript_and_json (tests.test_codegen.PreserveFileSemanticsTests.test_should_preserve_escape_heavy_valid_javascript_and_json)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 115, in test_should_preserve_escape_heavy_valid_javascript_and_json
+    write_files(root, {"backend/server.js": js, "backend/sample.json": data})
+  File "D:\projects\arc-bench\octos-arc\arc\codegen.py", line 122, in write_files
+    dest.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmps15fs3e7\\backend'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmps15fs3e7'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 110, in test_should_preserve_escape_heavy_valid_javascript_and_json
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmps15fs3e7'
+
+======================================================================
+ERROR: test_should_bound_checkpoint_gaps_and_skip_final_or_disabled (tests.test_codegen.RegressionCheckpointTests.test_should_bound_checkpoint_gaps_and_skip_final_or_disabled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 335, in test_should_bound_checkpoint_gaps_and_skip_final_or_disabled
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_preserve_verdicts_when_runner_cannot_report (tests.test_codegen.RegressionCheckpointTests.test_should_preserve_verdicts_when_runner_cannot_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 377, in test_should_preserve_verdicts_when_runner_cannot_report
+    import main, tempfile
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_recheck_only_verified_specs_and_queue_observed_regressions (tests.test_codegen.RegressionCheckpointTests.test_should_recheck_only_verified_specs_and_queue_observed_regressions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 343, in test_should_recheck_only_verified_specs_and_queue_observed_regressions
+    import main, tempfile
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_supply_executable_test_entry_with_quoted_paths (tests.test_codegen.RepairEntryTests.test_should_supply_executable_test_entry_with_quoted_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 289, in test_should_supply_executable_test_entry_with_quoted_paths
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_unescape_only_when_it_makes_the_file_parse (tests.test_codegen.RepairFlattenedJsTests.test_should_unescape_only_when_it_makes_the_file_parse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 77, in test_should_unescape_only_when_it_makes_the_file_parse
+    p.write_text("const a = 1;\nfunction f() {\n  if (a) x = 1;\\n  if (!a) x = 2;\\n  return x;\n}\n")
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpwf8u4gkl\\server.js'
+
+======================================================================
+ERROR: test_repair_prompt_identifies_external_readonly_tests (tests.test_codegen.RepairLocationTests.test_repair_prompt_identifies_external_readonly_tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 148, in test_repair_prompt_identifies_external_readonly_tests
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_try_tool_repair_before_stopping_at_codegen_plateau (tests.test_codegen.RepairModeTransitionTests.test_should_try_tool_repair_before_stopping_at_codegen_plateau)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 242, in test_should_try_tool_repair_before_stopping_at_codegen_plateau
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_failed_selector_is_logged_before_compact_fallback (tests.test_codegen.TinyFailureEvidenceTests.test_failed_selector_is_logged_before_compact_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 122, in test_failed_selector_is_logged_before_compact_fallback
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_avoid_full_rewrite_when_any_behavior_already_passed (tests.test_codegen.VerifiedBehaviorRewriteTests.test_should_avoid_full_rewrite_when_any_behavior_already_passed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 227, in test_should_avoid_full_rewrite_when_any_behavior_already_passed
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_should_repair_failed_extension_without_calling_rebuild (tests.test_codegen.VerifiedBehaviorRewriteTests.test_should_repair_failed_extension_without_calling_rebuild)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_codegen.py", line 195, in test_should_repair_failed_extension_without_calling_rebuild
+    import main, time
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_does_not_quote_external_symlink (tests.test_failure_context.FailureContextTests.test_does_not_quote_external_symlink)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 25, in test_does_not_quote_external_symlink
+    target.write_text('external')
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6phb0lee\\helper.ts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6phb0lee'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 22, in test_does_not_quote_external_symlink
+    with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as outside:
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6phb0lee'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpqyr1rkoj'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 22, in test_does_not_quote_external_symlink
+    with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as outside:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpqyr1rkoj'
+
+======================================================================
+ERROR: test_quotes_actual_helper_location_with_bounded_context (tests.test_failure_context.FailureContextTests.test_quotes_actual_helper_location_with_bounded_context)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 10, in test_quotes_actual_helper_location_with_bounded_context
+    (root/'support').mkdir()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6y1fv1vw\\support'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6y1fv1vw'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 8, in test_quotes_actual_helper_location_with_bounded_context
+    with tempfile.TemporaryDirectory() as d:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp6y1fv1vw'
+
+======================================================================
+ERROR: test_report_preserves_caller_evidence (tests.test_failure_context.FailureContextTests.test_report_preserves_caller_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 34, in test_report_preserves_caller_evidence
+    (root/'helper.ts').write_text('assert_matches(expected);')
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmphbhk4fb0\\helper.ts'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmphbhk4fb0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_failure_context.py", line 32, in test_report_preserves_caller_evidence
+    with tempfile.TemporaryDirectory() as d:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmphbhk4fb0'
+
+======================================================================
+ERROR: test_should_deny_writes_inside_protected_dir_and_allow_others (tests.test_hook.DenyProtectedHookTests.test_should_deny_writes_inside_protected_dir_and_allow_others)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_hook.py", line 19, in test_should_deny_writes_inside_protected_dir_and_allow_others
+    tests = Path(tmp) / "tests"; tests.mkdir()
+                                 ^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpkrj4jqe8\\tests'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpkrj4jqe8'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_hook.py", line 18, in test_should_deny_writes_inside_protected_dir_and_allow_others
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpkrj4jqe8'
+
+======================================================================
+ERROR: tests.test_main_helpers (unittest.loader._FailedTest.tests.test_main_helpers)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_main_helpers
+Traceback (most recent call last):
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_main_helpers.py", line 3, in <module>
+    from main import OctosDriver, describe_node, folder_descendants, inline_sources, inline_spec_text, unchanged_node_ids
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+======================================================================
+ERROR: test_bundle_config_and_explicit_environment_override (tests.test_model_routing.BundledRoutingTests.test_bundle_config_and_explicit_environment_override)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 111, in test_bundle_config_and_explicit_environment_override
+    root.joinpath('model-routes.json').write_text('[{"model":"bundled"}]')
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpb0vbbbxh\\model-routes.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpb0vbbbxh'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 108, in test_bundle_config_and_explicit_environment_override
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpb0vbbbxh'
+
+======================================================================
+ERROR: test_configured_routes_do_not_silently_fall_back_after_proxy_failure (tests.test_model_routing.RoutingStartupTests.test_configured_routes_do_not_silently_fall_back_after_proxy_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 138, in test_configured_routes_do_not_silently_fall_back_after_proxy_failure
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_passthrough_reasoning_does_not_disable_configured_routing (tests.test_model_routing.RoutingStartupTests.test_passthrough_reasoning_does_not_disable_configured_routing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 123, in test_passthrough_reasoning_does_not_disable_configured_routing
+    import main
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+======================================================================
+ERROR: test_proxy_routes_real_http_requests_and_records_actual_models (tests.test_model_routing.RoutingTests.test_proxy_routes_real_http_requests_and_records_actual_models)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 93, in test_proxy_routes_real_http_requests_and_records_actual_models
+    entries = [json.loads(line) for line in log.read_text().splitlines()]
+                                            ^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpdh1wiq6p\\usage.jsonl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpdh1wiq6p'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 82, in test_proxy_routes_real_http_requests_and_records_actual_models
+    with tempfile.TemporaryDirectory() as tmp, patch.dict('os.environ', {'OCTOS_ARC_MODEL_ROUTES': json.dumps(self.rules)}):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpdh1wiq6p'
+
+======================================================================
+ERROR: test_pending_retry_shares_response_but_completed_requests_run_again (tests.test_proxy_pending.PendingCompletionTests.test_pending_retry_shares_response_but_completed_requests_run_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpax9mebw4'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_proxy_pending.py", line 25, in test_pending_retry_shares_response_but_completed_requests_run_again
+    with tempfile.TemporaryDirectory() as folder:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpax9mebw4'
+
+======================================================================
+ERROR: test_should_snapshot_the_template_requirement_table_before_it_is_overwritten (tests.test_rust_engine.RunnerSpecTests.test_should_snapshot_the_template_requirement_table_before_it_is_overwritten)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_rust_engine.py", line 84, in test_should_snapshot_the_template_requirement_table_before_it_is_overwritten
+    empty = snapshot_previous_requirements(out)  # no template table: an empty snapshot, never None
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\projects\arc-bench\octos-arc\arc\rust_engine.py", line 128, in snapshot_previous_requirements
+    target.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp611her4n\\.arc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp611her4n'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_rust_engine.py", line 82, in test_should_snapshot_the_template_requirement_table_before_it_is_overwritten
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmp611her4n'
+
+======================================================================
+ERROR: test_should_write_the_kernel_contract (tests.test_rust_engine.RunnerSpecTests.test_should_write_the_kernel_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_rust_engine.py", line 68, in test_should_write_the_kernel_contract
+    spec = write_runner_spec(path, req_dir=Path(tmp) / "req", output_dir=Path(tmp), web_port=3000, tests_dir=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\projects\arc-bench\octos-arc\arc\rust_engine.py", line 152, in write_runner_spec
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpd16afp_b\\.arc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpd16afp_b'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_rust_engine.py", line 64, in test_should_write_the_kernel_contract
+    with tempfile.TemporaryDirectory() as tmp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpd16afp_b'
+
+======================================================================
+ERROR: tests.test_static_build (unittest.loader._FailedTest.tests.test_static_build)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_static_build
+Traceback (most recent call last):
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_static_build.py", line 7, in <module>
+    from main import CODEGEN_MANIFESTS
+  File "D:\projects\arc-bench\octos-arc\arc\main.py", line 75, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+======================================================================
+ERROR: test_should_reject_links_instead_of_sharing_application_data (tests.test_verify_app.IsolatedVerificationTests.test_should_reject_links_instead_of_sharing_application_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_verify_app.py", line 52, in test_should_reject_links_instead_of_sharing_application_data
+    app.mkdir()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpv7baq5gv\\app'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpv7baq5gv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_verify_app.py", line 49, in test_should_reject_links_instead_of_sharing_application_data
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmpv7baq5gv'
+
+======================================================================
+ERROR: test_should_reject_reports_inside_source (tests.test_verify_app.IsolatedVerificationTests.test_should_reject_reports_inside_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmppn3rn0ia'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_verify_app.py", line 62, in test_should_reject_reports_inside_source
+    with tempfile.TemporaryDirectory() as directory:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 950, in __exit__
+    self.cleanup()
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 906, in onexc
+    _resetperms(path)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "C:\Users\power24\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] �ܾ����ʡ�: 'D:\\projects\\arc-bench\\octos-arc-analysis\\test-temp\\tmppn3rn0ia'
+
+======================================================================
+FAIL: test_should_keep_every_write_inside_the_private_root (tests.test_acceptance.PrivateInstallTests.test_should_keep_every_write_inside_the_private_root)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_acceptance.py", line 159, in test_should_keep_every_write_inside_the_private_root
+    self.assertTrue(env[key].startswith("/private/x"), key)
+AssertionError: False is not true : npm_config_cache
+
+======================================================================
+FAIL: test_shared_python_rust_contract (tests.test_model_routing.RoutingTests.test_shared_python_rust_contract) (case='exact unicode bound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\projects\arc-bench\octos-arc\arc\tests\test_model_routing.py", line 14, in test_shared_python_rust_contract
+    self.assertEqual(json.loads(result)['model'], case['model'])
+AssertionError: 'original' != 'small'
+- original
++ small
+
+
+----------------------------------------------------------------------
+Ran 121 tests in 4.264s
+
+FAILED (failures=2, errors=36, skipped=6)
