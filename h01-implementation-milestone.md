@@ -1,15 +1,15 @@
 # H01 实施 Milestone：任务证据胶囊与三臂对照实验
 
-- 状态：待编码
+- 状态：实施中（Milestone M0-M2 已完成）
 - 面向对象：后续编码 Agent
 - Octos 基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
 - 设计依据：[H01 竞品调研](./h01-context-evidence-competitor-research.md)
 
 ## 0. 已确定的决策
 
-- [ ] 实现 H01a：task-local typed `TaskEvidenceCapsule`，压缩后确定性重注入。
+- [x] 实现 H01a：task-local typed `TaskEvidenceCapsule`，压缩后确定性重注入。
 - [ ] 实现 H01b：默认确定性摘要改为证据优先，不再让旧消息按时间顺序先占满预算。
-- [ ] 实现 H01c：精确保留当前需求契约；长原文使用规范化引用与哈希。
+- [x] 实现 H01c：精确保留当前需求契约；长原文使用规范化引用与哈希。
 - [ ] 实现 H01d：复用现有 artifact 机制保存长日志，capsule 只放结构化字段和可恢复引用。
 - [ ] **H01e 可以实验实现，但必须放在独立分支。**它不能混入无模型调用的 H01a–d 分支。
 - [ ] **H01f 不实现。**不照搬竞品的固定 token 阈值、跨题 memory、todo/goal 架构或完整插件体系。
@@ -28,7 +28,7 @@
 
 分支纪律：
 
-- [ ] 开工前确认 A 的工作树干净，并把基线 SHA 写入实验 manifest。
+- [x] 开工前确认 A 的工作树干净，并把基线 SHA 写入实验 manifest。
 - [ ] B 完成并通过确定性测试后先冻结一个 commit，记为 `B_SHA`。
 - [ ] C 必须执行 `git switch -c exp/h01e-llm-checkpoint B_SHA`；不得直接从 `main` 或未冻结的工作树切出。
 - [ ] C 相对 B 的 diff 只允许包含 H01e 的 summarizer、配置、观测字段、测试和必要文档。
@@ -40,18 +40,18 @@
 
 ### 2.1 各层的所有权
 
-- [ ] ARC Python 编排器拥有**任务真相**：当前 requirement、依赖、验收场景、阶段和官方测试结果。
-- [ ] `AcceptanceRunner`/`RunSummary` 拥有**测试真相**：只有真实 runner 结果可以写入 `passed`、`failed`、`verified_behavior`。
-- [ ] Octos Rust runtime 拥有**对话真相**：canonical transcript、工具调用/结果配对、压缩、artifact 引用和模型可见上下文。
-- [ ] 模型只能提出 `next_action` 或生成 H01e 的叙事 checkpoint，不能把失败改成通过，也不能修改需求哈希。
-- [ ] 官方需求和测试只读。不得为了让实验通过而修改、复制后改写或按变体生成不同版本。
+- [x] ARC Python 编排器拥有**任务真相**：当前 requirement、依赖、验收场景、阶段和官方测试结果。
+- [x] `AcceptanceRunner`/`RunSummary` 拥有**测试真相**：只有真实 runner 结果可以写入 `passed`、`failed`、`verified_behavior`。
+- [x] Octos Rust runtime 拥有**对话真相**：canonical transcript、工具调用/结果配对、压缩、artifact 引用和模型可见上下文。
+- [x] 模型只能提出 `next_action` 或生成 H01e 的叙事 checkpoint，不能把失败改成通过，也不能修改需求哈希。
+- [x] 官方需求和测试只读。不得为了让实验通过而修改、复制后改写或按变体生成不同版本。
 
 ### 2.2 行为不变量
 
-- [ ] 未启用 H01 的普通 Octos 会话保持 wire 兼容和现有行为。
-- [ ] capsule 只在当前 ARC task/output 目录内生效，不进入跨题 memory。
-- [ ] 同一失败按稳定 signature 去重，保留出现次数和最新 run，而不是重复粘贴完整日志。
-- [ ] `pass` 必须绑定 `run_id` 和被测 source/tree hash。代码发生变化后，旧 pass 只能作为历史证据，不能继续代表当前状态。
+- [x] 未启用 H01 的普通 Octos 会话保持 wire 兼容和现有行为。
+- [x] capsule 只在当前 ARC task/output 目录内生效，不进入跨题 memory。
+- [x] 同一失败按稳定 signature 去重，保留出现次数和最新 run，而不是重复粘贴完整日志。
+- [x] `pass` 必须绑定 `run_id` 和被测 source/tree hash。代码发生变化后，旧 pass 只能作为历史证据，不能继续代表当前状态。
 - [ ] 长原文先持久化成功，再在 capsule 中写引用。引用至少带路径或 artifact ID、SHA-256 和字节数。
 - [ ] 压缩先构造 candidate，完成 schema/预算/引用校验并持久化后，再原子替换 model-visible history。
 - [ ] 任意失败、超时、空结果、缺字段或超预算都保留原历史或回退 B 的确定性结果，不能留下半替换状态。
@@ -105,65 +105,75 @@ next_action: "inspect the redirect and dashboard render after login"
 
 字段规则：
 
-- [ ] `acceptance_conditions` 来自规范化后的官方 requirement/scenario，不从模型总结中提取。
+- [x] `acceptance_conditions` 来自规范化后的官方 requirement/scenario，不从模型总结中提取。
 - [ ] `expected`/`actual` 只有 runner 能可靠拆出时才填写；不可靠时保留为空并引用原始 artifact，禁止编造。
-- [ ] `command` 使用 allowlist 后的测试命令；不把环境变量、密钥或任意 shell 参数复制进模型上下文。
-- [ ] 所有列表使用稳定排序；重复序列化必须字节稳定，便于哈希、缓存和 A/B 对照。
+- [x] `command` 使用 allowlist 后的测试命令；不把环境变量、密钥或任意 shell 参数复制进模型上下文。
+- [x] 所有列表使用稳定排序；重复序列化必须字节稳定，便于哈希、缓存和 A/B 对照。
 - [ ] capsule 设置独立字节/token 上限。超限时按“当前需求 → active failures → 最新验证 → 改动文件 → next action”顺序保留，长内容转引用。
-- [ ] schema 版本不从 workspace-policy 或 compaction schema 借用，使用独立常量和兼容性测试。
+- [x] schema 版本不从 workspace-policy 或 compaction schema 借用，使用独立常量和兼容性测试。
 
-## 4. Milestone M0：冻结基线并确认真实调用链
+## 4. Milestone M0：冻结基线并确认真实调用链（已完成）
 
 目标：在写代码前证明 ARC stdio 流程实际经过哪条压缩路径，避免只修改未使用的 helper。
 
-- [ ] 保存 A 的 SHA、Rust/Python/Node 版本、模型 ID和默认环境变量。
-- [ ] 阅读并画出一条实际链路：`arc/main.py` → `arc/octos_stdio.py` → `turn/start` → session/context manager → agent compaction → provider request。
-- [ ] 用受控长 transcript 触发一次压缩，在 `.arc/octos-events.jsonl` 或测试 observer 中证明实际调用了目标函数。
-- [ ] 记录 ARC 默认 `OCTOS_SESSION_SCOPE=turn` 的影响；另外确认 `node` scope 下 design/implement/repair 如何共享 session。
-- [ ] 确认基线的摘要策略、token budget、触发阈值和工具输出 artifact 路径，不靠代码注释猜测。
-- [ ] 跑基线的聚焦测试并保存结果：
+- [x] 保存 A 的 SHA、Rust/Python/Node 版本、模型 ID和默认环境变量。
+- [x] 阅读并画出一条实际链路：`arc/main.py` → `arc/octos_stdio.py` → `turn/start` → session/context manager → agent compaction → provider request。
+- [x] 用受控长 transcript 触发一次压缩，在 `.arc/octos-events.jsonl` 或测试 observer 中证明实际调用了目标函数。
+- [x] 记录 ARC 默认 `OCTOS_SESSION_SCOPE=turn` 的影响；另外确认 `node` scope 下 design/implement/repair 如何共享 session。
+- [x] 确认基线的摘要策略、token budget、触发阈值和工具输出 artifact 路径，不靠代码注释猜测。
+- [x] 跑基线的聚焦测试并保存结果：
   - `cargo test -p octos-agent --lib compaction`
   - `cargo test -p octos-agent --test compaction_policy`
   - 与实际 stdio 压缩入口对应的 `octos-cli` context-manager/UI-protocol 测试
   - `python -m unittest discover -s arc/tests`
-- [ ] 在 B 分支新增一份简短 ADR 或实现说明，写清选中的 typed 注入边界及放弃的替代方案。
+- [x] 在 B 分支新增一份简短 ADR 或实现说明，写清选中的 typed 注入边界及放弃的替代方案。
 
-完成条件：有一个自动化测试能够在修改前失败或明确暴露证据丢失，并证明它覆盖 ARC 实际使用的压缩路径。
+M0 证据：`./h01-m0-baseline.json`、
+`./h01-m0-task-evidence-injection-boundary.md`，以及
+`arc_stdio_compaction_characterization_exposes_task_evidence_loss` 自动化测试。
+Python 3.9 基线的单一 `tarfile.extract(filter=...)` 兼容性错误已原样记录，
+未混入 H01 修复。
 
-## 5. Milestone M1：H01a/H01c——ARC 侧证据 reducer 与任务契约
+- [x] 完成条件：有一个自动化测试能够在修改前失败或明确暴露证据丢失，并证明它覆盖 ARC 实际使用的压缩路径。
+
+## 5. Milestone M1：H01a/H01c——ARC 侧证据 reducer 与任务契约（已完成）
 
 建议落点：新增 `arc/task_evidence.py`，或放入职责相同的现有小模块；不要把 reducer 继续堆进 `arc/main.py`。
 
-- [ ] 定义 Python 侧 `TaskContract`、`TaskEvidenceCapsule`、`ActiveFailure`、`VerificationRun` 的序列化形状。
-- [ ] 从 `Flow.requirement_nodes`、`describe_node(...)`、依赖/祖先约束和原始 requirements 文件生成 task contract。
-- [ ] 对规范化 requirement 内容计算 SHA-256，同时保存只读原文路径。
-- [ ] 从 `RunSummary`/`TestOutcome`/`failure_signature(...)` 生成验证结果和 active failures。
-- [ ] 在以下边界更新 capsule：
-  - design/implement turn 之前；
-  - 每次 node acceptance 之后、repair turn 之前；
-  - regression checkpoint 之后；
-  - full-suite 每轮之后；
-  - 恢复 best commit 之后重新计算 source hash 和当前验证状态。
-- [ ] 使用“写临时文件 → flush/fsync（平台允许时）→ replace”的方式原子写入 `.arc/context/task-evidence.v1.json`。
-- [ ] 遇到无法读取的 requirement、非法 schema 或 artifact 写入失败时明确报错/降级；不得静默写一个看似有效的空 capsule。
-- [ ] 单元测试覆盖：稳定序列化、需求哈希、失败去重、pass→regression、best commit 恢复、原子写失败和空字段。
+- [x] 定义 Python 侧 `TaskContract`、`TaskEvidenceCapsule`、`ActiveFailure`、`VerificationRun` 的序列化形状。
+- [x] 从 `Flow.requirement_nodes`、`describe_node(...)`、依赖/祖先约束和原始 requirements 文件生成 task contract。
+- [x] 对规范化 requirement 内容计算 SHA-256，同时保存只读原文路径。
+- [x] 从 `RunSummary`/`TestOutcome`/`failure_signature(...)` 生成验证结果和 active failures。
+- [x] 在以下边界更新 capsule：
+  - [x] design/implement turn 之前；
+  - [x] 每次 node acceptance 之后、repair turn 之前；
+  - [x] regression checkpoint 之后；
+  - [x] full-suite 每轮之后；
+  - [x] 恢复 best commit 之后重新计算 source hash 和当前验证状态。
+- [x] 使用“写临时文件 → flush/fsync（平台允许时）→ replace”的方式原子写入 `.arc/context/task-evidence.v1.json`。
+- [x] 遇到无法读取的 requirement、非法 schema 或 artifact 写入失败时明确报错/降级；不得静默写一个看似有效的空 capsule。
+- [x] 单元测试覆盖：稳定序列化、需求哈希、失败去重、pass→regression、best commit 恢复、原子写失败和空字段。
 
-完成条件：给定相同 requirement、source tree 和 `RunSummary`，重复构造得到完全相同的 capsule；模型文本不能改变测试结论。
+- [x] 完成条件：给定相同 requirement、source tree 和 `RunSummary`，重复构造得到完全相同的 capsule；模型文本不能改变测试结论。
 
-## 6. Milestone M2：H01a/H01c——typed 传输与模型可见重注入
+M1 实现与验证记录：`./h01-m1-implementation-verification.md`。
+
+## 6. Milestone M2：H01a/H01c——typed 传输与模型可见重注入（已完成）
 
 优先采用 typed 协议字段，不要在普通用户 prompt 中寻找可伪造的 `BEGIN_EVIDENCE` 字符串。一个较小的实现方向是增加 `InputItem::TaskEvidence`，由 ARC stdio driver 在文本输入旁发送；也可以选择等价的现有 typed context-event 接口，但必须在 M0 ADR 中证明它覆盖真实路径。
 
-- [ ] Rust 定义与 Python v1 对应的最小 DTO，并执行 schema、长度、路径和哈希格式校验。
-- [ ] `arc/octos_stdio.py` 在 `turn/start` 中发送当前 capsule；文本 prompt 保持原样，避免 A/B 中需求文本发生额外变化。
-- [ ] runtime 把它记录为独立 typed context item/event，而不是普通 user message 或 system instruction。
-- [ ] prompt renderer 把 capsule 标成“任务/验证状态数据”，明确最新用户请求仍决定当前动作。
-- [ ] semantic compaction 和 legacy/agent compaction 都从同一 canonical typed item 获取 capsule；不要分别解析两套自由文本。
-- [ ] 只保留最新有效 capsule。旧 capsule 被替换，不与新 capsule叠加。
-- [ ] 不认识该 input kind 的旧客户端/旧会话继续按当前行为工作；未提供 capsule 时完全走原路径。
-- [ ] 测试覆盖 wire round-trip、旧 payload、未知 schema、超限、用户伪造同名文本、replay 和多次 compaction。
+- [x] Rust 定义与 Python v1 对应的最小 DTO，并执行 schema、长度、路径和哈希格式校验。
+- [x] `arc/octos_stdio.py` 在 `turn/start` 中发送当前 capsule；文本 prompt 保持原样，避免 A/B 中需求文本发生额外变化。
+- [x] runtime 把它记录为独立 typed context item/event，而不是普通 user message 或 system instruction。
+- [x] prompt renderer 把 capsule 标成“任务/验证状态数据”，明确最新用户请求仍决定当前动作。
+- [x] semantic compaction 和 legacy/agent compaction 都从同一 canonical typed item 获取 capsule；不要分别解析两套自由文本。
+- [x] 只保留最新有效 capsule。旧 capsule 被替换，不与新 capsule叠加。
+- [x] 不认识该 input kind 的旧客户端/旧会话继续按当前行为工作；未提供 capsule 时完全走原路径。
+- [x] 测试覆盖 wire round-trip、旧 payload、未知 schema、超限、用户伪造同名文本、replay 和多次 compaction。
 
-完成条件：强制压缩两次后，模型输入中恰好存在一个最新 capsule；真实 user prompt 仍存在，伪造标记不能获得 typed/pinned 语义。
+- [x] 完成条件：强制压缩两次后，模型输入中恰好存在一个最新 capsule；真实 user prompt 仍存在，伪造标记不能获得 typed/pinned 语义。
+
+M2 实现与验证记录：`./h01-m2-implementation-verification.md`。
 
 ## 7. Milestone M3：H01b——确定性证据优先压缩
 
