@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M3 已完成，M4 待实施
+- 状态：M0-M4 已完成，M5 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -259,20 +259,22 @@ M3 证据：[h02-m3-implementation-verification.md](./h02-m3-implementation-veri
 
 目标：复用现有 armed `read_window`、epoch 和 `write_no_follow_checked` 链路，把强版本用于真正的写入边界；不要新建一套与现有 mutation guard 竞争的授权系统。
 
-- [ ] P0 先闭合仓库当前本地文件 provider 的真实路径；若没有在用的远端文件 provider，不为假想 CAS/ETag 后端预建通用框架。
-- [ ] 盘点 `write_file`、`edit_file`、`diff_edit`、`apply_patch` 的当前校验点，形成一个共享的 expected-version/context contract；保持工具各自适合的语义。
-- [ ] 整文件覆盖现有文件时，在 provider critical section 校验 observed/expected version；授权与 truncate/rename 之间不得存在无保护窗口。
-- [ ] 局部 edit/diff/patch 在当前磁盘上重新匹配 expected old text/context；只有唯一可应用位置才执行，0 次或多次匹配均失败且无部分写入。
-- [ ] 复用 `read_window` 的 complete/partial/tainted/transformed 与 epoch 判定；H02 不用 receipt 替代已有 write authorization。
-- [ ] symlink/alias 与 approval 等待期间的 target replacement 使用与 M1 相同的 canonical/no-follow 规则，最终写入前再次验证。
-- [ ] stale/concurrent-change 返回 typed code、expected/current version 摘要和明确的 reread remedy；错误文本不得泄漏正文或绝对敏感路径。
-- [ ] stale 后默认要求模型重新读取并重新形成 edit intent；不得在未重新评估意图时自动套用旧整文件内容。
-- [ ] 若某个现有 provider operation 能证明重试幂等且 context 仍唯一，最多允许一次有界重试；其他错误和第二次 stale 直接返回。
-- [ ] mutation 成功后原子更新/失效 version ledger，并 eager revoke 当前 branch 指向旧 version 的 receipts；其他 branch 在下次 hit 的强版本比较时惰性失效，只有已经存在 task-local 反向索引时才做跨 branch purge，不为此新建全局 receipt registry。失败不得虚构新 version。
-- [ ] mutation 工具输出只有在完整新正文最终投影给模型时才可创建新 receipt；普通“write succeeded”不能授权后续 stub。
-- [ ] 并发测试覆盖：两个 mutation 使用同一 observed version 时至多一个成功；外部 edit、symlink swap、0/多匹配和中途替换都保持原文件或产生单一原子结果。
+- [x] P0 先闭合仓库当前本地文件 provider 的真实路径；若没有在用的远端文件 provider，不为假想 CAS/ETag 后端预建通用框架。
+- [x] 盘点 `write_file`、`edit_file`、`diff_edit`、`apply_patch` 的当前校验点，形成一个共享的 expected-version/context contract；保持工具各自适合的语义。
+- [x] 整文件覆盖现有文件时，在 provider critical section 校验 observed/expected version；授权与 truncate/rename 之间不得存在无保护窗口。
+- [x] 局部 edit/diff/patch 在当前磁盘上重新匹配 expected old text/context；只有唯一可应用位置才执行，0 次或多次匹配均失败且无部分写入。
+- [x] 复用 `read_window` 的 complete/partial/tainted/transformed 与 epoch 判定；H02 不用 receipt 替代已有 write authorization。
+- [x] symlink/alias 与 approval 等待期间的 target replacement 使用与 M1 相同的 canonical/no-follow 规则，最终写入前再次验证。
+- [x] stale/concurrent-change 返回 typed code、expected/current version 摘要和明确的 reread remedy；错误文本不得泄漏正文或绝对敏感路径。
+- [x] stale 后默认要求模型重新读取并重新形成 edit intent；不得在未重新评估意图时自动套用旧整文件内容。
+- [x] 若某个现有 provider operation 能证明重试幂等且 context 仍唯一，最多允许一次有界重试；其他错误和第二次 stale 直接返回。
+- [x] mutation 成功后原子更新/失效 version ledger，并 eager revoke 当前 branch 指向旧 version 的 receipts；其他 branch 在下次 hit 的强版本比较时惰性失效，只有已经存在 task-local 反向索引时才做跨 branch purge，不为此新建全局 receipt registry。失败不得虚构新 version。
+- [x] mutation 工具输出只有在完整新正文最终投影给模型时才可创建新 receipt；普通“write succeeded”不能授权后续 stub。
+- [x] 并发测试覆盖：两个 mutation 使用同一 observed version 时至多一个成功；外部 edit、symlink swap、0/多匹配和中途替换都保持原文件或产生单一原子结果。
 
-- [ ] 完成条件：stale mutation 漏放行数为 0；所有失败都有可操作但有界的恢复路径，且既有 read-window/no-follow 安全测试不回归。
+M4 证据：[h02-m4-implementation-verification.md](./h02-m4-implementation-verification.md)。
+
+- [x] 完成条件：stale mutation 漏放行数为 0；所有失败都有可操作但有界的恢复路径，且既有 read-window/no-follow 安全测试不回归。
 
 ## 9. Milestone M5：H02e——接通真实 stdio、MCP 与 spawn 入口
 
@@ -309,19 +311,19 @@ M3 证据：[h02-m3-implementation-verification.md](./h02-m3-implementation-veri
 - [x] 3. B 组发生 destructive frame change：即使 source item 看似可恢复也先清 receipts。
 - [ ] 4. 100KB、50KB、8KiB 或 context-pressure 任一层裁剪：不得登记 full receipt。
 - [ ] 5. projection/sanitizer policy 变化，或可见 bytes 改变：旧 receipt 失效。
-- [ ] 6. 内容改变但 mtime 和 size 恢复：发现变化并返回新正文。
-- [ ] 7. shell、formatter、测试进程、git 操作或外部编辑器改文件：下一次 read 不得错误命中。
-- [ ] 8. `edit_file`、`write_file`、`diff_edit`、`apply_patch` 成功后撤销旧 receipts。
+- [x] 6. 内容改变但 mtime 和 size 恢复：发现变化并返回新正文。
+- [x] 7. shell、formatter、测试进程、git 操作或外部编辑器改文件：下一次 read 不得错误命中。
+- [x] 8. `edit_file`、`write_file`、`diff_edit`、`apply_patch` 成功后撤销旧 receipts。
 - [x] 9. 两 task/session 或 workspace root 读取同名 target：receipt 隔离。
 - [x] 10. child read 不授权 parent；parent read 不授权未继承正文的 child。
 - [x] 11. rewind 到 read 之前、fork、cold resume 和 task switch：首次 read 返回正文。
 - [x] 12. ledger/receipt LRU eviction 或持久化失败：保守 miss，read 仍正确。
-- [ ] 13. 两个并发 mutation 使用同一 version：至多一个成功，另一个 typed stale。
-- [ ] 14. 局部 patch context 唯一时成功；0 次或多次匹配失败且无部分副作用。
+- [x] 13. 两个并发 mutation 使用同一 version：至多一个成功，另一个 typed stale。
+- [x] 14. 局部 patch context 唯一时成功；0 次或多次匹配失败且无部分副作用。
 - [ ] 15. stdio 与 MCP 真实入口运行同一命中/失效 contract。
 - [x] 16. 任一无法解释 source proof、version、view 或 owner 的 hit 让测试失败，而非只记 warning。
-- [ ] 17. 读取过程中并发替换：只允许稳定重读或 typed concurrent-change，不登记混合 observation。
-- [ ] 18. symlink/canonical alias 不能绕过版本或 stale guard；外部替换 symlink 时失败关闭。
+- [x] 17. 读取过程中并发替换：只允许稳定重读或 typed concurrent-change，不登记混合 observation。
+- [x] 18. symlink/canonical alias 不能绕过版本或 stale guard；外部替换 symlink 时失败关闭。
 
 ### 10.3 验证命令
 
