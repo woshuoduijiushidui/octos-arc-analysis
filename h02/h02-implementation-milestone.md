@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M4 已完成，M5 待实施
+- 状态：M0-M5 已完成，M6 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -280,19 +280,21 @@ M4 证据：[h02-m4-implementation-verification.md](./h02-m4-implementation-veri
 
 目标：在语义和 contract tests 已稳定后接线。可以使用一个小型显式 `TaskFileState` carrier，也可以在两个真实构造点直接接入；不要仅为 H02 抽出巨型通用 Agent builder。
 
-- [ ] 定义组合状态：task-local/shared `FileVersionLedger` + owner/branch-local `ModelReadReceiptStore`；两者必须能独立 clone/创建，不能藏在一个可误共享的 `Arc<FileStateCache>` 内。
-- [ ] `SessionRuntime` bootstrap Agent 使用该组合状态，且 Agent 的最终 `call_llm_with_hooks_mode` 能 reconcile 同一个 branch receipt store。
-- [ ] OUP 每 turn 创建的 `request_agent` 显式继承同一 logical session/task 的 version ledger 和正确 branch receipt store；不得只修 bootstrap Agent。
-- [ ] 默认 `OCTOS_SESSION_SCOPE=turn` 下 session 关闭即释放 receipts；`node`/`run` scope 只在 source items 仍属于最终 frame 时复用。
-- [ ] MCP 每次独立 `run_session` 创建 task-local state；不得把 receipt store 放到 server-global map，也不得跨 MCP caller 复用。
-- [ ] 同步和后台 spawn 只共享 version ledger，并在**每一次 child worker 创建时**生成新的 branch receipt store；不能在 `SpawnTool` builder 时只 fork 一次后让多个 siblings 共享，B 组也不做隐式 parent receipt 继承。
-- [ ] pipeline/其他 Agent builders 使用同一显式 builder contract；新构造点若未提供完整 state，默认返回正文而不是悄悄启用半套 cache。
-- [ ] 保留 cache-off 兼容路径；旧客户端、无 ContextManager 的调用者、单元测试 fixture 和插件工具不因缺 state 崩溃。
-- [ ] 用同一套 contract suite 驱动真实 stdio `session/open`/`turn/start` 与 MCP `run_session`，不能只测试手工构造的 `ReadFileTool`。
-- [ ] 加入 spawn 集成测试：child read 后 parent 首次 read 返回正文；parent read 后无正文继承的 child 首次 read也返回正文。
-- [ ] 更新原来只断言“cache 到达 ToolContext”的测试，使其同时证明“没有有效 final-frame receipt 就不会 stub”。
+- [x] 定义组合状态：task-local/shared `FileVersionLedger` + owner/branch-local `ModelReadReceiptStore`；两者必须能独立 clone/创建，不能藏在一个可误共享的 `Arc<FileStateCache>` 内。
+- [x] `SessionRuntime` bootstrap Agent 使用该组合状态，且 Agent 的最终 `call_llm_with_hooks_mode` 能 reconcile 同一个 branch receipt store。
+- [x] OUP 每 turn 创建的 `request_agent` 显式继承同一 logical session/task 的 version ledger 和正确 branch receipt store；不得只修 bootstrap Agent。
+- [x] 默认 `OCTOS_SESSION_SCOPE=turn` 下 session 关闭即释放 receipts；`node`/`run` scope 只在 source items 仍属于最终 frame 时复用。
+- [x] MCP 每次独立 `run_session` 创建 task-local state；不得把 receipt store 放到 server-global map，也不得跨 MCP caller 复用。
+- [x] 同步和后台 spawn 只共享 version ledger，并在**每一次 child worker 创建时**生成新的 branch receipt store；不能在 `SpawnTool` builder 时只 fork 一次后让多个 siblings 共享，B 组也不做隐式 parent receipt 继承。
+- [x] pipeline/其他 Agent builders 使用同一显式 builder contract；新构造点若未提供完整 state，默认返回正文而不是悄悄启用半套 cache。
+- [x] 保留 cache-off 兼容路径；旧客户端、无 ContextManager 的调用者、单元测试 fixture 和插件工具不因缺 state 崩溃。
+- [x] 用同一套 contract suite 驱动真实 stdio `session/open`/`turn/start` 与 MCP `run_session`，不能只测试手工构造的 `ReadFileTool`。
+- [x] 加入 spawn 集成测试：child read 后 parent 首次 read 返回正文；parent read 后无正文继承的 child 首次 read也返回正文。
+- [x] 更新原来只断言“cache 到达 ToolContext”的测试，使其同时证明“没有有效 final-frame receipt 就不会 stub”。
 
-- [ ] 完成条件：stdio 与 MCP 都能在完整状态下产生安全 hit，在缺失任一状态、跨 task 或跨 branch 时都稳定返回正文；两入口使用相同命中 contract。
+M5 证据：[h02-m5-implementation-verification.md](./h02-m5-implementation-verification.md)。
+
+- [x] 完成条件：stdio 与 MCP 都能在完整状态下产生安全 hit，在缺失任一状态、跨 task 或跨 branch 时都稳定返回正文；两入口使用相同命中 contract。
 
 ## 10. Milestone M6：B 分支观测、回归与冻结
 
