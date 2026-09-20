@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M6 已完成，M7 待实施
+- 状态：M0-M7 已完成，M8 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -39,7 +39,7 @@ can_return_unchanged =
 | --- | --- | --- | --- |
 | A：当前主线 | `main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e` | 当前真实 stdio/MCP 行为；目标 Agent 路径尚未完整接通 cache | 当前实现，不补接线 |
 | B：正确性优先 | `feat/safe-file-cache@73f5b1bf695af37167fcb47541726bcb24807102`，从 A 切出 | H02a + H02b + H02c + H02d + H02e | 任一破坏性 frame 变化都清空该 branch 的 receipts |
-| C：选择性保留 | 建议分支 `exp/h02-retained-read-receipts`，从冻结后的 B commit 切出 | B + 一项 H02f 优化 | 只保留最终 prompt frame 明确留下且未重新裁剪的 source item receipts |
+| C：选择性保留 | `feat/retained-read-receipts@7eaa136ef086a2f9728794d17d8f150482df03d1`，从冻结后的 B commit 切出 | B + 一项 H02f 优化 | 只保留最终 prompt frame 明确留下且未重新裁剪的 source item receipts |
 
 分支纪律：
 
@@ -47,8 +47,8 @@ can_return_unchanged =
 - [x] 开工前确认 `c599d18c5acd2b846f049ffea2be84e72fe60fac` 可解析，记录 Rust、Python、Node、模型、默认环境变量和 `git status --porcelain`。
 - [x] M0、M1 完成后将两个提交无冲突 rebase 到 `origin/main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`；`git range-diff` 证明补丁等价，并在新基线上重跑全部 M1 聚焦回归。
 - [x] B 通过全部确定性 contract tests 后冻结干净 commit，写入 `B_SHA`；冻结前不得开始 C。
-- [ ] C 必须从 `B_SHA` 切出；相对 B 的 diff 只允许包含 retained-item 选择性保留、对应观测和测试。
-- [ ] 不在 C 同时实现“选择性保留”和“热点文件自动回灌”。若未来需要测试回灌，另建 C2 实验臂并重新预注册实验。
+- [x] C 必须从 `B_SHA` 切出；相对 B 的 diff 只允许包含 retained-item 选择性保留、对应观测和测试。
+- [x] 不在 C 同时实现“选择性保留”和“热点文件自动回灌”。若未来需要测试回灌，另建 C2 实验臂并重新预注册实验。
 - [ ] “把旧 cache 直接接上所有入口”只保留为负向回归场景，不得作为可以凭低 token 获胜的实验变体。
 - [ ] A/B/C 都从干净 commit 运行；manifest 中 `git_dirty=true` 的运行一律标记无效。
 - [ ] 官方 requirements、acceptance tests、模板和依赖锁文件对三组只读且哈希相同。
@@ -362,17 +362,19 @@ M6 证据：[h02-m6-b-variant-freeze.md](./h02-m6-b-variant-freeze.md)。
 
 目标：从 `B_SHA` 只实验 retained-source 选择性保留，验证是否能在不增加错误状态的前提下减少 compaction 后重读。ContextManager 路径优先使用 retained item ID；MCP/legacy 路径使用 M2 定义的 final-message occurrence proof。
 
-- [ ] 从冻结 `B_SHA` 创建 `exp/h02-retained-read-receipts`，开工前确认工作树干净。
-- [ ] 最终 prompt frame 生成后，用实际 retained source proofs 与 receipt 求交集；不得根据 summary 文本、路径提及或 artifact ref 推断正文仍在。
-- [ ] 只有 source proof 未被裁剪、visible hash/range 未变、projection policy 未变时才保留 receipt，并保留它绑定的原 `FileVersion`；不要求 reconcile 为此额外读盘，但后续每一次 stub 命中仍必须按 M1 重新验证当前 strong version。
-- [ ] 任一缺字段、重复 item、不可映射 transform、policy mismatch 或 reconcile 错误都退回 B 的清空行为。
-- [ ] stub source proof 不参与保留；它只能引用仍被保留的原正文 proof，不能形成引用链续命。
-- [ ] receipt 选择性保留只改变 compaction/frame 生命周期，不改变强版本算法、mutation guard 或 stdio/MCP owner。
-- [ ] 测试覆盖完整 tool output 被保留、被删除、被 context-pressure 重新裁剪、policy 改变、重复 call ID 和 summary 只提路径。
-- [ ] 检查 `git diff B_SHA...HEAD`，确认没有混入热点回灌、H01/H03/H04/H05、prompt 文案或实验预算变化。
-- [ ] 提交并冻结 `C_SHA`，保存与 B 相同的确定性测试和观测证据。
+- [x] 从冻结 `B_SHA` 创建 `feat/retained-read-receipts`，开工前确认工作树干净。
+- [x] 最终 prompt frame 生成后，用实际 retained source proofs 与 receipt 求交集；不得根据 summary 文本、路径提及或 artifact ref 推断正文仍在。
+- [x] 只有 source proof 未被裁剪、visible hash/range 未变、projection policy 未变时才保留 receipt，并保留它绑定的原 `FileVersion`；不要求 reconcile 为此额外读盘，但后续每一次 stub 命中仍必须按 M1 重新验证当前 strong version。
+- [x] 任一缺字段、重复 item、不可映射 transform、policy mismatch 或 reconcile 错误都退回 B 的清空行为。
+- [x] stub source proof 不参与保留；它只能引用仍被保留的原正文 proof，不能形成引用链续命。
+- [x] receipt 选择性保留只改变 compaction/frame 生命周期，不改变强版本算法、mutation guard 或 stdio/MCP owner。
+- [x] 测试覆盖完整 tool output 被保留、被删除、被 context-pressure 重新裁剪、policy 改变、重复 call ID 和 summary 只提路径。
+- [x] 检查 `git diff B_SHA...HEAD`，确认没有混入热点回灌、H01/H03/H04/H05、prompt 文案或实验预算变化。
+- [x] 提交并冻结 `C_SHA`，保存与 B 相同的确定性测试和观测证据。
 
-- [ ] 完成条件：关闭 H02f 时 C 与 B 行为等价；开启时仅在最终 frame 可证明仍含正文时减少重读，所有不确定情况与 B 一样保守。
+M7 证据：[h02-m7-implementation-verification.md](./h02-m7-implementation-verification.md)。
+
+- [x] 完成条件：关闭 H02f 时 C 与 B 行为等价；开启时仅在最终 frame 可证明仍含正文时减少重读，所有不确定情况与 B 一样保守。
 
 ## 12. Milestone M8：三臂 A/B/C 实验
 
