@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M2 已完成，M3 待实施
+- 状态：M0-M3 已完成，M4 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -238,20 +238,22 @@ M2 证据：[h02-m2-implementation-verification.md](./h02-m2-implementation-veri
 
 目标：让 receipt 的生命周期服从模型实际 history，而不是服从进程、路径或磁盘 cache 生命周期。B 组以每次 provider dispatch 的最终 messages reconcile 为正确性闸门，并在少数 canonical lifecycle ownership 点做保守全量 branch clear；不要依赖散落 helper 全部恰好被调用。
 
-- [ ] 定义稳定 owner：workspace/task、logical session 和 model branch ID；owner 不完整时该入口保持 dedup disabled。
-- [ ] compaction 安装 replacement history 后清空当前 branch receipts；即使某条 compaction helper 漏掉 clear，下一次 provider dispatch 的最终-message reconcile 也必须撤销不可见 proof。
-- [ ] trim、stale tool-result replacement、context-pressure truncate 或 projection policy 变化时清空当前 branch receipts。
-- [ ] B 组在任何已知 destructive history transition 上全清，即使某个旧 source proof 恰好仍在新 frame；M2 的最终-message reconcile 是遗漏删除的安全网，不得把已 consumed 的旧 candidate 自动复活。选择性保留只属于 C。
-- [ ] rewind、rollback、resume、teleport 等价恢复、fork、task switch 和 cold restore 均从空 branch receipt store 开始。
-- [ ] 版本 ledger 可按 task 保留，但其存在、artifact/hash ref 或 `seed_from_replacement_refs` 不能自动重建 visible receipt；恢复后首次 read 返回正文。
-- [ ] parent 与同步/后台 child 只共享版本查询服务。B 组 child 不复制 parent receipts，child 新 receipts 不回写 parent。
-- [ ] 即使 child 初始 prompt 文本包含 parent 摘要或文件路径，也不能据此创建 receipt；只有精确 typed source item/body 才有资格。
-- [ ] task/session B 读取与 session A 相同 target 时不得命中 A receipt；不同 workspace root 的同名文件也不得碰撞。
-- [ ] receipt eviction、owner store drop 和进程重启都按 miss；不把 receipt persistence 作为 B 的前置能力。
-- [ ] 清理 API 接受枚举 reason 并进入指标；禁止各处直接清 map 后丢失原因。
-- [ ] lifecycle 测试覆盖 research 场景 2、9、10、11、12、16，并验证 stub 本身不能跨 compaction 续命。
+- [x] 定义稳定 owner：workspace/task、logical session 和 model branch ID；owner 不完整时该入口保持 dedup disabled。
+- [x] compaction 安装 replacement history 后清空当前 branch receipts；即使某条 compaction helper 漏掉 clear，下一次 provider dispatch 的最终-message reconcile 也必须撤销不可见 proof。
+- [x] trim、stale tool-result replacement、context-pressure truncate 或 projection policy 变化时清空当前 branch receipts。
+- [x] B 组在任何已知 destructive history transition 上全清，即使某个旧 source proof 恰好仍在新 frame；M2 的最终-message reconcile 是遗漏删除的安全网，不得把已 consumed 的旧 candidate 自动复活。选择性保留只属于 C。
+- [x] rewind、rollback、resume、teleport 等价恢复、fork、task switch 和 cold restore 均从空 branch receipt store 开始。
+- [x] 版本 ledger 可按 task 保留，但其存在、artifact/hash ref 或 `seed_from_replacement_refs` 不能自动重建 visible receipt；恢复后首次 read 返回正文。
+- [x] parent 与同步/后台 child 只共享版本查询服务。B 组 child 不复制 parent receipts，child 新 receipts 不回写 parent。
+- [x] 即使 child 初始 prompt 文本包含 parent 摘要或文件路径，也不能据此创建 receipt；只有精确 typed source item/body 才有资格。
+- [x] task/session B 读取与 session A 相同 target 时不得命中 A receipt；不同 workspace root 的同名文件也不得碰撞。
+- [x] receipt eviction、owner store drop 和进程重启都按 miss；不把 receipt persistence 作为 B 的前置能力。
+- [x] 清理 API 接受枚举 reason 并进入指标；禁止各处直接清 map 后丢失原因。
+- [x] lifecycle 测试覆盖 research 场景 2、9、10、11、12、16，并验证 stub 本身不能跨 compaction 续命。
 
-- [ ] 完成条件：任何不再含原正文 source item 的新 prompt frame 中，首次对应 read 都返回当前正文；child 的读取绝不会让 parent 获得命中。
+M3 证据：[h02-m3-implementation-verification.md](./h02-m3-implementation-verification.md)。
+
+- [x] 完成条件：任何不再含原正文 source item 的新 prompt frame 中，首次对应 read 都返回当前正文；child 的读取绝不会让 parent 获得命中。
 
 ## 8. Milestone M4：H02d——mutation 在当前磁盘上失败关闭
 
@@ -303,21 +305,21 @@ M2 证据：[h02-m2-implementation-verification.md](./h02-m2-implementation-veri
 ### 10.2 必须自动化的确定性场景
 
 - [ ] 1. 同 task、同 branch、同 version、同 range 且 source proof 仍在 frame：第二次 read 允许 stub。
-- [ ] 2. source proof 被 compaction/trim 删除：磁盘未变也必须返回正文。
-- [ ] 3. B 组发生 destructive frame change：即使 source item 看似可恢复也先清 receipts。
+- [x] 2. source proof 被 compaction/trim 删除：磁盘未变也必须返回正文。
+- [x] 3. B 组发生 destructive frame change：即使 source item 看似可恢复也先清 receipts。
 - [ ] 4. 100KB、50KB、8KiB 或 context-pressure 任一层裁剪：不得登记 full receipt。
 - [ ] 5. projection/sanitizer policy 变化，或可见 bytes 改变：旧 receipt 失效。
 - [ ] 6. 内容改变但 mtime 和 size 恢复：发现变化并返回新正文。
 - [ ] 7. shell、formatter、测试进程、git 操作或外部编辑器改文件：下一次 read 不得错误命中。
 - [ ] 8. `edit_file`、`write_file`、`diff_edit`、`apply_patch` 成功后撤销旧 receipts。
-- [ ] 9. 两 task/session 或 workspace root 读取同名 target：receipt 隔离。
-- [ ] 10. child read 不授权 parent；parent read 不授权未继承正文的 child。
-- [ ] 11. rewind 到 read 之前、fork、cold resume 和 task switch：首次 read 返回正文。
-- [ ] 12. ledger/receipt LRU eviction 或持久化失败：保守 miss，read 仍正确。
+- [x] 9. 两 task/session 或 workspace root 读取同名 target：receipt 隔离。
+- [x] 10. child read 不授权 parent；parent read 不授权未继承正文的 child。
+- [x] 11. rewind 到 read 之前、fork、cold resume 和 task switch：首次 read 返回正文。
+- [x] 12. ledger/receipt LRU eviction 或持久化失败：保守 miss，read 仍正确。
 - [ ] 13. 两个并发 mutation 使用同一 version：至多一个成功，另一个 typed stale。
 - [ ] 14. 局部 patch context 唯一时成功；0 次或多次匹配失败且无部分副作用。
 - [ ] 15. stdio 与 MCP 真实入口运行同一命中/失效 contract。
-- [ ] 16. 任一无法解释 source proof、version、view 或 owner 的 hit 让测试失败，而非只记 warning。
+- [x] 16. 任一无法解释 source proof、version、view 或 owner 的 hit 让测试失败，而非只记 warning。
 - [ ] 17. 读取过程中并发替换：只允许稳定重读或 typed concurrent-change，不登记混合 observation。
 - [ ] 18. symlink/canonical alias 不能绕过版本或 stale guard；外部替换 symlink 时失败关闭。
 
