@@ -2,7 +2,7 @@
 
 - 日期：2026-09-20
 - 状态：完成，可进入 M8
-- 分支：`feat/retained-read-receipts`
+- 分支：`feat/safe-file-cache-retained-receipts`
 - B 基线：`73f5b1bf695af37167fcb47541726bcb24807102`
 - C 冻结提交：`7eaa136ef086a2f9728794d17d8f150482df03d1`
 - 远程状态：未推送
