@@ -1,0 +1,9 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running unittests src/lib.rs (target/debug/deps/octos_cli-438f12ebf3c32a3a)
+
+running 3 tests
+test session_actor::tests::session_actor_prompt_context_bridge_preserves_current_user_turn ... ok
+test session_actor::tests::session_actor_prompt_context_bridge_covers_frame_after_compaction ... ok
+test session_actor::tests::session_actor_prompt_context_bridge_compacts_next_model_prompt ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3699 filtered out; finished in 0.13s

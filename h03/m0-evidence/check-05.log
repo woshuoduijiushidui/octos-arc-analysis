@@ -1,0 +1,54 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 48 tests
+test tools::write_file::tests::schema_advertises_canonical_names_only ... ok
+test tools::write_file::tests::armed_write_file_description_names_no_forbidden_tools ... ok
+test tools::write_file::tests::should_allow_creating_a_new_file_when_armed ... ok
+test tools::write_file::tests::should_clamp_pathological_paths_in_the_refusal ... ok
+test tools::write_file::tests::should_allow_overwriting_a_never_read_small_file_when_armed ... ok
+test tools::write_file::tests::should_accept_file_path_alias_for_path ... ok
+test tools::write_file::tests::should_not_append_note_for_non_code_file_when_formatting_enabled ... ok
+test tools::write_file::tests::should_allow_a_second_overwrite_of_a_file_the_model_just_wrote ... ok
+test tools::write_file::tests::concurrent_overwrites_cannot_consume_the_same_observed_version_twice ... ok
+test tools::write_file::tests::should_not_guard_when_unarmed_even_after_a_partial_read ... ok
+test tools::write_file::tests::test_tool_metadata ... ok
+test tools::write_file::tests::should_refuse_overwriting_a_big_never_read_file_when_armed ... ok
+test tools::write_file::tests::should_write_file_tool_invalidate_cache_after_write ... ok
+test tools::write_file::tests::should_refuse_same_size_overwrite_after_content_changes_and_mtime_is_restored ... ok
+test tools::write_file::tests::test_write_file_creates_new ... ok
+test tools::write_file::tests::test_write_file_traversal_blocked ... ok
+test tools::write_file::tests::unarmed_write_file_toolspec_is_byte_identical_to_origin_main ... ok
+test tools::write_file::tests::should_refuse_overwriting_from_a_transformed_view ... ok
+test tools::write_file::tests::test_write_file_overwrites_existing ... ok
+test tools::write_file::tests::test_write_file_reports_line_count ... ok
+test tools::write_file::tests::should_not_earn_completeness_from_an_unarmed_read ... ok
+test tools::write_file::tests::write_file_falls_back_to_legacy_when_no_scope ... ok
+test tools::write_file::tests::write_file_allows_in_workspace_path ... ok
+test tools::write_file::tests::armed_write_caps_an_oversized_malformed_argument_error ... ok
+test tools::write_file::tests::write_file_refuses_out_of_scope_path ... ok
+test tools::write_file::tests::test_write_file_creates_parent_dirs ... ok
+test tools::write_file::tests::write_file_tool_is_exclusive ... ok
+test tools::write_file::tests::should_allow_overwrite_after_a_complete_unbounded_read_when_armed ... ok
+test tools::write_file::tests::should_refuse_when_redacted_content_never_reached_the_model ... ok
+test tools::write_file::tests::should_refuse_when_the_file_changed_on_disk_after_a_complete_read ... ok
+test tools::write_file::tests::write_file_refuses_ancestor_symlink_escape ... ok
+test tools::write_file::tests::write_grant_denies_non_allowlisted_path ... ok
+test tools::write_file::tests::should_recover_after_a_shrink_between_pages ... ok
+test tools::write_file::tests::write_file_uses_scope_workspace_as_base_dir_for_relative_paths ... ok
+test tools::write_file::tests::write_grant_allows_creating_allowlisted_file ... ok
+test tools::write_file::tests::write_file_refuses_write_to_shared_zone ... ok
+test tools::write_file::tests::write_grant_create_only_refuses_overwrite ... ok
+test tools::write_file::tests::write_grant_symlinked_ancestor_cannot_reach_allowlisted_name ... ok
+test tools::write_file::tests::should_refuse_across_sessions_even_after_a_complete_read ... ok
+test tools::write_file::tests::should_complete_via_byte_paging_and_allow_the_write ... ok
+test tools::write_file::tests::write_grant_skips_post_edit_formatting ... ok
+test tools::write_file::tests::should_refuse_after_a_restart_until_reread ... ok
+test tools::write_file::tests::write_grant_without_create_only_allows_overwrite_of_allowlisted ... ok
+test tools::write_file::tests::should_still_allow_a_keyed_session_to_complete_and_overwrite ... ok
+test tools::write_file::tests::should_not_let_one_keyless_task_authorize_another_keyless_overwrite ... ok
+test tools::write_file::tests::should_refuse_whole_overwrite_after_partial_read_then_allow_after_paging_through ... ok
+test tools::write_file::tests::should_format_written_file_when_format_after_edit_enabled ... ok
+test tools::write_file::tests::write_grant_skips_workspace_git_snapshot ... ok
+
+test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 2904 filtered out; finished in 2.59s

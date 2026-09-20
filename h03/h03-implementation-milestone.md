@@ -1,12 +1,13 @@
 # H03 实施 Milestone：可靠分页与工具原文恢复
 
-- 状态：待实施，M0–M9 均未完成
+- 状态：M0 已完成；M1–M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H03 竞品调研](./h03-output-pagination-recovery-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H02 M7 验证](../h02/h02-m7-implementation-verification.md)、[优化总表](../harness-optimization-table.md)
 - 编写日期：2026-09-20
 - 本次复核主线：`octos-arc origin/main@27d057c206c0f8250b60309905737f7e26ee0ba9`
 - H02 参考：B `73f5b1bf695af37167fcb47541726bcb24807102`；C `7eaa136ef086a2f9728794d17d8f150482df03d1`
+- M0 证据：[共同底座、输出边界与离线反例](./h03-m0-state-boundary.md)；共同底座 `A_SHA=9d65681c3ef0c2b699e2fc68bbaac1d8b0d71cf1`，分支 `feat/output-recovery`。
 
 本文是开发与验证指南，不表示对应代码已经实现。所有 `[ ]` 都是后续待办；只有完成代码、实际验证并保存证据后才能改为 `[x]`。类型名可按仓库惯例调整，范围、完整性、隔离和验收语义不得弱化。源码位置以 M0 的当前代码为准，不照抄旧行号。
 
@@ -51,13 +52,13 @@
 
 本指南与调研属于同一 H03 文档任务。后续修改 **`octos-arc` 代码**时，重新拉取其最新 `origin/main` 并创建新分支，不能直接在当前 H02 C 分支继续写。
 
-- [ ] 检查两个仓库的工作树、当前分支和未提交内容；不覆盖、不自动清理用户改动。
-- [ ] `git fetch origin main` 后记录 `MAIN_SHA`，从该 SHA 创建代码分支，建议 `feat/output-recovery`。
-- [ ] 核实 H02 是否已合入最新主线。已合入就复用；未合入时，默认先将 H02 B 的必要文件版本、凭据、写保护与接线改动移植到最新主线，验证后冻结为共同底座 `A_SHA`。
-- [ ] H02 依赖移植使用可审查的小提交，不合入 H02 分支上与此无关的打包、实验产物或历史主线差异。记录来源 SHA 与移植后的 SHA。
-- [ ] 若当前主线已有 H02 C，保留代码，默认关闭 `OCTOS_FILE_READ_RETAINED_RECEIPTS` 以减少变量；若既有采用决策要求开启，则 H03 的 A/B 两组全部保持开启。
-- [ ] 固定 H01 实现/开关与 H02 dedup、retained-receipts、写保护配置；不得把依赖修复的收益算到 H03。
-- [ ] `A_SHA` 必须通过底座回归，之后才开始 H03 行为变更。中途主线更新不漂移实验基线；最终集成在 M9 重新同步。
+- [x] 检查两个仓库的工作树、当前分支和未提交内容；不覆盖、不自动清理用户改动。
+- [x] `git fetch origin main` 后记录 `MAIN_SHA`，从该 SHA 创建代码分支 `feat/output-recovery`。
+- [x] 核实 H02 未合入最新主线，将 H02 B 的必要文件版本、凭据、写保护与接线改动移植到最新主线，验证后冻结共同底座 `A_SHA`。
+- [x] H02 依赖移植使用可审查的小提交，不合入 H02 分支上与此无关的打包、实验产物或历史主线差异；原/新 SHA 已记录。
+- [x] 核实当前主线不含 H02 C，本次不移植 C，显式记录 retained-receipts 关闭配置。
+- [x] 固定 H01 实现/开关与 H02 dedup、retained-receipts、写保护配置；不得把依赖修复的收益算到 H03。
+- [x] `A_SHA` 已完成底座回归，基线问题单列；尚未开始 H03 行为变更。中途主线更新不漂移实验基线；最终集成在 M9 重新同步。
 
 | 变体 | 起点 | 改动 | 冻结时机 |
 | --- | --- | --- | --- |
@@ -165,18 +166,20 @@ insufficient_output_budget | recovery_tool_unavailable
 
 **目标：**把谁保存原文、谁截断、谁最终发给模型查清楚，并冻结 A。M0 不开启 H03 行为。
 
-- [ ] 完成第 1 节的最新主线、H02 依赖和 `A_SHA` 冻结。
-- [ ] 追踪 ARC 的 `main.py → octos_stdio.py → serve --stdio --solo → session/open/turn/start → request_agent → provider`；记录实际工具名单与 `OCTOS_SESSION_SCOPE`。
-- [ ] 分开记录未开启/开启 `OCTOS_READ_WINDOW` 的读取路径，以及文件内限制、execution、sanitize/hook、8 KiB、context pressure 的顺序。
-- [ ] 追踪 `ToolResult` 到 Message、事件、持久 ledger 和 prompt 的元数据流；确认普通执行、审批后继续、并行结果、重试、回放是否经过同一处理点。
-- [ ] 查清 `recall` 的注册、白名单、权限、原始数据来源、冷启动索引和重复 call ID 行为。
-- [ ] 查清 shell 的 stdout/stderr 捕获、超时、取消、子进程退出及后台模式；列明哪些原文早于 ContextManager 已经丢失。
-- [ ] 确认 `PromptContextManager::prepare_prompt` 失败时会退回哪份消息。H03 不能只保护成功 bridge，而在 fallback 路径发送范围失真的旧结果。
-- [ ] 选择能力范围：stdio 完整支持为必选；MCP 若实际使用或共享改动使其受影响则完成同次调用内恢复，否则保证兼容且明确不宣称 MCP 冷恢复。
-- [ ] 固定首版预算：stdio 从现有单结果 8,192 字节限制反推，包含全部展示文字；行上限复用现有约束。各层共享解析后的 policy，不分散复制常数。
-- [ ] 固定有限的每输出存储、每 session 总量、索引条目、运行中输出保留和清理参数。优先复用现有配置；缺项在此选值并记录依据，不能无限增长或照搬竞品默认。
-- [ ] 准备不调用付费模型的 fake provider，捕获最终 messages/tools；用确定性夹具展示二次截断、续读跳空、晚保存、不可达 recall 和冷恢复缺口。
-- [ ] 记录 Rust/Python/Node、准确测试命令与基线失败。预期失败写成基线证据，不提交破坏现有 CI 的红色测试。
+- [x] 完成第 1.1 节的最新主线、H02 依赖和 `A_SHA` 冻结；1.2 的 H03 功能实现仍待后续阶段。
+- [x] 追踪 ARC 的 `main.py → octos_stdio.py → serve --stdio --solo → session/open/turn/start → request_agent → provider`；记录实际工具名单与 `OCTOS_SESSION_SCOPE`。
+- [x] 分开记录未开启/开启 `OCTOS_READ_WINDOW` 的读取路径，以及文件内限制、execution、sanitize/hook、8 KiB、context pressure 的顺序。
+- [x] 追踪 `ToolResult` 到 Message、事件、持久 ledger 和 prompt 的元数据流；确认普通执行、审批后继续、并行结果、重试、回放是否经过同一处理点。
+- [x] 查清 `recall` 的注册、白名单、权限、原始数据来源、冷启动索引和重复 call ID 行为。
+- [x] 查清 shell 的 stdout/stderr 捕获、超时、取消、子进程退出及后台模式；列明哪些原文早于 ContextManager 已经丢失。
+- [x] 确认 `PromptContextManager::prepare_prompt` 失败时继续使用当前可变向量、不会自动回滚；通过最终请求测试验证。
+- [x] 选择能力范围：stdio 完整支持；MCP 因共享执行改动纳入同 invocation 内恢复，不宣称跨 invocation 冷恢复。
+- [x] 固定首版预算：stdio 总结果 8,192 字节，包含全部展示文字；最多 2,000 行；各层共享解析后的 policy。
+- [x] 固定有限的每输出存储、每 session 总量、索引条目、运行中输出保留和清理参数；数值和依据已写入 M0 证据第 6 节。
+- [x] 准备不调用付费模型的 fake provider，捕获最终 messages/tools；用确定性夹具展示二次截断、续读跳空、晚保存、不可达 recall 和冷恢复缺口。
+- [x] 记录 Rust/Python/Node、准确测试命令与基线失败；新增测试绿色复现基线缺口，没有提交破坏现有 CI 的红色测试。
+
+M0 实测修正：最终 stdio schema 有 15 工具，默认代理纯函数裁剪后为 9 工具，并非始终等于 12 工具常量；`bash/exec_command` 有独立采集路径。M1/M4/M5 必须覆盖实际前台命令入口。gateway 批准后执行与普通路径分开；数据通道选择和基线测试详见 M0 证据。
 
 优先阅读位置（相对 `octos-arc/`）：
 
@@ -185,7 +188,7 @@ insufficient_output_budget | recovery_tool_unavailable
 | 读取、窗口、版本 | `crates/octos-agent/src/tools/read_file.rs`、`tools/read_window.rs`、`file_state_cache.rs` |
 | 工具结果/上下文 | `crates/octos-agent/src/tools/mod.rs::ToolResult/ToolContext` |
 | 输出执行与清洗 | `crates/octos-agent/src/agent/execution.rs`、`sanitize.rs`、`crates/octos-core/src/utils.rs` |
-| shell 与恢复工具 | `crates/octos-agent/src/tools/shell.rs`、`tools/recall.rs` |
+| shell 与恢复工具 | `crates/octos-agent/src/tools/shell.rs`、`tools/coding_tools.rs`（bash/exec_command）、`tools/recall.rs` |
 | H02 最终确认 | `crates/octos-agent/src/model_read_receipts.rs`、`agent/llm_call.rs::call_llm_with_hooks_mode` |
 | 跨层 prompt 接口 | `crates/octos-agent/src/prompt_context.rs::PromptContextManager` |
 | ledger 与最终视图 | `crates/octos-cli/src/api/context_manager.rs` |
@@ -195,7 +198,7 @@ insufficient_output_budget | recovery_tool_unavailable
 | MCP / 子 Agent | `crates/octos-cli/src/commands/mcp_serve.rs`、`crates/octos-agent/src/tools/spawn.rs` |
 | 外层限制与用量 | `arc/octos_stdio.py`、`arc/llm_proxy.py`、`arc/metrics.py`，先只读 |
 
-**完成条件：**冻结一张实际调用图、一个数据通道方案、一份有限预算与能力范围，并有可重放的基线反例。证据写入后续创建的 `h03-m0-state-boundary.md`；本指南不预先创建该文件。
+**完成条件：**已冻结实际调用图、数据通道方案、有限预算与能力范围，并有可重放的基线反例。证据见 [h03-m0-state-boundary.md](./h03-m0-state-boundary.md)；新增功能留在 M1–M9。
 
 ## 5. Milestone M1：来源、视图和预算共同约定
 
@@ -261,6 +264,7 @@ insufficient_output_budget | recovery_tool_unavailable
 **依赖：**M2；最终展示复用 M3 接通的路径。**目标：**命令输出的保存早于工具内和 execution 层的有损处理。
 
 - [ ] 在当前前台 shell 的捕获层接入有界流式落盘，避免 `wait_with_output()` 完整缓冲后才处理大日志。复用现有进程与取消管理，不重写执行框架。
+- [ ] 覆盖 M0 实测同样对模型可见的前台 `bash` 与 `exec_command` 采集路径；tty/yield 和后台分支仅声明实际保存范围，不承诺未捕获的历史全文。
 - [ ] 并发排空 stdout/stderr，分别保存 stream 范围；内存仅保留有界展示片段和必要状态。
 - [ ] 稳定 UTF-8 解码处理跨块字符；无效编码标记变换，不能把 lossy 解码字节当作原始字节范围。
 - [ ] 显式记录完整捕获、部分捕获、仍运行、终止原因与未知状态；stdout/stderr 各自达到上限时能解释缺口。

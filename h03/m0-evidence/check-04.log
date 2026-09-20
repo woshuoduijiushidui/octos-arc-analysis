@@ -1,0 +1,22 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.59s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 16 tests
+test tools::read_window::tests::armed_from_env_defaults_to_off ... ok
+test tools::read_window::tests::window_plus_footer_must_fit_under_the_loop_backstop ... ok
+test tools::read_window::tests::should_mark_complete_after_note_full_write ... ok
+test tools::read_window::tests::should_record_nothing_for_an_empty_session ... ok
+test tools::read_window::tests::from_metadata_binds_ctime_and_inode_on_unix ... ok
+test tools::read_window::tests::should_never_complete_without_an_epoch ... ok
+test tools::read_window::tests::should_scope_views_to_the_session ... ok
+test tools::read_window::tests::should_reset_coverage_when_the_epoch_changes ... ok
+test tools::read_window::tests::transformed_view_never_completes_even_at_full_coverage ... ok
+test tools::read_window::tests::should_not_mark_complete_when_written_bytes_disagree_with_disk ... ok
+test tools::read_window::tests::should_report_partial_after_a_window_and_complete_after_paging_through ... ok
+test tools::read_window::tests::should_not_stitch_across_a_gap ... ok
+test tools::read_window::tests::should_never_complete_a_tainted_epoch ... ok
+test tools::read_window::tests::should_forget_and_reset ... ok
+test tools::read_window::tests::should_match_symlinked_and_canonical_forms_of_the_same_path ... ok
+test tools::read_window::tests::should_bound_the_ledger_and_evict_oldest_first ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 2936 filtered out; finished in 0.03s

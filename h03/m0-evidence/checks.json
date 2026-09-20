@@ -1,0 +1,493 @@
+[
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "file_state_cache"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-00.log",
+    "rust_results": [
+      "test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 2937 filtered out; finished in 0.01s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "model_read_receipts"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-01.log",
+    "rust_results": [
+      "test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 2931 filtered out; finished in 0.50s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "task_file_state"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-02.log",
+    "rust_results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 2949 filtered out; finished in 0.00s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::read_file::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-03.log",
+    "rust_results": [
+      "test result: ok. 55 passed; 0 failed; 0 ignored; 0 measured; 2897 filtered out; finished in 0.08s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::read_window::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-04.log",
+    "rust_results": [
+      "test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 2936 filtered out; finished in 0.03s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::write_file::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-05.log",
+    "rust_results": [
+      "test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 2904 filtered out; finished in 2.59s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::edit_file::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-06.log",
+    "rust_results": [
+      "test result: ok. 37 passed; 0 failed; 0 ignored; 0 measured; 2915 filtered out; finished in 0.33s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::diff_edit::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-07.log",
+    "rust_results": [
+      "test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 2941 filtered out; finished in 0.04s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::apply_patch::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-08.log",
+    "rust_results": [
+      "test result: ok. 49 passed; 0 failed; 0 ignored; 0 measured; 2903 filtered out; finished in 0.02s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::mutation_guard::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-09.log",
+    "rust_results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2950 filtered out; finished in 0.00s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::nofollow_tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-10.log",
+    "rust_results": [
+      "test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 2933 filtered out; finished in 0.01s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::recall::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-11.log",
+    "rust_results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 2949 filtered out; finished in 0.00s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::shell::"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 101,
+    "log": "check-12.log",
+    "rust_results": [
+      "test result: FAILED. 45 passed; 10 failed; 1 ignored; 0 measured; 2896 filtered out; finished in 484.88s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::spawn::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-13.log",
+    "rust_results": [
+      "test result: ok. 94 passed; 0 failed; 1 ignored; 0 measured; 2857 filtered out; finished in 7.34s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::compaction::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-14.log",
+    "rust_results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2950 filtered out; finished in 0.14s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::loop_compaction::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-15.log",
+    "rust_results": [
+      "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 2946 filtered out; finished in 0.18s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::llm_call::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-16.log",
+    "rust_results": [
+      "test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 2941 filtered out; finished in 1.18s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--test",
+      "h02_m1_file_versions",
+      "--test",
+      "h02_m2_read_receipts",
+      "--test",
+      "h02_m3_receipt_lifecycle",
+      "--test",
+      "m8_integration_tool_context",
+      "--test",
+      "m8_integration_cache_handoff",
+      "--test",
+      "m8_end_to_end_gate"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-17.log",
+    "rust_results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s",
+      "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s",
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s",
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "context_manager::tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-18.log",
+    "rust_results": [
+      "test result: ok. 99 passed; 0 failed; 0 ignored; 0 measured; 3603 filtered out; finished in 0.04s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "appui_prompt_context_bridge"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-19.log",
+    "rust_results": [
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3701 filtered out; finished in 0.00s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "h02_m5"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-20.log",
+    "rust_results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 3700 filtered out; finished in 0.61s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "session_actor_prompt_context_bridge"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-21.log",
+    "rust_results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3699 filtered out; finished in 0.13s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--test",
+      "mcp_serve_integration"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-22.log",
+    "rust_results": [
+      "test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.14s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-pipeline",
+      "--test",
+      "m8_parity"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-23.log",
+    "rust_results": [
+      "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s"
+    ],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "check",
+      "--workspace",
+      "--tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-24.log",
+    "rust_results": [],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 0,
+    "log": "check-25.log",
+    "rust_results": [],
+    "python_results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "octos-agent",
+      "-p",
+      "octos-cli",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc",
+    "exit_code": 101,
+    "log": "check-26.log",
+    "rust_results": [],
+    "python_results": []
+  },
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ],
+    "cwd": "/Users/bytedance/arc-bench/octos-arc/arc",
+    "exit_code": 1,
+    "log": "check-27.log",
+    "rust_results": [],
+    "python_results": [
+      "FAILED in 0s (tools=0 wrote=False verified=False): 'partial implementation failed'",
+      "FAILED in 0s (tools=0 wrote=False verified=False): 'partial implementation failed'",
+      "FAILED in 0s (tools=0 wrote=False verified=False): 'HTTP 402 insufficient_balance'",
+      "FAILED in 0s (tools=0 wrote=False verified=False): 'HTTP 402 insufficient_balance'",
+      "Ran 408 tests in 31.311s",
+      "FAILED (errors=1, skipped=8)"
+    ]
+  }
+]

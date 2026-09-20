@@ -1,0 +1,12 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 6 tests
+test agent::loop_compaction::tests::context_managed_agent_skips_legacy_context_trimming ... ok
+test agent::loop_compaction::tests::should_preserve_tool_result_validity_after_compaction ... ok
+test agent::loop_compaction::tests::should_budget_oversized_tool_outputs_deterministically ... ok
+test agent::loop_compaction::tests::context_trim_clears_model_read_receipts ... ok
+test agent::loop_compaction::tests::context_managed_agent_skips_old_tool_result_truncation ... ok
+test agent::loop_compaction::tests::old_tool_result_replacement_clears_model_read_receipts ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 2946 filtered out; finished in 0.18s

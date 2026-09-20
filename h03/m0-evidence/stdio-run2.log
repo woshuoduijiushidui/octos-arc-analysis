@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 220, in <module>
+    verify(args.binary.resolve(), args.evidence.resolve())
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 205, in verify
+    results = [run_case(binary, evidence, *case) for case in cases]
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 205, in <listcomp>
+    results = [run_case(binary, evidence, *case) for case in cases]
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 156, in run_case
+    assert artifacts, f"no persisted tool output under {case}"
+AssertionError: no persisted tool output under /Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/stdio-run2/window_page

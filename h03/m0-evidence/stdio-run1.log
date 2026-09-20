@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/Users/bytedance/arc-bench/octos-arc/arc/octos_stdio.py", line 106, in _send
+    frame = q.get(timeout=timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/queue.py", line 179, in get
+    raise Empty
+_queue.Empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 212, in <module>
+    verify(args.binary.resolve(), args.evidence.resolve())
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 197, in verify
+    results = [run_case(binary, evidence, *case) for case in cases]
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 197, in <listcomp>
+    results = [run_case(binary, evidence, *case) for case in cases]
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 123, in run_case
+    session.bootstrap_profile(
+  File "/Users/bytedance/arc-bench/octos-arc/arc/octos_stdio.py", line 130, in bootstrap_profile
+    res = self._send("profile/local/create", {
+  File "/Users/bytedance/arc-bench/octos-arc/arc/integration/output_recovery_baseline.py", line 29, in _send
+    return super()._send(method, params, want_response, timeout)
+  File "/Users/bytedance/arc-bench/octos-arc/arc/octos_stdio.py", line 108, in _send
+    raise OctosProtocolError(f"timeout waiting response to {method}") from exc
+octos_stdio.OctosProtocolError: timeout waiting response to profile/local/create

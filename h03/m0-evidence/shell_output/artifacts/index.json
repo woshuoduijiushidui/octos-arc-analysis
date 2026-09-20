@@ -1,0 +1,9 @@
+[
+  {
+    "source": "workspace/.octos/arc-57562-6603465/context_ledgers/tool-output/sha256%3Ae24fe2757c27e6d62a5810cee8d04ec3f5cfb1b661a310210484f42-52a79e37",
+    "evidence_file": "0.json",
+    "bytes": 29983,
+    "sha256": "e24fe2757c27e6d62a5810cee8d04ec3f5cfb1b661a310210484f42a17f188b9",
+    "content_field": "utf8_text"
+  }
+]
