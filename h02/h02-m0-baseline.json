@@ -1,0 +1,182 @@
+{
+  "schema": "octos.h02-m0-baseline.v1",
+  "captured_at": "2026-09-20",
+  "variant": "A",
+  "baseline": {
+    "git_sha": "c599d18c5acd2b846f049ffea2be84e72fe60fac",
+    "commit_subject": "fix(arc): describe shared-suite execution without assuming concurrency (#153)",
+    "worktree_clean_before_branch": true,
+    "implementation_branch": "feat/safe-file-cache",
+    "m0_test_commit": "7d4f81e6f0274a92b1fde756e63c9e255ecd06fd",
+    "branch_base_verified": true
+  },
+  "current_implementation": {
+    "base_ref": "origin/main",
+    "base_git_sha": "6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e",
+    "m0_test_commit": "0e236311",
+    "m1_implementation_commit": "463f9dbd9eeea6132814421b671680b2c82fd49d",
+    "range_diff_equivalent": true,
+    "rebase_conflicts": 0,
+    "post_rebase_m1_verification": "passed"
+  },
+  "host": {
+    "os": "macOS 26.6.2 (25G83)",
+    "arch": "arm64"
+  },
+  "toolchain": {
+    "rustc": "1.96.1 (31fca3adb 2026-06-26)",
+    "cargo": "1.96.1 (356927216 2026-06-26)",
+    "python": "3.9.6",
+    "node": "26.0.0",
+    "git": "2.50.1 (Apple Git-155)",
+    "rust_path_note": "source ~/.zshrc did not expose cargo/rustc; verification prepended ~/.rustup/toolchains/1.96.1-aarch64-apple-darwin/bin to PATH"
+  },
+  "model": {
+    "id": null,
+    "selection_order": [
+      "OCTOS_MODEL",
+      "MODEL"
+    ],
+    "capture": "both variables were unset",
+    "provider_request_count": 0,
+    "note": "M0 used deterministic mocks and static source checks only."
+  },
+  "default_environment": {
+    "OCTOS_ARC_ENGINE": {
+      "captured": null,
+      "effective": "python"
+    },
+    "OCTOS_DRIVER": {
+      "captured": null,
+      "effective": "stdio"
+    },
+    "OCTOS_SESSION_SCOPE": {
+      "captured": null,
+      "effective": "turn"
+    },
+    "OCTOS_SESSION_PER_TURN": {
+      "captured": null,
+      "effective": null
+    },
+    "OCTOS_OUP_SEMANTIC_CONTEXT_MODE": {
+      "captured": null,
+      "effective": "on"
+    },
+    "OCTOS_CONTEXT_COMPACT_THRESHOLD_TOKENS": {
+      "captured": null,
+      "effective": "70% of provider context window"
+    },
+    "OCTOS_CONTEXT_COMPACT_TARGET_TOKENS": {
+      "captured": null,
+      "effective": "two thirds of the trigger threshold"
+    },
+    "OCTOS_BIN": {
+      "captured": null,
+      "effective": "resolved by arc/main.py at runtime"
+    },
+    "OPENAI_BASE_URL": {
+      "captured": null
+    }
+  },
+  "source_fingerprint_scope": "captured from the clean A checkout before M0 test-only changes",
+  "source_fingerprints_sha256": {
+    "Cargo.lock": "098143fa698f84bab7b66912a384591dd73a4aed5fbf793c358422c849768799",
+    "arc/main.py": "eda4b3d203c3d0a974179079a6d9cc1d15d0b1d105fc8ce5d439e0a63c12bc3f",
+    "arc/octos_stdio.py": "ee242e42119cee14c53001020fa3467a05bc7ec263d79ebadd6d57a573f23130",
+    "crates/octos-agent/src/file_state_cache.rs": "d6ee0792ef1b10b88e33f764bf52fe2b5780618faaf83aacb3ce6b4aadb828ab",
+    "crates/octos-agent/src/tools/read_file.rs": "d19cf103c092249084577facf0f175d3c5fc651883b80b249862fb4a7119a84f",
+    "crates/octos-agent/src/agent/execution.rs": "d42cf06c5186dc2c10745223da6cf28f4d1640090b4221002ea87e5d8a7a2be6",
+    "crates/octos-agent/src/agent/llm_call.rs": "feabdef4e8b69207e81562cfce48628fd7824b0f6563ca1ea00a37d82ab5a73e",
+    "crates/octos-cli/src/api/context_manager.rs": "71ef35cba7e2c32d74227d8ac391fcd5b7f2ac4445f8ab2a45864f2cdc985443",
+    "crates/octos-cli/src/api/ui_protocol_transport.rs": "e1c9c089b1b4a2c2e3a3548acf232a78f23903c0e87e6be14d32a6b9bb202227",
+    "crates/octos-cli/src/commands/mcp_serve.rs": "2efec693f599dd568ada5170039e91a23a7d8b986c87f6c613a56d20c4531a3c",
+    "crates/octos-agent/src/tools/spawn.rs": "2519722690d981d7e4522fd32d2d891779fa29df38496e8af36aaef10fa9a6f0"
+  },
+  "verification": [
+    {
+      "command": "cargo test -p octos-agent file_state_cache -- --nocapture",
+      "exit_code": 0,
+      "result": "21 passed across matching unit and integration targets"
+    },
+    {
+      "command": "cargo test -p octos-agent read_file --lib -- --nocapture",
+      "exit_code": 0,
+      "result": "53 passed, 1 ignored"
+    },
+    {
+      "command": "cargo test -p octos-agent --test m8_integration_cache_handoff -- --nocapture",
+      "exit_code": 0,
+      "result": "4 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test m8_integration_tool_context -- --nocapture",
+      "exit_code": 0,
+      "result": "4 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib loop_compaction -- --nocapture",
+      "exit_code": 0,
+      "result": "4 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli context_manager --lib -- --nocapture",
+      "exit_code": 0,
+      "result": "97 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli h02_m0_characterization_oup_and_mcp_agents_omit_file_cache_wiring -- --nocapture",
+      "exit_code": 0,
+      "result": "1 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --test mcp_serve_integration -- --nocapture",
+      "exit_code": 0,
+      "result": "12 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent h02_contract_returns_body_until_a_model_dispatch_confirms_visibility --lib -- --ignored --nocapture",
+      "exit_code": 101,
+      "result": "expected A-baseline failure: the second direct read returned [FILE_UNCHANGED] without an intervening model dispatch"
+    },
+    {
+      "command": "python -m unittest discover -s arc/tests",
+      "exit_code": 127,
+      "result": "python command not installed"
+    },
+    {
+      "command": "PYTHONPATH=arc python3 -m unittest discover -s arc/tests",
+      "exit_code": 1,
+      "result": "179 ran: 173 passed, 5 skipped, 1 baseline error; Python 3.9.6 rejects tarfile.TarFile.extract(filter=...)"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0,
+      "result": "passed after explicitly adding the installed Rust toolchain bin directory to PATH"
+    },
+    {
+      "command": "cargo clippy -p octos-agent --all-targets -- -D warnings",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings",
+      "exit_code": 101,
+      "result": "baseline warning outside H02 changes: crates/octos-cli/src/commands/serve.rs:878 clippy::nonminimal_bool"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal_bool",
+      "exit_code": 0,
+      "result": "passed when allowing only the recorded baseline warning"
+    }
+  ],
+  "evidence": {
+    "decision_record": "h02-m0-state-boundary.md",
+    "expected_failure_test": "../octos-arc/crates/octos-agent/src/tools/read_file.rs",
+    "characterization_tests": [
+      "../octos-arc/crates/octos-agent/src/file_state_cache.rs",
+      "../octos-arc/crates/octos-agent/src/tools/read_file.rs",
+      "../octos-arc/crates/octos-agent/tests/m8_integration_tool_context.rs",
+      "../octos-arc/crates/octos-cli/src/api/ui_protocol_tests.rs"
+    ]
+  }
+}
