@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M5 已完成，M6 待实施
+- 状态：M0-M6 已完成，M7 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -38,7 +38,7 @@ can_return_unchanged =
 | 变体 | Git 基线/分支 | 功能 | receipt 生命周期 |
 | --- | --- | --- | --- |
 | A：当前主线 | `main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e` | 当前真实 stdio/MCP 行为；目标 Agent 路径尚未完整接通 cache | 当前实现，不补接线 |
-| B：正确性优先 | `feat/safe-file-cache`，从 A 切出 | H02a + H02b + H02c + H02d + H02e | 任一破坏性 frame 变化都清空该 branch 的 receipts |
+| B：正确性优先 | `feat/safe-file-cache@73f5b1bf695af37167fcb47541726bcb24807102`，从 A 切出 | H02a + H02b + H02c + H02d + H02e | 任一破坏性 frame 变化都清空该 branch 的 receipts |
 | C：选择性保留 | 建议分支 `exp/h02-retained-read-receipts`，从冻结后的 B commit 切出 | B + 一项 H02f 优化 | 只保留最终 prompt frame 明确留下且未重新裁剪的 source item receipts |
 
 分支纪律：
@@ -46,7 +46,7 @@ can_return_unchanged =
 - [x] 不从当前 `feat/context-evidence-preservation-llm-summary@804e42a8d42b5e570a5d1d2cb78b01d0a73059d7` 工作树开始 H02；A/B/C 必须共享上表固定的 H02 基线。
 - [x] 开工前确认 `c599d18c5acd2b846f049ffea2be84e72fe60fac` 可解析，记录 Rust、Python、Node、模型、默认环境变量和 `git status --porcelain`。
 - [x] M0、M1 完成后将两个提交无冲突 rebase 到 `origin/main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`；`git range-diff` 证明补丁等价，并在新基线上重跑全部 M1 聚焦回归。
-- [ ] B 通过全部确定性 contract tests 后冻结干净 commit，写入 `B_SHA`；冻结前不得开始 C。
+- [x] B 通过全部确定性 contract tests 后冻结干净 commit，写入 `B_SHA`；冻结前不得开始 C。
 - [ ] C 必须从 `B_SHA` 切出；相对 B 的 diff 只允许包含 retained-item 选择性保留、对应观测和测试。
 - [ ] 不在 C 同时实现“选择性保留”和“热点文件自动回灌”。若未来需要测试回灌，另建 C2 实验臂并重新预注册实验。
 - [ ] “把旧 cache 直接接上所有入口”只保留为负向回归场景，不得作为可以凭低 token 获胜的实验变体。
@@ -300,19 +300,19 @@ M5 证据：[h02-m5-implementation-verification.md](./h02-m5-implementation-veri
 
 ### 10.1 可解释观测
 
-- [ ] 每次 read 记录 `full_body|file_unchanged|error` 结果、稳定 hit/miss reason、task/session/branch owner、view kind 和字节数。
-- [ ] 有效 hit 记录 source proof 标识、version 短标识、projection policy 和 receipt age/generation；不得记录正文。
-- [ ] 记录 metadata fast reject、hash bytes/latency、unstable observation、receipt clear reason、stale mutation 与 bounded recovery。
-- [ ] 记录完整正文 bytes、stub bytes、有效命中次数、因可见性失效重读次数；指标写入失败不改变 read 结果。
-- [ ] 确认日志不包含文件正文、secret、完整任意 shell 参数或不必要的绝对用户路径。
+- [x] 每次 read 记录 `full_body|file_unchanged|error` 结果、稳定 hit/miss reason、task/session/branch owner、view kind 和字节数。
+- [x] 有效 hit 记录 source proof 标识、version 短标识、projection policy 和 receipt age/generation；不得记录正文。
+- [x] 记录 metadata fast reject、hash bytes/latency、unstable observation、receipt clear reason、stale mutation 与 bounded recovery。
+- [x] 记录完整正文 bytes、stub bytes、有效命中次数、因可见性失效重读次数；指标写入失败不改变 read 结果。
+- [x] 确认日志不包含文件正文、secret、完整任意 shell 参数或不必要的绝对用户路径。
 
 ### 10.2 必须自动化的确定性场景
 
-- [ ] 1. 同 task、同 branch、同 version、同 range 且 source proof 仍在 frame：第二次 read 允许 stub。
+- [x] 1. 同 task、同 branch、同 version、同 range 且 source proof 仍在 frame：第二次 read 允许 stub。
 - [x] 2. source proof 被 compaction/trim 删除：磁盘未变也必须返回正文。
 - [x] 3. B 组发生 destructive frame change：即使 source item 看似可恢复也先清 receipts。
-- [ ] 4. 100KB、50KB、8KiB 或 context-pressure 任一层裁剪：不得登记 full receipt。
-- [ ] 5. projection/sanitizer policy 变化，或可见 bytes 改变：旧 receipt 失效。
+- [x] 4. 100KB、50KB、8KiB 或 context-pressure 任一层裁剪：不得登记 full receipt。
+- [x] 5. projection/sanitizer policy 变化，或可见 bytes 改变：旧 receipt 失效。
 - [x] 6. 内容改变但 mtime 和 size 恢复：发现变化并返回新正文。
 - [x] 7. shell、formatter、测试进程、git 操作或外部编辑器改文件：下一次 read 不得错误命中。
 - [x] 8. `edit_file`、`write_file`、`diff_edit`、`apply_patch` 成功后撤销旧 receipts。
@@ -322,7 +322,7 @@ M5 证据：[h02-m5-implementation-verification.md](./h02-m5-implementation-veri
 - [x] 12. ledger/receipt LRU eviction 或持久化失败：保守 miss，read 仍正确。
 - [x] 13. 两个并发 mutation 使用同一 version：至多一个成功，另一个 typed stale。
 - [x] 14. 局部 patch context 唯一时成功；0 次或多次匹配失败且无部分副作用。
-- [ ] 15. stdio 与 MCP 真实入口运行同一命中/失效 contract。
+- [x] 15. stdio 与 MCP 真实入口运行同一命中/失效 contract。
 - [x] 16. 任一无法解释 source proof、version、view 或 owner 的 hit 让测试失败，而非只记 warning。
 - [x] 17. 读取过程中并发替换：只允许稳定重读或 typed concurrent-change，不登记混合 observation。
 - [x] 18. symlink/canonical alias 不能绕过版本或 stale guard；外部替换 symlink 时失败关闭。
@@ -349,14 +349,14 @@ cargo fmt --all -- --check
 cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings
 ```
 
-- [ ] 对受影响 crates 运行 Clippy；若仓库已有与改动路径对应的全量 gate，一并运行并记录真实结果。
-- [ ] 不用重复跑一个单元测试代替 stdio/MCP、spawn、compaction 和 mutation 的跨层覆盖。
-- [ ] 生成 B 的行为说明、已知限制和验证证据，确认不含 retained-item 选择性保留或热点回灌。
-- [ ] 提交并冻结干净 `B_SHA`，记录 `git diff A_SHA...B_SHA`、`git status --porcelain` 和所有命令退出码。
+- [x] 对受影响 crates 运行 Clippy；若仓库已有与改动路径对应的全量 gate，一并运行并记录真实结果。
+- [x] 不用重复跑一个单元测试代替 stdio/MCP、spawn、compaction 和 mutation 的跨层覆盖。
+- [x] 生成 B 的行为说明、已知限制和验证证据，确认不含 retained-item 选择性保留或热点回灌。
+- [x] 提交并冻结干净 `B_SHA`，记录 `git diff A_SHA...B_SHA`、`git status --porcelain` 和所有命令退出码。
 
-M6 未来证据：`./h02-m6-b-variant-freeze.md`。
+M6 证据：[h02-m6-b-variant-freeze.md](./h02-m6-b-variant-freeze.md)。
 
-- [ ] 完成条件：18 个场景全部自动化，false `[FILE_UNCHANGED]` 为 0，stale mutation 漏放行为 0；关闭 dedup 时 read 行为兼容基线，安全 mutation guard 仍生效。
+- [x] 完成条件：18 个场景全部自动化，false `[FILE_UNCHANGED]` 为 0，stale mutation 漏放行为 0；关闭 dedup 时 read 行为兼容基线，安全 mutation guard 仍生效。
 
 ## 11. Milestone M7：H02f 独立实验分支
 
