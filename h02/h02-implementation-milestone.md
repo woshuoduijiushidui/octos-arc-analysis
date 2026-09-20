@@ -1,6 +1,6 @@
 # H02 实施 Milestone：文件版本与模型可见读取证据
 
-- 状态：M0-M1 已完成，M2 待实施
+- 状态：M0-M2 已完成，M3 待实施
 - 面向对象：后续编码 Agent
 - 当前实现基线：`main@6aacc9fb1a1599ae10f8368921ccf3e3afb7f87e`
 - 初始 M0 调研基线：`main@c599d18c5acd2b846f049ffea2be84e72fe60fac`
@@ -213,24 +213,26 @@ M1 证据：[h02-m1-implementation-verification.md](./h02-m1-implementation-veri
 
 目标：建立从 typed read candidate 到最终 model-visible receipt 的单向确认链；工具读取发生时只产生 candidate，最终 provider prompt 确实包含正文且请求成功后才产生 receipt。
 
-- [ ] `read_file` 成功读取时在 branch-local state 中 stage typed candidate：`ctx.tool_id`、normalized args digest、canonical target、强 version、requested/returned view、原始输出 digest 和 candidate ID；失败与 stub 结果不产生 candidate。
-- [ ] 若 M0 证实 `agent/llm_call.rs::call_llm_with_hooks_mode` 确为两条路径共同的最后边界，就在该处扫描真正发送的最终 `messages`；若不成立，只能改用 M0 证明的等价共同 chokepoint，不能退回 pre-projection 确认。
-- [ ] 按消息顺序配对 Assistant ToolCall 与 Tool output，用 call ID + args digest + output digest + occurrence 匹配 staged candidate；call ID 可跨 turn 重复，不能单独作为 proof。
-- [ ] dispatch 前先撤销最终 messages 已不包含的 active receipts，并把可证明的 candidates 标成 pending；只有 provider 请求成功返回、其响应将驱动同一 model branch 后才把 pending 激活。
-- [ ] candidate 成功激活或被拒绝后即变为 consumed；lifecycle clear 不能让旧 candidate 再次激活。只有新的正文 read 可以 stage 新 candidate。
-- [ ] hook deny、全部 provider attempts 失败、取消或 silent/internal checkpoint 不得替主工具循环激活 receipt；内部摘要/检查调用使用独立 purpose/branch owner 或显式禁用 activation。
-- [ ] “已记录到 transcript”“已写 artifact”“进入 UI preview”或仅开始 provider 请求都不等于模型已见。
-- [ ] B 组不要求修改 ContextManager 持久 wire schema，也不在 ContextManager 内另建缓存；只有选用 transcript item ID 作为额外 proof 时才做最小 side-channel 扩展。
-- [ ] B 组首版只确认可以精确证明的输出：source item 被保留、未在任何层截断、visible hash 匹配，并且 requested view 可完整映射。
-- [ ] 对显式 partial read，只有该 partial 的完整结果未被再次裁剪时登记该 range；partial receipt 不能满足 full read 或不相交 range。
-- [ ] 测试证明完整可见的 partial receipt 可以满足相同范围或其子范围，但任何超出已见覆盖的请求都 miss；不能为了实现简单把“有 partial receipt”退化成整个文件已见。
-- [ ] 对 head/tail、多段裁剪、redaction 或无法映射的 normalization，保守不登记 receipt；精确 segment 支持留给有明确数据契约的后续小改动。
-- [ ] 每次 provider dispatch 都用最终 messages reconcile receipts；不在 prompt 中或 digest 已变化的 source proof 不能继续授权。
-- [ ] 同一轮并行的两个 `read_file` 不能互相命中，因为第一个正文尚未被模型看到；下一次模型请求确认后才允许后续工具轮命中。
-- [ ] `[FILE_UNCHANGED]` 输出携带最小可审计信息（target、version、view、source item/candidate ref），但该 stub 不创建新 receipt。
-- [ ] 测试覆盖 direct-tool 连读但未发生 model dispatch、provider 成功/失败、100KB、50KB、8KiB、context-pressure、sanitize、hook feedback、partial→full、不同 range、重复 call ID 和 source item dropped。
+- [x] `read_file` 成功读取时在 branch-local state 中 stage typed candidate：`ctx.tool_id`、normalized args digest、canonical target、强 version、requested/returned view、原始输出 digest 和 candidate ID；失败与 stub 结果不产生 candidate。
+- [x] 若 M0 证实 `agent/llm_call.rs::call_llm_with_hooks_mode` 确为两条路径共同的最后边界，就在该处扫描真正发送的最终 `messages`；若不成立，只能改用 M0 证明的等价共同 chokepoint，不能退回 pre-projection 确认。
+- [x] 按消息顺序配对 Assistant ToolCall 与 Tool output，用 call ID + args digest + output digest + occurrence 匹配 staged candidate；call ID 可跨 turn 重复，不能单独作为 proof。
+- [x] dispatch 前先撤销最终 messages 已不包含的 active receipts，并把可证明的 candidates 标成 pending；只有 provider 请求成功返回、其响应将驱动同一 model branch 后才把 pending 激活。
+- [x] candidate 成功激活或被拒绝后即变为 consumed；lifecycle clear 不能让旧 candidate 再次激活。只有新的正文 read 可以 stage 新 candidate。
+- [x] hook deny、全部 provider attempts 失败、取消或 silent/internal checkpoint 不得替主工具循环激活 receipt；内部摘要/检查调用使用独立 purpose/branch owner 或显式禁用 activation。
+- [x] “已记录到 transcript”“已写 artifact”“进入 UI preview”或仅开始 provider 请求都不等于模型已见。
+- [x] B 组不要求修改 ContextManager 持久 wire schema，也不在 ContextManager 内另建缓存；只有选用 transcript item ID 作为额外 proof 时才做最小 side-channel 扩展。
+- [x] B 组首版只确认可以精确证明的输出：source item 被保留、未在任何层截断、visible hash 匹配，并且 requested view 可完整映射。
+- [x] 对显式 partial read，只有该 partial 的完整结果未被再次裁剪时登记该 range；partial receipt 不能满足 full read 或不相交 range。
+- [x] 测试证明完整可见的 partial receipt 可以满足相同范围或其子范围，但任何超出已见覆盖的请求都 miss；不能为了实现简单把“有 partial receipt”退化成整个文件已见。
+- [x] 对 head/tail、多段裁剪、redaction 或无法映射的 normalization，保守不登记 receipt；精确 segment 支持留给有明确数据契约的后续小改动。
+- [x] 每次 provider dispatch 都用最终 messages reconcile receipts；不在 prompt 中或 digest 已变化的 source proof 不能继续授权。
+- [x] 同一轮并行的两个 `read_file` 不能互相命中，因为第一个正文尚未被模型看到；下一次模型请求确认后才允许后续工具轮命中。
+- [x] `[FILE_UNCHANGED]` 输出携带最小可审计信息（target、version、view、source item/candidate ref），但该 stub 不创建新 receipt。
+- [x] 测试覆盖 direct-tool 连读但未发生 model dispatch、provider 成功/失败、100KB、50KB、8KiB、context-pressure、sanitize、hook feedback、partial→full、不同 range、重复 call ID 和 source item dropped。
 
-- [ ] 完成条件：每一个允许的 stub 都能在 trace 中定位到上一轮成功 provider request 的最终 messages 内一个包含对应版本和范围正文的唯一 source proof；删除、裁剪或变换该消息后同一 read 必须返回正文。
+M2 证据：[h02-m2-implementation-verification.md](./h02-m2-implementation-verification.md)。
+
+- [x] 完成条件：每一个允许的 stub 都能在 trace 中定位到上一轮成功 provider request 的最终 messages 内一个包含对应版本和范围正文的唯一 source proof；删除、裁剪或变换该消息后同一 read 必须返回正文。
 
 ## 7. Milestone M3：H02c——生命周期失效与 model branch 隔离
 
