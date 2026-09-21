@@ -214,16 +214,16 @@ invalid_edit_input
 
 **依赖：**M2。**对应：**H05c。**目标：**不为“没有变化”制造写入，也不把调用意图冒充实际结果。
 
-- [ ] 在共享写入边界比较当前 bytes 与候选 bytes；相同时在 truncate/write 前返回 typed `no_change`。
-- [ ] no-op 释放 mutation claim，但不消费现有版本、不撤销 receipt、不 invalidate cache、不运行 formatter、不创建 snapshot。
-- [ ] `old_string == new_string`、diff 应用后 bytes 相同、已有文件整写内容相同都进入明确 no-op；新建空文件仍是真实创建。
-- [ ] no-op 不能绕过路径权限、write grant 或 stale 检查；无权写和版本过期仍返回原错误。
-- [ ] 记录 before version、工具写入后的版本和 formatter 后最终版本；无法确认最终版本时如实降级。
-- [ ] 成功 metadata 包含 matcher、replacement count/hunk count、实际行范围、formatter 状态和有界 diff preview。
-- [ ] formatter 改变内容时，以 formatter 后磁盘内容计算最终范围；不要只比较工具参数中的 `new_string`。
-- [ ] formatter 失败但文件已改时保持 `file_modified` 和真实成功/告警语义，避免模型重复应用同一修改。
-- [ ] 复用现有 AppUI diff metadata 约定；不得为 H05 新建第二个 diff 持久仓库。
-- [ ] 测试 inode/mtime 或写计数、formatter 调用计数、snapshot 数和 receipt/cache 状态，证明 no-op 确实没有副作用。
+- [x] 在共享写入边界比较当前 bytes 与候选 bytes；相同时在 truncate/write 前返回 typed `no_change`。
+- [x] no-op 释放 mutation claim，但不消费现有版本、不撤销 receipt、不 invalidate cache、不运行 formatter、不创建 snapshot。
+- [x] `old_string == new_string`、diff 应用后 bytes 相同、已有文件整写内容相同都进入明确 no-op；新建空文件仍是真实创建。
+- [x] no-op 不能绕过路径权限、write grant 或 stale 检查；无权写和版本过期仍返回原错误。
+- [x] 记录 before version、工具写入后的版本和 formatter 后最终版本；无法确认最终版本时如实降级。
+- [x] 成功 metadata 包含 matcher、replacement count/hunk count、实际行范围、formatter 状态和有界 diff preview。
+- [x] formatter 改变内容时，以 formatter 后磁盘内容计算最终范围；不要只比较工具参数中的 `new_string`。
+- [x] formatter 失败但文件已改时保持 `file_modified` 和真实成功/告警语义，避免模型重复应用同一修改。
+- [x] 复用现有 AppUI diff metadata 约定；不得为 H05 新建第二个 diff 持久仓库。
+- [x] 测试 inode/mtime 或写计数、formatter 调用计数、snapshot 数和 receipt/cache 状态，证明 no-op 确实没有副作用。
 
 **完成条件：**三种文件工具都能区分“请求成功但没有变化”和“磁盘已变化”，成功摘要与 formatter 后最终内容一致。
 

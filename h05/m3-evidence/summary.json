@@ -1,0 +1,12 @@
+{
+  "schema": "octos.h05-m3-stdio-mutation-results.v1",
+  "binary_sha256": "bafcff96ac90003c1e5fba8cb62c29854b1e6bdec0eb44ff387f4d4c0be40636",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 7,
+  "no_change_calls": 3,
+  "real_mutations": 2,
+  "no_change_mtime_preserved": true,
+  "no_change_snapshot_created": false,
+  "empty_file_created": true,
+  "final_versions_visible": true
+}
