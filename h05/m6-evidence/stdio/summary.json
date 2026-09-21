@@ -1,0 +1,74 @@
+{
+  "schema": "octos.h05-m6-stdio-b-acceptance.v1",
+  "binary_sha256": "99494dd7d1b56df47ab3dfce51ee835d8e6f2f44266c94c0c021943ba14375be",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 16,
+  "tool_calls": 15,
+  "result_codes": {
+    "diff_context_ambiguous": 1,
+    "edit_ambiguous": 2,
+    "edit_no_match": 3,
+    "modified": 7,
+    "no_change": 1,
+    "success": 1
+  },
+  "outcome_counts": {
+    "no_match": 3,
+    "ambiguous": 3,
+    "no_change": 1,
+    "stale": 0
+  },
+  "matchers": {
+    "block_anchor": 2,
+    "exact": 5,
+    "full_file_line_exact": 1,
+    "identical_input": 1,
+    "line_ending_equivalent": 1,
+    "line_trimmed": 2,
+    "whole_file": 1
+  },
+  "candidate_count": 12,
+  "replacement_count": 6,
+  "hunk_count": 1,
+  "successful_mutations": 7,
+  "formatter_expanded_count": 0,
+  "failure_recovery": {
+    "attempts": 2,
+    "successful_next_edits": 2,
+    "with_extra_read": 1,
+    "without_extra_read": 1
+  },
+  "argument_bytes": {
+    "diff_edit": 142,
+    "edit_file": 2607,
+    "read_file": 24,
+    "write_file": 44
+  },
+  "whole_file_argument_bytes": 44,
+  "local_edit_argument_bytes": 2749,
+  "result_text_bytes": 9408,
+  "near_8k_candidate_result_bytes": 6909,
+  "structured_metadata_bytes": null,
+  "structured_metadata_source": "h05_m6_observability",
+  "raw_request_bytes": [
+    18009,
+    19290,
+    20116,
+    21429,
+    22850,
+    24840,
+    26438,
+    29081,
+    30076,
+    30498,
+    30866,
+    31290,
+    31657,
+    32034,
+    32386,
+    33833
+  ],
+  "replace_all_schema_enabled": true,
+  "default_tools_exclude_apply_patch": true,
+  "ordinary_stderr_contains_source_or_credentials": false
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "octos.h05-m6-checks.v1",
+  "code_commit": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "binary_sha256": "99494dd7d1b56df47ab3dfce51ee835d8e6f2f44266c94c0c021943ba14375be",
+  "checks": [
+    {
+      "command": "cargo test -p octos-agent --test h05_m6_observability --no-fail-fast",
+      "result": "1 passed; generated agent-observability.json"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::mutation_guard:: --no-fail-fast",
+      "result": "7 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::mutation_report:: --no-fail-fast",
+      "result": "4 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::edit_file:: --no-fail-fast",
+      "result": "60 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::replacer:: --no-fail-fast",
+      "result": "30 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::diff_edit:: --no-fail-fast",
+      "result": "25 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::write_file:: --no-fail-fast",
+      "result": "54 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib format --no-fail-fast",
+      "result": "35 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::apply_patch:: --no-fail-fast",
+      "result": "49 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib local_edit --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "50 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h02_m1_file_versions --test h02_m2_read_receipts --test h02_m3_receipt_lifecycle --test h03_m1_output --test h03_m3_file_pages --test h05_m2_typed_recovery --test h05_m3_mutation_results --test h05_m4_diff_fallback --test h05_m5_replace_all --test h05_m6_observability --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "43 passed across 10 test targets"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h05_m0_baseline --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=0",
+      "result": "8 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib appui_prompt_context_bridge --no-fail-fast",
+      "result": "1 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib diff_preview --no-fail-fast",
+      "result": "5 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib file_mutation --no-fail-fast",
+      "result": "8 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --test mcp_serve_integration --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "18 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::spawn --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; isolated global git config",
+      "result": "94 passed; 1 ignored"
+    },
+    {
+      "command": "cargo test -p octos-arc --no-fail-fast",
+      "environment": "isolated global git config",
+      "result": "130 lib passed; 2 ignored; 1 integration passed; 0 doctests"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_codegen.py'",
+      "working_directory": "arc",
+      "result": "71 passed"
+    },
+    {
+      "command": "cargo check --workspace --tests",
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli -p octos-arc --all-targets -- -D warnings",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check && git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_b_acceptance.py target/debug/octos EVIDENCE_DIR/stdio",
+      "result": "passed; 16 requests; 15 tool calls; 6909 candidate-result bytes; 2/2 recovery attempts succeeded"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_guidance.py target/debug/octos EVIDENCE_DIR/guidance",
+      "result": "passed; off schema hash equals A; B fixed-input delta is 679 bytes"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_baseline.py target/debug/octos TEMP_M0 && python3 arc/integration/local_edit_recovery.py target/debug/octos TEMP_M2 && python3 arc/integration/local_edit_mutation_results.py target/debug/octos TEMP_M3 && python3 arc/integration/local_edit_diff_fallback.py target/debug/octos TEMP_M4 && python3 arc/integration/local_edit_replace_all.py target/debug/octos TEMP_M5",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --quiet A_SHA..B_SHA -- arc/main.py arc/codegen.py crates/octos-arc/src crates/octos-agent/src/assets/profiles",
+      "result": "passed; no codegen, official input, or default profile changes"
+    }
+  ],
+  "notes": [
+    "The first octos-arc run completed every test but exited 1 when a user-level Git commit hook tried to write outside the sandbox; the isolated-Git rerun exited 0.",
+    "The macOS linker emitted the known __eh_frame size performance warning; builds and tests completed."
+  ],
+  "not_run": {
+    "official_paid_tasks": "M8 only; ARCBENCH_API_KEY is not configured"
+  }
+}

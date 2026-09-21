@@ -1,0 +1,37 @@
+{
+  "schema": "octos.h05-m6-scope-audit.v1",
+  "range": "4c542e534e957d69a5ee05d24ffb7e166beb78bb..8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "commits": [
+    "01f7480e0426fa341e2cd2d3d0e06ad35d11c352",
+    "f15f3a6c50bb2833a2c8475ffd7efd78c52f4fa1",
+    "7f892c6697eb63efdc8e82a432bda276a139757a",
+    "384e327999c0099fcc2b236f96e0a63dab606a40",
+    "3fe3fce4c155f3e9ba8c762a2fc7bd3aa33daf3d",
+    "a1829e4d374e538f356a4e99956ba4f3415516a4",
+    "8287e8f8ae63a27a58ab5898ecb2753b9b946c45"
+  ],
+  "production_scope": [
+    "crates/octos-agent/src/agent/execution.rs",
+    "crates/octos-agent/src/agent/mod.rs",
+    "crates/octos-agent/src/lib.rs",
+    "crates/octos-agent/src/local_edit.rs",
+    "crates/octos-agent/src/tools/diff_edit.rs",
+    "crates/octos-agent/src/tools/edit_file.rs",
+    "crates/octos-agent/src/tools/mod.rs",
+    "crates/octos-agent/src/tools/mutation_guard.rs",
+    "crates/octos-agent/src/tools/mutation_report.rs",
+    "crates/octos-agent/src/tools/registry.rs",
+    "crates/octos-agent/src/tools/replacer.rs",
+    "crates/octos-agent/src/tools/write_file.rs"
+  ],
+  "checks": {
+    "strict_matcher_added": false,
+    "codegen_patch_added": false,
+    "python_codegen_changed": false,
+    "rust_codegen_changed": false,
+    "official_inputs_changed": false,
+    "default_profile_changed": false,
+    "apply_patch_added_to_default_tools": false,
+    "unrelated_refactor_found": false
+  }
+}

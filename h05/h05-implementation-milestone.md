@@ -1,6 +1,6 @@
 # H05 实施 Milestone：已有代码优先局部编辑
 
-- 状态：M0-M2 已完成，M3-M11 待实施
+- 状态：M0-M6 已完成，M7-M11 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H05 竞品调研](./h05-local-edit-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -117,16 +117,16 @@
 
 - [x] 所有已有文件修改仍在 `mutation_guard` 的同一路径锁内读取当前 bytes、检查版本、定位和写入。
 - [x] H02 的 stale/context/read receipt 规则保持失败关闭；候选片段不能冒充完整文件读取，也不能授权整文件覆盖。
-- [ ] 新文件创建继续使用 `create_new`/`O_CREAT|O_EXCL` 等现有保护；目标并发出现时拒绝覆盖。
-- [ ] no-match、ambiguous、no-change 和 parse failure 前后文件 hash 不变，不运行 formatter，不创建 workspace snapshot。
-- [ ] 发生 I/O 部分写入时必须设置 `file_modified` 并明确提示重新读取；不得返回“未修改”。
+- [x] 新文件创建继续使用 `create_new`/`O_CREAT|O_EXCL` 等现有保护；目标并发出现时拒绝覆盖。
+- [x] no-match、ambiguous、no-change 和 parse failure 前后文件 hash 不变，不运行 formatter，不创建 workspace snapshot。
+- [x] 发生 I/O 部分写入时必须设置 `file_modified` 并明确提示重新读取；不得返回“未修改”。
 - [x] 候选片段来自本次锁内读取的当前内容，经过现有清洗和最终投影；不从旧消息、旧 receipt 或旧缓存拼装。
 - [x] 模型可见结果、候选、路径、版本和补救提示共同计入 H03 最终批次 8 KiB 预算；不得依赖下游盲切保持可解析性。
-- [ ] 完整 `old_string`、`new_string` 和整文件不在成功文本中重复回显；它们已存在于工具调用参数或磁盘。
-- [ ] formatter 运行后才计算“最终实际改动”。无法可靠重读或发生并发变化时，元数据明确标为不可确认，不能伪造精确范围。
-- [ ] `write_file`、`edit_file`、`diff_edit`、隐藏 `apply_patch` 的权限、路径 confinement、symlink 和 write-grant 行为不放宽。
-- [ ] 默认工具列表不增加 `apply_patch`；不同时提供第四种重叠编辑工具来增加固定 schema token。
-- [ ] 不为 H05 顺手修改 H04 压缩、H06 修复轮、H07 循环检测、H08 预算或 H09 全工具 schema。
+- [x] 完整 `old_string`、`new_string` 和整文件不在成功文本中重复回显；它们已存在于工具调用参数或磁盘。
+- [x] formatter 运行后才计算“最终实际改动”。无法可靠重读或发生并发变化时，元数据明确标为不可确认，不能伪造精确范围。
+- [x] `write_file`、`edit_file`、`diff_edit`、隐藏 `apply_patch` 的权限、路径 confinement、symlink 和 write-grant 行为不放宽。
+- [x] 默认工具列表不增加 `apply_patch`；不同时提供第四种重叠编辑工具来增加固定 schema token。
+- [x] 不为 H05 顺手修改 H04 压缩、H06 修复轮、H07 循环检测、H08 预算或 H09 全工具 schema。
 
 ## 3. 结果约定
 
@@ -155,10 +155,10 @@ invalid_edit_input
 
 ### 3.2 成功结果
 
-- [ ] 模型文本包含 path、实际 matcher、替换次数或 hunk 数、最终短版本和 formatter 状态。
-- [ ] structured metadata 记录最终实际改动范围、applied diff 摘要、最终版本和是否发生 formatter 扩大改动。
-- [ ] UI/审计需要的 diff 复用现有 `structured_metadata`/diff preview 通道；模型文本不重复携带完整 diff。
-- [ ] `file_modified` 只在磁盘确实可能变化时设置；typed no-op 不得伪装成成功写入。
+- [x] 模型文本包含 path、实际 matcher、替换次数或 hunk 数、最终短版本和 formatter 状态。
+- [x] structured metadata 记录最终实际改动范围、applied diff 摘要、最终版本和是否发生 formatter 扩大改动。
+- [x] UI/审计需要的 diff 复用现有 `structured_metadata`/diff preview 通道；模型文本不重复携带完整 diff。
+- [x] `file_modified` 只在磁盘确实可能变化时设置；typed no-op 不得伪装成成功写入。
 - [x] no-op 的 `success` 冻结为 `true`，用 metadata `outcome=no_change` 机器识别，避免 exclusive-call 级联取消；同时必须无副作用。
 
 ## 4. Milestone M0：冻结底座、调用图和基线反例
@@ -264,10 +264,10 @@ invalid_edit_input
 
 ### 10.1 最小观测
 
-- [ ] 记录工具、结果 code、matcher、候选数、替换数/hunk 数、实际修改行数和 formatter 是否扩大改动。
-- [ ] 记录 no-match/ambiguous/no-change/stale 次数，以及失败后下一次编辑是否成功、是否发生额外 read。
-- [ ] 记录整文件写入参数字节、局部编辑参数字节、结果文本字节、structured metadata 字节和新增 schema 字节。
-- [ ] 指标失败不改变工具结果；普通日志不包含源码正文、完整调用参数或凭据。
+- [x] 记录工具、结果 code、matcher、候选数、替换数/hunk 数、实际修改行数和 formatter 是否扩大改动。
+- [x] 记录 no-match/ambiguous/no-change/stale 次数，以及失败后下一次编辑是否成功、是否发生额外 read。
+- [x] 记录整文件写入参数字节、局部编辑参数字节、结果文本字节、structured metadata 字节和新增 schema 字节。
+- [x] 指标失败不改变工具结果；普通日志不包含源码正文、完整调用参数或凭据。
 
 ### 10.2 B 的确定性验收矩阵
 
@@ -290,11 +290,11 @@ invalid_edit_input
 | T15 | stdio/solo、MCP、spawn/legacy | 支持入口同合同；其他入口保持兼容 |
 | T16 | H05 off 与默认工具面 | A 行为恢复；`apply_patch` 仍不在默认列表 |
 
-- [ ] T01-T16 均有自动化测试或有证据的“不适用”；stdio/solo 核心场景不能标不适用。
-- [ ] T04/T08/T11/T15 至少在真实 stdio + fake provider 的最终 messages/tools 上验证。
-- [ ] 回归 H02 mutation、H03 输出预算/压缩/恢复和受影响的 AppUI diff 路径。
-- [ ] 审查 `A_SHA..HEAD`，不含 strict matcher、codegen patch、官方输入变化或无关重构。
-- [ ] 本地提交并记录 `B_SHA`、二进制 SHA-256、有效开关、工具 schema 大小和测试证据。
+- [x] T01-T16 均有自动化测试或有证据的“不适用”；stdio/solo 核心场景不能标不适用。
+- [x] T04/T08/T11/T15 至少在真实 stdio + fake provider 的最终 messages/tools 上验证。
+- [x] 回归 H02 mutation、H03 输出预算/压缩/恢复和受影响的 AppUI diff 路径。
+- [x] 审查 `A_SHA..HEAD`，不含 strict matcher、codegen patch、官方输入变化或无关重构。
+- [x] 本地提交并记录 `B_SHA`、二进制 SHA-256、有效开关、工具 schema 大小和测试证据。
 
 **完成条件：**B 通过 T01-T16，H05 off 与 A 兼容，所有失败路径有界且无错误写入；此时才能进入 C。
 
