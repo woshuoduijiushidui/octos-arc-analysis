@@ -1,0 +1,126 @@
+{
+  "schema": "octos.h05-m7-checks.v1",
+  "b_sha": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "c_sha": "bb53c733ff6a40b477e5b6502dcb512a28be32ca",
+  "binary_sha256": "4bf5952b52c50ba73b20f6abade9539beac1c54a5209b2d5a85a243585146d8b",
+  "checks": [
+    {
+      "command": "cargo test -p octos-agent --lib strict_match --no-fail-fast",
+      "result": "8 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::edit_file:: --no-fail-fast",
+      "result": "63 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::diff_edit:: --no-fail-fast",
+      "result": "29 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::replacer:: --no-fail-fast",
+      "result": "30 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::registry:: --no-fail-fast",
+      "result": "57 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib profile_integration_tests --no-fail-fast",
+      "result": "10 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib local_edit --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "50 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::mutation_guard:: --no-fail-fast",
+      "result": "7 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::write_file:: --no-fail-fast",
+      "result": "54 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib format --no-fail-fast",
+      "result": "35 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::apply_patch:: --no-fail-fast",
+      "result": "49 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h02_m1_file_versions --test h02_m2_read_receipts --test h02_m3_receipt_lifecycle --test h03_m1_output --test h03_m3_file_pages --test h05_m2_typed_recovery --test h05_m3_mutation_results --test h05_m4_diff_fallback --test h05_m5_replace_all --test h05_m6_observability --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=0",
+      "result": "43 passed across 10 test targets"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h05_m0_baseline --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=0; OCTOS_LOCAL_EDIT_STRICT_MATCH=1",
+      "result": "8 passed; strict flag is inert while local edit is off"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib appui_prompt_context_bridge --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=1",
+      "result": "1 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib diff_preview --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=1",
+      "result": "5 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib file_mutation --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=1",
+      "result": "8 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --test mcp_serve_integration --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=1",
+      "result": "18 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::spawn --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; OCTOS_LOCAL_EDIT_STRICT_MATCH=1; isolated global git config",
+      "result": "94 passed; 1 ignored"
+    },
+    {
+      "command": "cargo test -p octos-arc --no-fail-fast",
+      "environment": "isolated global git config",
+      "result": "130 lib passed; 2 ignored; 1 integration passed; 0 doctests"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_codegen.py'",
+      "working_directory": "arc",
+      "result": "71 passed"
+    },
+    {
+      "command": "cargo check --workspace --tests",
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli -p octos-arc --all-targets -- -D warnings",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check && git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_strict_match.py target/debug/octos EVIDENCE_DIR",
+      "result": "passed; 15 requests per variant; B fuzzy writes 8; C fuzzy writes 0; C suggestions 8; safe mutations 4"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_baseline.py target/debug/octos TEMP_M0 && python3 arc/integration/local_edit_guidance.py target/debug/octos TEMP_M1 && python3 arc/integration/local_edit_recovery.py target/debug/octos TEMP_M2 && python3 arc/integration/local_edit_mutation_results.py target/debug/octos TEMP_M3 && python3 arc/integration/local_edit_diff_fallback.py target/debug/octos TEMP_M4 && python3 arc/integration/local_edit_replace_all.py target/debug/octos TEMP_M5 && python3 arc/integration/local_edit_b_acceptance.py target/debug/octos TEMP_M6",
+      "environment": "strict matcher unset in each child process",
+      "result": "passed; B behavior preserved"
+    },
+    {
+      "command": "git diff --name-status B_SHA..C_SHA",
+      "result": "6 expected files; no codegen, write_file, mutation guard/report, default profile, or official input changes"
+    }
+  ],
+  "not_run": {
+    "official_paid_tasks": "M8 only; ARCBENCH_API_KEY is not configured"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "octos.h05-m7-stdio-strict-match.v1",
+  "b_sha": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "c_sha": "bb53c733ff6a40b477e5b6502dcb512a28be32ca",
+  "binary_sha256": "4bf5952b52c50ba73b20f6abade9539beac1c54a5209b2d5a85a243585146d8b",
+  "effective_flags": {
+    "b": {
+      "OCTOS_LOCAL_EDIT": "1",
+      "OCTOS_LOCAL_EDIT_STRICT_MATCH": "0",
+      "OCTOS_ARC_CODEGEN_PATCH": "unset"
+    },
+    "c": {
+      "OCTOS_LOCAL_EDIT": "1",
+      "OCTOS_LOCAL_EDIT_STRICT_MATCH": "1",
+      "OCTOS_ARC_CODEGEN_PATCH": "unset"
+    }
+  },
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests_per_variant": 15,
+  "fuzzy_cases": 8,
+  "b_fuzzy_writes": 8,
+  "c_fuzzy_writes": 0,
+  "c_fuzzy_suggestions": 8,
+  "safe_cases": 4,
+  "shared_non_mutation_cases": 2,
+  "b_mutations": 12,
+  "c_mutations": 4,
+  "strict_failure_output_bytes": 4615,
+  "b_schema_bytes": 9555,
+  "c_schema_bytes": 9534,
+  "schema_delta_bytes": -21,
+  "b_schema_sha256": "406a092b1f72d91988bb96564652f3671dcee83eebb306c2b94c4cdaf35feda0",
+  "c_schema_sha256": "45d37f9d614ecd8a601b4b8cf901cd4abb8e1dc88e1c8e9765f3a97571e95bab",
+  "system_prompt_unchanged": true,
+  "tool_names_unchanged": true,
+  "input_schemas_unchanged": true,
+  "changed_descriptions": [
+    "diff_edit",
+    "edit_file"
+  ],
+  "failed_files_unchanged": true,
+  "ordinary_stderr_contains_source_or_credentials": false
+}

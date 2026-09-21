@@ -1,6 +1,6 @@
 # H05 实施 Milestone：已有代码优先局部编辑
 
-- 状态：M0-M6 已完成，M7-M11 待实施
+- 状态：M0-M7 已完成，M8-M11 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H05 竞品调研](./h05-local-edit-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -302,15 +302,15 @@ invalid_edit_input
 
 **依赖：**M6。**对应：**H05e。**目标：**只改变自动匹配边界，测清 fuzzy 自动写的真实价值和风险。
 
-- [ ] 从 `B_SHA` 继续或创建可追溯实验分支，开启独立 strict matcher 开关；不修改 B 的其他反馈和 metadata。
-- [ ] `edit_file` 自动写入只允许 exact 和行尾等价；`line_trimmed`、whitespace、indentation、escape、block-anchor 只返回候选。
-- [ ] `diff_edit` 在 strict 下也只用 exact/行尾等价自动定位；trailing-whitespace 宽松匹配只能作为 suggestion。
-- [ ] fuzzy 候选保持稳定排序、matcher、score/范围和有界片段，但 `file_modified=None`。
-- [ ] 工具 description 与实际 strict 行为一致；除此之外保持 schema、prompt、模型和预算不变。
-- [ ] strict 关闭时逐项与 B 等价，不能因重构悄悄改变 B matcher 顺序。
-- [ ] 测试 Python 缩进、Markdown 双空格、字符串字面量空格、模板文本、转义字符串和 block-anchor 误写反例。
-- [ ] 回归 T01-T16；T04 的判定改为“返回 suggestion 且零写入”，其余合同不变。
-- [ ] 本地提交并冻结 `C_SHA`，记录 B/C 唯一 diff、二进制哈希和确定性测试证据。
+- [x] 从 `B_SHA` 继续或创建可追溯实验分支，开启独立 strict matcher 开关；不修改 B 的其他反馈和 metadata。
+- [x] `edit_file` 自动写入只允许 exact 和行尾等价；`line_trimmed`、whitespace、indentation、escape、block-anchor 只返回候选。
+- [x] `diff_edit` 在 strict 下也只用 exact/行尾等价自动定位；trailing-whitespace 宽松匹配只能作为 suggestion。
+- [x] fuzzy 候选保持稳定排序、matcher、score/范围和有界片段，但 `file_modified=None`。
+- [x] 工具 description 与实际 strict 行为一致；除此之外保持 schema、prompt、模型和预算不变。
+- [x] strict 关闭时逐项与 B 等价，不能因重构悄悄改变 B matcher 顺序。
+- [x] 测试 Python 缩进、Markdown 双空格、字符串字面量空格、模板文本、转义字符串和 block-anchor 误写反例。
+- [x] 回归 T01-T16；T04 的判定改为“返回 suggestion 且零写入”，其余合同不变。
+- [x] 本地提交并冻结 `C_SHA`，记录 B/C 唯一 diff、二进制哈希和确定性测试证据。
 
 **完成条件：**C 除 fuzzy 自动落盘外与 B 等价；所有近似匹配只提示且不写，exact/行尾等价成功率不回归。
 
