@@ -1,0 +1,72 @@
+    Checking octos-core v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-core)
+    Checking octos-plugin v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-plugin)
+   Compiling octos-cli v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-cli)
+    Checking octos-llm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-llm)
+    Checking octos-bus v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-bus)
+    Checking octos-memory v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-memory)
+    Checking octos-fleet v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-fleet)
+    Checking octos-store v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-store)
+    Checking octos-diagnostics v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-diagnostics)
+    Checking octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Checking octos-arc v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-arc)
+    Checking octos-services v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-services)
+    Checking octos-pipeline v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-pipeline)
+    Checking octos-fleet-worker v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-fleet-worker)
+    Checking octos-swarm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-swarm)
+    Checking octos-workflows v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-workflows)
+error: current MSRV (Minimum Supported Rust Version) is `1.85.0` but this item is stable since `1.91.0`
+   --> crates/octos-agent/tests/h03_m1_output.rs:355:42
+    |
+355 |             m.content.truncate(m.content.floor_char_boundary(100));
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#incompatible_msrv
+    = note: `-D clippy::incompatible-msrv` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::incompatible_msrv)]`
+
+error: could not compile `octos-agent` (test "h03_m1_output") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: this boolean expression can be simplified
+   --> crates/octos-cli/src/commands/serve.rs:878:12
+    |
+878 |         if !(self.stdio && self.solo) && !missing.is_empty() {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `!(missing.is_empty() || self.stdio && self.solo)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#nonminimal_bool
+    = note: `-D clippy::nonminimal-bool` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::nonminimal_bool)]`
+
+error: large size difference between variants
+   --> crates/octos-cli/src/api/context_manager.rs:231:1
+    |
+231 | /   pub(crate) enum TranscriptItemKind {
+232 | |       SystemInstruction {
+233 | |           content: String,
+234 | |       },
+...   |
+249 | | /     AssistantToolCall {
+250 | | |         call_id: String,
+251 | | |         name: String,
+252 | | |         arguments: Value,
+253 | | |     },
+    | | |_____- the second-largest variant contains at least 120 bytes
+254 | | /     ToolOutput {
+255 | | |         envelope: ToolOutputEnvelope,
+256 | | |     },
+    | | |_____- the largest variant contains at least 696 bytes
+...   |
+310 | |       },
+311 | |   }
+    | |___^ the entire enum is at least 696 bytes
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#large_enum_variant
+    = note: `-D clippy::large-enum-variant` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::large_enum_variant)]`
+help: consider boxing the large fields or introducing indirection in some other way to reduce the total size of the enum
+    |
+255 -         envelope: ToolOutputEnvelope,
+255 +         envelope: Box<ToolOutputEnvelope>,
+    |
+
+error: could not compile `octos-cli` (lib) due to 2 previous errors
+error: could not compile `octos-cli` (lib test) due to 2 previous errors

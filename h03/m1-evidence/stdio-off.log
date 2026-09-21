@@ -1,0 +1,1 @@
+PASS: 3 real stdio cases captured; page/footer loss, skipped range, late shell storage and missing recall reproduced.

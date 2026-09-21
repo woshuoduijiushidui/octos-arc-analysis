@@ -1,0 +1,6 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+tools::mutation_guard::tests::replacement_between_match_and_truncate_returns_typed_stale: test
+tools::mutation_guard::tests::symlink_swap_between_match_and_truncate_never_writes_through_link: test
+
+2 tests, 0 benchmarks

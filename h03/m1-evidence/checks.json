@@ -1,0 +1,487 @@
+[
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "file_state_cache",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 15,
+    "list": "list-00.log",
+    "log": "check-00.log",
+    "results": [
+      "test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 2937 filtered out; finished in 0.02s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "model_read_receipts",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 21,
+    "list": "list-01.log",
+    "log": "check-01.log",
+    "results": [
+      "test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 2931 filtered out; finished in 0.96s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "task_file_state",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 3,
+    "list": "list-02.log",
+    "log": "check-02.log",
+    "results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 2949 filtered out; finished in 0.00s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::read_file::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 55,
+    "list": "list-03.log",
+    "log": "check-03.log",
+    "results": [
+      "test result: ok. 55 passed; 0 failed; 0 ignored; 0 measured; 2897 filtered out; finished in 0.26s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::read_window::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 16,
+    "list": "list-04.log",
+    "log": "check-04.log",
+    "results": [
+      "test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 2936 filtered out; finished in 0.04s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::mutation_guard::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 2,
+    "list": "list-05.log",
+    "log": "check-05.log",
+    "results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2950 filtered out; finished in 0.01s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::nofollow_tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 19,
+    "list": "list-06.log",
+    "log": "check-06.log",
+    "results": [
+      "test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 2933 filtered out; finished in 0.03s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::spawn::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 95,
+    "list": "list-07.log",
+    "log": "check-07.log",
+    "results": [
+      "test result: ok. 94 passed; 0 failed; 1 ignored; 0 measured; 2857 filtered out; finished in 30.16s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::compaction::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 2,
+    "list": "list-08.log",
+    "log": "check-08.log",
+    "results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2950 filtered out; finished in 0.21s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::loop_compaction::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 6,
+    "list": "list-09.log",
+    "log": "check-09.log",
+    "results": [
+      "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 2946 filtered out; finished in 0.64s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "agent::llm_call::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 11,
+    "list": "list-10.log",
+    "log": "check-10.log",
+    "results": [
+      "test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 2941 filtered out; finished in 3.29s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::shell::",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 56,
+    "list": "list-11.log",
+    "log": "check-11.log",
+    "results": [
+      "test result: ok. 55 passed; 0 failed; 1 ignored; 0 measured; 2896 filtered out; finished in 18.50s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--lib",
+      "tools::coding_tools::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 101,
+    "listed_tests": 85,
+    "list": "list-12.log",
+    "log": "check-12.log",
+    "results": [
+      "test result: FAILED. 84 passed; 1 failed; 0 ignored; 0 measured; 2867 filtered out; finished in 32.79s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "context_manager::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 101,
+    "list": "list-13.log",
+    "log": "check-13.log",
+    "results": [
+      "test result: ok. 101 passed; 0 failed; 0 ignored; 0 measured; 3603 filtered out; finished in 0.25s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "appui_prompt_context_bridge",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 1,
+    "list": "list-14.log",
+    "log": "check-14.log",
+    "results": [
+      "test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3703 filtered out; finished in 0.00s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "h02_m5",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 2,
+    "list": "list-15.log",
+    "log": "check-15.log",
+    "results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 3702 filtered out; finished in 0.70s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "session_actor_prompt_context_bridge",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 3,
+    "list": "list-16.log",
+    "log": "check-16.log",
+    "results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3701 filtered out; finished in 0.14s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--test",
+      "h03_m1_output",
+      "--test",
+      "h03_m0_dispatch",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 15,
+    "list": "list-17.log",
+    "log": "check-17.log",
+    "results": [
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s",
+      "test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.63s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--test",
+      "h02_m1_file_versions",
+      "--test",
+      "h02_m2_read_receipts",
+      "--test",
+      "h02_m3_receipt_lifecycle",
+      "--test",
+      "m8_integration_tool_context",
+      "--test",
+      "m8_integration_cache_handoff",
+      "--test",
+      "m8_end_to_end_gate",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 27,
+    "list": "list-18.log",
+    "log": "check-18.log",
+    "results": [
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.27s",
+      "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s",
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s",
+      "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.49s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--test",
+      "mcp_serve_integration",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 14,
+    "list": "list-19.log",
+    "log": "check-19.log",
+    "results": [
+      "test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.10s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-pipeline",
+      "--test",
+      "m8_parity",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "listed_tests": 6,
+    "list": "list-20.log",
+    "log": "check-20.log",
+    "results": [
+      "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.89s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "check-21.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "check",
+      "--workspace",
+      "--tests"
+    ],
+    "exit_code": 0,
+    "log": "check-22.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "octos-agent",
+      "-p",
+      "octos-cli",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 101,
+    "log": "check-23.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "octos-agent",
+      "-p",
+      "octos-cli",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings",
+      "-A",
+      "clippy::nonminimal-bool"
+    ],
+    "exit_code": 101,
+    "log": "check-24.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "build",
+      "--locked",
+      "-p",
+      "octos-cli",
+      "--bin",
+      "octos"
+    ],
+    "exit_code": 0,
+    "log": "check-25.log"
+  }
+]

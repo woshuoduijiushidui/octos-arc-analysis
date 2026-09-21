@@ -1,0 +1,25 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.53s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+
+running 19 tests
+test tools::nofollow_tests::checked_write_refuses_a_same_size_same_mtime_content_swap ... ok
+test tools::nofollow_tests::read_with_meta_reports_untransformed_epoch_from_the_read_fd ... ok
+test tools::nofollow_tests::stable_observation_rejects_path_replaced_during_read ... ok
+test tools::nofollow_tests::stable_read_rejects_symlink_without_recording_a_version ... ok
+test tools::nofollow_tests::stable_read_retries_once_then_reports_concurrent_change ... ok
+test tools::nofollow_tests::stable_read_returns_body_when_workspace_identity_is_unavailable ... ok
+test tools::nofollow_tests::stable_read_returns_io_error_for_missing_file ... ok
+test tools::nofollow_tests::test_file_io_error_not_found ... ok
+test tools::nofollow_tests::test_file_io_error_symlink ... ok
+test tools::nofollow_tests::test_read_no_follow_not_found ... ok
+test tools::nofollow_tests::test_read_no_follow_pdf_reads_whole_file_from_fd_not_path ... ok
+test tools::nofollow_tests::test_read_no_follow_reads_full_content_from_held_fd ... ok
+test tools::nofollow_tests::test_read_no_follow_regular_file ... ok
+test tools::nofollow_tests::test_read_no_follow_rejects_symlink ... ok
+test tools::nofollow_tests::test_read_no_follow_routes_pdf_through_extractor ... ok
+test tools::nofollow_tests::test_write_no_follow_regular_file ... ok
+test tools::nofollow_tests::test_write_no_follow_rejects_symlink ... ok
+test tools::nofollow_tests::write_no_follow_checked_refuses_a_replaced_inode ... ok
+test tools::nofollow_tests::write_no_follow_checked_writes_when_epoch_matches ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 2933 filtered out; finished in 0.03s

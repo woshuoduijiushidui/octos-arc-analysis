@@ -1,0 +1,5 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.75s
+     Running unittests src/lib.rs (target/debug/deps/octos_cli-5edbf158b60a5d75)
+api::ui_protocol_transport::tests::appui_prompt_context_bridge_preserves_current_user_turn: test
+
+1 test, 0 benchmarks

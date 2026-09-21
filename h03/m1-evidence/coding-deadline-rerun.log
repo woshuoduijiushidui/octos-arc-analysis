@@ -1,0 +1,21 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.59s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+
+running 1 test
+test tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline ... FAILED
+
+failures:
+
+---- tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline stdout ----
+
+thread 'tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline' (6543888) panicked at crates/octos-agent/src/tools/coding_tools_tests.rs:1487:5:
+no trial reached the completed path — test is vacuous
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2951 filtered out; finished in 0.33s
+
+error: test failed, to rerun pass `-p octos-agent --lib`

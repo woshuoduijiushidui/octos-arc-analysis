@@ -1,0 +1,44 @@
+{
+  "name": "requested_range",
+  "read_window": false,
+  "requests": 3,
+  "tools_at_provider": [
+    "ask_user_question",
+    "bash",
+    "check",
+    "diff_edit",
+    "edit_file",
+    "exec_command",
+    "glob",
+    "grep",
+    "list_dir",
+    "read_file",
+    "shell",
+    "spawn",
+    "tool_search",
+    "update_plan",
+    "write_file"
+  ],
+  "tools_after_default_arc_trim": [
+    "bash",
+    "diff_edit",
+    "edit_file",
+    "glob",
+    "grep",
+    "list_dir",
+    "read_file",
+    "shell",
+    "write_file"
+  ],
+  "source_bytes": 171230,
+  "source_sha256": "70fca19ddd5bd6ffb578753f218a3ff4ef1c15e416e9108705f157cd60e1835f",
+  "first_visible_bytes": 8204,
+  "artifact_bytes": [
+    11534,
+    50127
+  ],
+  "middle_missing_from_final_messages": true,
+  "recall_unavailable": true,
+  "approval_events": 0,
+  "suggested_next_skips_missing_middle": true
+}

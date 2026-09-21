@@ -1,0 +1,7 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+task_file_state::tests::branches_share_only_the_version_ledger: test
+task_file_state::tests::incomplete_branch_owner_disables_receipts: test
+task_file_state::tests::workspace_rebind_keeps_ledger_but_changes_owner: test
+
+3 tests, 0 benchmarks

@@ -1,0 +1,27 @@
+   Compiling octos-core v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-core)
+   Compiling octos-plugin v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-plugin)
+   Compiling octos-memory v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-memory)
+   Compiling octos-llm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-llm)
+   Compiling octos-bus v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-bus)
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/target/h03-m1-baseline/crates/octos-agent)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 47.29s
+     Running unittests src/lib.rs (/Users/bytedance/arc-bench/octos-arc/target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 1 test
+test tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline ... FAILED
+
+failures:
+
+---- tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline stdout ----
+
+thread 'tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline' (6549991) panicked at crates/octos-agent/src/tools/coding_tools_tests.rs:1487:5:
+no trial reached the completed path — test is vacuous
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tools::coding_tools::tests::exec_session_captures_all_output_when_process_exits_at_deadline
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2951 filtered out; finished in 0.34s
+
+error: test failed, to rerun pass `-p octos-agent --lib`

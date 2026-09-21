@@ -1,6 +1,6 @@
 # H03 实施 Milestone：可靠分页与工具原文恢复
 
-- 状态：M0 已完成；M1–M9 待实施
+- 状态：M0、M1 已完成；M2–M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H03 竞品调研](./h03-output-pagination-recovery-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H02 M7 验证](../h02/h02-m7-implementation-verification.md)、[优化总表](../harness-optimization-table.md)
@@ -8,6 +8,7 @@
 - 本次复核主线：`octos-arc origin/main@27d057c206c0f8250b60309905737f7e26ee0ba9`
 - H02 参考：B `73f5b1bf695af37167fcb47541726bcb24807102`；C `7eaa136ef086a2f9728794d17d8f150482df03d1`
 - M0 证据：[共同底座、输出边界与离线反例](./h03-m0-state-boundary.md)；共同底座 `A_SHA=9d65681c3ef0c2b699e2fc68bbaac1d8b0d71cf1`，分支 `feat/output-recovery`。
+- M1 证据：[来源、范围与预算内展示](./h03-m1-implementation-verification.md)；代码提交 `0f69ad4e`，仅本地提交，原文恢复仍待 M2。
 
 本文是开发与验证指南，不表示对应代码已经实现。所有 `[ ]` 都是后续待办；只有完成代码、实际验证并保存证据后才能改为 `[x]`。类型名可按仓库惯例调整，范围、完整性、隔离和验收语义不得弱化。源码位置以 M0 的当前代码为准，不照抄旧行号。
 
@@ -71,10 +72,10 @@
 
 ### 1.2 功能开关与兼容
 
-- [ ] B 开发期使用一个总开关，建议 `OCTOS_OUTPUT_RECOVERY`，默认关闭；优先采用已有配置注入惯例，避免各层独立读取环境变量。
-- [ ] 启用值固定为项目通用的 `1/true/on` 或现有解析器语义；未知值使用默认关闭并可观测。实验 manifest 记录最终解析值。
-- [ ] 开关开启时，`read_file` 使用 H03 的有效页预算，不能再要求用户碰巧同时开启 `OCTOS_READ_WINDOW` 才生效。
-- [ ] `OCTOS_READ_WINDOW` 现有整文件覆盖保护和 H02 mutation guard 独立保持；不要为了分页自动改全局环境变量，也不要随 H03 关闭而关闭写保护。
+- [x] B 开发期使用一个总开关 `OCTOS_OUTPUT_RECOVERY`，默认关闭；进程内解析一次，共享 policy 注入工具与 prompt 构建。
+- [x] 启用值为 `1/true/on`；未知值关闭并写诊断。M1 stdio manifest 记录有效配置，正式实验 manifest 留 M8。
+- [x] 开关开启时，`read_file` 使用 H03 的有效页预算，不要求同时开启 `OCTOS_READ_WINDOW`。
+- [x] `OCTOS_READ_WINDOW` 现有整文件覆盖保护和 H02 mutation guard 独立保持；未修改全局环境变量或关闭写保护。
 - [ ] H03 关闭应恢复共同底座的输出行为。H03 已产生的持久引用仍应有兼容读取或明确的不支持状态，不能用旧逻辑错误解释。
 - [ ] 输出内搜索与恢复共用 H03 总开关；开启后提供搜索能力，由模型按需调用，不要求每次恢复前都搜索。
 
@@ -155,9 +156,9 @@ insufficient_output_budget | recovery_tool_unavailable
 
 接口纪律：
 
-- [ ] `ToolResult.structured_metadata` 当前主要供 pipeline 成本/UI 展示，不能未经追踪就宣称可到达最终 prompt。M0 必须选定并验证真正的 typed 数据通道。
-- [ ] 允许在 `ToolResult/ToolContext` 增加小型可选字段，或复用一个任务级有界状态对象；不把元数据 JSON 塞进正文再反向解析。
-- [ ] `octos-agent` 不依赖 `octos-cli`。可沿用 `ToolOutputLedger` 的依赖方向，让上层注入存储实现；MCP 也不能为了恢复而实例化完整 AppUI。
+- [x] `structured_metadata` 保留原成本/UI 路径；M1 验证 `output_document → OutputState → output_view` 的 typed 通道到最终请求和持久 envelope。
+- [x] `ToolResult/ToolContext` 增加可选来源/状态字段，使用有界任务状态；不解析正文 JSON 建立来源和授权。
+- [x] `octos-agent` 不依赖 `octos-cli`；上层注入共享状态，MCP 不引入 AppUI。持久原文服务留 M2。
 - [ ] 新版恢复读取返回“范围 + 内容 + 状态”，不要继续要求 `fetch()` 先返回整份大字符串再分页。
 - [ ] 新版主要使用来源 ID 和绝对位置。旧 `recall(tool_call_id, page)` 只在唯一解析、分页策略固定时兼容；有歧义或旧策略不可判定就报错。
 - [ ] 持久化新增字段有明确版本和旧格式读取规则；旧 artifact 的 complete/recoverable 不能因缺字段被默认设成 true。
@@ -204,17 +205,22 @@ M0 实测修正：最终 stdio schema 有 15 工具，默认代理纯函数裁�
 
 **依赖：**M0。**目标：**建立足以支持文件与 shell 两个真实调用者的小型共享约定。
 
-- [ ] 实现第 3 节必要字段，贯穿结果传递、来源关联和持久 envelope；每一个新增字段标明生产者、消费者和缺失时行为。
-- [ ] 结果 ID 在产生结果时确定，关联 call occurrence/语义组；同内容可复用存储，但不能因哈希相同共享授权。
-- [ ] 新增统一的预算内渲染入口：先扣状态/范围/恢复提示，再放正文；长路径使用短引用避免 footer 超长。
-- [ ] 文件连续页与日志片段共用预算核算；不要为了统一而丢掉二者不同的范围语义。
-- [ ] 将单结果预算与最终 prompt 分配额度分开；固定顺序和取较小值规则，批量分配结果可重复。
-- [ ] 需要更小页时从原始范围重渲染，不从旧页截断。最终持久/可见视图变更必须更新 digest 和来源证明。
-- [ ] 保留既有工具 success 和结构化运行状态。通用裁剪失败不伪造新的业务执行结果。
-- [ ] 缺 typed metadata 的旧工具走原兼容路径，不误标“完整、可恢复”；H03 支持工具缺关键状态时返回明确降级。
-- [ ] 小预算、超长路径、Unicode、多个工具和 metadata 本身超预算都有聚焦测试；同时覆盖 H03 关闭的行为。
+- [x] 实现第 3 节必要字段，贯穿结果传递、来源关联和持久 envelope；生产者、消费者和缺失时行为见 M1 证据表。
+- [x] 执行侧分配独立结果 ID，关联 call occurrence；重复 call ID、相同正文仍有独立来源与权限。
+- [x] 统一预算内渲染入口，完整状态头和附加文字均占预算；长路径只保存在 typed 来源中。
+- [x] 文件连续页与 stdout/stderr 片段共用预算，保留各自源范围。
+- [x] 单结果限制与最终额度分开，按固定调用顺序均分并取较小值。
+- [x] 缩页从来源重渲染；最终 active/canonical envelope 的 digest、范围和来源证明同步更新。
+- [x] 保留工具 success、真实 code/signal/timeout；渲染失败不改写业务执行结果。
+- [x] 旧工具保留兼容路径；支持工具缺关键来源时显式降级，所有 M1 新输出明确不可恢复。
+- [x] 聚焦覆盖小预算、长路径、Unicode、多工具、metadata 超预算及开关关闭；新增 15 项测试及真实 stdio on/off 验证通过。
 
 **完成条件：**同一组预算测试同时约束文件页和日志视图；结果完整可解析，总字节预算计算包括所有附加文字。typed 数据能到达实际消费方，不能只有未被调用的结构定义。
+
+M1 已完成，见 [验证记录](./h03-m1-implementation-verification.md)。聚焦回归合计
+552 passed、1 个在干净 M0 复现的基线失败、2 ignored；Clippy 仅豁免已验证的
+既有告警后通过。当前不实现持久 payload/recall，不激活 H03 新页的 H02 读取凭据；
+M2–M9 及第 2 节面向完整恢复链的不变量仍按后续阶段验收，不提前勾选。
 
 ## 6. Milestone M2：可恢复存储与按范围 `recall`
 

@@ -1,0 +1,7 @@
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+   Compiling octos-pipeline v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-pipeline)
+   Compiling octos-fleet-worker v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-fleet-worker)
+   Compiling octos-swarm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-swarm)
+   Compiling octos-workflows v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-workflows)
+   Compiling octos-cli v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 18s

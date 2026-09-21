@@ -1,0 +1,337 @@
+[
+  {
+    "schema_version": 1,
+    "output_id": "91762a9c46c4488a94a55e5ebf11be9d",
+    "owner": {
+      "workspace_id": "local:/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on/workspace",
+      "task_id": "arc-bundle:b85b23cb",
+      "logical_session_id": "arc-bundle:b85b23cb",
+      "model_branch_id": "root"
+    },
+    "call_id": "call_reused",
+    "arguments_digest": "2ed81b6ac4b29443911b93a9bdff3b7b3e323c6afb861c0b1d8470bbd7a6f2a7",
+    "source": {
+      "kind": "file",
+      "target": "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on/workspace/large.txt",
+      "sha256": "sha256:4d4fbc409a5ced6c094c5f6b8a44691d1f2d3a06626829114fd2e84578b63a68"
+    },
+    "capture": "complete",
+    "captured_ranges": [
+      {
+        "stream": "file",
+        "start": 948,
+        "end": 104908
+      }
+    ],
+    "source_totals": [
+      [
+        "file",
+        173893
+      ]
+    ],
+    "loss_reason": null,
+    "availability": "missing",
+    "stored_ranges": [],
+    "stored_bytes": 0,
+    "stored_sha256": null,
+    "visible_ranges": [
+      {
+        "stream": "file",
+        "start": 948,
+        "end": 7474,
+        "lines": [
+          30,
+          223
+        ]
+      }
+    ],
+    "transformed": false,
+    "view_digest": "cb8ce8031308c2c76e47c0867ac5447ef3e3361a307f8cf25cadaed6d4fbfd52",
+    "source_proof": "259a2cb250974b529f962a516879943ad0ecb2f66b2cafd12c27d4477da36b7d",
+    "policy_version": 1,
+    "continuation": {
+      "kind": "next",
+      "positions": [
+        [
+          "file",
+          7474
+        ]
+      ]
+    },
+    "execution": {
+      "kind": "not_applicable"
+    },
+    "success": true,
+    "recoverable": false
+  },
+  {
+    "schema_version": 1,
+    "output_id": "cc026b4d88994742a539ceed4dfa481d",
+    "owner": {
+      "workspace_id": "local:/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on/workspace",
+      "task_id": "arc-bundle:b85b23cb",
+      "logical_session_id": "arc-bundle:b85b23cb",
+      "model_branch_id": "root"
+    },
+    "call_id": "call_reused",
+    "arguments_digest": "5b2fbe70c656830f4eb0b80ddec8439a7d0bc24db6291396d524e433b87a13de",
+    "source": {
+      "kind": "command",
+      "run_id": "cc026b4d88994742a539ceed4dfa481d"
+    },
+    "capture": "complete",
+    "captured_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 173893
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 31
+      }
+    ],
+    "source_totals": [
+      [
+        "stdout",
+        173893
+      ],
+      [
+        "stderr",
+        22
+      ],
+      [
+        "display",
+        null
+      ]
+    ],
+    "loss_reason": null,
+    "availability": "missing",
+    "stored_ranges": [],
+    "stored_bytes": 0,
+    "stored_sha256": null,
+    "visible_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 2712
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 31
+      }
+    ],
+    "transformed": false,
+    "view_digest": "e3e45081354734215acf13a55fd160eeaddcd96c14fba2d4e2848ff7f46522f8",
+    "source_proof": "bd144b87870ab45943b0e8b1b387e3fcb648f0c84f832085ac1612579dfcfe37",
+    "policy_version": 1,
+    "continuation": {
+      "kind": "next",
+      "positions": [
+        [
+          "stdout",
+          2712
+        ]
+      ]
+    },
+    "execution": {
+      "kind": "exited",
+      "code": 7,
+      "signal": null
+    },
+    "success": false,
+    "recoverable": false
+  },
+  {
+    "schema_version": 1,
+    "output_id": "cedcd7f067754e1f9455bdda6d3e3d71",
+    "owner": {
+      "workspace_id": "local:/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on/workspace",
+      "task_id": "arc-bundle:b85b23cb",
+      "logical_session_id": "arc-bundle:b85b23cb",
+      "model_branch_id": "root"
+    },
+    "call_id": "call_reused",
+    "arguments_digest": "23ed2b0535f69da87f8ae2382b4f852dd44cbbfabc1b6f8d851b4103e07ec96e",
+    "source": {
+      "kind": "command",
+      "run_id": "cedcd7f067754e1f9455bdda6d3e3d71"
+    },
+    "capture": "complete",
+    "captured_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 173893
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 46
+      }
+    ],
+    "source_totals": [
+      [
+        "stdout",
+        173893
+      ],
+      [
+        "stderr",
+        22
+      ],
+      [
+        "display",
+        null
+      ]
+    ],
+    "loss_reason": null,
+    "availability": "missing",
+    "stored_ranges": [],
+    "stored_bytes": 0,
+    "stored_sha256": null,
+    "visible_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 2712
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 46
+      }
+    ],
+    "transformed": false,
+    "view_digest": "6e17741255a28b1ecaf9aa2407383bd6075256d4d328137752dabe488446efdf",
+    "source_proof": "455280c624201bcebe795024112d691c8105c96d3bfe8115552927429e72e35f",
+    "policy_version": 1,
+    "continuation": {
+      "kind": "next",
+      "positions": [
+        [
+          "stdout",
+          2712
+        ]
+      ]
+    },
+    "execution": {
+      "kind": "exited",
+      "code": 7,
+      "signal": null
+    },
+    "success": false,
+    "recoverable": false
+  },
+  {
+    "schema_version": 1,
+    "output_id": "6b2b3c3d90514f3bbd1d4921ff9938c6",
+    "owner": {
+      "workspace_id": "local:/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on/workspace",
+      "task_id": "arc-bundle:b85b23cb",
+      "logical_session_id": "arc-bundle:b85b23cb",
+      "model_branch_id": "root"
+    },
+    "call_id": "call_reused",
+    "arguments_digest": "2230dd82ad8455ddc3e865a4a598c470928a98cb2a55b7c24362b90de8306d8f",
+    "source": {
+      "kind": "command",
+      "run_id": "6b2b3c3d90514f3bbd1d4921ff9938c6"
+    },
+    "capture": "complete",
+    "captured_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 173893
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 46
+      }
+    ],
+    "source_totals": [
+      [
+        "stdout",
+        173893
+      ],
+      [
+        "stderr",
+        22
+      ],
+      [
+        "display",
+        null
+      ]
+    ],
+    "loss_reason": null,
+    "availability": "missing",
+    "stored_ranges": [],
+    "stored_bytes": 0,
+    "stored_sha256": null,
+    "visible_ranges": [
+      {
+        "stream": "stdout",
+        "start": 0,
+        "end": 2712
+      },
+      {
+        "stream": "stderr",
+        "start": 0,
+        "end": 22
+      },
+      {
+        "stream": "display",
+        "start": 0,
+        "end": 46
+      }
+    ],
+    "transformed": false,
+    "view_digest": "091d13836901acfa22f4b1838bad83083a3a35ea3687fc795454b40422b5e834",
+    "source_proof": "8ae58728a10bb1e1606dae9440da8fcf5eee0c36576f5034179c8cf2915950b4",
+    "policy_version": 1,
+    "continuation": {
+      "kind": "next",
+      "positions": [
+        [
+          "stdout",
+          2712
+        ]
+      ]
+    },
+    "execution": {
+      "kind": "exited",
+      "code": 7,
+      "signal": null
+    },
+    "success": false,
+    "recoverable": false
+  }
+]

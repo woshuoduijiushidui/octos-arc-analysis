@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.56s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+
+running 2 tests
+test agent::compaction::tests::declarative_compaction_clears_model_read_receipts ... ok
+test agent::compaction::tests::tier1_tool_result_replacement_clears_model_read_receipts ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2950 filtered out; finished in 0.21s

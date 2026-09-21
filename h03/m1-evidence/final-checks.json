@@ -1,0 +1,118 @@
+[
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "final-00.log",
+    "results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-agent",
+      "--test",
+      "h03_m1_output",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "log": "final-01.log",
+    "results": [
+      "test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.99s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "octos-cli",
+      "--lib",
+      "context_manager::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit_code": 0,
+    "log": "final-02.log",
+    "results": [
+      "test result: ok. 101 passed; 0 failed; 0 ignored; 0 measured; 3603 filtered out; finished in 0.28s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "octos-agent",
+      "-p",
+      "octos-cli",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 101,
+    "log": "final-03.log",
+    "results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "octos-agent",
+      "-p",
+      "octos-cli",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings",
+      "-A",
+      "clippy::nonminimal-bool"
+    ],
+    "exit_code": 0,
+    "log": "final-04.log",
+    "results": []
+  },
+  {
+    "command": [
+      "cargo",
+      "build",
+      "--locked",
+      "-p",
+      "octos-cli",
+      "--bin",
+      "octos"
+    ],
+    "exit_code": 0,
+    "log": "final-05.log",
+    "results": []
+  },
+  {
+    "command": [
+      "python3",
+      "arc/integration/output_recovery_contract.py",
+      "/Users/bytedance/arc-bench/octos-arc/target/h03-m1-final-octos",
+      "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-on"
+    ],
+    "exit_code": 0,
+    "log": "stdio-on.log"
+  },
+  {
+    "command": [
+      "python3",
+      "arc/integration/output_recovery_baseline.py",
+      "/Users/bytedance/arc-bench/octos-arc/target/h03-m1-final-octos",
+      "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/m1-final-stdio-off"
+    ],
+    "exit_code": 0,
+    "log": "stdio-off.log"
+  }
+]

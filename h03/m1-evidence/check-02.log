@@ -1,0 +1,9 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+
+running 3 tests
+test task_file_state::tests::branches_share_only_the_version_ledger ... ok
+test task_file_state::tests::incomplete_branch_owner_disables_receipts ... ok
+test task_file_state::tests::workspace_rebind_keeps_ledger_but_changes_owner ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 2949 filtered out; finished in 0.00s

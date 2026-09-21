@@ -1,0 +1,21 @@
+    Blocking waiting for file lock on build directory
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 24s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+file_state_cache::tests::builder_exposes_configured_caps: test
+file_state_cache::tests::local_target_canonicalizes_ancestor_symlink_alias: test
+file_state_cache::tests::poisoned_lock_only_loses_optimization_not_ledger_availability: test
+file_state_cache::tests::sha256_is_stable_for_same_input: test
+file_state_cache::tests::should_bump_lru_position_on_hit: test
+file_state_cache::tests::should_clear_drops_all_entries: test
+file_state_cache::tests::should_clone_for_subagent_produces_independent_copy: test
+file_state_cache::tests::should_distinguish_content_with_identical_metadata_hints: test
+file_state_cache::tests::should_evict_lru_when_max_bytes_exceeded: test
+file_state_cache::tests::should_evict_lru_when_max_entries_exceeded: test
+file_state_cache::tests::should_invalidate_target_path_across_workspace_owners: test
+file_state_cache::tests::should_isolate_same_target_across_workspaces: test
+file_state_cache::tests::should_record_and_get_strong_version: test
+file_state_cache::tests::should_replace_version_for_same_target: test
+tools::apply_patch::tests::should_invalidate_file_state_cache_when_patch_touches_files: test
+
+15 tests, 0 benchmarks
