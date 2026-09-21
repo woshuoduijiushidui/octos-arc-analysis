@@ -1,6 +1,6 @@
 # H03 实施 Milestone：可靠分页与工具原文恢复
 
-- 状态：M0–M2 已完成；M3–M9 待实施
+- 状态：M0–M3 已完成；M4–M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H03 竞品调研](./h03-output-pagination-recovery-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H02 M7 验证](../h02/h02-m7-implementation-verification.md)、[优化总表](../harness-optimization-table.md)
@@ -10,6 +10,7 @@
 - M0 证据：[共同底座、输出边界与离线反例](./h03-m0-state-boundary.md)；共同底座 `A_SHA=9d65681c3ef0c2b699e2fc68bbaac1d8b0d71cf1`，分支 `feat/output-recovery`。
 - M1 证据：[来源、范围与预算内展示](./h03-m1-implementation-verification.md)；代码提交 `0f69ad4e`，仅本地提交，原文恢复仍待 M2。
 - M2 证据：[有界原文存储与按范围恢复](./h03-m2-implementation-verification.md)；代码提交 `d6f8198e`，仅本地提交，stdio 全入口接线仍待 M5。
+- M3 证据：[文件分页与最终读取凭据](./h03-m3-implementation-verification.md)；代码提交 `2ced3def`，仅本地提交，命令流式采集仍待 M4。
 
 本文是开发与验证指南，不表示对应代码已经实现。所有 `[ ]` 都是后续待办；只有完成代码、实际验证并保存证据后才能改为 `[x]`。类型名可按仓库惯例调整，范围、完整性、隔离和验收语义不得弱化。源码位置以 M0 的当前代码为准，不照抄旧行号。
 
@@ -254,22 +255,27 @@ M2 已完成，见 [验证记录](./h03-m2-implementation-verification.md)。16 
 
 **依赖：**M1–M2。**目标：**关闭文件工具到最终模型请求之间的二次截断缺口。
 
-- [ ] 复用现有稳定读取与窗口算法，将 H03 有效页预算作为显式参数；保留已有 `path/offset/limit/start_line/end_line` 的合法调用方式。
-- [ ] 无范围大文件先返回有用的第一页。显式范围超过当前页预算时给出实际子范围与续读位置，不要求模型猜一个新的 limit。
-- [ ] 为文件来源保留强版本和请求范围；下次读当前文件时验证版本，变化返回 stale。历史快照通过历史入口读取并标清来源。
-- [ ] 长行使用已有 byte mode，并从真实字节位置继续；UTF-8 边界修正必须体现在实际范围中，不能跳字节。
-- [ ] 改掉通用恢复建议依赖 `start + limit` 的路径；以本次最终已见末端为 next，显式范围结束与 EOF 分开。
-- [ ] execution、sanitize/hook、ContextManager 和 pressure 投影都识别 typed 页。更小预算时重新渲染；不再次无差别裁剪正文+footer。
-- [ ] hook 新增文本也占预算；若改变源码正文且无法映射，取消相关 H02 候选，保留真实变换状态。
-- [ ] page、output ID、digest、候选范围及最终消息 provenance 同步更新。首版无法证明重渲染后的范围时保守失效，不伪造完整 source proof。
-- [ ] H02 只在真实主模型请求成功后确认最终页；取消、provider 失败、内部摘要请求和直接调用工具不激活凭据。
-- [ ] 完整可见的部分页最多支持相同/子范围的缓存命中；历史 `recall`、summary、路径提及及 stub 不登记为当前文件读取。
-- [ ] 页后来从 prompt 删除或被压缩时沿用 H02 的失效逻辑；不要将过去累计读过的页当作当前仍可见。
-- [ ] 给 bridge 失败/fallback、legacy 无 bridge 和 provider 路由变化做明确降级：不发送旧范围声明配新残缺正文。
-- [ ] 在最终 fake provider 请求中核对可见正文、范围、next 和预算。按照游标重组文件范围后与固定版本原文比对。
-- [ ] 回归 `OCTOS_READ_WINDOW` 开/关与 H02 dedup 开/关组合，证明整文件写保护、强版本、symlink 防护和保守 miss 保持。
+- [x] 复用现有稳定读取与窗口算法，将 H03 有效页预算作为显式参数；保留已有 `path/offset/limit/start_line/end_line` 的合法调用方式。
+- [x] 无范围大文件先返回有用的第一页。显式范围超过当前页预算时给出实际子范围与续读位置，不要求模型猜一个新的 limit。
+- [x] 为文件来源保留强版本和请求范围；下次读当前文件时验证版本，变化返回 stale。历史快照通过历史入口读取并标清来源。
+- [x] 长行使用已有 byte mode，并从真实字节位置继续；UTF-8 边界修正必须体现在实际范围中，不能跳字节。
+- [x] 改掉通用恢复建议依赖 `start + limit` 的路径；以本次最终已见末端为 next，显式范围结束与 EOF 分开。
+- [x] execution、sanitize/hook、ContextManager 和 pressure 投影都识别 typed 页。更小预算时重新渲染；不再次无差别裁剪正文+footer。
+- [x] hook 新增文本也占预算；若改变源码正文且无法映射，取消相关 H02 候选，保留真实变换状态。
+- [x] page、output ID、digest、候选范围及最终消息 provenance 同步更新。首版无法证明重渲染后的范围时保守失效，不伪造完整 source proof。
+- [x] H02 只在真实主模型请求成功后确认最终页；取消、provider 失败、内部摘要请求和直接调用工具不激活凭据。
+- [x] 完整可见的部分页最多支持相同/子范围的缓存命中；历史 `recall`、summary、路径提及及 stub 不登记为当前文件读取。
+- [x] 页后来从 prompt 删除或被压缩时沿用 H02 的失效逻辑；不要将过去累计读过的页当作当前仍可见。
+- [x] 给 bridge 失败/fallback、legacy 无 bridge 和 provider 路由变化做明确降级：不发送旧范围声明配新残缺正文。
+- [x] 在最终 fake provider 请求中核对可见正文、范围、next 和预算。按照游标重组文件范围后与固定版本原文比对。
+- [x] 回归 `OCTOS_READ_WINDOW` 开/关与 H02 dedup 开/关组合，证明整文件写保护、强版本、symlink 防护和保守 miss 保持。
 
 **完成条件：**大文件中间、末尾和超长行都可达；最终 provider messages 中不存在“声明整页但只剩开头”的结果；H02 不产生错误 stub 或放宽写入授权。
+
+M3 已完成，见 [验证记录](./h03-m3-implementation-verification.md)。6 项最终 provider
+分页测试和 57 项 `read_file` 测试通过；聚焦回归共 357 passed、0 failed、0 ignored。
+真实 stdio 的文件页已包含实际范围、强版本和精确 next，持久 `recall` 的 stdio 工具注册
+仍按 M5 实施。
 
 ## 8. Milestone M4：shell 在首次截断前保留输出
 
