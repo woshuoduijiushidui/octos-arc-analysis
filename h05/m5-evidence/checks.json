@@ -1,0 +1,84 @@
+{
+  "schema": "octos.h05-m5-checks.v1",
+  "code_commit": "a1829e4d374e538f356a4e99956ba4f3415516a4",
+  "binary_sha256": "9c936cc71743669d8fc1690fd61148c3b84235269cf6e8ce43d4d203ef0ac853",
+  "checks": [
+    {
+      "command": "cargo test -p octos-agent --lib tools::edit_file:: --no-fail-fast",
+      "result": "60 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib local_edit --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "50 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::registry:: --no-fail-fast",
+      "result": "57 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::mutation_guard:: --no-fail-fast",
+      "result": "5 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::diff_edit:: --no-fail-fast",
+      "result": "25 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::apply_patch:: --no-fail-fast",
+      "result": "49 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h02_m1_file_versions --test h02_m2_read_receipts --test h02_m3_receipt_lifecycle --test h03_m1_output --test h03_m3_file_pages --test h05_m2_typed_recovery --test h05_m3_mutation_results --test h05_m4_diff_fallback --test h05_m5_replace_all --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "42 passed across 9 test targets"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h05_m0_baseline --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=0",
+      "result": "8 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib runtime::profile::tests::stdio_lean_defaults_exclude_only_bundled_skill_layers",
+      "result": "1 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --test mcp_serve_integration --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "18 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::spawn --no-fail-fast",
+      "environment": "OCTOS_LOCAL_EDIT=1; isolated global git config",
+      "result": "94 passed; 1 ignored"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_codegen.py'",
+      "working_directory": "arc",
+      "result": "71 passed"
+    },
+    {
+      "command": "cargo check --workspace --tests",
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent --lib --tests -- -D warnings",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check && git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_replace_all.py target/debug/octos EVIDENCE_DIR",
+      "result": "passed; 7 requests; 3 exact replacements; 2 line-ending-equivalent replacements; 3 typed failures; 1 no-op; 3447 typed output bytes"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_diff_fallback.py target/debug/octos TEMP_M4 && python3 arc/integration/local_edit_mutation_results.py target/debug/octos TEMP_M3 && python3 arc/integration/local_edit_recovery.py target/debug/octos TEMP_M2 && python3 arc/integration/local_edit_guidance.py target/debug/octos TEMP_M1 && python3 arc/integration/local_edit_baseline.py target/debug/octos TEMP_M0",
+      "result": "passed"
+    }
+  ],
+  "not_run": {
+    "official_paid_tasks": "M8 only; ARCBENCH_API_KEY is not configured"
+  }
+}

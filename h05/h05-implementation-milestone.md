@@ -246,15 +246,15 @@ invalid_edit_input
 
 **依赖：**M2-M3。**对应：**H05d。**目标：**明确的批量字面替换不需要模型重复调用。
 
-- [ ] 为 `edit_file` 增加可选 `replace_all=false`，保持旧调用兼容并拒绝未知/错误类型。
-- [ ] 只有模型显式传 `true` 才批量替换；harness 不在 ambiguous 后自动改成 `true`。
-- [ ] 只允许 exact 或明确的行尾等价匹配；禁止 fuzzy replace-all。
-- [ ] 在同一次锁内读取的当前版本上收集全部不重叠 occurrence，一次计算并一次写入。
-- [ ] 返回真实 replacement count 和稳定行位置摘要；位置过多时截断列表但保留总数。
-- [ ] `old_string` 为空、`old_string == new_string`、匹配数为零、结果超出既有限制时返回 typed 结果且不写。
-- [ ] 大量匹配设置明确上限或使用已有 mutation/output policy；拒绝时建议结构化生成器或明确脚本，不静默只改前 N 个。
-- [ ] exact 单点默认行为不变；`replace_all=false` 遇到多个匹配仍拒绝。
-- [ ] 覆盖相邻/重叠文本、Unicode、CRLF、匹配上限、并发版本变化和 formatter 后实际 diff。
+- [x] 为 `edit_file` 增加可选 `replace_all=false`，保持旧调用兼容并拒绝未知/错误类型。
+- [x] 只有模型显式传 `true` 才批量替换；harness 不在 ambiguous 后自动改成 `true`。
+- [x] 只允许 exact 或明确的行尾等价匹配；禁止 fuzzy replace-all。
+- [x] 在同一次锁内读取的当前版本上收集全部不重叠 occurrence，一次计算并一次写入。
+- [x] 返回真实 replacement count 和稳定行位置摘要；位置过多时截断列表但保留总数。
+- [x] `old_string` 为空、`old_string == new_string`、匹配数为零、结果超出既有限制时返回 typed 结果且不写。
+- [x] 大量匹配设置明确上限或使用已有 mutation/output policy；拒绝时建议结构化生成器或明确脚本，不静默只改前 N 个。
+- [x] exact 单点默认行为不变；`replace_all=false` 遇到多个匹配仍拒绝。
+- [x] 覆盖相邻/重叠文本、Unicode、CRLF、匹配上限、并发版本变化和 formatter 后实际 diff。
 
 **完成条件：**批量替换的意图、匹配范围和结果可追溯；默认单点编辑不会因新增参数放宽歧义保护。
 

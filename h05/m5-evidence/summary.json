@@ -1,0 +1,14 @@
+{
+  "schema": "octos.h05-m5-stdio-replace-all.v1",
+  "binary_sha256": "9c936cc71743669d8fc1690fd61148c3b84235269cf6e8ce43d4d203ef0ac853",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 7,
+  "exact_replacements": 3,
+  "line_ending_equivalent_replacements": 2,
+  "typed_output_bytes": 3447,
+  "match_limit": 1000,
+  "failed_mutations": 3,
+  "no_change_calls": 1,
+  "failed_and_no_change_files_unchanged": true,
+  "replace_all_schema_enabled": true
+}
