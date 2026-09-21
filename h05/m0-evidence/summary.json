@@ -1,0 +1,69 @@
+{
+  "schema": "octos.h05-m0-stdio-baseline.v1",
+  "binary_sha256": "2c6d3dd0af281bc240587ebada37a71bc4c0aa4162abb202095b1236f938e60c",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 7,
+  "raw_request_bytes": [
+    17322,
+    17824,
+    18598,
+    18988,
+    19458,
+    19832,
+    20143
+  ],
+  "tools_at_provider": [
+    "ask_user_question",
+    "check",
+    "diff_edit",
+    "edit_file",
+    "glob",
+    "grep",
+    "list_dir",
+    "read_file",
+    "recall",
+    "shell",
+    "tool_search",
+    "update_plan",
+    "write_file"
+  ],
+  "tool_schema_bytes_compact_json": 9286,
+  "tool_schema_sha256_sorted_compact_json": "79f97b610f4178e8820be561ce5fac943e6d43d04cb07e0147ac31aec2acdafa",
+  "tools_after_default_arc_trim": [
+    "diff_edit",
+    "edit_file",
+    "glob",
+    "grep",
+    "list_dir",
+    "read_file",
+    "recall",
+    "shell",
+    "write_file"
+  ],
+  "trimmed_tool_schema_bytes_compact_json": 6654,
+  "trimmed_tool_schema_sha256_sorted_compact_json": "50918794b4ffd809acf95910985843ae71ef31d95323988ec702fbaff5159dc1",
+  "cases": {
+    "no_match_then_read": true,
+    "exact_ambiguity_rejected": true,
+    "block_anchor_auto_write": true,
+    "diff_unique_context_beyond_three_lines_rejected": true,
+    "same_content_edit_reported_success_and_mutation_event": true
+  },
+  "effective_flags": {
+    "OCTOS_FILE_READ_DEDUP": "1",
+    "OCTOS_FILE_READ_RETAINED_RECEIPTS": "0",
+    "OCTOS_OUTPUT_RECOVERY": "1",
+    "OCTOS_OUP_SEMANTIC_CONTEXT_MODE": "on",
+    "OCTOS_READ_WINDOW": "1",
+    "OCTOS_LOCAL_EDIT": "unset",
+    "OCTOS_LOCAL_EDIT_STRICT_MATCH": "unset",
+    "OCTOS_ARC_CODEGEN_PATCH": "unset"
+  },
+  "fixture_sha256": {
+    "ambiguous.txt": "f9f3a4ec48436942fd7874793cda2a5b35daa32e562de1660efa77d4ea452fad",
+    "authorization.rs": "dcd0f2e147fe45147619532b1c4a1a041a1d56ea55a5fecd127b386495822d3e",
+    "current.txt": "f58725612897c8d14e4ba7750376ee6f5450019ffc3baea734b3f973bc713ce4",
+    "drift.txt": "d4492700c62e43c39cb0e91536b135da9859921f7fe745fbd96949e895d8e3a1",
+    "noop.txt": "1cd263f1102656dd6b6cf1d626d1a96f9eba0406af3cb2a52560d473d4801052"
+  }
+}

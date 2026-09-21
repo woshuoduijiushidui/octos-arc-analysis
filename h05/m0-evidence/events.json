@@ -1,0 +1,1243 @@
+[
+  {
+    "method": "session/open",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "active_profile_id": "arc-68395-7068129",
+      "workspace_root": "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace",
+      "context": {
+        "schema": "octos.context.lifecycle.v1",
+        "state": {
+          "session_id": "arc-bundle:39294148",
+          "thread_id": null,
+          "generation": 0,
+          "transcript_hash": "sha256:3ac9e2af4fa5ef361009d51579853429242c4a91a15df1720ba62915205bc6b2",
+          "last_checkpoint_id": null,
+          "last_compaction_id": null,
+          "token_estimate": 1,
+          "item_count": 0,
+          "recovery_state": "exact"
+        },
+        "compaction": {
+          "count": 0,
+          "last": null
+        }
+      },
+      "context_state": {
+        "session_id": "arc-bundle:39294148",
+        "generation": 0,
+        "transcript_hash": "sha256:3ac9e2af4fa5ef361009d51579853429242c4a91a15df1720ba62915205bc6b2",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "cursor": {
+        "stream": "arc-bundle:39294148\u0000~cwd-8bc417bf88fc78a6",
+        "seq": 1
+      },
+      "panes": {
+        "session_id": "arc-bundle:39294148",
+        "generated_at": "2026-09-21T13:24:32.828670Z",
+        "workspace": {
+          "root": "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace",
+          "readable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace"
+          ],
+          "writable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace"
+          ],
+          "contract": [
+            "api octos-app-ui/v1alpha1",
+            "source session/open panes",
+            "feature pane.snapshots.v1"
+          ],
+          "entries": [
+            {
+              "path": ".octos",
+              "label": ".octos",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/active-profile",
+              "label": "active-profile",
+              "depth": 1,
+              "kind": "file",
+              "detail": "17 B"
+            },
+            {
+              "path": ".octos/arc-68395-7068129",
+              "label": "arc-68395-7068129",
+              "depth": 1,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/.gitignore",
+              "label": ".gitignore",
+              "depth": 2,
+              "kind": "file",
+              "detail": "191 B"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers",
+              "label": "context_ledgers",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers/arc-bundle%3A39294148.json",
+              "label": "arc-bundle%3A39294148.json",
+              "depth": 3,
+              "kind": "file",
+              "detail": "563 B"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output",
+              "label": "tool-output",
+              "depth": 3,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1",
+              "label": "recovery-v1",
+              "depth": 4,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "label": "catalog.lock",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/e1cba59072aa03887041a3d2fa6e475b1482df3fc176763fc6990e05be618943.lease",
+              "label": "e1cba59072aa03887041a3d2fa6e475b1482df3fc176763fc6990e05be618943.lease",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-68395-7068129/sessions",
+              "label": "sessions",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos-workspace.toml",
+              "label": ".octos-workspace.toml",
+              "depth": 0,
+              "kind": "file",
+              "detail": "4.7 KB"
+            },
+            {
+              "path": "ambiguous.txt",
+              "label": "ambiguous.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "17 B"
+            },
+            {
+              "path": "authorization.rs",
+              "label": "authorization.rs",
+              "depth": 0,
+              "kind": "file",
+              "detail": "73 B"
+            },
+            {
+              "path": "current.txt",
+              "label": "current.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "14 B"
+            },
+            {
+              "path": "drift.txt",
+              "label": "drift.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "23 B"
+            },
+            {
+              "path": "noop.txt",
+              "label": "noop.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "10 B"
+            },
+            {
+              "path": "skill-output",
+              "label": "skill-output",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            }
+          ]
+        },
+        "artifacts": {
+          "items": [
+            {
+              "title": "arc-bundle%3A39294148.json",
+              "kind": "file",
+              "path": ".octos/arc-68395-7068129/context_ledgers/arc-bundle%3A39294148.json",
+              "uri": ".octos/arc-68395-7068129/context_ledgers/arc-bundle%3A39294148.json",
+              "source": "workspace",
+              "status": "563 B",
+              "size_bytes": 563,
+              "updated_at": "2026-09-21T13:24:32.074056336Z"
+            },
+            {
+              "title": "active-profile",
+              "kind": "file",
+              "path": ".octos/active-profile",
+              "uri": ".octos/active-profile",
+              "source": "workspace",
+              "status": "17 B",
+              "size_bytes": 17,
+              "updated_at": "2026-09-21T13:24:32.072018416Z"
+            },
+            {
+              "title": "e1cba59072aa03887041a3d2fa6e475b1482df3fc176763fc6990e05be618943.lease",
+              "kind": "file",
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/e1cba59072aa03887041a3d2fa6e475b1482df3fc176763fc6990e05be618943.lease",
+              "uri": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/e1cba59072aa03887041a3d2fa6e475b1482df3fc176763fc6990e05be618943.lease",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T13:24:32.068730702Z"
+            },
+            {
+              "title": "catalog.lock",
+              "kind": "file",
+              "path": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "uri": ".octos/arc-68395-7068129/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T13:24:32.068257077Z"
+            },
+            {
+              "title": ".gitignore",
+              "kind": "file",
+              "path": ".octos/arc-68395-7068129/.gitignore",
+              "uri": ".octos/arc-68395-7068129/.gitignore",
+              "source": "workspace",
+              "status": "191 B",
+              "size_bytes": 191,
+              "updated_at": "2026-09-21T13:24:32.047097543Z"
+            },
+            {
+              "title": ".octos-workspace.toml",
+              "kind": "file",
+              "path": ".octos-workspace.toml",
+              "uri": ".octos-workspace.toml",
+              "source": "workspace",
+              "status": "4.7 KB",
+              "size_bytes": 4822,
+              "updated_at": "2026-09-21T13:24:32.045806374Z"
+            },
+            {
+              "title": "noop.txt",
+              "kind": "file",
+              "path": "noop.txt",
+              "uri": "noop.txt",
+              "source": "workspace",
+              "status": "10 B",
+              "size_bytes": 10,
+              "updated_at": "2026-09-21T13:24:25.577266754Z"
+            },
+            {
+              "title": "drift.txt",
+              "kind": "file",
+              "path": "drift.txt",
+              "uri": "drift.txt",
+              "source": "workspace",
+              "status": "23 B",
+              "size_bytes": 23,
+              "updated_at": "2026-09-21T13:24:25.576970504Z"
+            },
+            {
+              "title": "authorization.rs",
+              "kind": "file",
+              "path": "authorization.rs",
+              "uri": "authorization.rs",
+              "source": "workspace",
+              "status": "73 B",
+              "size_bytes": 73,
+              "updated_at": "2026-09-21T13:24:25.576651504Z"
+            },
+            {
+              "title": "ambiguous.txt",
+              "kind": "file",
+              "path": "ambiguous.txt",
+              "uri": "ambiguous.txt",
+              "source": "workspace",
+              "status": "17 B",
+              "size_bytes": 17,
+              "updated_at": "2026-09-21T13:24:25.576186919Z"
+            },
+            {
+              "title": "current.txt",
+              "kind": "file",
+              "path": "current.txt",
+              "uri": "current.txt",
+              "source": "workspace",
+              "status": "14 B",
+              "size_bytes": 14,
+              "updated_at": "2026-09-21T13:24:25.573837499Z"
+            }
+          ]
+        },
+        "git": {
+          "repo_root": "/Users/bytedance/arc-bench/octos-arc-analysis",
+          "branch": "feat/local-edit",
+          "head": "f32ac07",
+          "clean": false,
+          "status": [
+            {
+              "code": "??",
+              "path": "h05/",
+              "detail": "untracked"
+            }
+          ],
+          "history": [
+            {
+              "commit": "f32ac07",
+              "summary": "Merge pull request #2 from woshuoduijiushidui/docs/h01-evidence-experiment"
+            },
+            {
+              "commit": "9fc2d4e",
+              "summary": "docs(h02): align variant c branch name"
+            },
+            {
+              "commit": "15530e5",
+              "summary": "docs(h02): record milestone 7 verification"
+            },
+            {
+              "commit": "cdf2f7c",
+              "summary": "docs(h02): record milestone 6 variant b freeze"
+            },
+            {
+              "commit": "d380d19",
+              "summary": "docs(h02): record milestone 5 verification"
+            },
+            {
+              "commit": "5efe76c",
+              "summary": "docs(h02): record milestone 4 verification"
+            },
+            {
+              "commit": "0bee2a1",
+              "summary": "docs(h02): record milestone 3 verification"
+            },
+            {
+              "commit": "772e313",
+              "summary": "docs(h02): record milestone 2 verification"
+            },
+            {
+              "commit": "9e8813d",
+              "summary": "docs: organize experiment notes and add H02 milestones"
+            },
+            {
+              "commit": "210e884",
+              "summary": "Merge pull request #1 from woshuoduijiushidui/docs/h01-evidence-experiment"
+            },
+            {
+              "commit": "7359a29",
+              "summary": "chore(h01): harden isolated M7 runner"
+            },
+            {
+              "commit": "9a11cae",
+              "summary": "chore(h01): checkpoint M7 experiment harness"
+            }
+          ]
+        }
+      },
+      "capabilities": {
+        "version": {
+          "protocol": "octos-ui/v1alpha1",
+          "schema_version": 1,
+          "jsonrpc": "2.0"
+        },
+        "capabilities_schema_version": 2,
+        "supported_methods": [
+          "session/open",
+          "turn/start",
+          "turn/interrupt",
+          "approval/respond",
+          "approval/scopes/list",
+          "session/btw",
+          "user_question/respond",
+          "permission/profile/list",
+          "permission/profile/set",
+          "diff/preview/get",
+          "task/list",
+          "task/cancel",
+          "task/restart_from_node",
+          "task/output/read",
+          "session/hydrate",
+          "session/rollback",
+          "session/fork",
+          "thread/graph/get",
+          "turn/state/get",
+          "agent/list",
+          "agent/status/read",
+          "agent/output/read",
+          "agent/artifact/list",
+          "agent/artifact/read",
+          "task/artifact/list",
+          "task/artifact/read",
+          "agent/interrupt",
+          "agent/close",
+          "session/goal/get",
+          "session/goal/set",
+          "session/goal/clear",
+          "session/goal/operator_transition",
+          "loop/create",
+          "loop/list",
+          "loop/delete",
+          "loop/pause",
+          "loop/resume",
+          "loop/fire_now",
+          "monitor/create",
+          "monitor/list",
+          "monitor/pause",
+          "monitor/resume",
+          "monitor/delete",
+          "review/start",
+          "session/list",
+          "session/snapshot",
+          "session/messages_page",
+          "session/status.get",
+          "session/files.list",
+          "session/tasks.list",
+          "session/workspace.get",
+          "session/title.set",
+          "session/delete",
+          "system/status.get",
+          "router/set_mode",
+          "router/get_metrics",
+          "launch/resolve",
+          "client_hello",
+          "config/capabilities/list",
+          "session/status/read",
+          "profile/local/create",
+          "profile/llm/list",
+          "profile/llm/select",
+          "mcp/status/list",
+          "tool/status/list",
+          "auth/status",
+          "auth/send_code",
+          "auth/verify",
+          "profile/llm/catalog",
+          "profile/llm/upsert",
+          "profile/llm/delete",
+          "profile/llm/test",
+          "profile/llm/fetch_models",
+          "profile/sub_providers/list",
+          "profile/sub_providers/upsert",
+          "profile/sub_providers/remove",
+          "snapshot/list",
+          "snapshot/restore",
+          "peer/prepare",
+          "peer/gather",
+          "turn/steer",
+          "profile/skills/list",
+          "profile/skills/registry/search",
+          "profile/skills/install",
+          "profile/skills/remove",
+          "skill/action/list",
+          "skill/action/invoke",
+          "skill/action/job/list",
+          "skill/action/job/read",
+          "onboarding/workspace_probe",
+          "session/compact",
+          "session/compact/mode/set",
+          "voice/admit",
+          "voice/commit_admission"
+        ],
+        "supported_notifications": [
+          "session/open",
+          "turn/started",
+          "turn/completed",
+          "turn/error",
+          "message/delta",
+          "message/reasoning_delta",
+          "tool/started",
+          "tool/progress",
+          "tool/completed",
+          "approval/requested",
+          "approval/auto_resolved",
+          "approval/decided",
+          "approval/cancelled",
+          "user_question/requested",
+          "task/updated",
+          "plan/updated",
+          "task/output/delta",
+          "progress/updated",
+          "warning",
+          "protocol/replay_lossy",
+          "turn/spawn_complete",
+          "file/attached",
+          "visual/generating",
+          "visual/succeeded",
+          "visual/failed",
+          "voice/exit",
+          "skill/action/job/updated",
+          "voice/audio_chunk",
+          "projection/envelope",
+          "session/event",
+          "router/status",
+          "router/failover",
+          "queue/state",
+          "agent/updated",
+          "agent/output/delta",
+          "agent/artifact/updated",
+          "session/goal/updated",
+          "session/goal/cleared",
+          "loop/updated",
+          "loop/fired",
+          "loop/completed",
+          "monitor/fired",
+          "monitor/updated",
+          "monitor/expired",
+          "context/compaction_completed",
+          "context/compaction_started",
+          "context/normalization_reported",
+          "peer/staged",
+          "peer/closed",
+          "background/activity"
+        ],
+        "supported_features": [
+          "approval.typed.v1",
+          "pane.snapshots.v1",
+          "session.workspace_cwd.v1",
+          "session.sandbox.v1",
+          "harness.task_control.v1",
+          "state.session_hydrate.v1",
+          "state.thread_graph.v1",
+          "state.turn_state_get.v1",
+          "event.spawn_complete.v1",
+          "event.file_attached.v1",
+          "auxiliary.rest_to_ws.v1",
+          "coding.autonomy.v1",
+          "coding.agent_control.v1",
+          "coding.goal_runtime.v1",
+          "coding.loop_runtime.v1",
+          "coding.monitor_runtime.v1",
+          "review.start.v1",
+          "context.lifecycle.v1",
+          "harness.task_artifacts.v1",
+          "user_question.v1",
+          "event.voice_audio.v1",
+          "plan.todos.v1",
+          "event.background_activity.v1",
+          "event.turn_steer_dropped.v1",
+          "permission.profile.v1",
+          "voice.asr_admission.v1",
+          "runtime.policy_stamp.v1",
+          "coding.tool_contract.v1",
+          "coding.image_view.v1",
+          "coding.dynamic_tool_search.v1",
+          "coding.bash.v1",
+          "coding.delegate.v1",
+          "coding.browser.v1",
+          "skill.actions.v1",
+          "skill.action_jobs.v1",
+          "harness.task_supervision_inspection.v1",
+          "profile.local_create.v1",
+          "profile.local_create.requested_id.v1",
+          "profile.local_create.default.v1",
+          "onboarding.workspace_probe.v1"
+        ],
+        "unsupported": [
+          {
+            "method": "auth/me",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "auth/logout",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/bulk_delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/overview",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/entity",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/toggle",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/status.get",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.command",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_start",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_stop",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "turn/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "timestamp": "2026-09-21T13:24:32.832875Z"
+    }
+  },
+  {
+    "method": "context/normalization_reported",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "context_state": {
+        "session_id": "arc-bundle:39294148",
+        "generation": 0,
+        "transcript_hash": "sha256:3ac9e2af4fa5ef361009d51579853429242c4a91a15df1720ba62915205bc6b2",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "normalization": {
+        "generation": 0,
+        "input_transcript_hash": "sha256:3ac9e2af4fa5ef361009d51579853429242c4a91a15df1720ba62915205bc6b2",
+        "output_prompt_hash": "sha256:4af278e5450e8fa62b720ba4d0b00a9d1657c469fc77b4293f14a386835e38bd",
+        "model_capability_id": "openai@127/h05-local-fixture",
+        "prompt_message_count": 0,
+        "token_estimate": 1,
+        "repaired_count": 0,
+        "dropped_count": 0,
+        "synthetic_count": 0,
+        "truncated_count": 0
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 1 · 0 tokens · 0s · 0 reflections",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_0",
+      "tool_name": "edit_file",
+      "arguments": {
+        "path": "current.txt",
+        "old_string": "stale value",
+        "new_string": "replacement"
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_0",
+      "tool_name": "edit_file",
+      "success": false,
+      "output_preview": "String not found in file. No exact match, and no fuzzy match via the line-trimmed, whitespace-normalized, indentation-flexible, escape-normalized or block-anchor replacers.\n\nSearched for:\n```\nstale va...",
+      "duration_ms": 1
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 1,
+        "success": false,
+        "tool": "edit_file",
+        "tool_call_id": "h05_call_0"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 2 · 2 tokens · 0s · 0 reflections",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_1",
+      "tool_name": "read_file",
+      "arguments": {
+        "path": "current.txt"
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_1",
+      "tool_name": "read_file",
+      "success": true,
+      "output_preview": "current value\n",
+      "duration_ms": 0
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 0,
+        "success": true,
+        "tool": "read_file",
+        "tool_call_id": "h05_call_1"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 3 · 4 tokens · 0s · 0 reflections",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_2",
+      "tool_name": "edit_file",
+      "arguments": {
+        "path": "ambiguous.txt",
+        "old_string": "same",
+        "new_string": "changed"
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_2",
+      "tool_name": "edit_file",
+      "success": false,
+      "output_preview": "Found 2 occurrences of the string (via exact replacer). Please provide more context to make the match unique.",
+      "duration_ms": 1
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 1,
+        "success": false,
+        "tool": "edit_file",
+        "tool_call_id": "h05_call_2"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 4 · 6 tokens · 0s · 0 reflections",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_3",
+      "tool_name": "edit_file",
+      "arguments": {
+        "path": "authorization.rs",
+        "old_string": "fn authorize() {\n    if is_admin(user) {\n        grant_access();\n    }\n}",
+        "new_string": "fn authorize() {\n    deny_access();\n}"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "file_mutation",
+        "file_mutation": {
+          "path": "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace/authorization.rs",
+          "operation": "modify",
+          "preview_id": "a4c97c3c-95c5-40c1-0955-db4fd49e10c2"
+        }
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_3",
+      "tool_name": "edit_file",
+      "success": true,
+      "output_preview": "Successfully edited authorization.rs (fuzzy match via block_anchor replacer)",
+      "duration_ms": 2
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 2,
+        "success": true,
+        "tool": "edit_file",
+        "tool_call_id": "h05_call_3"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 5
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 5 · 8 tokens · 0s · 0 reflections",
+        "iteration": 5
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 5
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_4",
+      "tool_name": "diff_edit",
+      "arguments": {
+        "path": "drift.txt",
+        "diff": "@@ -1 +1 @@\n-target\n+changed\n"
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_4",
+      "tool_name": "diff_edit",
+      "success": false,
+      "output_preview": "Failed to apply diff: could not find matching context at line 1 (+-3 lines). Expected: [\"target\"]",
+      "duration_ms": 1
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 1,
+        "success": false,
+        "tool": "diff_edit",
+        "tool_call_id": "h05_call_4"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 6
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 6 · 10 tokens · 0s · 0 reflections",
+        "iteration": 6
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 6
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_5",
+      "tool_name": "edit_file",
+      "arguments": {
+        "path": "noop.txt",
+        "old_string": "unchanged",
+        "new_string": "unchanged"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "file_mutation",
+        "file_mutation": {
+          "path": "/Users/bytedance/arc-bench/octos-arc-analysis/h05/m0-evidence/workspace/noop.txt",
+          "operation": "modify",
+          "preview_id": "60e1f821-35a1-08b1-3068-b0786e3ebdae"
+        }
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "tool_call_id": "h05_call_5",
+      "tool_name": "edit_file",
+      "success": true,
+      "output_preview": "Successfully edited noop.txt",
+      "duration_ms": 1
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 1,
+        "success": true,
+        "tool": "edit_file",
+        "tool_call_id": "h05_call_5"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 7
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 7 · 12 tokens · 0s · 0 reflections",
+        "iteration": 7
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "response",
+        "iteration": 7
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "metadata": {
+        "kind": "token_cost_update",
+        "token_cost": {
+          "input_tokens": 7,
+          "output_tokens": 7,
+          "model": "h05-local-fixture",
+          "context_window": 128000
+        }
+      }
+    }
+  },
+  {
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "thread_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "seq": 8,
+      "cursor": {
+        "stream": "arc-bundle:39294148\u0000~cwd-8bc417bf88fc78a6",
+        "seq": 33
+      },
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "payload": {
+        "type": "user_message",
+        "data": {
+          "text": "Run the local H05 baseline fixture."
+        }
+      }
+    }
+  },
+  {
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "thread_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "seq": 13,
+      "cursor": {
+        "stream": "arc-bundle:39294148\u0000~cwd-8bc417bf88fc78a6",
+        "seq": 51
+      },
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "payload": {
+        "type": "assistant_persisted",
+        "data": {
+          "text": "H05 baseline complete.",
+          "assistant_segment_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8:assistant:iteration:7",
+          "meta": {
+            "message_id": "arc-bundle:39294148:13:1789997073094949000",
+            "persisted_at": "2026-09-21T13:24:33.094949Z"
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "message/delta",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "text": "H05 baseline complete."
+    }
+  },
+  {
+    "method": "turn/completed",
+    "params": {
+      "session_id": "arc-bundle:39294148",
+      "turn_id": "4a73b7b7-c452-4f19-8355-10a84efb8fe8",
+      "cursor": {
+        "stream": "arc-bundle:39294148\u0000~cwd-8bc417bf88fc78a6",
+        "seq": 60
+      },
+      "tokens_in": 7,
+      "tokens_out": 7,
+      "cache_hit": 0,
+      "session_result": {
+        "committed_seq": 13,
+        "message_id": "arc-bundle:39294148:13:1789997073094949000"
+      }
+    }
+  }
+]
