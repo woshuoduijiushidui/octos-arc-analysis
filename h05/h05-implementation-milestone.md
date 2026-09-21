@@ -1,10 +1,11 @@
 # H05 实施 Milestone：已有代码优先局部编辑
 
-- 状态：M0 已完成，M1-M11 待实施
+- 状态：M0-M1 已完成，M2-M11 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H05 竞品调研](./h05-local-edit-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
 - M0 证据：[共同底座、调用链与基线反例](./h05-m0-baseline.md)
+- M1 证据：[局部编辑选择规则验证](./h05-m1-implementation-verification.md)
 - 编写日期：2026-09-21
 - 调研时主线：`octos-arc origin/main@27d057c206c0f8250b60309905737f7e26ee0ba9`
 - 可复核依赖：H02 文件保护 `7eaa136ef086a2f9728794d17d8f150482df03d1`；H03 完整 B `4c542e534e957d69a5ee05d24ffb7e166beb78bb`
@@ -89,10 +90,10 @@
 | `OCTOS_LOCAL_EDIT_STRICT_MATCH` | off | M7 的 C matcher 开关；只有 B 开启时才生效 |
 | `OCTOS_ARC_CODEGEN_PATCH` | off | M9 的 D 开关；不影响 fresh/new file |
 
-- [ ] 配置在进程或 profile 构建时解析一次，不在每次 matcher 调用里反复读取环境变量。
-- [ ] `OCTOS_LOCAL_EDIT=0` 时，工具 schema、结果文本和磁盘行为与 A 兼容。
+- [x] `OCTOS_LOCAL_EDIT` 在进程内解析一次并由 `ToolRegistry` 保存，不在每次 matcher 调用里反复读取环境变量。
+- [x] `OCTOS_LOCAL_EDIT=0` 时，工具 schema、结果文本和磁盘行为与 A 兼容。
 - [ ] strict 开关关闭时必须与 B 等价；codegen patch 关闭时必须与 S 等价。
-- [ ] 未知开关值按 off 处理并留下有界诊断，不静默开启实验行为。
+- [x] 已实现的 H05 开关遇到未知值时按 off 处理并留下有界诊断，不静默开启实验行为。
 
 ### 1.2 优先核对的真实代码路径
 
@@ -180,14 +181,14 @@ invalid_edit_input
 
 **依赖：**M0。**对应：**H05a。**目标：**让模型在生成长参数前先选对现有工具。
 
-- [ ] 在稳定 coding profile/system section 中加入一次短选择矩阵：新文件用 `write_file`；一个连续局部变化用 `edit_file`；同一文件多个分散变化用单次多 hunk `diff_edit`。
-- [ ] 已有文件只有在完整当前版本可见且确实需要整体重建时才用 `write_file`；不得写成“一律禁止整写”。
-- [ ] 多文件小改继续使用独立局部调用并保持 mutation 串行，不新增默认多文件 patch schema。
-- [ ] 同步收紧三个工具的 description，使其职责互补；避免在 system prompt、三个 schema 和 ARC user prompt 中重复长段规则。
-- [ ] stdio/solo 与普通 coding profile 获得相同核心规则；MCP/worker 若复用同一 profile，不复制另一份易漂移文案。
-- [ ] ARC tool-mode prompt 只在确有缺口时补一句场景化要求，不改 codegen 协议，不改变请求预算。
-- [ ] 保持 provider-specific tool order、默认工具数量和 `apply_patch` 可见性不变，除非 M0 证明确有必要并单独记录。
-- [ ] 测试 H05 off 时 schema 文本与 A 一致；H05 on 时规则短、无冲突、所有真实入口只注入一次。
+- [x] 在稳定 coding profile/system section 中加入一次短选择矩阵：新文件用 `write_file`；一个连续局部变化用 `edit_file`；同一文件多个分散变化用单次多 hunk `diff_edit`。
+- [x] 已有文件只有在完整当前版本可见且确实需要整体重建时才用 `write_file`；不得写成“一律禁止整写”。
+- [x] 多文件小改继续使用独立局部调用并保持 mutation 串行，不新增默认多文件 patch schema。
+- [x] 同步收紧三个工具的 description，使其职责互补；避免在 system prompt、三个 schema 和 ARC user prompt 中重复长段规则。
+- [x] stdio/solo 与普通 coding profile 获得相同核心规则；MCP/worker 复用公共 prompt 组装，不复制另一份易漂移文案。
+- [x] ARC tool-mode 已由公共 system prompt 覆盖，因此未修改 ARC user prompt、codegen 协议或请求预算。
+- [x] 保持 provider-specific tool order、默认工具数量和 `apply_patch` 可见性不变。
+- [x] 测试 H05 off 时 schema 文本与 A 一致；H05 on 时规则短、无冲突、所有真实入口只注入一次。
 
 **完成条件：**模型在最终工具 schema/system prompt 中能明确区分创建、整写、单点替换和单文件多 hunk，且固定输入增量已量化。
 
