@@ -1,0 +1,17 @@
+{
+  "binary_sha256": "9061d50af703fdccd43960538de4f9864f86fabc714a8e45f341e930495aafe4",
+  "provider": "loopback fake",
+  "search": {
+    "provider_requests": 4,
+    "matches": 1,
+    "search_complete": true,
+    "target_offset": 16000,
+    "command_executions": 1,
+    "recall_tool_estimated_tokens": 243,
+    "recall_tool_incremental_tokens": 87
+  },
+  "disabled": {
+    "recall_present": false,
+    "search_present": false
+  }
+}

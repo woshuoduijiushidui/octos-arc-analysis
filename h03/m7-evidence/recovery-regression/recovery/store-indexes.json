@@ -1,0 +1,40 @@
+[
+  {
+    "version": 1,
+    "records": [
+      {
+        "id": "1a83fc129e8547bebdce0bd5c788d818",
+        "owner": "b700a921143d746a6fb9e15f64e332d427518f416e6f84a738267c26a55d0d6b",
+        "session": "e3a2a9bfcb4ab7e9518ba32cf3d812be9d7e0d0106bfc333a7bad1a72201e810",
+        "running": false,
+        "call_id": "call_parallel",
+        "manifest": "b6660fafcdc80da8332f2fdf385de10f3a8c8f3ec6011c642bd2c2ac0a9cd0f6",
+        "payload_bytes": 5700,
+        "metadata_bytes": 1481,
+        "updated": 1789982533
+      },
+      {
+        "id": "bc46050c19704c83bc2cd335626bbb6f",
+        "owner": "b700a921143d746a6fb9e15f64e332d427518f416e6f84a738267c26a55d0d6b",
+        "session": "e3a2a9bfcb4ab7e9518ba32cf3d812be9d7e0d0106bfc333a7bad1a72201e810",
+        "running": false,
+        "call_id": "call_source",
+        "manifest": "7a199ba3396a69f34d6ed0ea8cdd57fda3ea18798f75ed8e6ce4f2f649d2c46c",
+        "payload_bytes": 28824,
+        "metadata_bytes": 1481,
+        "updated": 1789982533
+      },
+      {
+        "id": "831e76f59abb488ea8b37d70a4ba8929",
+        "owner": "b700a921143d746a6fb9e15f64e332d427518f416e6f84a738267c26a55d0d6b",
+        "session": "e3a2a9bfcb4ab7e9518ba32cf3d812be9d7e0d0106bfc333a7bad1a72201e810",
+        "running": false,
+        "call_id": "call_shell",
+        "manifest": "166d715c54b9f36faa7c43c955a31e2ff4284e831c5e12f0e93a58192d5e32b9",
+        "payload_bytes": 16242,
+        "metadata_bytes": 1632,
+        "updated": 1789982534
+      }
+    ]
+  }
+]
