@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "milestone": "H03-M2",
+  "date": "2026-09-21",
+  "code_commit": "d6f8198ea4005d24db7ba240321c264872f777c9",
+  "environment": {
+    "os": "macOS 26.6.2 (25G83)",
+    "rustc": "1.96.1 (31fca3adb 2026-06-26)",
+    "cargo": "1.96.1 (356927216 2026-06-26)",
+    "regression_env": {
+      "OCTOS_OUTPUT_RECOVERY": "0"
+    },
+    "setup": [
+      "source ~/.zshrc",
+      "export PATH=\"$HOME/.rustup/toolchains/1.96.1-aarch64-apple-darwin/bin:$PATH\""
+    ]
+  },
+  "checks": [
+    {
+      "name": "m2_store_and_range_recovery",
+      "list_command": "cargo test -p octos-agent --lib h03_m2 -- --list",
+      "command": "cargo test -p octos-agent --lib h03_m2 -- --test-threads=1",
+      "matched": 16,
+      "passed": 16,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m2_real_agent_recall",
+      "list_command": "cargo test -p octos-agent --test h03_m2_recall -- --list",
+      "command": "cargo test -p octos-agent --test h03_m2_recall -- --test-threads=1",
+      "matched": 1,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m1_output_contract",
+      "list_command": "cargo test -p octos-agent --test h03_m1_output -- --list",
+      "command": "cargo test -p octos-agent --test h03_m1_output -- --test-threads=1",
+      "matched": 13,
+      "passed": 13,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m0_dispatch_contract",
+      "command": "cargo test -p octos-agent --test h03_m0_dispatch -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "legacy_recall",
+      "command": "cargo test -p octos-agent --lib tools::recall::tests -- --test-threads=1",
+      "matched": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "task_file_state",
+      "command": "cargo test -p octos-agent --lib task_file_state::tests -- --test-threads=1",
+      "matched": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "model_read_receipts",
+      "list_command": "cargo test -p octos-agent --lib model_read_receipts::tests -- --list",
+      "command": "cargo test -p octos-agent --lib model_read_receipts::tests -- --test-threads=1",
+      "matched": 17,
+      "passed": 17,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "file_state_cache",
+      "command": "cargo test -p octos-agent --lib file_state_cache::tests -- --test-threads=1",
+      "matched": 14,
+      "passed": 14,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "context_manager",
+      "list_command": "cargo test -p octos-cli --lib context_manager::tests -- --list",
+      "command": "cargo test -p octos-cli --lib context_manager::tests -- --test-threads=1",
+      "matched": 101,
+      "passed": 101,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "session_actor_prompt_bridge",
+      "command": "cargo test -p octos-cli --lib session_actor_prompt_context_bridge -- --test-threads=1",
+      "matched": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "workspace_check",
+      "command": "cargo check --workspace --tests",
+      "exit_code": 0
+    },
+    {
+      "name": "format",
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "exit_code": 0,
+      "note": "The waiver is only for the unchanged serve.rs baseline warning documented in M1."
+    }
+  ],
+  "unique_test_totals": {
+    "passed": 173,
+    "failed": 0,
+    "ignored": 0
+  },
+  "not_run": [
+    "paid model calls",
+    "official ARC A/B tasks",
+    "stdio fake-provider recovery protocol (scheduled for M5)"
+  ]
+}
