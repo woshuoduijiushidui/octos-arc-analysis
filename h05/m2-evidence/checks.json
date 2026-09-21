@@ -1,0 +1,47 @@
+{
+  "schema": "octos.h05-m2-checks.v1",
+  "code_commit": "7f892c66",
+  "binary_sha256": "0ade1d5336656706f09ad42aad21656045736667729a5eadb0667d99560668c7",
+  "checks": [
+    {
+      "command": "cargo test -p octos-agent --lib tools::edit_file:: --no-fail-fast",
+      "result": "45 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::replacer:: --no-fail-fast",
+      "result": "30 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::mutation_guard:: --no-fail-fast",
+      "result": "3 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::registry:: --no-fail-fast",
+      "result": "57 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h03_m1_output --test h05_m0_baseline --test h05_m2_typed_recovery --no-fail-fast",
+      "result": "22 passed"
+    },
+    {
+      "command": "cargo check --workspace --tests",
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent --lib --tests -- -D warnings",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check && git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_recovery.py target/debug/octos EVIDENCE_DIR",
+      "result": "passed; 5 requests; typed output 1953 bytes"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_guidance.py target/debug/octos TEMP_DIR_M1 && python3 arc/integration/local_edit_baseline.py target/debug/octos TEMP_DIR_M0",
+      "result": "passed"
+    }
+  ]
+}

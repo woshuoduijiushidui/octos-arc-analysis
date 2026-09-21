@@ -1,0 +1,17 @@
+{
+  "schema": "octos.h05-m2-stdio-recovery.v1",
+  "binary_sha256": "0ade1d5336656706f09ad42aad21656045736667729a5eadb0667d99560668c7",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 5,
+  "typed_output_bytes": 1953,
+  "candidate_limit": 3,
+  "current_versions_visible": true,
+  "candidate_outputs_recoverable_as_file_reads": false,
+  "fuzzy_write_preserved": true,
+  "fixture_sha256": {
+    "ambiguous.txt": "39cbd8bb08942c59105184c38fdb1aa74480a1dd921d14c23f40f550236e662a",
+    "candidate.txt": "ef1bfe0136948aa7e13ac0c0cc25d8a0c44c1e2d9c9a24271a0ffbc8563df04b",
+    "fuzzy.rs": "85976e8481196240a4359899f3213f5f08c99c3bd435b0eebb6f73ecf797e573",
+    "none.txt": "e49c81e2d2f84e259d40e2fb8192f3bcd198b355184845d76d8f58807d0d78ee"
+  }
+}

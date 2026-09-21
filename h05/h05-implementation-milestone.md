@@ -1,11 +1,12 @@
 # H05 实施 Milestone：已有代码优先局部编辑
 
-- 状态：M0-M1 已完成，M2-M11 待实施
+- 状态：M0-M2 已完成，M3-M11 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H05 竞品调研](./h05-local-edit-competitor-research.md)
 - 关联约束：[H02 实施清单](../h02/h02-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
 - M0 证据：[共同底座、调用链与基线反例](./h05-m0-baseline.md)
 - M1 证据：[局部编辑选择规则验证](./h05-m1-implementation-verification.md)
+- M2 证据：[typed 失败与有界当前候选验证](./h05-m2-implementation-verification.md)
 - 编写日期：2026-09-21
 - 调研时主线：`octos-arc origin/main@27d057c206c0f8250b60309905737f7e26ee0ba9`
 - 可复核依赖：H02 文件保护 `7eaa136ef086a2f9728794d17d8f150482df03d1`；H03 完整 B `4c542e534e957d69a5ee05d24ffb7e166beb78bb`
@@ -114,13 +115,13 @@
 
 ## 2. 不可破坏的约束
 
-- [ ] 所有已有文件修改仍在 `mutation_guard` 的同一路径锁内读取当前 bytes、检查版本、定位和写入。
-- [ ] H02 的 stale/context/read receipt 规则保持失败关闭；候选片段不能冒充完整文件读取，也不能授权整文件覆盖。
+- [x] 所有已有文件修改仍在 `mutation_guard` 的同一路径锁内读取当前 bytes、检查版本、定位和写入。
+- [x] H02 的 stale/context/read receipt 规则保持失败关闭；候选片段不能冒充完整文件读取，也不能授权整文件覆盖。
 - [ ] 新文件创建继续使用 `create_new`/`O_CREAT|O_EXCL` 等现有保护；目标并发出现时拒绝覆盖。
 - [ ] no-match、ambiguous、no-change 和 parse failure 前后文件 hash 不变，不运行 formatter，不创建 workspace snapshot。
 - [ ] 发生 I/O 部分写入时必须设置 `file_modified` 并明确提示重新读取；不得返回“未修改”。
-- [ ] 候选片段来自本次锁内读取的当前内容，经过现有清洗和最终投影；不从旧消息、旧 receipt 或旧缓存拼装。
-- [ ] 模型可见结果、候选、路径、版本和补救提示共同计入 H03 最终批次 8 KiB 预算；不得依赖下游盲切保持可解析性。
+- [x] 候选片段来自本次锁内读取的当前内容，经过现有清洗和最终投影；不从旧消息、旧 receipt 或旧缓存拼装。
+- [x] 模型可见结果、候选、路径、版本和补救提示共同计入 H03 最终批次 8 KiB 预算；不得依赖下游盲切保持可解析性。
 - [ ] 完整 `old_string`、`new_string` 和整文件不在成功文本中重复回显；它们已存在于工具调用参数或磁盘。
 - [ ] formatter 运行后才计算“最终实际改动”。无法可靠重读或发生并发变化时，元数据明确标为不可确认，不能伪造精确范围。
 - [ ] `write_file`、`edit_file`、`diff_edit`、隐藏 `apply_patch` 的权限、路径 confinement、symlink 和 write-grant 行为不放宽。
@@ -147,10 +148,10 @@ invalid_edit_input
 ```
 
 - [x] M0 已核对现有消费者并选定 `error_code` 为 rejection 的 canonical 字段；不得同时新增两套含义相同的字段。
-- [ ] structured metadata 至少包含 path、当前强版本、matcher、occurrence count、稳定行范围、补救动作和 `file_modified` 事实。
-- [ ] 文本结果只保留一行原因和下一步；绝对路径、完整源码、凭据和超长 `old_string` 不进入日志或模型文本。
-- [ ] 多候选按稳定顺序返回；每个候选只有必要上下文，标明 `suggestion=true`，不得暗示已经写入。
-- [ ] stale 优先返回 H02 的重读补救，不用 fuzzy 候选掩盖版本变化。
+- [x] structured metadata 至少包含 path、当前强版本、matcher、occurrence count、稳定行范围、补救动作和 `file_modified` 事实。
+- [x] 文本结果只保留一行原因和下一步；绝对路径、完整源码、凭据和超长 `old_string` 不进入日志或模型文本。
+- [x] 多候选按稳定顺序返回；每个候选只有必要上下文，标明 `suggestion=true`，不得暗示已经写入。
+- [x] stale 优先返回 H02 的重读补救，不用 fuzzy 候选掩盖版本变化。
 
 ### 3.2 成功结果
 
@@ -196,16 +197,16 @@ invalid_edit_input
 
 **依赖：**M1。**对应：**H05b。**目标：**常见编辑失败不再强迫模型先整文件重读。
 
-- [ ] 扩展 `replacer` 的结果，使 no-match/ambiguous 能返回 matcher、候选 range、稳定行号和可选 score，而不是只返回字符串/count。
-- [ ] exact 多匹配返回 occurrence count 和有限起始行；不自动选择第一处。
-- [ ] exact 为零时可以运行现有 fuzzy matcher寻找候选，但 B 仍保持当前自动写行为；本阶段只建立可复用的候选表达。
-- [ ] 把 transform 内的字符串错误升级为 typed rejection，贯穿 `mutation_guard` 到 `ToolResult`；不要在上层解析错误文本恢复类型。
-- [ ] structured metadata 带当前强版本和 searched-old digest；模型文本中的版本只显示短摘要。
-- [ ] 候选片段直接来自锁内当前 bytes，并记录实际行范围；文件在候选计算前后变化时走 stale，不返回旧候选。
-- [ ] 每个候选和总候选数有硬上限；先保留错误码、版本、范围和 remedy，再裁候选正文。
-- [ ] 候选结果经过现有 sanitize/final projection，且不会创建 H02 完整读取 receipt。
-- [ ] 覆盖 Unicode、CRLF、超长行、长路径、重复文本、无候选、多阶段候选和极小剩余预算。
-- [ ] 在最终 fake provider 请求中验证 typed 字段与文本一致，整体不超过 H03 的最终批次预算。
+- [x] 扩展 `replacer` 的结果，使 no-match/ambiguous 能返回 matcher、候选 range、稳定行号和可选 score，而不是只返回字符串/count。
+- [x] exact 多匹配返回 occurrence count 和有限起始行；不自动选择第一处。
+- [x] exact 为零时可以运行现有 fuzzy matcher寻找候选，但 B 仍保持当前自动写行为；本阶段只建立可复用的候选表达。
+- [x] 把 transform 内的字符串错误升级为 typed rejection，贯穿 `mutation_guard` 到 `ToolResult`；不要在上层解析错误文本恢复类型。
+- [x] structured metadata 带当前强版本和 searched-old digest；模型文本中的版本只显示短摘要。
+- [x] 候选片段直接来自锁内当前 bytes，并记录实际行范围；文件在候选计算前后变化时走 stale，不返回旧候选。
+- [x] 每个候选和总候选数有硬上限；先保留错误码、版本、范围和 remedy，再裁候选正文。
+- [x] 候选结果经过现有 sanitize/final projection，且不会创建 H02 完整读取 receipt。
+- [x] 覆盖 Unicode、CRLF、超长行、长路径、重复文本、无候选、多阶段候选和极小剩余预算。
+- [x] 在最终 fake provider 请求中验证 typed 字段与文本一致，整体不超过 H03 的最终批次预算。
 
 **完成条件：**no-match/ambiguous 后，模型可直接用返回的当前局部证据重试；失败前后文件 hash 不变，结果有界且不产生错误读取授权。
 
