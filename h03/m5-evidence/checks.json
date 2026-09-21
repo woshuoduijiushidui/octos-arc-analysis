@@ -1,0 +1,111 @@
+{
+  "milestone": "M5",
+  "code_commit": "d85bd227597ed3de42a56f27267e94db828cb612",
+  "environment": {
+    "os": "macOS 26.6.2",
+    "rustc": "1.98.1 (48a229cea 2026-09-01)",
+    "cargo": "1.98.1 (797e8a9bc 2026-08-05)"
+  },
+  "checks": [
+    {
+      "name": "m0_m3_regression",
+      "command": "cargo test -p octos-agent --test h03_m0_dispatch --test h03_m1_output --test h03_m2_recall --test h03_m3_file_pages",
+      "passed": 22,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h03_store_and_command_recovery",
+      "command": "cargo test -p octos-agent h03_m --lib",
+      "passed": 23,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "compaction_placeholder",
+      "commands": [
+        "cargo test -p octos-agent tool_result_placeholder --lib",
+        "cargo test -p octos-agent compacted_placeholder_recovery_arguments_restore_saved_output --lib"
+      ],
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "compaction_policy",
+      "command": "cargo test -p octos-agent --test compaction_policy",
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "mcp_integration",
+      "command": "cargo test -p octos-cli --test mcp_serve_integration",
+      "passed": 18,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "session_output_state",
+      "command": "cargo test -p octos-cli runtime::session::tests::ui_protocol_ws_turn_agent_reuses_session_output_state --lib",
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "stdio_profile",
+      "command": "cargo test -p octos-cli runtime::profile::tests::stdio_lean_defaults_exclude_only_bundled_skill_layers --lib",
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "workspace_check",
+      "command": "cargo check --workspace --tests",
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "exit_code": 0,
+      "note": "nonminimal-bool 仅沿用已有基线豁免。"
+    },
+    {
+      "name": "format",
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    {
+      "name": "stdio_m5",
+      "command": "source ~/.zshrc && python3 arc/integration/output_recovery_m5.py target/debug/octos ../octos-arc-analysis/h03/m5-evidence",
+      "successful_provider_requests": 6,
+      "provider_retries": 1,
+      "parallel_tool_results": 2,
+      "approval_events": 1,
+      "same_process_recall": true,
+      "cold_process_recall": true,
+      "command_executions": 1,
+      "restricted_tools": [
+        "read_file"
+      ],
+      "exit_code": 0,
+      "binary_sha256": "d107092d882c5d7be33399a1506abf2262b4a92382e1544a8a2716f1dbf9ad4a"
+    },
+    {
+      "name": "cli_full_library",
+      "command": "cargo test -p octos-cli --lib",
+      "passed": 3687,
+      "failed": 8,
+      "ignored": 10,
+      "exit_code": 101,
+      "note": "4 个 inherited-flock 时序基线失败；4 个 skill 测试因沙箱拒绝写 ~/.octos/cache/verified 失败。两组均可单独复现，且不涉及 M5 修改文件。"
+    }
+  ]
+}

@@ -308,21 +308,25 @@ M4 已完成，见 [验证记录](./h03-m4-implementation-verification.md)。前
 
 **依赖：**M2–M4。**目标：**完成实际接线，证明模型确实能使用恢复能力。
 
-- [ ] `SessionRuntime` 为逻辑 session 创建正确 owner 的输出服务，并向每 turn 的 OUP `request_agent` 显式传递；不只接 bootstrap Agent。
-- [ ] stdio 注册 `recall`，核对 lean 白名单、工具合同、显式 allow/deny、provider policy、外层代理裁剪和最终 tools schema。
-- [ ] 显式禁用恢复工具时仍尊重用户政策；标明当前模型不能用该引用恢复，不建议调用一个被裁掉的工具。
-- [ ] 默认 `turn` scope 下不跨 session 自动共享。相同 `node/run` session 的结果可在其合法寿命内恢复；不强迫改变 session scope。
-- [ ] 压缩/trim 替代工具结果时保留短、完整的来源和恢复参数；latest request 和 call/result 配对沿用既有保护，不新增自由文本摘要模型。
-- [ ] 同时验证同进程压缩恢复和进程退出后持久恢复；确认只持久正文而未持久索引的情况不能算完成。
-- [ ] session_actor 路径复用同一恢复语义，避免保留另一套 50KB 页而再次被截断。
-- [ ] MCP 按 M0 冻结范围处理：支持时创建 invocation-local 服务，尊重工具政策并完成同调用内恢复；不引入 AppUI 依赖或扩展为 H04。
-- [ ] 不支持 MCP 跨 invocation 冷恢复时明确记录边界；不能因某个 stdio 快照测试成功而宣称 MCP resume 已覆盖。
-- [ ] spawn/pipeline 的公共构造点保持编译与行为兼容；每个 child 默认使用自己的输出权限，不继承“看见过正文”的凭据或整个父级存储能力。
-- [ ] 严格沙箱下使用受控账本读取，不让模型绕到任意用户目录；缺权限时返回明确错误，不循环请求放开全盘访问。
-- [ ] 真实 stdio 协议测试使用 fake provider 完成“读大文件/执行大日志 → 获得 next/ref → 恢复 → 最终请求含目标片段”，同时覆盖错误与受限工具模式。
-- [ ] 覆盖审批后继续、并行结果、重试、桥接失败等 M0 找到的实际分支；共享代码未覆盖的入口保持原行为并明确能力缺失。
+- [x] `SessionRuntime` 为逻辑 session 创建正确 owner 的输出服务，并向每 turn 的 OUP `request_agent` 显式传递；不只接 bootstrap Agent。
+- [x] stdio 注册 `recall`，核对 lean 白名单、工具合同、显式 allow/deny、provider policy、外层代理裁剪和最终 tools schema。
+- [x] 显式禁用恢复工具时仍尊重用户政策；标明当前模型不能用该引用恢复，不建议调用一个被裁掉的工具。
+- [x] 默认 `turn` scope 下不跨 session 自动共享。相同 `node/run` session 的结果可在其合法寿命内恢复；不强迫改变 session scope。
+- [x] 压缩/trim 替代工具结果时保留短、完整的来源和恢复参数；latest request 和 call/result 配对沿用既有保护，不新增自由文本摘要模型。
+- [x] 同时验证同进程压缩恢复和进程退出后持久恢复；确认只持久正文而未持久索引的情况不能算完成。
+- [x] session_actor 路径复用同一恢复语义，避免保留另一套 50KB 页而再次被截断。
+- [x] MCP 按 M0 冻结范围处理：支持时创建 invocation-local 服务，尊重工具政策并完成同调用内恢复；不引入 AppUI 依赖或扩展为 H04。
+- [x] 不支持 MCP 跨 invocation 冷恢复时明确记录边界；不能因某个 stdio 快照测试成功而宣称 MCP resume 已覆盖。
+- [x] spawn/pipeline 的公共构造点保持编译与行为兼容；每个 child 默认使用自己的输出权限，不继承“看见过正文”的凭据或整个父级存储能力。
+- [x] 严格沙箱下使用受控账本读取，不让模型绕到任意用户目录；缺权限时返回明确错误，不循环请求放开全盘访问。
+- [x] 真实 stdio 协议测试使用 fake provider 完成“读大文件/执行大日志 → 获得 next/ref → 恢复 → 最终请求含目标片段”，同时覆盖错误与受限工具模式。
+- [x] 覆盖审批后继续、并行结果、重试、桥接失败等 M0 找到的实际分支；共享代码未覆盖的入口保持原行为并明确能力缺失。
 
 **完成条件：**stdio/solo 的真实 tools 与 messages 中恢复功能可调用、可达、范围真实；压缩与重启之后仍能定位同一结果。条件性入口的支持与不支持均有证据。
+
+M5 已完成，见 [验证记录](./h03-m5-implementation-verification.md)。真实 stdio 已验证
+同进程与冷启动恢复、审批后继续、并行结果、provider 重试和受限工具策略；MCP 仅支持
+invocation-local 恢复，不支持跨 invocation resume。
 
 ## 10. Milestone M6：恢复链观测、确定性回归与阶段提交
 

@@ -1,0 +1,2110 @@
+[
+  {
+    "process": "hot",
+    "method": "session/open",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "active_profile_id": "arc-8288-5095240",
+      "workspace_root": "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace",
+      "context": {
+        "schema": "octos.context.lifecycle.v1",
+        "state": {
+          "session_id": "arc-bundle:h03-m5-cold",
+          "thread_id": null,
+          "generation": 0,
+          "transcript_hash": "sha256:b4e19b879d4d54fe4a167600e4fbbb78df45b3d16d8408717e141981f2427539",
+          "last_checkpoint_id": null,
+          "last_compaction_id": null,
+          "token_estimate": 1,
+          "item_count": 0,
+          "recovery_state": "exact"
+        },
+        "compaction": {
+          "count": 0,
+          "last": null
+        }
+      },
+      "context_state": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generation": 0,
+        "transcript_hash": "sha256:b4e19b879d4d54fe4a167600e4fbbb78df45b3d16d8408717e141981f2427539",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 1
+      },
+      "panes": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generated_at": "2026-09-21T07:18:20.711460Z",
+        "workspace": {
+          "root": "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace",
+          "readable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace"
+          ],
+          "writable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace"
+          ],
+          "contract": [
+            "api octos-app-ui/v1alpha1",
+            "source session/open panes",
+            "feature pane.snapshots.v1"
+          ],
+          "entries": [
+            {
+              "path": ".octos",
+              "label": ".octos",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/active-profile",
+              "label": "active-profile",
+              "depth": 1,
+              "kind": "file",
+              "detail": "16 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240",
+              "label": "arc-8288-5095240",
+              "depth": 1,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/.gitignore",
+              "label": ".gitignore",
+              "depth": 2,
+              "kind": "file",
+              "detail": "191 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers",
+              "label": "context_ledgers",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "label": "arc-bundle%3Ah03-m5-cold.json",
+              "depth": 3,
+              "kind": "file",
+              "detail": "566 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output",
+              "label": "tool-output",
+              "depth": 3,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1",
+              "label": "recovery-v1",
+              "depth": 4,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "label": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "label": "catalog.lock",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/sessions",
+              "label": "sessions",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos-workspace.toml",
+              "label": ".octos-workspace.toml",
+              "depth": 0,
+              "kind": "file",
+              "detail": "4.7 KB"
+            },
+            {
+              "path": "command.txt",
+              "label": "command.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "15.8 KB"
+            },
+            {
+              "path": "large.txt",
+              "label": "large.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "28.1 KB"
+            },
+            {
+              "path": "parallel.txt",
+              "label": "parallel.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "5.6 KB"
+            },
+            {
+              "path": "skill-output",
+              "label": "skill-output",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            }
+          ]
+        },
+        "artifacts": {
+          "items": [
+            {
+              "title": "arc-bundle%3Ah03-m5-cold.json",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "source": "workspace",
+              "status": "566 B",
+              "size_bytes": 566,
+              "updated_at": "2026-09-21T07:18:20.477534137Z"
+            },
+            {
+              "title": "active-profile",
+              "kind": "file",
+              "path": ".octos/active-profile",
+              "uri": ".octos/active-profile",
+              "source": "workspace",
+              "status": "16 B",
+              "size_bytes": 16,
+              "updated_at": "2026-09-21T07:18:20.475818516Z"
+            },
+            {
+              "title": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T07:18:20.472082566Z"
+            },
+            {
+              "title": "catalog.lock",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T07:18:20.471562234Z"
+            },
+            {
+              "title": ".gitignore",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/.gitignore",
+              "uri": ".octos/arc-8288-5095240/.gitignore",
+              "source": "workspace",
+              "status": "191 B",
+              "size_bytes": 191,
+              "updated_at": "2026-09-21T07:18:20.443861463Z"
+            },
+            {
+              "title": ".octos-workspace.toml",
+              "kind": "file",
+              "path": ".octos-workspace.toml",
+              "uri": ".octos-workspace.toml",
+              "source": "workspace",
+              "status": "4.7 KB",
+              "size_bytes": 4822,
+              "updated_at": "2026-09-21T07:18:20.441674843Z"
+            },
+            {
+              "title": "command.txt",
+              "kind": "file",
+              "path": "command.txt",
+              "uri": "command.txt",
+              "source": "workspace",
+              "status": "15.8 KB",
+              "size_bytes": 16200,
+              "updated_at": "2026-09-21T07:18:11.845770467Z"
+            },
+            {
+              "title": "parallel.txt",
+              "kind": "file",
+              "path": "parallel.txt",
+              "uri": "parallel.txt",
+              "source": "workspace",
+              "status": "5.6 KB",
+              "size_bytes": 5700,
+              "updated_at": "2026-09-21T07:18:11.845508592Z"
+            },
+            {
+              "title": "large.txt",
+              "kind": "file",
+              "path": "large.txt",
+              "uri": "large.txt",
+              "source": "workspace",
+              "status": "28.1 KB",
+              "size_bytes": 28824,
+              "updated_at": "2026-09-21T07:18:11.845236135Z"
+            }
+          ]
+        },
+        "git": {
+          "repo_root": "/Users/bytedance/arc-bench/octos-arc-analysis",
+          "branch": "feat/output-recovery",
+          "head": "5ff99df",
+          "clean": false,
+          "status": [
+            {
+              "code": "??",
+              "path": "h03/m5-evidence/",
+              "detail": "untracked"
+            }
+          ],
+          "history": [
+            {
+              "commit": "5ff99df",
+              "summary": "docs: 记录 M4 命令输出恢复验证"
+            },
+            {
+              "commit": "c9739a5",
+              "summary": "docs: 记录 M3 文件分页与凭据验证"
+            },
+            {
+              "commit": "b7dbf8f",
+              "summary": "docs: 记录 M2 输出恢复实现与验证"
+            },
+            {
+              "commit": "e011184",
+              "summary": "docs: 记录输出来源与预算展示的实现和验证"
+            },
+            {
+              "commit": "aca97e1",
+              "summary": "docs: 完成工具输出恢复的基线核验与边界记录"
+            },
+            {
+              "commit": "1bdb012",
+              "summary": "docs: 将分页恢复与搜索合并为两组对照"
+            },
+            {
+              "commit": "bab0505",
+              "summary": "docs: 添加文件分页与原文恢复实施清单"
+            },
+            {
+              "commit": "eff2f0b",
+              "summary": "docs: 调研文件分页、截断与原文恢复方案"
+            },
+            {
+              "commit": "f32ac07",
+              "summary": "Merge pull request #2 from woshuoduijiushidui/docs/h01-evidence-experiment"
+            },
+            {
+              "commit": "9fc2d4e",
+              "summary": "docs(h02): align variant c branch name"
+            },
+            {
+              "commit": "15530e5",
+              "summary": "docs(h02): record milestone 7 verification"
+            },
+            {
+              "commit": "cdf2f7c",
+              "summary": "docs(h02): record milestone 6 variant b freeze"
+            }
+          ]
+        }
+      },
+      "capabilities": {
+        "version": {
+          "protocol": "octos-ui/v1alpha1",
+          "schema_version": 1,
+          "jsonrpc": "2.0"
+        },
+        "capabilities_schema_version": 2,
+        "supported_methods": [
+          "session/open",
+          "turn/start",
+          "turn/interrupt",
+          "approval/respond",
+          "approval/scopes/list",
+          "session/btw",
+          "user_question/respond",
+          "permission/profile/list",
+          "permission/profile/set",
+          "diff/preview/get",
+          "task/list",
+          "task/cancel",
+          "task/restart_from_node",
+          "task/output/read",
+          "session/hydrate",
+          "session/rollback",
+          "session/fork",
+          "thread/graph/get",
+          "turn/state/get",
+          "agent/list",
+          "agent/status/read",
+          "agent/output/read",
+          "agent/artifact/list",
+          "agent/artifact/read",
+          "task/artifact/list",
+          "task/artifact/read",
+          "agent/interrupt",
+          "agent/close",
+          "session/goal/get",
+          "session/goal/set",
+          "session/goal/clear",
+          "session/goal/operator_transition",
+          "loop/create",
+          "loop/list",
+          "loop/delete",
+          "loop/pause",
+          "loop/resume",
+          "loop/fire_now",
+          "monitor/create",
+          "monitor/list",
+          "monitor/pause",
+          "monitor/resume",
+          "monitor/delete",
+          "review/start",
+          "session/list",
+          "session/snapshot",
+          "session/messages_page",
+          "session/status.get",
+          "session/files.list",
+          "session/tasks.list",
+          "session/workspace.get",
+          "session/title.set",
+          "session/delete",
+          "system/status.get",
+          "router/set_mode",
+          "router/get_metrics",
+          "launch/resolve",
+          "client_hello",
+          "config/capabilities/list",
+          "session/status/read",
+          "profile/local/create",
+          "profile/llm/list",
+          "profile/llm/select",
+          "mcp/status/list",
+          "tool/status/list",
+          "auth/status",
+          "auth/send_code",
+          "auth/verify",
+          "profile/llm/catalog",
+          "profile/llm/upsert",
+          "profile/llm/delete",
+          "profile/llm/test",
+          "profile/llm/fetch_models",
+          "profile/sub_providers/list",
+          "profile/sub_providers/upsert",
+          "profile/sub_providers/remove",
+          "snapshot/list",
+          "snapshot/restore",
+          "peer/prepare",
+          "peer/gather",
+          "turn/steer",
+          "profile/skills/list",
+          "profile/skills/registry/search",
+          "profile/skills/install",
+          "profile/skills/remove",
+          "skill/action/list",
+          "skill/action/invoke",
+          "skill/action/job/list",
+          "skill/action/job/read",
+          "onboarding/workspace_probe",
+          "session/compact",
+          "session/compact/mode/set",
+          "voice/admit",
+          "voice/commit_admission"
+        ],
+        "supported_notifications": [
+          "session/open",
+          "turn/started",
+          "turn/completed",
+          "turn/error",
+          "message/delta",
+          "message/reasoning_delta",
+          "tool/started",
+          "tool/progress",
+          "tool/completed",
+          "approval/requested",
+          "approval/auto_resolved",
+          "approval/decided",
+          "approval/cancelled",
+          "user_question/requested",
+          "task/updated",
+          "plan/updated",
+          "task/output/delta",
+          "progress/updated",
+          "warning",
+          "protocol/replay_lossy",
+          "turn/spawn_complete",
+          "file/attached",
+          "visual/generating",
+          "visual/succeeded",
+          "visual/failed",
+          "voice/exit",
+          "skill/action/job/updated",
+          "voice/audio_chunk",
+          "projection/envelope",
+          "session/event",
+          "router/status",
+          "router/failover",
+          "queue/state",
+          "agent/updated",
+          "agent/output/delta",
+          "agent/artifact/updated",
+          "session/goal/updated",
+          "session/goal/cleared",
+          "loop/updated",
+          "loop/fired",
+          "loop/completed",
+          "monitor/fired",
+          "monitor/updated",
+          "monitor/expired",
+          "context/compaction_completed",
+          "context/compaction_started",
+          "context/normalization_reported",
+          "peer/staged",
+          "peer/closed",
+          "background/activity"
+        ],
+        "supported_features": [
+          "approval.typed.v1",
+          "pane.snapshots.v1",
+          "session.workspace_cwd.v1",
+          "session.sandbox.v1",
+          "harness.task_control.v1",
+          "state.session_hydrate.v1",
+          "state.thread_graph.v1",
+          "state.turn_state_get.v1",
+          "event.spawn_complete.v1",
+          "event.file_attached.v1",
+          "auxiliary.rest_to_ws.v1",
+          "coding.autonomy.v1",
+          "coding.agent_control.v1",
+          "coding.goal_runtime.v1",
+          "coding.loop_runtime.v1",
+          "coding.monitor_runtime.v1",
+          "review.start.v1",
+          "context.lifecycle.v1",
+          "harness.task_artifacts.v1",
+          "user_question.v1",
+          "event.voice_audio.v1",
+          "plan.todos.v1",
+          "event.background_activity.v1",
+          "event.turn_steer_dropped.v1",
+          "permission.profile.v1",
+          "voice.asr_admission.v1",
+          "runtime.policy_stamp.v1",
+          "coding.tool_contract.v1",
+          "coding.image_view.v1",
+          "coding.dynamic_tool_search.v1",
+          "coding.bash.v1",
+          "coding.delegate.v1",
+          "coding.browser.v1",
+          "skill.actions.v1",
+          "skill.action_jobs.v1",
+          "harness.task_supervision_inspection.v1",
+          "profile.local_create.v1",
+          "profile.local_create.requested_id.v1",
+          "profile.local_create.default.v1",
+          "onboarding.workspace_probe.v1"
+        ],
+        "unsupported": [
+          {
+            "method": "auth/me",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "auth/logout",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/bulk_delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/overview",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/entity",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/toggle",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/status.get",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.command",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_start",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_stop",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "turn/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "timestamp": "2026-09-21T07:18:20.715613Z"
+    }
+  },
+  {
+    "process": "hot",
+    "method": "context/normalization_reported",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "context_state": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generation": 0,
+        "transcript_hash": "sha256:b4e19b879d4d54fe4a167600e4fbbb78df45b3d16d8408717e141981f2427539",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "normalization": {
+        "generation": 0,
+        "input_transcript_hash": "sha256:b4e19b879d4d54fe4a167600e4fbbb78df45b3d16d8408717e141981f2427539",
+        "output_prompt_hash": "sha256:4af278e5450e8fa62b720ba4d0b00a9d1657c469fc77b4293f14a386835e38bd",
+        "model_capability_id": "openai@127/h03-local-fixture",
+        "prompt_message_count": 0,
+        "token_estimate": 1,
+        "repaired_count": 0,
+        "dropped_count": 0,
+        "synthetic_count": 0,
+        "truncated_count": 0
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 1 · 0 tokens · 0s · 0 reflections",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "session/orchestration",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "active": true,
+      "running_agents": 0,
+      "pending_continuations": 0,
+      "phase": "working"
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "response",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_parallel",
+      "tool_name": "read_file",
+      "arguments": {
+        "path": "parallel.txt"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_source",
+      "tool_name": "read_file",
+      "arguments": {
+        "path": "large.txt"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_parallel",
+      "tool_name": "read_file",
+      "success": true,
+      "output_preview": "parallel line 0000\nparallel line 0001\nparallel line 0002\nparallel line 0003\nparallel line 0004\nparallel line 0005\nparallel line 0006\nparallel line 0007\nparallel line 0008\nparallel line 0009\nparallel l...",
+      "duration_ms": 2
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 2,
+        "success": true,
+        "tool": "read_file",
+        "tool_call_id": "call_parallel"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_source",
+      "tool_name": "read_file",
+      "success": true,
+      "output_preview": "ordinary source line 0000\nordinary source line 0001\nordinary source line 0002\nordinary source line 0003\nordinary source line 0004\nordinary source line 0005\nordinary source line 0006\nordinary source li...",
+      "duration_ms": 4
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 4,
+        "success": true,
+        "tool": "read_file",
+        "tool_call_id": "call_source"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 2 · 2 tokens · 1s · 0 reflections",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "response",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_shell",
+      "tool_name": "shell",
+      "arguments": {
+        "command": "sudo -n true; printf 'once\\n' >> executions.txt; cat command.txt; exit 7"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "approval/requested",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "approval_id": "01a0c2d4-8274-7bc0-9b04-2ef395a7e6d7",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_name": "shell",
+      "title": "Approve shell command",
+      "body": "Run command: sudo -n true; printf 'once\\n' >> executions.txt; cat command.txt; exit 7",
+      "approval_kind": "command",
+      "risk": "unspecified",
+      "typed_details": {
+        "kind": "command",
+        "command": {
+          "command_line": "sudo -n true; printf 'once\\n' >> executions.txt; cat command.txt; exit 7",
+          "cwd": "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace",
+          "tool_call_id": "call_shell"
+        }
+      },
+      "render_hints": {
+        "default_decision": "deny",
+        "primary_label": "Approve",
+        "secondary_label": "Deny",
+        "danger": false,
+        "monospace_fields": [
+          "typed_details.command.command_line",
+          "typed_details.command.cwd"
+        ]
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "approval/decided",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "approval_id": "01a0c2d4-8274-7bc0-9b04-2ef395a7e6d7",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "decision": "approve",
+      "scope": "request",
+      "decided_at": "2026-09-21T07:18:22.069685Z",
+      "decided_by": "arc-8288-5095240",
+      "auto_resolved": false
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_shell",
+      "tool_name": "shell",
+      "success": false,
+      "output_preview": "command line 0000\ncommand line 0001\ncommand line 0002\ncommand line 0003\ncommand line 0004\ncommand line 0005\ncommand line 0006\ncommand line 0007\ncommand line 0008\ncommand line 0009\ncommand line 0010\nco...",
+      "duration_ms": 1167
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 1167,
+        "success": false,
+        "tool": "shell",
+        "tool_call_id": "call_shell"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 3 · 4 tokens · 2s · 0 reflections",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "response",
+        "iteration": 3
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_recall_2",
+      "tool_name": "recall",
+      "arguments": {
+        "tool_call_id": "call_source",
+        "stream": "file",
+        "offset": 15600,
+        "limit": 256
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "tool_call_id": "call_recall_2",
+      "tool_name": "recall",
+      "success": true,
+      "output_preview": "{\"output_id\":\"8cc3e58e345f4646b2dc08ca581ee36e\",\"ranges\":[{\"stream\":\"file\",\"start\":15600,\"end\":15856}],\"source_totals\":[[\"file\",28824]],\"coordinates\":\"source_bytes_except_display\",\"capture\":\"complete\"...",
+      "duration_ms": 5
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 5,
+        "success": true,
+        "tool": "recall",
+        "tool_call_id": "call_recall_2"
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 4 · 6 tokens · 2s · 0 reflections",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "response",
+        "iteration": 4
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "metadata": {
+        "kind": "token_cost_update",
+        "token_cost": {
+          "input_tokens": 4,
+          "output_tokens": 4,
+          "model": "h03-local-fixture",
+          "context_window": 128000
+        }
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "thread_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "seq": 9,
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 39
+      },
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "payload": {
+        "type": "user_message",
+        "data": {
+          "text": "Run the M5 recovery fixture."
+        }
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "thread_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "seq": 10,
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 41
+      },
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "payload": {
+        "type": "assistant_persisted",
+        "data": {
+          "text": "M5 fixture finished.",
+          "assistant_segment_id": "1b05db66-5956-42da-bfd1-652327bf8d92:assistant:iteration:4",
+          "meta": {
+            "message_id": "arc-bundle:h03-m5-cold:8:1789975103330777000",
+            "persisted_at": "2026-09-21T07:18:23.330777Z"
+          }
+        }
+      }
+    }
+  },
+  {
+    "process": "hot",
+    "method": "message/delta",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "text": "M5 fixture finished."
+    }
+  },
+  {
+    "process": "hot",
+    "method": "turn/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "1b05db66-5956-42da-bfd1-652327bf8d92",
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 42
+      },
+      "tokens_in": 4,
+      "tokens_out": 4,
+      "cache_hit": 0,
+      "session_result": {
+        "committed_seq": 8,
+        "message_id": "arc-bundle:h03-m5-cold:8:1789975103330777000"
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "session/open",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "active_profile_id": "arc-8288-5095240",
+      "workspace_root": "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace",
+      "context": {
+        "schema": "octos.context.lifecycle.v1",
+        "state": {
+          "session_id": "arc-bundle:h03-m5-cold",
+          "thread_id": null,
+          "generation": 20,
+          "transcript_hash": "sha256:fc2a1e111d8d0a8f637d9223e1b71b5333d949273a1841a3f0a7f862dd415ffb",
+          "last_checkpoint_id": null,
+          "last_compaction_id": null,
+          "token_estimate": 6672,
+          "item_count": 10,
+          "recovery_state": "exact"
+        },
+        "compaction": {
+          "count": 0,
+          "last": null
+        }
+      },
+      "context_state": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generation": 20,
+        "transcript_hash": "sha256:fc2a1e111d8d0a8f637d9223e1b71b5333d949273a1841a3f0a7f862dd415ffb",
+        "item_count": 10,
+        "token_estimate": 6672,
+        "recovery_state": "exact"
+      },
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 43
+      },
+      "panes": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generated_at": "2026-09-21T07:18:24.466903Z",
+        "workspace": {
+          "root": "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace",
+          "readable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace"
+          ],
+          "writable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/h03/m5-evidence/recovery/workspace"
+          ],
+          "contract": [
+            "api octos-app-ui/v1alpha1",
+            "source session/open panes",
+            "feature pane.snapshots.v1"
+          ],
+          "entries": [
+            {
+              "path": ".octos",
+              "label": ".octos",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/active-profile",
+              "label": "active-profile",
+              "depth": 1,
+              "kind": "file",
+              "detail": "16 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240",
+              "label": "arc-8288-5095240",
+              "depth": 1,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/.gitignore",
+              "label": ".gitignore",
+              "depth": 2,
+              "kind": "file",
+              "detail": "191 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers",
+              "label": "context_ledgers",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "label": "arc-bundle%3Ah03-m5-cold.json",
+              "depth": 3,
+              "kind": "file",
+              "detail": "37.2 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output",
+              "label": "tool-output",
+              "depth": 3,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1",
+              "label": "recovery-v1",
+              "depth": 4,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "label": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/7285efa963b7393d83f3bdf39d58b72a0dee0e26516bc89b7c903c2b5a7c5023.text",
+              "label": "7285efa963b7393d83f3bdf39d58b72a0dee0e26516bc89b7c903c2b5a7c5023.text",
+              "depth": 5,
+              "kind": "file",
+              "detail": "5.6 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c.manifest",
+              "label": "99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c.manifest",
+              "depth": 5,
+              "kind": "file",
+              "detail": "1.4 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/9bc26a820068133dea245a51a9a9bca9bd772f97da7347fb57829ecb4fffbfc0.text",
+              "label": "9bc26a820068133dea245a51a9a9bca9bd772f97da7347fb57829ecb4fffbfc0.text",
+              "depth": 5,
+              "kind": "file",
+              "detail": "42 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/afe43dff10b6eca774e20677b4bf71488637bc055daf3405f0b98aeb8b58ccbe.text",
+              "label": "afe43dff10b6eca774e20677b4bf71488637bc055daf3405f0b98aeb8b58ccbe.text",
+              "depth": 5,
+              "kind": "file",
+              "detail": "15.8 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "label": "catalog.lock",
+              "depth": 5,
+              "kind": "file",
+              "detail": "0 B"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/ce5001678e7b06cf6bd759af683a519bb5c25b2f2c23975f393e54405faded75.text",
+              "label": "ce5001678e7b06cf6bd759af683a519bb5c25b2f2c23975f393e54405faded75.text",
+              "depth": 5,
+              "kind": "file",
+              "detail": "28.1 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78.manifest",
+              "label": "df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78.manifest",
+              "depth": 5,
+              "kind": "file",
+              "detail": "1.6 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728.manifest",
+              "label": "e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728.manifest",
+              "depth": 5,
+              "kind": "file",
+              "detail": "1.4 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/index.json",
+              "label": "index.json",
+              "depth": 5,
+              "kind": "file",
+              "detail": "1.1 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/sessions",
+              "label": "sessions",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/sessions/arc-bundle%3Ah03-m5-cold.jsonl",
+              "label": "arc-bundle%3Ah03-m5-cold.jsonl",
+              "depth": 3,
+              "kind": "file",
+              "detail": "23.3 KB"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/users",
+              "label": "users",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/users/arc-bundle%3Ah03-m5-cold",
+              "label": "arc-bundle%3Ah03-m5-cold",
+              "depth": 3,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-8288-5095240/users/arc-bundle%3Ah03-m5-cold/sessions",
+              "label": "sessions",
+              "depth": 4,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos-workspace.toml",
+              "label": ".octos-workspace.toml",
+              "depth": 0,
+              "kind": "file",
+              "detail": "4.7 KB"
+            },
+            {
+              "path": "command.txt",
+              "label": "command.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "15.8 KB"
+            },
+            {
+              "path": "executions.txt",
+              "label": "executions.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "5 B"
+            },
+            {
+              "path": "large.txt",
+              "label": "large.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "28.1 KB"
+            },
+            {
+              "path": "parallel.txt",
+              "label": "parallel.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "5.6 KB"
+            },
+            {
+              "path": "skill-output",
+              "label": "skill-output",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": "tmp",
+              "label": "tmp",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            }
+          ]
+        },
+        "artifacts": {
+          "items": [
+            {
+              "title": "arc-bundle%3Ah03-m5-cold.json",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/arc-bundle%3Ah03-m5-cold.json",
+              "source": "workspace",
+              "status": "37.2 KB",
+              "size_bytes": 38143,
+              "updated_at": "2026-09-21T07:18:24.247164919Z"
+            },
+            {
+              "title": "active-profile",
+              "kind": "file",
+              "path": ".octos/active-profile",
+              "uri": ".octos/active-profile",
+              "source": "workspace",
+              "status": "16 B",
+              "size_bytes": 16,
+              "updated_at": "2026-09-21T07:18:24.211121418Z"
+            },
+            {
+              "title": "arc-bundle%3Ah03-m5-cold.jsonl",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/sessions/arc-bundle%3Ah03-m5-cold.jsonl",
+              "uri": ".octos/arc-8288-5095240/sessions/arc-bundle%3Ah03-m5-cold.jsonl",
+              "source": "workspace",
+              "status": "23.3 KB",
+              "size_bytes": 23868,
+              "updated_at": "2026-09-21T07:18:23.678555126Z"
+            },
+            {
+              "title": "index.json",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/index.json",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/index.json",
+              "source": "workspace",
+              "status": "1.1 KB",
+              "size_bytes": 1156,
+              "updated_at": "2026-09-21T07:18:23.217741880Z"
+            },
+            {
+              "title": "df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78.manifest",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78.manifest",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78.manifest",
+              "source": "workspace",
+              "status": "1.6 KB",
+              "size_bytes": 1612,
+              "updated_at": "2026-09-21T07:18:23.209632023Z"
+            },
+            {
+              "title": "9bc26a820068133dea245a51a9a9bca9bd772f97da7347fb57829ecb4fffbfc0.text",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/9bc26a820068133dea245a51a9a9bca9bd772f97da7347fb57829ecb4fffbfc0.text",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/9bc26a820068133dea245a51a9a9bca9bd772f97da7347fb57829ecb4fffbfc0.text",
+              "source": "workspace",
+              "status": "42 B",
+              "size_bytes": 42,
+              "updated_at": "2026-09-21T07:18:23.201635749Z"
+            },
+            {
+              "title": "afe43dff10b6eca774e20677b4bf71488637bc055daf3405f0b98aeb8b58ccbe.text",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/afe43dff10b6eca774e20677b4bf71488637bc055daf3405f0b98aeb8b58ccbe.text",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/afe43dff10b6eca774e20677b4bf71488637bc055daf3405f0b98aeb8b58ccbe.text",
+              "source": "workspace",
+              "status": "15.8 KB",
+              "size_bytes": 16200,
+              "updated_at": "2026-09-21T07:18:23.193424226Z"
+            },
+            {
+              "title": "executions.txt",
+              "kind": "file",
+              "path": "executions.txt",
+              "uri": "executions.txt",
+              "source": "workspace",
+              "status": "5 B",
+              "size_bytes": 5,
+              "updated_at": "2026-09-21T07:18:23.096297655Z"
+            },
+            {
+              "title": "e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728.manifest",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728.manifest",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728.manifest",
+              "source": "workspace",
+              "status": "1.4 KB",
+              "size_bytes": 1441,
+              "updated_at": "2026-09-21T07:18:21.953557414Z"
+            },
+            {
+              "title": "ce5001678e7b06cf6bd759af683a519bb5c25b2f2c23975f393e54405faded75.text",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/ce5001678e7b06cf6bd759af683a519bb5c25b2f2c23975f393e54405faded75.text",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/ce5001678e7b06cf6bd759af683a519bb5c25b2f2c23975f393e54405faded75.text",
+              "source": "workspace",
+              "status": "28.1 KB",
+              "size_bytes": 28824,
+              "updated_at": "2026-09-21T07:18:21.945261849Z"
+            },
+            {
+              "title": "99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c.manifest",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c.manifest",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c.manifest",
+              "source": "workspace",
+              "status": "1.4 KB",
+              "size_bytes": 1441,
+              "updated_at": "2026-09-21T07:18:21.902861820Z"
+            },
+            {
+              "title": "7285efa963b7393d83f3bdf39d58b72a0dee0e26516bc89b7c903c2b5a7c5023.text",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/7285efa963b7393d83f3bdf39d58b72a0dee0e26516bc89b7c903c2b5a7c5023.text",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/7285efa963b7393d83f3bdf39d58b72a0dee0e26516bc89b7c903c2b5a7c5023.text",
+              "source": "workspace",
+              "status": "5.6 KB",
+              "size_bytes": 5700,
+              "updated_at": "2026-09-21T07:18:21.893797049Z"
+            },
+            {
+              "title": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450.lease",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T07:18:20.472082566Z"
+            },
+            {
+              "title": "catalog.lock",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "uri": ".octos/arc-8288-5095240/context_ledgers/tool-output/recovery-v1/catalog.lock",
+              "source": "workspace",
+              "status": "0 B",
+              "size_bytes": 0,
+              "updated_at": "2026-09-21T07:18:20.471562234Z"
+            },
+            {
+              "title": ".gitignore",
+              "kind": "file",
+              "path": ".octos/arc-8288-5095240/.gitignore",
+              "uri": ".octos/arc-8288-5095240/.gitignore",
+              "source": "workspace",
+              "status": "191 B",
+              "size_bytes": 191,
+              "updated_at": "2026-09-21T07:18:20.443861463Z"
+            },
+            {
+              "title": ".octos-workspace.toml",
+              "kind": "file",
+              "path": ".octos-workspace.toml",
+              "uri": ".octos-workspace.toml",
+              "source": "workspace",
+              "status": "4.7 KB",
+              "size_bytes": 4822,
+              "updated_at": "2026-09-21T07:18:20.441674843Z"
+            },
+            {
+              "title": "command.txt",
+              "kind": "file",
+              "path": "command.txt",
+              "uri": "command.txt",
+              "source": "workspace",
+              "status": "15.8 KB",
+              "size_bytes": 16200,
+              "updated_at": "2026-09-21T07:18:11.845770467Z"
+            },
+            {
+              "title": "parallel.txt",
+              "kind": "file",
+              "path": "parallel.txt",
+              "uri": "parallel.txt",
+              "source": "workspace",
+              "status": "5.6 KB",
+              "size_bytes": 5700,
+              "updated_at": "2026-09-21T07:18:11.845508592Z"
+            },
+            {
+              "title": "large.txt",
+              "kind": "file",
+              "path": "large.txt",
+              "uri": "large.txt",
+              "source": "workspace",
+              "status": "28.1 KB",
+              "size_bytes": 28824,
+              "updated_at": "2026-09-21T07:18:11.845236135Z"
+            }
+          ]
+        },
+        "git": {
+          "repo_root": "/Users/bytedance/arc-bench/octos-arc-analysis",
+          "branch": "feat/output-recovery",
+          "head": "5ff99df",
+          "clean": false,
+          "status": [
+            {
+              "code": "??",
+              "path": "h03/m5-evidence/",
+              "detail": "untracked"
+            }
+          ],
+          "history": [
+            {
+              "commit": "5ff99df",
+              "summary": "docs: 记录 M4 命令输出恢复验证"
+            },
+            {
+              "commit": "c9739a5",
+              "summary": "docs: 记录 M3 文件分页与凭据验证"
+            },
+            {
+              "commit": "b7dbf8f",
+              "summary": "docs: 记录 M2 输出恢复实现与验证"
+            },
+            {
+              "commit": "e011184",
+              "summary": "docs: 记录输出来源与预算展示的实现和验证"
+            },
+            {
+              "commit": "aca97e1",
+              "summary": "docs: 完成工具输出恢复的基线核验与边界记录"
+            },
+            {
+              "commit": "1bdb012",
+              "summary": "docs: 将分页恢复与搜索合并为两组对照"
+            },
+            {
+              "commit": "bab0505",
+              "summary": "docs: 添加文件分页与原文恢复实施清单"
+            },
+            {
+              "commit": "eff2f0b",
+              "summary": "docs: 调研文件分页、截断与原文恢复方案"
+            },
+            {
+              "commit": "f32ac07",
+              "summary": "Merge pull request #2 from woshuoduijiushidui/docs/h01-evidence-experiment"
+            },
+            {
+              "commit": "9fc2d4e",
+              "summary": "docs(h02): align variant c branch name"
+            },
+            {
+              "commit": "15530e5",
+              "summary": "docs(h02): record milestone 7 verification"
+            },
+            {
+              "commit": "cdf2f7c",
+              "summary": "docs(h02): record milestone 6 variant b freeze"
+            }
+          ]
+        }
+      },
+      "capabilities": {
+        "version": {
+          "protocol": "octos-ui/v1alpha1",
+          "schema_version": 1,
+          "jsonrpc": "2.0"
+        },
+        "capabilities_schema_version": 2,
+        "supported_methods": [
+          "session/open",
+          "turn/start",
+          "turn/interrupt",
+          "approval/respond",
+          "approval/scopes/list",
+          "session/btw",
+          "user_question/respond",
+          "permission/profile/list",
+          "permission/profile/set",
+          "diff/preview/get",
+          "task/list",
+          "task/cancel",
+          "task/restart_from_node",
+          "task/output/read",
+          "session/hydrate",
+          "session/rollback",
+          "session/fork",
+          "thread/graph/get",
+          "turn/state/get",
+          "agent/list",
+          "agent/status/read",
+          "agent/output/read",
+          "agent/artifact/list",
+          "agent/artifact/read",
+          "task/artifact/list",
+          "task/artifact/read",
+          "agent/interrupt",
+          "agent/close",
+          "session/goal/get",
+          "session/goal/set",
+          "session/goal/clear",
+          "session/goal/operator_transition",
+          "loop/create",
+          "loop/list",
+          "loop/delete",
+          "loop/pause",
+          "loop/resume",
+          "loop/fire_now",
+          "monitor/create",
+          "monitor/list",
+          "monitor/pause",
+          "monitor/resume",
+          "monitor/delete",
+          "review/start",
+          "session/list",
+          "session/snapshot",
+          "session/messages_page",
+          "session/status.get",
+          "session/files.list",
+          "session/tasks.list",
+          "session/workspace.get",
+          "session/title.set",
+          "session/delete",
+          "system/status.get",
+          "router/set_mode",
+          "router/get_metrics",
+          "launch/resolve",
+          "client_hello",
+          "config/capabilities/list",
+          "session/status/read",
+          "profile/local/create",
+          "profile/llm/list",
+          "profile/llm/select",
+          "mcp/status/list",
+          "tool/status/list",
+          "auth/status",
+          "auth/send_code",
+          "auth/verify",
+          "profile/llm/catalog",
+          "profile/llm/upsert",
+          "profile/llm/delete",
+          "profile/llm/test",
+          "profile/llm/fetch_models",
+          "profile/sub_providers/list",
+          "profile/sub_providers/upsert",
+          "profile/sub_providers/remove",
+          "snapshot/list",
+          "snapshot/restore",
+          "peer/prepare",
+          "peer/gather",
+          "turn/steer",
+          "profile/skills/list",
+          "profile/skills/registry/search",
+          "profile/skills/install",
+          "profile/skills/remove",
+          "skill/action/list",
+          "skill/action/invoke",
+          "skill/action/job/list",
+          "skill/action/job/read",
+          "onboarding/workspace_probe",
+          "session/compact",
+          "session/compact/mode/set",
+          "voice/admit",
+          "voice/commit_admission"
+        ],
+        "supported_notifications": [
+          "session/open",
+          "turn/started",
+          "turn/completed",
+          "turn/error",
+          "message/delta",
+          "message/reasoning_delta",
+          "tool/started",
+          "tool/progress",
+          "tool/completed",
+          "approval/requested",
+          "approval/auto_resolved",
+          "approval/decided",
+          "approval/cancelled",
+          "user_question/requested",
+          "task/updated",
+          "plan/updated",
+          "task/output/delta",
+          "progress/updated",
+          "warning",
+          "protocol/replay_lossy",
+          "turn/spawn_complete",
+          "file/attached",
+          "visual/generating",
+          "visual/succeeded",
+          "visual/failed",
+          "voice/exit",
+          "skill/action/job/updated",
+          "voice/audio_chunk",
+          "projection/envelope",
+          "session/event",
+          "router/status",
+          "router/failover",
+          "queue/state",
+          "agent/updated",
+          "agent/output/delta",
+          "agent/artifact/updated",
+          "session/goal/updated",
+          "session/goal/cleared",
+          "loop/updated",
+          "loop/fired",
+          "loop/completed",
+          "monitor/fired",
+          "monitor/updated",
+          "monitor/expired",
+          "context/compaction_completed",
+          "context/compaction_started",
+          "context/normalization_reported",
+          "peer/staged",
+          "peer/closed",
+          "background/activity"
+        ],
+        "supported_features": [
+          "approval.typed.v1",
+          "pane.snapshots.v1",
+          "session.workspace_cwd.v1",
+          "session.sandbox.v1",
+          "harness.task_control.v1",
+          "state.session_hydrate.v1",
+          "state.thread_graph.v1",
+          "state.turn_state_get.v1",
+          "event.spawn_complete.v1",
+          "event.file_attached.v1",
+          "auxiliary.rest_to_ws.v1",
+          "coding.autonomy.v1",
+          "coding.agent_control.v1",
+          "coding.goal_runtime.v1",
+          "coding.loop_runtime.v1",
+          "coding.monitor_runtime.v1",
+          "review.start.v1",
+          "context.lifecycle.v1",
+          "harness.task_artifacts.v1",
+          "user_question.v1",
+          "event.voice_audio.v1",
+          "plan.todos.v1",
+          "event.background_activity.v1",
+          "event.turn_steer_dropped.v1",
+          "permission.profile.v1",
+          "voice.asr_admission.v1",
+          "runtime.policy_stamp.v1",
+          "coding.tool_contract.v1",
+          "coding.image_view.v1",
+          "coding.dynamic_tool_search.v1",
+          "coding.bash.v1",
+          "coding.delegate.v1",
+          "coding.browser.v1",
+          "skill.actions.v1",
+          "skill.action_jobs.v1",
+          "harness.task_supervision_inspection.v1",
+          "profile.local_create.v1",
+          "profile.local_create.requested_id.v1",
+          "profile.local_create.default.v1",
+          "onboarding.workspace_probe.v1"
+        ],
+        "unsupported": [
+          {
+            "method": "auth/me",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "auth/logout",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/bulk_delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/overview",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/entity",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/toggle",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/status.get",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.command",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_start",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_stop",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "turn/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "timestamp": "2026-09-21T07:18:24.470439Z"
+    }
+  },
+  {
+    "process": "cold",
+    "method": "context/normalization_reported",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "context_state": {
+        "session_id": "arc-bundle:h03-m5-cold",
+        "generation": 20,
+        "transcript_hash": "sha256:fc2a1e111d8d0a8f637d9223e1b71b5333d949273a1841a3f0a7f862dd415ffb",
+        "item_count": 10,
+        "token_estimate": 6672,
+        "recovery_state": "exact"
+      },
+      "normalization": {
+        "generation": 20,
+        "input_transcript_hash": "sha256:fc2a1e111d8d0a8f637d9223e1b71b5333d949273a1841a3f0a7f862dd415ffb",
+        "output_prompt_hash": "sha256:006872c3aed4679ee525439e0a77b232765b53afe9a535f4e248bcfc0b21b93a",
+        "model_capability_id": "openai@127/h03-local-fixture",
+        "prompt_message_count": 9,
+        "token_estimate": 5240,
+        "repaired_count": 0,
+        "dropped_count": 0,
+        "synthetic_count": 0,
+        "truncated_count": 0
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 1 · 0 tokens · 0s · 0 reflections",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "response",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "tool_call_id": "call_recall_4",
+      "tool_name": "recall",
+      "arguments": {
+        "tool_call_id": "call_source",
+        "stream": "file",
+        "offset": 15600,
+        "limit": 256
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "tool_call_id": "call_recall_4",
+      "tool_name": "recall",
+      "success": true,
+      "output_preview": "{\"output_id\":\"8cc3e58e345f4646b2dc08ca581ee36e\",\"ranges\":[{\"stream\":\"file\",\"start\":15600,\"end\":15856}],\"source_totals\":[[\"file\",28824]],\"coordinates\":\"source_bytes_except_display\",\"capture\":\"complete\"...",
+      "duration_ms": 4
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 4,
+        "success": true,
+        "tool": "recall",
+        "tool_call_id": "call_recall_4"
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 2 · 2 tokens · 0s · 0 reflections",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "response",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "metadata": {
+        "kind": "token_cost_update",
+        "token_cost": {
+          "input_tokens": 6,
+          "output_tokens": 6,
+          "model": "h03-local-fixture",
+          "context_window": 128000
+        }
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "thread_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "seq": 3,
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 57
+      },
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "payload": {
+        "type": "user_message",
+        "data": {
+          "text": "Recover the saved source without reading it again."
+        }
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "thread_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "seq": 4,
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 59
+      },
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "payload": {
+        "type": "assistant_persisted",
+        "data": {
+          "text": "M5 fixture finished.",
+          "assistant_segment_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099:assistant:iteration:2",
+          "meta": {
+            "message_id": "arc-bundle:h03-m5-cold:12:1789975104730191000",
+            "persisted_at": "2026-09-21T07:18:24.730191Z"
+          }
+        }
+      }
+    }
+  },
+  {
+    "process": "cold",
+    "method": "message/delta",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "text": "M5 fixture finished."
+    }
+  },
+  {
+    "process": "cold",
+    "method": "turn/completed",
+    "params": {
+      "session_id": "arc-bundle:h03-m5-cold",
+      "turn_id": "3fd94d71-97ac-4f3a-93dd-076a1bba0099",
+      "cursor": {
+        "stream": "arc-bundle:h03-m5-cold\u0000~cwd-37a549c5aa010f4c",
+        "seq": 60
+      },
+      "tokens_in": 2,
+      "tokens_out": 2,
+      "cache_hit": 0,
+      "session_result": {
+        "committed_seq": 12,
+        "message_id": "arc-bundle:h03-m5-cold:12:1789975104730191000"
+      }
+    }
+  }
+]
