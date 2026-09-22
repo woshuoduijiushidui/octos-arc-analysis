@@ -319,19 +319,21 @@ WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-f
 
 **依赖：**M3。**目标：**先只允许一次真实修复，关闭端到端缺口。
 
-- [ ] MCP 在 H06 on 时使用 M2 的 completion gate 调用 gated `run_task`；off 时继续旧入口。
-- [ ] 首版可修类型只包括：required validator `Fail`、artifact missing、可安全修复的位置问题、JSON/schema invalid。
-- [ ] `Timeout/Error`、配置/provider/sandbox、取消、budget 和非法输入保持 terminal，不触发第二次模型请求。
-- [ ] 真实 ticket 包含失败 gate、期望 artifact/schema 位置、短 reason/stderr、H03 evidence ref 和已通过 gate 摘要。
-- [ ] ticket 不包含完整原任务、完整 schema、完整 stdout/stderr、密钥或绝对用户目录；模型已有的不可变合同不重复发送。
-- [ ] Agent 修复后重新运行全部 hard validators、artifact location 和 schema；只有同一候选 receipt 全部通过才 Ready。
-- [ ] 最终 `McpSessionOutcome.validator_results`、artifact_path/content、cost 和 error 来自最终候选，不混用第一次失败数据。
-- [ ] 中间失败不向 observer 发布 terminal Failed；最终只发布一次 Ready/Failed/Cancelled。
-- [ ] 用 `ScriptedLlmProvider` 完成真实链路：首个 EndTurn 触发 missing/schema/validator Fail，第二个响应通过文件工具修复，再次 EndTurn 后 Ready。
-- [ ] 在最终 provider 请求中断言 RepairTicket 存在、原任务未重复、失败证据有界、工具权限未变化。
-- [ ] 加负例：同样脚本在 H06 off 时仍一次请求后 Failed，证明 A/B 开关有效。
+- [x] MCP 在 H06 on 时使用 M2 的 completion gate 调用 gated `run_task`；off 时继续旧入口。
+- [x] 首版可修类型只包括：required validator `Fail`、artifact missing、可安全修复的位置问题、JSON/schema invalid。
+- [x] `Timeout/Error`、配置/provider/sandbox、取消、budget 和非法输入保持 terminal，不触发第二次模型请求。
+- [x] 真实 ticket 包含失败 gate、期望 artifact/schema 位置、短 reason/stderr、H03 evidence ref 和已通过 gate 摘要。
+- [x] ticket 不包含完整原任务、完整 schema、完整 stdout/stderr、密钥或绝对用户目录；模型已有的不可变合同不重复发送。
+- [x] Agent 修复后重新运行全部 hard validators、artifact location 和 schema；只有同一候选 receipt 全部通过才 Ready。
+- [x] 最终 `McpSessionOutcome.validator_results`、artifact_path/content、cost 和 error 来自最终候选，不混用第一次失败数据。
+- [x] 中间失败不向 observer 发布 terminal Failed；最终只发布一次 Ready/Failed/Cancelled。
+- [x] 用 `ScriptedLlmProvider` 完成真实链路：首个 EndTurn 触发 missing/schema/validator Fail，第二个响应通过文件工具修复，再次 EndTurn 后 Ready。
+- [x] 在最终 provider 请求中断言 RepairTicket 存在、原任务未重复、失败证据有界、工具权限未变化。
+- [x] 加负例：同样脚本在 H06 off 时仍一次请求后 Failed，证明 A/B 开关有效。
 
 **完成条件：**至少 missing artifact、schema invalid 和 required validator Fail 各有一个同任务单轮修复成功测试；不可修失败零额外模型请求。
+
+后续接线注意：生产入口以 `octos mcp-serve --h06-completion-repair` 开启，默认关闭；M4 最多发送一张 ticket。已存在文件的覆盖受文件版本保护，模型应先用 `read_file` 观察当前内容再用 `write_file` 修复。M4 不伪造 H03 引用：只有 invocation-local store 已确认可 recall 时 ticket 才带引用；本轮 validator/artifact 检查未产生可验证的 H03 引用，因此票据明确标记 `recoverable=false`，短诊断采用固定安全文案，原始 stderr 不进入模型上下文。
 
 ## 9. Milestone M5：两轮上限、进展判断、预算和候选保护
 
