@@ -1,6 +1,6 @@
 # H06 实施 Milestone：验证失败后聚焦修复
 
-- 状态：M0-M8 待实施
+- 状态：M1 已完成；M0 的官方实验冻结项及 M2-M8 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H06 竞品调研](./h06-verification-failure-focused-repair-competitor-research.md)
 - 关联约束：[H03 实施清单](../h03/h03-implementation-milestone.md)、[H05 实施清单](../h05/h05-implementation-milestone.md)、[H07 竞品调研](../h07/h07-no-progress-strategy-switch-competitor-research.md)、[H08 竞品调研](../h08/h08-execution-budget-competitor-research.md)、[优化总表](../harness-optimization-table.md)
@@ -60,7 +60,7 @@ messages，不算完成 H06。
 7. 不新增通用 hook/plugin 系统，不让模型自评通过，不通过第二个 LLM verifier 判断确定性 validator 结果。
 8. 每个 Milestone 完成后做本地 Git 提交并记录 SHA；不推送远程、不创建 PR，除非用户另行要求。
 9. 不修改官方需求、测试、response schema、workspace policy、required tier、模型、reasoning、总预算或超时来换取通过。
-10. 真实环境运行前执行 `source ~/.zshrc`。缺少 `ARCBENCH_API_KEY` 或 provider 配置时，明确记录缺失项，不把未运行写成失败或零成本。
+10. 真实环境运行前加载当前 shell 的配置（WSL Bash 为交互式 `~/.bashrc`，zsh 为 `~/.zshrc`）。缺少 `ARCBENCH_API_KEY` 或 provider 配置时，明确记录缺失项，不把未运行写成失败或零成本。
 
 | Milestone | 主要产出 | 对应分组 |
 | --- | --- | --- |
@@ -260,17 +260,21 @@ rollback_unavailable
 
 **依赖：**M0。**目标：**先建立纯数据合同，不改变 Agent 或 MCP 控制流。
 
-- [ ] 在真正共享的最小模块定义 candidate、check outcome、decision、receipt、ticket 和 terminal reason；复用 `ValidatorOutcome`，不复制其状态/required/evidence 字段。
-- [ ] 为 artifact exists/location/text/JSON/schema 建立 typed check kind；不再依赖 `artifact_schema_invalid:` 等英文前缀做内部分支。
-- [ ] 实现纯 classifier：hard `Fail` 可修；optional 不阻塞；`Timeout/Error` terminal；混合 batch 采用最严格结果。
-- [ ] 实现稳定 failure signature，过滤 duration、timestamp、随机路径后缀和无关顺序。
-- [ ] 实现有界、确定性的 RepairTicket renderer；输出包含禁止修改测试/policy/schema 的约束。
-- [ ] 大 evidence 只给 H03 引用和短摘要；引用不可用时明确 `recoverable=false`，不虚构路径。
-- [ ] ticket 记录 candidate revision，旧 ticket 不能应用到新候选。
-- [ ] 添加纯单测：单/多 failure、optional、timeout/error、稳定排序、签名去噪、Unicode、长路径、超大 stderr、恶意日志文本和极小预算。
-- [ ] 证明 renderer 不产生额外 provider 请求，且相同输入字节级稳定。
+- [x] 在真正共享的最小模块定义 candidate、check outcome、decision、receipt、ticket 和 terminal reason；复用 `ValidatorOutcome`，不复制其状态/required/evidence 字段。
+- [x] 为 artifact exists/location/text/JSON/schema 建立 typed check kind；不再依赖 `artifact_schema_invalid:` 等英文前缀做内部分支。
+- [x] 实现纯 classifier：hard `Fail` 可修；optional 不阻塞；`Timeout/Error` terminal；混合 batch 采用最严格结果。
+- [x] 实现稳定 failure signature，过滤 duration、timestamp、随机路径后缀和无关顺序。
+- [x] 实现有界、确定性的 RepairTicket renderer；输出包含禁止修改测试/policy/schema 的约束。
+- [x] 大 evidence 只给 H03 引用和短摘要；引用不可用时明确 `recoverable=false`，不虚构路径。
+- [x] ticket 记录 candidate revision，旧 ticket 不能应用到新候选。
+- [x] 添加纯单测：单/多 failure、optional、timeout/error、稳定排序、签名去噪、Unicode、长路径、超大 stderr、恶意日志文本和极小预算。
+- [x] 证明 renderer 不产生额外 provider 请求，且相同输入字节级稳定。
 
 **完成条件：**任意现有 validator/artifact 结果都能得到唯一、typed、有界的 decision；尚未启用修复，生产行为与 A 相同。
+
+后续接线注意：M2-M4 必须从同一次检查构造 `CompletionReceipt` 的 task ID、candidate revision 和 policy version；工作区产生新候选时推进 revision。只有 invocation-local H03 store 确认可 recall 后才填入 `RecoveryReference`，否则票据保留 `recoverable=false`。`render(&self, budget) -> String` 是同步纯函数，没有 provider 句柄或 I/O；真实 MCP gate 与模型续行留待 M2-M4。
+
+WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-flash`、`OPENAI_BASE_URL=https://api.arc-bench.com/v1`、`OCTOS_ARC_REASONING=auto`。本次 M1 未读取密钥或发起真实模型请求；M7 前仍需核验真实密钥、官方任务的 MCP 入口、response schema 与总请求预算。
 
 ## 6. Milestone M2：抽取 MCP completion gate，保持 A 行为
 
@@ -414,7 +418,7 @@ rollback_unavailable
 
 - [ ] M6 冻结的完整 B 已通过确定性门槛，且用户确认可以运行付费真实模型实验。
 - [ ] 证明所选官方任务实际经过 H06 的 MCP `run_octos_session` 路径；现有 `arc/main.py` 使用 stdio/OUP，直接运行它不能测出 MCP-only H06 的效果。
-- [ ] 执行 `source ~/.zshrc`，确认 `ARCBENCH_API_KEY`、provider endpoint、`OCTOS_BIN`、二进制 SHA-256、端口和隔离目录。
+- [ ] 按运行 shell 加载环境（WSL 交互式 Bash 使用 `~/.bashrc`，zsh 使用 `~/.zshrc`），确认 `ARCBENCH_API_KEY`、provider endpoint、`OCTOS_BIN`、二进制 SHA-256、端口和隔离目录。
 - [ ] A/B 使用相同需求、测试、response schema、workspace policy、模型、reasoning、工具权限、sandbox、请求/token/iteration 预算和超时。
 - [ ] 每个 task×variant 使用独立 workspace/data/session；固定重复次数，建议至少 3 次并交错顺序。
 - [ ] 预注册任务类别：一次通过、构建失败、artifact missing、schema invalid、多 gate failure、不可修基础设施失败和容易回归的已有工程。
