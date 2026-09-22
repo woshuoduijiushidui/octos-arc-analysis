@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0-M1 已完成；M2-M9 待实施
+- 状态：M0-M2 已完成；M3-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -278,17 +278,17 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 **依赖：**M1。**目标：**先修复最明确、无需模型判断的重复调用。
 
-- [ ] 将 exact 同步调用的结果历史与 pre-call 检查统一：第 2 个等价结果附提示，第 3 次相同调用执行前拒绝。
-- [ ] 更新旧注释、常量和测试，不能继续声称“第 3 次软提示、第 4 次硬停”。
-- [ ] conversation 与 `run_task` 调用同一 `before_call`/`after_result` 语义；不得只复制一段 if 到第二个 loop。
-- [ ] exact 拒绝必须保留合法 tool call/result 配对或在写入 assistant tool-call 历史前终止；不能留下协议残缺消息。
-- [ ] 多工具 batch 中命中拒绝时保持当前批处理安全语义，并明确其他 call 是否执行；测试不能只覆盖单 call。
-- [ ] 保留 cycle length 2/3 的现有两阶段 warning/terminal 行为，除非 M3 用更强 typed key 明确接管。
-- [ ] 保留 shell spiral 的既有恢复优先级、verifier 明确豁免和 peer async 特例；任何变化必须有专项测试。
-- [ ] exact hint 经过 H03 最终预算，仍保留 read/recall 的范围、版本和恢复参数。
-- [ ] H07 off 时旧 threshold、消息和工具执行次数与 A 一致。
-- [ ] fake provider 测试同时断言 LLM 请求数、工具实际执行数、最终消息和 token 计量。
-- [ ] 本地提交并记录 M2 证据。
+- [x] 将 exact 同步调用的结果历史与 pre-call 检查统一：第 2 个等价结果附提示，第 3 次相同调用执行前拒绝。
+- [x] 更新旧注释、常量和测试，不能继续声称“第 3 次软提示、第 4 次硬停”。
+- [x] conversation 与 `run_task` 调用同一 `before_call`/`after_result` 语义；不得只复制一段 if 到第二个 loop。
+- [x] exact 拒绝必须保留合法 tool call/result 配对或在写入 assistant tool-call 历史前终止；不能留下协议残缺消息。
+- [x] 多工具 batch 中命中拒绝时保持当前批处理安全语义，并明确其他 call 是否执行；测试不能只覆盖单 call。
+- [x] 保留 cycle length 2/3 的现有两阶段 warning/terminal 行为，除非 M3 用更强 typed key 明确接管。
+- [x] 保留 shell spiral 的既有恢复优先级、verifier 明确豁免和 peer async 特例；任何变化必须有专项测试。
+- [x] exact hint 经过 H03 最终预算，仍保留 read/recall 的范围、版本和恢复参数。
+- [x] H07 off 时旧 threshold、消息和工具执行次数与 A 一致。
+- [x] fake provider 测试同时断言 LLM 请求数、工具实际执行数、最终消息和 token 计量。
+- [x] 本地提交并记录 M2 证据：代码 `c658ad0a6544c49c231143708bac3ae09cfd284d`；[验证记录](./h07-m2-evidence.md)。
 
 **完成条件：**B 下两个 loop 的 exact 同步重复都只执行两次；提示先于拒绝到达模型，旧循环和特殊路径无回归。
 
