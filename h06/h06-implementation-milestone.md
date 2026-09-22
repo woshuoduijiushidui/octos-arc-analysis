@@ -1,6 +1,6 @@
 # H06 实施 Milestone：验证失败后聚焦修复
 
-- 状态：M3 已完成；M0 的官方实验冻结项及 M4-M8 待实施
+- 状态：M0-M6 的实现与确定性验收已完成；M0 官方实验冻结项随 M7 执行，M7-M8 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H06 竞品调研](./h06-verification-failure-focused-repair-competitor-research.md)
 - 关联约束：[H03 实施清单](../h03/h03-implementation-milestone.md)、[H05 实施清单](../h05/h05-implementation-milestone.md)、[H07 竞品调研](../h07/h07-no-progress-strategy-switch-competitor-research.md)、[H08 竞品调研](../h08/h08-execution-budget-competitor-research.md)、[优化总表](../harness-optimization-table.md)
@@ -379,11 +379,11 @@ M5 候选保护选择：B 仍默认关闭；显式 `--h06-completion-repair` 仅
 
 ### 10.1 最小观测
 
-- [ ] 每次 gate 记录 task/candidate ID、round、decision、失败类别、hard pass/fail 数、signature 和 gate duration。
-- [ ] 每次修复记录 ticket 可见字节、evidence 引用数、provider usage、文件是否变化和最终停止原因。
-- [ ] 记录首次验证到最终 Ready 的转化、第一/第二轮成功、无变化、同签名、回归和 restore 结果。
-- [ ] 普通日志不输出完整源码、完整 schema、完整 stderr、凭据或模型 reasoning。
-- [ ] 观测写入失败不改变 gate decision，也不能把真实 failure 改成 Ready。
+- [x] 每次 gate 记录 task/candidate ID、round、decision、失败类别、hard pass/fail 数、signature 和 gate duration。
+- [x] 每次修复记录 ticket 可见字节、evidence 引用数、provider usage、文件是否变化和最终停止原因。
+- [x] 记录首次验证到最终 Ready 的转化、第一/第二轮成功、无变化、同签名、回归和 restore 结果。
+- [x] 普通日志不输出完整源码、完整 schema、完整 stderr、凭据或模型 reasoning。
+- [x] 观测写入失败不改变 gate decision，也不能把真实 failure 改成 Ready。
 
 ### 10.2 必须覆盖的验收矩阵
 
@@ -414,13 +414,24 @@ M5 候选保护选择：B 仍默认关闭；显式 `--h06-completion-repair` 仅
 | T23 | H06 off、legacy prompt、普通 `run_task`、spawn | A 行为和公共 API 兼容 |
 | T24 | best snapshot/restore 或明确受限模式 | 最终磁盘版本与最终 receipt 对应 |
 
-- [ ] T01-T24 均有自动化测试或有证据的“不适用”；T01-T16、T20-T23 不能标不适用。
-- [ ] T02-T04/T12/T14 至少通过真实 `RealSessionDispatch + ScriptedLlmProvider` 捕获最终 requests，不以纯 helper 单测代替。
-- [ ] 回归 validator、workspace contract、Agent loop、MCP server wire format、H02/H03/H05 受影响路径。
-- [ ] 检查 H06 off 的工具 schema、prompt、请求数和 outcome；固定输入增量应为零。
-- [ ] 审查 `A_SHA..HEAD`，不含 H07 通用循环、H08 全局预算、H10 计费重构、Python acceptance 改写或无关格式化。
-- [ ] 本地提交并冻结 `B_SHA`、二进制 SHA-256、功能开关、ticket policy、测试清单和限制。
-- [ ] 在分析仓库新增 M0-M6 对应验证记录时，每个文件只记录真实证据，不提前勾选未完成项。
+- [x] T01-T24 均有自动化测试或有证据的“不适用”；T01-T16、T20-T23 不能标不适用。
+- [x] T02-T04/T12/T14 至少通过真实 `RealSessionDispatch + ScriptedLlmProvider` 捕获最终 requests，不以纯 helper 单测代替。
+- [x] 回归 validator、workspace contract、Agent loop、MCP server wire format、H02/H03/H05 受影响路径。
+- [x] 检查 H06 off 的工具 schema、prompt、请求数和 outcome；固定输入增量应为零。
+- [x] 审查 `A_SHA..HEAD`，不含 H07 通用循环、H08 全局预算、H10 计费重构、Python acceptance 改写或无关格式化。
+- [x] 本地提交并冻结 `B_SHA`、二进制 SHA-256、功能开关、ticket policy、测试清单和限制。
+- [x] 在分析仓库新增 M0-M6 对应验证记录时，每个文件只记录真实证据，不提前勾选未完成项。
+
+### 10.3 M6 冻结证据
+
+- 冻结提交：`MAIN_SHA=27d057c206c0f8250b60309905737f7e26ee0ba9`，`A_SHA=8287e8f8ae63a27a58ab5898ecb2753b9b946c45`，`B_SHA=a64c976bc11112e18663cbb72bebc4d9da7b82a0`。代码提交为 `feat(h06): freeze observable repair acceptance`；M6 只修改 `loop_runner.rs`、`completion_gate_tests.rs`、`mcp_serve.rs` 和 `mcp_serve_integration.rs`。
+- 冻结二进制：在 WSL Ubuntu 中执行 `CARGO_TARGET_DIR=/mnt/d/projects/arc-bench/octos-arc/target/h06-m6-a64c976b CARGO_BUILD_JOBS=1 CARGO_PROFILE_DEV_DEBUG=0 CARGO_INCREMENTAL=0 cargo build -p octos-cli --bin octos`。产物为 `/mnt/d/projects/arc-bench/octos-arc/target/h06-m6-a64c976b/debug/octos`，大小 `264730800` 字节，版本 `octos 2.0.3-rc.11 (a64c976b 2026-09-23)`，SHA-256 为 `ab0edd6911fdcb99cf79e460f91baa14d6616cda16582a898b728fadfbc1d728`。
+- B 默认关闭；仅 `--h06-completion-repair` 开启生产 policy，固定最多 2 轮。RepairTicket 上限 `4096` 字节。候选保护限定为 Unix/WSL OS 临时目录中的可验证 disposable workspace、独占锁和 `file_exists` validator；拒绝 `.git*`、ignored 文件、nested repo、symlink、hardlink、特殊文件和超限文件。
+- 结构化事件为 `completion_gate`、`repair_ticket_injected`、`candidate_restore` 和 `repair_session_final`。字段覆盖 task/candidate、round/decision、typed failure category、hard pass/fail、signature、duration、ticket/evidence、workspace change、首次到最终 Ready、成功轮次、停止原因、restore 和累计 usage。日志不写完整源码/schema/stderr、凭据或 reasoning；观测函数无返回值且 best-effort，测试证明没有 subscriber 时 decision 不变。
+- T01-T07 由首次通过、required/artifact/schema 修复、安全位置、多失败稳定排序和 optional failure 集成测试覆盖；T08-T11 由 timeout/error、policy deny、非法输入零 provider 请求、预算耗尽与旧 artifact 禁止交付覆盖；T12-T16 由同任务历史、回归、双轮累计、无变化和唯一换策略覆盖；T17-T20 由 renderer 上限/稳定性/注入隔离、H02/H03/H05 回归、取消和 lifecycle 覆盖；T21-T24 由并发 invocation 隔离、partial/unknown usage、H06 off/legacy/run_task/spawn 回归及受限 snapshot/restore 覆盖。T02-T04/T12/T14 的 MCP 路径均使用 `RealSessionDispatch + ScriptedLlmProvider` 并断言最终 requests。
+- 回归结果共 `329 passed, 0 failed, 1 ignored`：MCP 集成 `43`；completion gate `14`；Agent loop `146 passed, 1 ignored`；validator `70`；workspace contract `32`；MCP wire `13`；H02/H03/H05 `6`；CLI H06/typed artifact helpers `5`。`cargo fmt --all -- --check` 与 `git diff --check` 通过。`cargo clippy -p octos-agent -p octos-cli --all-targets -- -A clippy::nonminimal-bool -D warnings` 通过；唯一放行项位于未修改的 `crates/octos-cli/src/commands/serve.rs:878`，已确认存在于 `A_SHA`。
+- `A_SHA..B_SHA` 审查只包含 H06 Rust 路径，不含 H07、H08、H10、Python acceptance 或无关格式化。MCP Docker sandbox 安全用例因已选择 Docker backend 在测试体内自跳过，Cargo 仍报告 pass；M7 前若要把它作为独立隔离后端证据，需要在非 Docker backend 环境补跑。
+- 后续步骤：M7 尚未运行付费真实模型或官方 A/B；开始前需要用户确认，并固定任务、模型、reasoning、重复次数、预算和输入/测试/schema 哈希。H07 统一 `ProgressObservation` 或 H08 交付保留额接入后，按第 9 节说明替换本地归一化并重跑受影响验收；provider 无法确认的 usage 继续明确记为 partial/unknown。
 
 **完成条件：**B 通过 T01-T24；所有成功均有最终 hard gate receipt；所有修复有界、同任务、可计量，H06 off 与 A 兼容。
 
