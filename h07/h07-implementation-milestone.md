@@ -374,11 +374,11 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 ### 11.1 最小观测
 
-- [ ] 记录固定枚举：operation family、progress class、decision、confidence、reflection requested/completed/failed。
-- [ ] 记录 episode count、实际工具执行数、pre-call reject、hint、switch、terminal 和 H07 reflection token。
-- [ ] observation/decision 指标失败不改变 Agent 结果；日志不包含源码、完整命令、完整结果、凭据或绝对路径。
-- [ ] provider retry 指标继续使用原有命名；H07 task stall 使用独立 metric/event，不混入 `octos_loop_retry_total`。
-- [ ] 如复用 harness progress/failure event，extra 字段有 schema/大小验证，terminal 明确 `retryable=false`。
+- [x] 记录固定枚举：operation family、progress class、decision、confidence、reflection requested/completed/failed。
+- [x] 记录 episode count、实际工具执行数、pre-call reject、hint、switch、terminal 和 H07 reflection token。
+- [x] observation/decision 指标失败不改变 Agent 结果；日志不包含源码、完整命令、完整结果、凭据或绝对路径。
+- [x] provider retry 指标继续使用原有命名；H07 task stall 使用独立 metric/event，不混入 `octos_loop_retry_total`。
+- [x] 如复用 harness progress/failure event，extra 字段有 schema/大小验证，terminal 明确 `retryable=false`。
 
 ### 11.2 必须覆盖的 24 项验收矩阵
 
@@ -409,13 +409,13 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 | T23 | 长路径、Unicode、长结果、episode 淘汰 | 状态与提示有界，无敏感正文 |
 | T24 | ARC outer acceptance | failure signature、策略切换、最佳状态恢复不变 |
 
-- [ ] T01-T24 均有自动化测试或有证据的“不适用”；T02、T03、T05、T08、T15、T18、T21 不能标不适用。
-- [ ] 至少用真实 `process_message`、真实 `run_task` 和 spawn recovery 测试，而不是只测纯 detector。
-- [ ] 增加真实 stdio + fake provider 场景，捕获最终 messages/tools、请求数、工具执行数和 reflection tool choice。
-- [ ] 回归 `loop_retry_state`、convergence、peer polling、H02 receipt、H03 output/recall、H05 mutation 和 spawn lifecycle。
-- [ ] 回归 ARC `failure_signature`、identical failure gate、no-improvement stop 和 best-state restore。
-- [ ] 检查 H07 off 与 A 的兼容 diff；审查 `A_SHA..HEAD` 不含 H06/H08/H09、官方输入或无关重构。
-- [ ] 本地提交并冻结唯一 `BC_SHA`、二进制 SHA-256、两个开关、精确阈值、schema/固定输入增量和测试证据。
+- [x] T01-T24 均有自动化测试或有证据的“不适用”；T02、T03、T05、T08、T15、T18、T21 不能标不适用。
+- [x] 至少用真实 `process_message`、真实 `run_task` 和 spawn recovery 测试，而不是只测纯 detector。
+- [x] 增加真实 stdio + fake provider 场景，捕获最终 messages/tools、请求数、工具执行数和 reflection tool choice。
+- [x] 回归 `loop_retry_state`、convergence、peer polling、H02 receipt、H03 output/recall、H05 mutation 和 spawn lifecycle。
+- [x] 回归 ARC `failure_signature`、identical failure gate、no-improvement stop 和 best-state restore。
+- [x] 检查 H07 off 与 A 的兼容 diff；审查 `A_SHA..HEAD` 不含 H06/H08/H09、官方输入或无关重构。
+- [x] 本地提交并冻结唯一 `BC_SHA`、二进制 SHA-256、两个开关、精确阈值、schema/固定输入增量和测试证据；见 [M7 证据](./h07-m7-evidence.md)。
 
 **完成条件：**T01-T24 通过；B/C 共用 `BC_SHA`；H07 off 可回到 A；真实入口没有重复执行 terminal episode。
 
