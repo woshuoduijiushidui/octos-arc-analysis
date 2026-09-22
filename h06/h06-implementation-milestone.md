@@ -1,6 +1,6 @@
 # H06 实施 Milestone：验证失败后聚焦修复
 
-- 状态：M1 已完成；M0 的官方实验冻结项及 M2-M8 待实施
+- 状态：M2 已完成；M0 的官方实验冻结项及 M3-M8 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H06 竞品调研](./h06-verification-failure-focused-repair-competitor-research.md)
 - 关联约束：[H03 实施清单](../h03/h03-implementation-milestone.md)、[H05 实施清单](../h05/h05-implementation-milestone.md)、[H07 竞品调研](../h07/h07-no-progress-strategy-switch-competitor-research.md)、[H08 竞品调研](../h08/h08-execution-budget-competitor-research.md)、[优化总表](../harness-optimization-table.md)
@@ -280,18 +280,20 @@ WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-f
 
 **依赖：**M1。**目标：**把多个直接 return 分支变成一个可复用检查器，但仍只检查一次并直接结束。
 
-- [ ] 抽取当前 completion validators、artifact resolve、位置、读取、JSON/schema 检查；保持执行顺序、sandbox、路径优先级和错误前缀。
-- [ ] gate 输入显式携带 native ARC schema、legacy expected artifact、contract、tools/sandbox 和 candidate files；不得从进程全局重新查找任务。
-- [ ] gate 输出包含本次完整 validator_results、artifact 状态和 candidate-bound receipt。
-- [ ] required validator 失败后仍保留完整 typed outcomes；optional failure 不阻止 artifact 检查和 Ready。
-- [ ] artifact 缺失、过大/非 UTF-8、JSON 错误、schema 错误和安全位置错误保持现有外部结果。
-- [ ] `task_result.success=false` 仍不得验证磁盘上的旧 artifact；max iteration、provider error 等路径保持原短路。
-- [ ] legacy prompt 路径保持兼容；没有 response schema 时不新增 schema 检查。
-- [ ] H06 off 和 M2 on-but-no-continuation 的 provider 请求、lifecycle、MCP outcome 和文件结果与 A 等价。
-- [ ] 删除被抽取逻辑的重复分支；不要保留两套 artifact validator 逐渐漂移。
-- [ ] 回归现有 `mcp_serve_integration` 全文件，并增加 gate 单测覆盖所有旧分支。
+- [x] 抽取当前 completion validators、artifact resolve、位置、读取、JSON/schema 检查；保持执行顺序、sandbox、路径优先级和错误前缀。
+- [x] gate 输入显式携带 native ARC schema、legacy expected artifact、contract、tools/sandbox 和 candidate files；不得从进程全局重新查找任务。
+- [x] gate 输出包含本次完整 validator_results、artifact 状态和 candidate-bound receipt。
+- [x] required validator 失败后仍保留完整 typed outcomes；optional failure 不阻止 artifact 检查和 Ready。
+- [x] artifact 缺失、过大/非 UTF-8、JSON 错误、schema 错误和安全位置错误保持现有外部结果。
+- [x] `task_result.success=false` 仍不得验证磁盘上的旧 artifact；max iteration、provider error 等路径保持原短路。
+- [x] legacy prompt 路径保持兼容；没有 response schema 时不新增 schema 检查。
+- [x] H06 off 和 M2 on-but-no-continuation 的 provider 请求、lifecycle、MCP outcome 和文件结果与 A 等价。
+- [x] 删除被抽取逻辑的重复分支；不要保留两套 artifact validator 逐渐漂移。
+- [x] 回归现有 `mcp_serve_integration` 全文件，并增加 gate 单测覆盖所有旧分支。
 
 **完成条件：**MCP 的成功/失败行为和 A 一致，但每次候选验证已经统一产生 typed decision + receipt，可供 M3 使用。
+
+后续接线注意：M2 的单次 MCP 验证把 candidate revision 固定为 1，`TaskResult` 尚未暴露真实 iteration，因此暂填 0。M3 的 Agent 终止拦截接入时必须传入真实 iteration；M4 每产生新候选须推进 revision，并从同一候选的 receipt 构造最终 MCP outcome。无法解析任何 artifact 路径属于 terminal；只有已知目标路径但文件缺失才可发修复票据。M2 仍只验证一次，不执行模型续行。
 
 ## 7. Milestone M3：Agent 终止拦截与一次同任务续行
 
