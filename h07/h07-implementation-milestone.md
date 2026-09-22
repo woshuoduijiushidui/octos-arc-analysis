@@ -333,19 +333,19 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 **依赖：**M3-M4。**目标：**把“正在等”“基础设施重试”和“任务卡住”彻底分开。
 
-- [ ] 为声明 async 的工具提取当前 live handle；只有运行时确认存活才返回 `verified_wait`。
-- [ ] 同 handle 状态未变时采用现有 bounded wait/退避；不 busy-wait，不因一次 observation timeout 重启任务。
-- [ ] handle 终止、缺失或状态不可确认时不再标记 verified wait；根据真实结果进入 completed/failed/unknown。
-- [ ] 保留 peer changed-result、unchanged-result reflection 和最终结果测试；不要用通用 exact guard 覆盖它们。
-- [ ] provider rate limit/network/stream/context retry 不增加 task episode，不因任意成功 read 清空 retry bucket。
-- [ ] policy deny、approval pending、cancel 和 verifier 结果保持各自状态，不重复发 H07 提示。
-- [ ] 为 `terminal_non_retryable` 定义稳定内部 code 和 `retryable=false`；用户文本只显示短原因和已观察事实。
-- [ ] conversation 收到 terminal 后结束当前 turn，不再调用模型或工具。
-- [ ] task 收到 terminal 后返回 `success=false` 和机器可识别的非重试身份；不得只靠英文关键词分类。
-- [ ] `run_task_with_m8_9_recovery` 遇到 H07 terminal 不发起那一次自动恢复；普通可恢复失败仍保持原行为。
-- [ ] child lifecycle 将 H07 terminal 分类为 `TerminalFailed`；输出中即使含有 “retry” 也不能变成 `RetryableFailed`。
-- [ ] 若必须扩展 `TaskResult` ABI，按现有版本规则增加 optional 字段、更新所有构造者/serde/消费者和兼容测试；不得私自改 schema version。
-- [ ] 本地提交并记录 M5 证据。
+- [x] 为声明 async 的工具提取当前 live handle；只有运行时确认存活才返回 `verified_wait`。
+- [x] 同 handle 状态未变时采用现有 bounded wait/退避；不 busy-wait，不因一次 observation timeout 重启任务。
+- [x] handle 终止、缺失或状态不可确认时不再标记 verified wait；根据真实结果进入 completed/failed/unknown。
+- [x] 保留 peer changed-result、unchanged-result reflection 和最终结果测试；不要用通用 exact guard 覆盖它们。
+- [x] provider rate limit/network/stream/context retry 不增加 task episode，不因任意成功 read 清空 retry bucket。
+- [x] policy deny、approval pending、cancel 和 verifier 结果保持各自状态，不重复发 H07 提示。
+- [x] 为 `terminal_non_retryable` 定义稳定内部 code 和 `retryable=false`；用户文本只显示短原因和已观察事实。
+- [x] conversation 收到 terminal 后结束当前 turn，不再调用模型或工具。
+- [x] task 收到 terminal 后返回 `success=false` 和机器可识别的非重试身份；不得只靠英文关键词分类。
+- [x] `run_task_with_m8_9_recovery` 遇到 H07 terminal 不发起那一次自动恢复；普通可恢复失败仍保持原行为。
+- [x] child lifecycle 将 H07 terminal 分类为 `TerminalFailed`；输出中即使含有 “retry” 也不能变成 `RetryableFailed`。
+- [x] 若必须扩展 `TaskResult` ABI，按现有版本规则增加 optional 字段、更新所有构造者/serde/消费者和兼容测试；不得私自改 schema version。
+- [x] 本地提交并记录 [M5 证据](./h07-m5-evidence.md)；代码提交 `66f5506100bd5eee5dfec638f141cfe77a34cd1c`。
 
 **完成条件：**合法等待不会被当作死循环；基础设施 retry 不污染 H07；semantic terminal 在 task/spawn 全链路只终止一次。
 
