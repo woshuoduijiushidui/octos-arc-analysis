@@ -1,6 +1,6 @@
 # H06 实施 Milestone：验证失败后聚焦修复
 
-- 状态：M2 已完成；M0 的官方实验冻结项及 M3-M8 待实施
+- 状态：M3 已完成；M0 的官方实验冻结项及 M4-M8 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H06 竞品调研](./h06-verification-failure-focused-repair-competitor-research.md)
 - 关联约束：[H03 实施清单](../h03/h03-implementation-milestone.md)、[H05 实施清单](../h05/h05-implementation-milestone.md)、[H07 竞品调研](../h07/h07-no-progress-strategy-switch-competitor-research.md)、[H08 竞品调研](../h08/h08-execution-budget-competitor-research.md)、[优化总表](../harness-optimization-table.md)
@@ -299,19 +299,21 @@ WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-f
 
 **依赖：**M2。**目标：**先用 fake gate 证明真正的 same-run continuation，再接真实 MCP。
 
-- [ ] 为 `Agent::run_task_inner` 增加可选的 async completion gate seam；默认不存在时保持旧字节行为，不扩张为通用插件系统。
-- [ ] 提供新的 gated 调用入口或等价 typed wrapper；旧 `run_task` 签名和所有旧 caller 保持兼容。
-- [ ] 在 `EndTurn` 候选形成后、真正 `TaskCompleted`/return 前调用 gate；具体与现有 LLM verifier/workspace contract 的顺序采用 M0 冻结结果。
-- [ ] `Repairable` 时，先把本轮 assistant candidate 按现有顺序记入历史，再追加一条 harness 生成的 user-role/internal RepairTicket。
-- [ ] 追加后走同一 loop 的 `continue`；不得新建 `Task`、不得重新拼完整需求、不得调用第二个 Agent。
-- [ ] 修复续行沿用同一个 `messages`、`LoopTurnState`、retry state、loop detector、file/output state、compaction 和 cumulative usage。
-- [ ] 一张 ticket 真正进入下一次 provider request 才计为一轮；gate 自身不消耗模型轮次。
-- [ ] fake gate 第一次返回 Repairable、第二次返回 Pass；断言 provider 第二次请求包含原历史和唯一 ticket，原需求没有被重复拼接。
-- [ ] 断言两次模型响应 usage 累计到一个最终结果，iteration 单调增加，`TaskCompleted` 只发一次。
-- [ ] fake gate 返回 TerminalFailure 时不产生第二个 provider 请求；取消和预算检查仍优先终止。
-- [ ] ticket 被 compaction/最终 prompt 投影时保持关键字段；若 H03/H01 未在底座中，至少保证有界、不可误解，不能假装具备恢复能力。
+- [x] 为 `Agent::run_task_inner` 增加可选的 async completion gate seam；默认不存在时保持旧字节行为，不扩张为通用插件系统。
+- [x] 提供新的 gated 调用入口或等价 typed wrapper；旧 `run_task` 签名和所有旧 caller 保持兼容。
+- [x] 在 `EndTurn` 候选形成后、真正 `TaskCompleted`/return 前调用 gate；具体与现有 LLM verifier/workspace contract 的顺序采用 M0 冻结结果。
+- [x] `Repairable` 时，先把本轮 assistant candidate 按现有顺序记入历史，再追加一条 harness 生成的 user-role/internal RepairTicket。
+- [x] 追加后走同一 loop 的 `continue`；不得新建 `Task`、不得重新拼完整需求、不得调用第二个 Agent。
+- [x] 修复续行沿用同一个 `messages`、`LoopTurnState`、retry state、loop detector、file/output state、compaction 和 cumulative usage。
+- [x] 一张 ticket 真正进入下一次 provider request 才计为一轮；gate 自身不消耗模型轮次。
+- [x] fake gate 第一次返回 Repairable、第二次返回 Pass；断言 provider 第二次请求包含原历史和唯一 ticket，原需求没有被重复拼接。
+- [x] 断言两次模型响应 usage 累计到一个最终结果，iteration 单调增加，`TaskCompleted` 只发一次。
+- [x] fake gate 返回 TerminalFailure 时不产生第二个 provider 请求；取消和预算检查仍优先终止。
+- [x] ticket 被 compaction/最终 prompt 投影时保持关键字段；若 H03/H01 未在底座中，至少保证有界、不可误解，不能假装具备恢复能力。
 
 **完成条件：**不依赖 MCP 文件检查，单靠 fake gate 已证明“EndTurn → ticket → 同一消息历史继续 → Pass/terminal”的核心状态机。
+
+后续接线注意：M3 的 `run_task_with_completion_gate` 返回任务结果及 invocation-local 最终 decision；budget/cancel 等在下一次请求前终止时也返回带原 receipt 的 terminal decision。M4 应把 M2 的真实 MCP gate 接到此入口，使用最终候选的 receipt 生成 outcome；普通 `run_task` 与 MCP 当前入口仍无模型续行。gate 收到 `core_contract_failure`，须把它纳入同一候选的硬门槛判断。
 
 ## 8. Milestone M4：接通 MCP 真实检查与单轮聚焦修复
 
