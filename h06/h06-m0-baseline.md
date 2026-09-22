@@ -84,6 +84,19 @@ RepairTicket 冻结预算：单张模型可见 UTF-8 总字节不超过 **4,096*
 
 上述三项现有回归失败是 A 的 Windows 平台/运行环境基线，不由新增测试引起；主分支没有收到本次改动。任何未实际运行的项目保持未勾选；测试文件本身不算通过证据。
 
+### WSL Ubuntu 复核（2026-09-22）
+
+从同一 `feat/verification-repair` 工作树经 `/mnt/d/projects/arc-bench/octos-arc` 运行；Ubuntu WSL2、Rust/Cargo 1.96.1、Python 3.12.3、Node 18.19.1、npm 9.2.0。安装 `build-essential`、CMake、pkg-config、OpenSSL 开发库及 Node/npm 后，设置 `CARGO_TARGET_DIR=$HOME/.cache/arc-bench-h06-target`、`CARGO_PROFILE_TEST_DEBUG=0`、`CARGO_INCREMENTAL=0`，避免把 Linux 产物混入 Windows `target/`。测试前后代码仓库工作树均干净。
+
+| 在 WSL 仓库目录运行的命令 | 结果 |
+| --- | --- |
+| `cargo test -p octos-cli --test mcp_serve_integration` | 23 通过、0 失败，退出码 0；包含全部五个 M0 反例，以及 Windows 上失败的两项 H03 输出恢复测试。 |
+| `cargo test -p octos-agent --lib validators` | 73 通过、0 失败，退出码 0；包含 Windows 上失败的 POSIX `test -f` 场景；另有两个仅在 Unix 编译的测试。 |
+| `cargo test -p octos-agent --lib h06_m0_second_run_task_rebuilds_messages_and_usage` | 1 通过、0 失败，退出码 0。 |
+| 在 `arc/` 执行 `python3 -m unittest discover -s tests -q` | 408 项、8 跳过、0 失败、0 错误，退出码 0。首次运行缺少 `node` 时失败；安装 Node/npm 后重跑为上述通过结果。 |
+
+因此当前 M0 的 MCP、Agent、validator 和 ARC Python 回归在 Linux 环境可重放通过。Windows 失败保留为平台基线记录，不据此修改 H06 生产路径。
+
 ## 官方实验输入冻结状态
 
 预登记 `arc/tasks/arc-bench-web--{12306,bookstack,ctrip,keep,prestashop,stackoverflow}` 与 `ticket-booking--ticket-booking` 七个公开任务；每个 variant 各重复 3 次，交错顺序，独立 workspace/data/session。固定公开测试 476 个文件的树摘要：对按仓库相对路径排序的每个文件，将 UTF-8 路径、NUL、该文件 SHA-256 的 32 字节摘要依次拼入 SHA-256，结果 `29881181f005f16887ff587e8d89e7a92956aea8729a3e700acb6289cacc7939`；`arc/public-tests/manifest.json` SHA-256 为 `61c1e8538b3028de2c19862b9e9878c0bfe2ff348c4031e3abb93a10148c6eec`。
