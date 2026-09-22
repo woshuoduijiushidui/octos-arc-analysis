@@ -341,33 +341,39 @@ WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-f
 
 ### 9.1 修复轮和停止规则
 
-- [ ] 生产 B 固定 `max_repair_rounds=2`；off/0、单轮和双轮由同一 policy 表达。
-- [ ] 第一次 repairable failure 在任务仍可继续时允许一轮。
-- [ ] 第二轮只允许两种情况：hard pass 集合严格改善；或工作区确实变化但稳定 failure signature 相同，使用唯一一次“换策略”机会。
-- [ ] 工作区未变化且 signature 相同立即停止为 `no_workspace_change`，不为必然相同的代码再付一次验证/模型成本。
-- [ ] signature 变化但 hard pass 集合未改善，只视为 `evidence_changed`；最多允许下一轮，不把它当验证成功。
-- [ ] 出现新 hard failure 或丢失已通过 gate，标记 `regressed`；不得仅按失败总数掩盖回归。
-- [ ] provider retry、等待轮询和普通工具 loop 使用原有计数，不消耗 H06 repair round。
-- [ ] H07 将来存在统一 `ProgressObservation` 时改为消费它；删除 H06 重复归一化，不保留两个不同判断器。
+- [x] 生产 B 固定 `max_repair_rounds=2`；off/0、单轮和双轮由同一 policy 表达。
+- [x] 第一次 repairable failure 在任务仍可继续时允许一轮。
+- [x] 第二轮只允许两种情况：hard pass 集合严格改善；或工作区确实变化但稳定 failure signature 相同，使用唯一一次“换策略”机会。
+- [x] 工作区未变化且 signature 相同立即停止为 `no_workspace_change`，不为必然相同的代码再付一次验证/模型成本。
+- [x] signature 变化但 hard pass 集合未改善，只视为 `evidence_changed`；最多允许下一轮，不把它当验证成功。
+- [x] 出现新 hard failure 或丢失已通过 gate，标记 `regressed`；不得仅按失败总数掩盖回归。
+- [x] provider retry、等待轮询和普通工具 loop 使用原有计数，不消耗 H06 repair round。
+- [x] H07 将来存在统一 `ProgressObservation` 时改为消费它；删除 H06 重复归一化，不保留两个不同判断器。
 
 ### 9.2 预算
 
-- [ ] 注入 ticket 前检查至少还允许一次真实模型 iteration；无法继续时直接返回 `task_budget_exhausted`。
-- [ ] 不为 H06 增加 grace call，不提高 `max_iterations`、`max_tokens`、`chat_max_tokens` 或 proxy 请求上限。
-- [ ] 两轮修复的所有正常 response usage 进入原 `LoopTurnState/TaskResult` 累计值，MCP cost 只做一次最终投影。
-- [ ] provider/transport 错误保留 partial/unknown 语义；H10 未完成前不为兼容字段伪造真实零消耗。
-- [ ] H08 接入后，修复必须使用它分配的交付保留额；H06 不再维护独立 token 余额。
+- [x] 注入 ticket 前检查至少还允许一次真实模型 iteration；无法继续时直接返回 `task_budget_exhausted`。
+- [x] 不为 H06 增加 grace call，不提高 `max_iterations`、`max_tokens`、`chat_max_tokens` 或 proxy 请求上限。
+- [x] 两轮修复的所有正常 response usage 进入原 `LoopTurnState/TaskResult` 累计值，MCP cost 只做一次最终投影。
+- [x] provider/transport 错误保留 partial/unknown 语义；H10 未完成前不为兼容字段伪造真实零消耗。
+- [x] H08 接入后，修复必须使用它分配的交付保留额；H06 不再维护独立 token 余额。
 
 ### 9.3 候选保护
 
-- [ ] M0 已证明目标工作区是否可由现有 `SnapshotManager` 完整覆盖，包括 `.gitignore` artifact、nested repo、无 Git 和并发锁场景。
-- [ ] 若覆盖成立，在第一次修复前保存候选；只有新候选不减少已通过 hard gate 且至少新增一个 pass 时更新 best。
-- [ ] 修复结束仍 Failed 时恢复 best，并重新验证恢复后的候选；最终 outcome 必须绑定恢复后 receipt。
-- [ ] snapshot/restore 失败时不得宣称已恢复，也不得用部分文件副本冒充原子工作区恢复。
-- [ ] 若现有 snapshot 无法覆盖 H06 合法目标，不临时手写半套回滚。暂停 M5，记录缺口并在本清单中明确选择：限制到可证明隔离的 disposable workspace，或另行设计完整候选机制。
-- [ ] 在候选保护未证明前，B 不得默认开启，也不得宣称满足“保留最佳状态”。
+- [x] M0 已证明目标工作区是否可由现有 `SnapshotManager` 完整覆盖，包括 `.gitignore` artifact、nested repo、无 Git 和并发锁场景。
+- [x] 若覆盖成立，在第一次修复前保存候选；只有新候选不减少已通过 hard gate 且至少新增一个 pass 时更新 best。
+- [x] 修复结束仍 Failed 时恢复 best，并重新验证恢复后的候选；最终 outcome 必须绑定恢复后 receipt。
+- [x] snapshot/restore 失败时不得宣称已恢复，也不得用部分文件副本冒充原子工作区恢复。
+- [x] 若现有 snapshot 无法覆盖 H06 合法目标，不临时手写半套回滚。暂停 M5，记录缺口并在本清单中明确选择：限制到可证明隔离的 disposable workspace，或另行设计完整候选机制。
+- [x] 在候选保护未证明前，B 不得默认开启，也不得宣称满足“保留最佳状态”。
 
 **完成条件：**双轮路径严格有界；无变化、同签名、回归、预算不足和 restore failure 都有 typed 终态，且不会产生 false Ready。
+
+M5 候选保护选择：B 仍默认关闭；显式 `--h06-completion-repair` 仅接受 Unix/WSL 下 OS 临时目录中的独占 disposable workspace，且 data_dir 必须在 workspace 外。入口持有跨进程工作区锁；拒绝 `.git`（含嵌套仓库）、`.gitignore`、`.gitattributes`、`.gitmodules`、符号/硬链接、特殊文件、无法由 Git 保存的权限、超限文件，以及除 `file_exists` 外的 policy validator。Windows 此入口 fail closed。调用方需保证该 disposable workspace 没有不遵守锁的外部写入者；命令/网络验证器与外部副作用不在此候选保护范围内。
+
+快照在独立 Git store 中保存；保存前后独立扫描须得到相同文件内容及目录清单，Git tree 的路径集合须覆盖全部扫描文件；失败时不发 RepairTicket。最佳候选只在 hard pass 严格增加且无回退时更新。修复仍失败时恢复该快照、核对文件字节和目录清单，再运行原 completion 检查并将最终 receipt 绑定到恢复后的新 revision。现有 `SnapshotManager::restore` 本身并非原子操作；任何恢复错误或清单不一致均报告 `rollback_unavailable`，不把部分恢复视为成功。文件时间戳和扩展属性不参与本范围的验收。provider 错误沿用兼容数值 cost 字段，并在 error 中标明 `usage_status=partial` 或 `unknown`；未知数值不是已确认的零消耗。
+
+后续接线注意：H07 若提供统一 `ProgressObservation`，替换 H06 本地的 hard gate/signature 归一化；H08 接入后沿用其交付保留额，不增加 H06 独立 token 余额。扩大到普通 Git 工作区、ignored artifact、nested repo 或其他 validator 前，先设计完整候选保护机制并重新验收恢复语义。
 
 ## 10. Milestone M6：观测、确定性验收与 B 冻结
 
