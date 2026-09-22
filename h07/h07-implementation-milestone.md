@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0 已完成；M1-M9 待实施
+- 状态：M0-M1 已完成；M2-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -258,17 +258,19 @@ ProgressDecision
 
 **依赖：**M0。**目标：**先建立事实，不改变生产决策。
 
-- [ ] 在最靠近工具执行结果的共享边界构造 observation；保留 `ToolResult` 的 typed 事实后再做字符串渲染。
-- [ ] 通过 call ID 将并行/串行 batch 的 observation 与原 tool call 稳定关联；去重、限制和 blocked placeholder 不得错配。
-- [ ] operation family 和 target 提取只覆盖实际工具；未知工具进入 `other`，不靠工具名子串猜类别。
-- [ ] H05 mutation 优先读取 `ToolResult.file_modified` 与 typed metadata；字段冲突时标记 unknown 并计诊断，不任取一个“成功”值。
-- [ ] H03 read/recall 优先读取 source/view/version/range identity；没有可信 source 时只保留最终模型可见 exact digest。
-- [ ] typed tool error 使用已有 `HarnessError`/error code；不得在上层解析 `"Error:"` 文本恢复类型。
-- [ ] 为未来授权 validator 预留可选 `validation_key`，但本阶段没有 typed producer 时保持空值，不解析 shell 测试输出。
-- [ ] 所有路径、detail 和列表按 M0 上限截断；episode key 不保存原始源码和完整命令。
-- [ ] 增加纯单元测试：typed、缺字段、冲突字段、Unicode、长路径、长错误、未知工具、重复 call ID 和多 call batch。
-- [ ] H07 off 时 observation 可以不构造或只做无副作用观测；模型消息、工具结果、metrics 和请求数与 A 等价。
-- [ ] 本地提交并记录代码 SHA、测试命令和 M1 证据。
+- [x] 在最靠近工具执行结果的共享边界构造 observation；保留 `ToolResult` 的 typed 事实后再做字符串渲染。
+- [x] 通过 call ID 将并行/串行 batch 的 observation 与原 tool call 稳定关联；去重、限制和 blocked placeholder 不得错配。
+- [x] operation family 和 target 提取只覆盖实际工具；未知工具进入 `other`，不靠工具名子串猜类别。
+- [x] H05 mutation 优先读取 `ToolResult.file_modified` 与 typed metadata；字段冲突时标记 unknown 并计诊断，不任取一个“成功”值。
+- [x] H03 read/recall 优先读取 source/view/version/range identity；没有可信 source 时只保留最终模型可见 exact digest。
+- [x] typed tool error 使用已有 `HarnessError`/error code；不得在上层解析 `"Error:"` 文本恢复类型。
+- [x] 为未来授权 validator 预留可选 `validation_key`，但本阶段没有 typed producer 时保持空值，不解析 shell 测试输出。
+- [x] 所有路径、detail 和列表按 M0 上限截断；episode key 不保存原始源码和完整命令。
+- [x] 增加纯单元测试：typed、缺字段、冲突字段、Unicode、长路径、长错误、未知工具、重复 call ID 和多 call batch。
+- [x] H07 off 时 observation 可以不构造或只做无副作用观测；模型消息、工具结果、metrics 和请求数与 A 等价。
+- [x] 本地提交并记录代码 SHA、测试命令和 M1 证据。
+
+M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与未覆盖入口见 [M1 证据](./h07-m1-evidence.md)。
 
 **完成条件：**给定同一个工具结果，conversation/task 可得到相同、有界、可解释的 observation；尚未改变提示、拒绝或终止。
 
