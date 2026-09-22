@@ -78,11 +78,11 @@ messages，不算完成 H06。
 
 ### 1.1 M0 必须冻结的版本
 
-- [ ] 记录 `octos-arc`、`octos-arc-analysis` 当前分支、HEAD、远端跟踪、dirty 和未跟踪文件；不自动 stash、reset 或删除。
-- [ ] 拉取最新 `origin/main`，记录 `MAIN_SHA`，从它创建 H06 独立分支/worktree。
-- [ ] 核对 H01-H05 已合入与未合入能力，只移植 H06 必需的 typed validator、H03 有界证据和 H05 文件变化事实；每组依赖分别记录来源 SHA。
-- [ ] 依赖移植完成后运行专项回归并冻结 `A_SHA`。此时 H06 开关关闭，MCP 行为必须仍是验证失败后直接 Failed。
-- [ ] 记录 Rust/Python/Node 版本、实际二进制路径及 SHA-256、有效 sandbox/tool policy、MCP transport 和测试 fixture。
+- [x] 记录 `octos-arc`、`octos-arc-analysis` 当前分支、HEAD、远端跟踪、dirty 和未跟踪文件；不自动 stash、reset 或删除。
+- [x] 拉取最新 `origin/main`，记录 `MAIN_SHA`，从它创建 H06 独立分支/worktree。
+- [x] 核对 H01-H05 已合入与未合入能力，只移植 H06 必需的 typed validator、H03 有界证据和 H05 文件变化事实；每组依赖分别记录来源 SHA。
+- [x] 依赖移植完成后运行专项回归并冻结 `A_SHA`。此时 H06 开关关闭，MCP 行为必须仍是验证失败后直接 Failed。
+- [x] 记录 Rust/Python/Node 版本、实际二进制路径及 SHA-256、有效 sandbox/tool policy、MCP transport 和测试 fixture。
 - [ ] 固定官方实验任务、输入/测试/schema 哈希、模型、reasoning、请求预算、修复轮数和重复次数。
 
 建议开关合同：
@@ -234,19 +234,21 @@ rollback_unavailable
 
 **目标：**在改代码前证明验证在哪里运行、消息何时丢失、哪些状态能复用，并冻结 A。
 
+证据记录：[H06 M0 共同底座与 A 反例](./h06-m0-baseline.md)。
+
 - [ ] 完成第 1.1 节，记录 `MAIN_SHA`、依赖移植 SHA 和 `A_SHA`。
-- [ ] 追踪 native ARC 与 legacy prompt 两条 MCP 路径：输入校验、Agent 构造、`run_task`、workspace contract、completion validators、artifact resolve/location/schema、outcome 返回。
-- [ ] 追踪 `EndTurn` 时 assistant response 是否已经进入 `messages`、`TaskResult` 在何处构造、usage/iteration 在何处累计、`TaskCompleted` 事件何时发出。
-- [ ] 证明第二次调用 `run_task` 会重新构造 initial messages；记录哪些 Agent 状态会保留、哪些首轮消息会丢失。
-- [ ] 核对现有 LLM verifier 与 workspace contract 的顺序，冻结 H06 开启/关闭时的顺序要求；不得重复运行模型 verifier。
-- [ ] 核对 MCP observer/TaskSupervisor 允许的非终态转换，决定修复期间保持 `Running`、切换 `Verifying` 后返回 `Running`，或仅发内部 gate event；不得先发布 terminal Failed。
-- [ ] 核对 completion validators 与 core project-root validators 是否重叠，记录命令、phase、workspace root、ledger 和副作用；B 中同一 gate 不得无意执行两遍。
-- [ ] 核对 artifact 路径优先级、64 KiB 文本读取上限、JSON/schema 错误和 `files_to_send` 语义。
-- [ ] 核对 `SnapshotManager` 的启用方式、`.gitignore`、nested repo、无 Git、并发锁和 restore 边界；明确是否能安全保护 H06 候选。
-- [ ] 冻结 RepairTicket 模型可见字节上限、失败数上限、stderr tail 和 evidence ref 规则。
-- [ ] 用现有 `ScriptedLlmProvider` 固定至少五个 A 反例：required `Fail`、artifact missing、schema invalid、validator timeout/error、非法 `arc_task`。
-- [ ] 记录每个反例的 provider 请求数、lifecycle、最终 prefix、validator_results、artifact 字段和 token cost；非法输入必须为零 provider 请求。
-- [ ] 运行现有 MCP/Agent/validator 回归并记录基线失败；新增测试可以固定现状，但不能把主分支永久留红。
+- [x] 追踪 native ARC 与 legacy prompt 两条 MCP 路径：输入校验、Agent 构造、`run_task`、workspace contract、completion validators、artifact resolve/location/schema、outcome 返回。
+- [x] 追踪 `EndTurn` 时 assistant response 是否已经进入 `messages`、`TaskResult` 在何处构造、usage/iteration 在何处累计、`TaskCompleted` 事件何时发出。
+- [x] 证明第二次调用 `run_task` 会重新构造 initial messages；记录哪些 Agent 状态会保留、哪些首轮消息会丢失。
+- [x] 核对现有 LLM verifier 与 workspace contract 的顺序，冻结 H06 开启/关闭时的顺序要求；不得重复运行模型 verifier。
+- [x] 核对 MCP observer/TaskSupervisor 允许的非终态转换，决定修复期间保持 `Running`、切换 `Verifying` 后返回 `Running`，或仅发内部 gate event；不得先发布 terminal Failed。
+- [x] 核对 completion validators 与 core project-root validators 是否重叠，记录命令、phase、workspace root、ledger 和副作用；B 中同一 gate 不得无意执行两遍。
+- [x] 核对 artifact 路径优先级、64 KiB 文本读取上限、JSON/schema 错误和 `files_to_send` 语义。
+- [x] 核对 `SnapshotManager` 的启用方式、`.gitignore`、nested repo、无 Git、并发锁和 restore 边界；明确是否能安全保护 H06 候选。
+- [x] 冻结 RepairTicket 模型可见字节上限、失败数上限、stderr tail 和 evidence ref 规则。
+- [x] 用现有 `ScriptedLlmProvider` 固定至少五个 A 反例：required `Fail`、artifact missing、schema invalid、validator timeout/error、非法 `arc_task`。
+- [x] 记录每个反例的 provider 请求数、lifecycle、最终 prefix、validator_results、artifact 字段和 token cost；非法输入必须为零 provider 请求。
+- [x] 运行现有 MCP/Agent/validator 回归并记录基线失败；新增测试可以固定现状，但不能把主分支永久留红。
 
 **设计停止点：**若 completion gate 无法在不破坏 `TaskResult` ABI 的前提下把最终 receipt 返回 MCP，
 先在 M0 证据中比较“gated result wrapper”和“invocation-local handle”两种最小方案，再选一个。
@@ -411,6 +413,7 @@ rollback_unavailable
 ### 11.1 开跑条件
 
 - [ ] M6 冻结的完整 B 已通过确定性门槛，且用户确认可以运行付费真实模型实验。
+- [ ] 证明所选官方任务实际经过 H06 的 MCP `run_octos_session` 路径；现有 `arc/main.py` 使用 stdio/OUP，直接运行它不能测出 MCP-only H06 的效果。
 - [ ] 执行 `source ~/.zshrc`，确认 `ARCBENCH_API_KEY`、provider endpoint、`OCTOS_BIN`、二进制 SHA-256、端口和隔离目录。
 - [ ] A/B 使用相同需求、测试、response schema、workspace policy、模型、reasoning、工具权限、sandbox、请求/token/iteration 预算和超时。
 - [ ] 每个 task×variant 使用独立 workspace/data/session；固定重复次数，建议至少 3 次并交错顺序。
