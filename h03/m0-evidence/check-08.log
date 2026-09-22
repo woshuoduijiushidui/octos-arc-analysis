@@ -1,0 +1,55 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 49 tests
+test tools::apply_patch::tests::should_parse_all_op_kinds_when_envelope_is_valid ... ok
+test tools::apply_patch::tests::should_insert_after_anchor_when_hunk_is_pure_insertion ... ok
+test tools::apply_patch::tests::should_match_anchor_when_indentation_drifts ... ok
+test tools::apply_patch::tests::should_insert_at_start_when_pure_insertion_targets_empty_file ... ok
+test tools::apply_patch::tests::should_locate_hunk_after_anchor_when_anchor_given ... ok
+test tools::apply_patch::tests::should_append_at_eof_when_end_of_file_marker ... ok
+test tools::apply_patch::tests::should_error_with_search_start_when_anchor_not_found ... ok
+test tools::apply_patch::tests::should_error_with_hunk_number_when_context_not_found ... ok
+test tools::apply_patch::tests::should_reject_ambiguous_hunk_context_without_modifying_content ... ok
+test tools::apply_patch::tests::should_reject_content_after_end_of_file_marker ... ok
+test tools::apply_patch::tests::should_reject_hunk_when_same_block_repeats_without_unique_context ... ok
+test tools::apply_patch::tests::should_reject_pure_insertion_when_no_context_and_file_nonempty ... ok
+test tools::apply_patch::tests::apply_patch_tool_is_exclusive ... ok
+test tools::apply_patch::tests::should_reject_when_add_line_lacks_plus_prefix ... ok
+test tools::apply_patch::tests::should_refuse_when_file_access_read_only ... ok
+test tools::apply_patch::tests::should_reject_when_begin_marker_missing ... ok
+test tools::apply_patch::tests::should_reject_path_escape_when_path_contains_dotdot ... ok
+test tools::apply_patch::tests::should_reject_when_content_follows_end_marker ... ok
+test tools::apply_patch::tests::should_reject_when_directive_unknown ... ok
+test tools::apply_patch::tests::should_reject_when_end_marker_missing ... ok
+test tools::apply_patch::tests::should_reject_absolute_path_when_section_targets_absolute ... ok
+test tools::apply_patch::tests::should_reject_when_move_to_outside_update_section ... ok
+test tools::apply_patch::tests::should_reject_when_patch_has_no_sections ... ok
+test tools::apply_patch::tests::should_not_modify_workspace_when_validation_fails ... ok
+test tools::apply_patch::tests::should_reject_when_update_section_has_no_hunks_and_no_move ... ok
+test tools::apply_patch::tests::should_reject_move_destination_when_move_to_escapes ... ok
+test tools::apply_patch::tests::should_reject_when_delete_target_missing ... ok
+test tools::apply_patch::tests::apply_patch_emits_diff_preview_structured_metadata ... ok
+test tools::apply_patch::tests::should_reject_when_add_target_exists ... ok
+test tools::apply_patch::tests::should_tolerate_blank_line_after_end_of_file_marker ... ok
+test tools::apply_patch::tests::should_treat_numeric_hunk_header_as_plain_separator ... ok
+test tools::apply_patch::tests::should_apply_unified_diff_when_path_and_diff_given ... ok
+test tools::apply_patch::tests::should_delete_file_when_patch_contains_delete_section ... ok
+test tools::apply_patch::tests::should_preserve_trailing_newline_when_updating ... ok
+test tools::apply_patch::tests::should_refuse_when_file_changes_between_plan_and_apply ... ok
+test tools::apply_patch::tests::should_reject_symlink_when_update_targets_symlink ... ok
+test tools::apply_patch::tests::should_apply_add_then_update_same_file_when_patch_chains_ops ... ok
+test tools::apply_patch::tests::apply_patch_adds_and_updates_file ... ok
+test tools::apply_patch::tests::should_report_unchanged_when_first_section_fails_cleanly ... ok
+test tools::apply_patch::tests::should_reject_when_move_destination_exists ... ok
+test tools::apply_patch::tests::should_report_failing_section_when_hunk_context_missing ... ok
+test tools::apply_patch::tests::should_report_applied_sections_when_apply_fails_midway ... ok
+test tools::apply_patch::tests::should_refuse_symlink_swap_between_plan_and_apply ... ok
+test tools::apply_patch::tests::should_invalidate_file_state_cache_when_patch_touches_files ... ok
+test tools::apply_patch::tests::should_use_scope_workspace_when_session_scope_present ... ok
+test tools::apply_patch::tests::should_rename_file_when_update_has_move_to_and_no_hunks ... ok
+test tools::apply_patch::tests::should_report_partial_move_when_source_removal_fails ... ok
+test tools::apply_patch::tests::should_apply_multi_file_patch_when_sections_span_ops ... ok
+test tools::apply_patch::tests::should_move_and_update_when_update_section_has_move_to ... ok
+
+test result: ok. 49 passed; 0 failed; 0 ignored; 0 measured; 2903 filtered out; finished in 0.02s

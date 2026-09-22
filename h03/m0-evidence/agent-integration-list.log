@@ -1,0 +1,47 @@
+    Blocking waiting for file lock on build directory
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.50s
+     Running tests/h02_m1_file_versions.rs (target/debug/deps/h02_m1_file_versions-ec4a82d1997fa4f2)
+repeated_reads_return_body_while_m1_dedup_is_disabled: test
+same_size_rewrite_with_restored_mtime_changes_strong_version: test
+same_target_path_is_isolated_by_workspace_owner: test
+
+3 tests, 0 benchmarks
+     Running tests/h02_m2_read_receipts.rs (target/debug/deps/h02_m2_read_receipts-9ca521bdc1544f35)
+after_tool_hook_feedback_does_not_activate_a_receipt: test
+context_pressure_source_drop_does_not_activate_a_receipt: test
+direct_repeated_reads_do_not_activate_staged_candidates: test
+eight_kib_projection_does_not_activate_a_receipt: test
+execution_50kb_truncation_does_not_activate_a_receipt: test
+failed_provider_dispatch_does_not_activate_a_receipt: test
+parallel_reads_do_not_authorize_each_other_before_dispatch: test
+partial_receipt_covers_only_the_visible_line_range: test
+read_file_internal_100kb_truncation_does_not_stage_a_candidate: test
+rebuilt_agent_reuses_same_branch_receipt_when_source_remains_visible: test
+sanitized_output_does_not_activate_a_receipt: test
+successful_provider_dispatch_enables_next_matching_read_stub: test
+
+12 tests, 0 benchmarks
+     Running tests/h02_m3_receipt_lifecycle.rs (target/debug/deps/h02_m3_receipt_lifecycle-c2da79873d8760a4)
+disabled_store_never_suppresses_file_content: test
+incomplete_owner_keeps_receipts_disabled: test
+prompt_replacement_clears_receipts_before_the_next_read: test
+task_session_branch_and_workspace_stores_do_not_share_receipts: test
+
+4 tests, 0 benchmarks
+     Running tests/m8_end_to_end_gate.rs (target/debug/deps/m8_end_to_end_gate-992fd863d82dfb87)
+end_to_end_background_task_covers_disk_summary_terminal_detail: test
+end_to_end_resume_covers_transcript_and_worktree_and_cache: test
+
+2 tests, 0 benchmarks
+     Running tests/m8_integration_cache_handoff.rs (target/debug/deps/m8_integration_cache_handoff-0f122968dd740e86)
+read_file_returns_body_and_rebuilds_version_after_ledger_clear: test
+tier3_compatibility_helper_can_clear_file_version_ledger: test
+
+2 tests, 0 benchmarks
+     Running tests/m8_integration_tool_context.rs (target/debug/deps/m8_integration_tool_context-add5a17b0015d8cc)
+h02_m1_repeated_agent_reads_return_body_and_record_one_version: test
+spawn_only_background_path_receives_full_tool_context_after_m8_8_scheduler: test
+threads_agent_definitions_into_spawn_tool_after_m8_8_scheduler: test
+threads_profile_permissions_into_tool_context_after_m8_fix_8: test
+
+4 tests, 0 benchmarks

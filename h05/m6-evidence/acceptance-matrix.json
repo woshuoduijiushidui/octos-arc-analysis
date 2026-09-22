@@ -1,0 +1,149 @@
+{
+  "schema": "octos.h05-m6-acceptance-matrix.v1",
+  "a_sha": "4c542e534e957d69a5ee05d24ffb7e166beb78bb",
+  "b_sha": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "all_passed": true,
+  "not_applicable": [],
+  "cases": [
+    {
+      "id": "T01",
+      "status": "passed",
+      "evidence": [
+        "tools::write_file::tests::local_edit_new_empty_file_is_a_real_creation",
+        "tools::mutation_guard::tests::concurrent_creates_never_overwrite_the_winning_file"
+      ]
+    },
+    {
+      "id": "T02",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::local_edit_success_reports_final_actual_change",
+        "h05_m6_observability::b_observability_is_complete_and_does_not_change_tool_results",
+        "m6-evidence/stdio call 9"
+      ]
+    },
+    {
+      "id": "T03",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::local_edit_ambiguity_returns_bounded_current_unicode_evidence",
+        "m6-evidence/stdio calls 0 and 2"
+      ]
+    },
+    {
+      "id": "T04",
+      "status": "passed",
+      "evidence": [
+        "h05_m2_typed_recovery::typed_edit_rejection_reaches_final_request_with_bounded_non_receipt_evidence",
+        "m6-evidence/stdio calls 3, 7, and 8"
+      ]
+    },
+    {
+      "id": "T05",
+      "status": "passed",
+      "evidence": [
+        "h05_m5_replace_all::explicit_replace_all_and_rejections_reach_the_next_model_request",
+        "m6-evidence/stdio call 10"
+      ]
+    },
+    {
+      "id": "T06",
+      "status": "passed",
+      "evidence": [
+        "h05_m3_mutation_results::no_change_and_final_mutation_metadata_reach_the_next_model_request",
+        "tools::edit_file::tests::local_edit_no_change_has_no_write_or_post_processors",
+        "m6-evidence/stdio call 12"
+      ]
+    },
+    {
+      "id": "T07",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::local_edit_candidate_excerpt_bounds_long_unicode_line_and_path",
+        "tools::edit_file::tests::local_edit_replace_all_handles_crlf_and_unicode_without_normalizing",
+        "tools::diff_edit::tests::local_edit_full_file_fallback_does_not_ignore_markdown_spaces",
+        "m6-evidence/stdio calls 0, 2, and 10"
+      ]
+    },
+    {
+      "id": "T08",
+      "status": "passed",
+      "evidence": [
+        "h05_m4_diff_fallback::fallback_and_typed_failures_reach_the_next_model_request",
+        "m6-evidence/stdio call 11"
+      ]
+    },
+    {
+      "id": "T09",
+      "status": "passed",
+      "evidence": [
+        "tools::diff_edit::tests::local_edit_rejects_ambiguous_full_file_matches_with_bounded_evidence",
+        "m6-evidence/stdio call 6"
+      ]
+    },
+    {
+      "id": "T10",
+      "status": "passed",
+      "evidence": [
+        "tools::diff_edit::tests::local_edit_one_failed_hunk_keeps_the_file_unchanged",
+        "h05_m0_baseline::h05_m0_failed_multi_hunk_diff_never_reaches_disk"
+      ]
+    },
+    {
+      "id": "T11",
+      "status": "passed",
+      "evidence": [
+        "h03_m1_output::batch_allocation_is_repeatable_and_bounded",
+        "h05_m2_typed_recovery::typed_edit_rejection_reaches_final_request_with_bounded_non_receipt_evidence",
+        "m6-evidence/stdio: 6909 candidate-result bytes"
+      ]
+    },
+    {
+      "id": "T12",
+      "status": "passed",
+      "evidence": [
+        "tools::write_file::tests::should_refuse_same_size_overwrite_after_content_changes_and_mtime_is_restored",
+        "tools::mutation_guard::tests::replacement_between_match_and_truncate_returns_typed_stale",
+        "tools::mutation_guard::tests::replacement_during_typed_rejection_returns_stale_not_old_evidence",
+        "tools::mutation_report::tests::final_report_never_claims_stale_written_bytes_after_disk_changes"
+      ]
+    },
+    {
+      "id": "T13",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::local_edit_formatter_metadata_uses_final_disk_content",
+        "format::tests::should_render_no_note_when_formatter_left_file_unchanged",
+        "tools::edit_file::tests::local_edit_formatter_failure_keeps_modified_result"
+      ]
+    },
+    {
+      "id": "T14",
+      "status": "passed",
+      "evidence": [
+        "h02_m2_read_receipts::eight_kib_projection_does_not_activate_a_receipt",
+        "h03_m3_file_pages::transformed_file_page_never_claims_raw_continuation_or_h02_coverage",
+        "h02_m3_receipt_lifecycle::prompt_replacement_clears_receipts_before_the_next_read"
+      ]
+    },
+    {
+      "id": "T15",
+      "status": "passed",
+      "evidence": [
+        "m6-evidence/stdio real serve --stdio --solo run",
+        "mcp_serve_integration: 18 passed",
+        "tools::spawn: 94 passed, 1 ignored",
+        "legacy Tool::execute coverage in edit_file/write_file/diff_edit"
+      ]
+    },
+    {
+      "id": "T16",
+      "status": "passed",
+      "evidence": [
+        "m6-evidence/guidance: off schema hash equals A",
+        "h05_m0_baseline: 8 passed with OCTOS_LOCAL_EDIT=0",
+        "m6-evidence/stdio: apply_patch absent from default tools"
+      ]
+    }
+  ]
+}

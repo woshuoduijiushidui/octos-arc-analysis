@@ -1,0 +1,29 @@
+    Checking octos-core v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-core)
+    Checking octos-plugin v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-plugin)
+   Compiling octos-cli v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-cli)
+    Checking octos-llm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-llm)
+    Checking octos-bus v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-bus)
+    Checking octos-memory v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-memory)
+    Checking octos-fleet v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-fleet)
+    Checking octos-diagnostics v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-diagnostics)
+    Checking octos-store v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-store)
+    Checking octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Checking octos-services v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-services)
+    Checking octos-arc v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-arc)
+    Checking octos-pipeline v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-pipeline)
+    Checking octos-swarm v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-swarm)
+    Checking octos-fleet-worker v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-fleet-worker)
+    Checking octos-workflows v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-workflows)
+error: this boolean expression can be simplified
+   --> crates/octos-cli/src/commands/serve.rs:878:12
+    |
+878 |         if !(self.stdio && self.solo) && !missing.is_empty() {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `!(missing.is_empty() || self.stdio && self.solo)`
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#nonminimal_bool
+    = note: `-D clippy::nonminimal-bool` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::nonminimal_bool)]`
+
+error: could not compile `octos-cli` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `octos-cli` (lib test) due to 1 previous error

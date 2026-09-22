@@ -1,0 +1,21 @@
+    Blocking waiting for file lock on build directory
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.75s
+     Running tests/h03_m1_output.rs (target/debug/deps/h03_m1_output-f2e2d4ba35c9f0ca)
+
+running 13 tests
+test approved_tool_uses_same_identity_and_projection_path ... ok
+test batch_allocation_is_repeatable_and_bounded ... ok
+test bridge_failure_never_sends_a_cut_range_declaration ... ok
+test capture_availability_execution_and_pending_are_independent ... ok
+test command_aliases_preserve_nonzero_exit_and_both_streams ... ok
+test empty_crlf_bom_and_no_newline_have_exact_source_ranges ... ok
+test file_and_log_share_total_budget_including_all_metadata ... ok
+test identities_and_owners_do_not_follow_content_hashes ... ok
+test metadata_over_budget_and_unknown_config_fail_closed ... ok
+test real_file_and_shell_reach_final_provider_with_typed_ranges_and_status ... ok
+test recovery_off_preserves_file_output ... ok
+test sanitization_and_hook_text_are_budgeted_without_source_coverage ... ok
+test smaller_projection_restarts_from_source_and_updates_proof ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.99s

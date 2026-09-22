@@ -1,0 +1,182 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 56 tests
+test tools::shell::tests::approval_policy_never_fails_directly_without_prompt ... ok
+test tools::shell::tests::background_label_is_short_and_prefixed ... ok
+test tools::shell::change_receipt_tests::non_git_dir_omits_receipt ... ok
+Initialized empty Git repository in /private/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/.tmpfqWLnC/.git/
+Initialized empty Git repository in /private/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/.tmpO5Y15r/.git/
+Initialized empty Git repository in /private/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/.tmp3nnkaB/.git/
+Initialized empty Git repository in /private/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/.tmpIjARRF/.git/
+test tools::shell::tests::background_command_reads_supervisor_from_tool_context ... ok
+test tools::shell::tests::bash_file_writes_default_is_allow_and_serializes_round_trip ... ok
+test tools::shell::tests::background_shell_refuses_when_sandbox_unavailable ... ok
+test tools::shell::tests::bash_file_writes_deny_refuses_write_command ... ok
+test tools::shell::tests::bash_file_writes_escape_hatch_allows_explicit_write ... ok
+test tools::shell::tests::background_command_without_supervisor_runs_without_panic ... ok
+test tools::shell::tests::bash_file_writes_heuristic_matches_write_shapes_only ... ok
+test tools::shell::tests::bash_file_writes_allow_is_zero_difference ... ok
+test tools::shell::tests::background_command_failure_flips_task_failed ... ok
+test tools::shell::tests::child_shell_api_key_not_visible ... ignored
+test tools::shell::tests::detects_background_via_trailing_ampersand ... ok
+test tools::shell::tests::detects_git_invocation_in_compound_shell_command ... ok
+test tools::shell::tests::bash_file_writes_deny_lets_readonly_command_run ... ok
+test tools::shell::tests::non_quarto_command_does_not_redirect_home ... ok
+test tools::shell::tests::bash_file_writes_escape_hatch_runs_under_deny ... ok
+test tools::shell::tests::quarto_command_redirects_home_into_workspace ... ok
+test tools::shell::tests::quarto_command_with_inline_env_prefix_redirects_home ... ok
+test tools::shell::tests::explicit_background_arg_registers_task ... ok
+kill: -56581: No such process
+kill: -56581: No such process
+test tools::shell::tests::max_timeout_secs_caps_a_larger_requested_timeout ... ok
+test tools::shell::tests::shell_falls_back_to_self_cwd_when_no_scope ... ok
+test tools::shell::tests::shell_refuses_with_typed_message_when_sandbox_unavailable ... ok
+test tools::shell::tests::shell_tool_is_exclusive ... ok
+test tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_background_sandbox_without_stale_grants ... ok
+test tools::shell::tests::sovereignty_allows_owner_goal_its_own_checkout ... ok
+test tools::shell::tests::sovereignty_allows_same_branch_noop_checkout ... ok
+test tools::shell::tests::sovereignty_fail_open_without_owner_or_branch ... ok
+test tools::shell::tests::sovereignty_ignores_read_only_and_pathspec_restore ... ok
+test tools::shell::tests::sovereignty_only_guards_the_main_tree_root ... ok
+test tools::shell::tests::sovereignty_refuses_cross_branch_checkout_from_other_goal ... ok
+test tools::shell::tests::sovereignty_switch_command_also_guarded ... ok
+test tools::shell::tests::strips_trailing_ampersand_for_own_child ... ok
+test tools::shell::tests::shell_safe_policy_still_denies_with_scope_present ... ok
+test tools::shell::tests::shell_does_not_expose_configured_api_key_to_env_or_echo ... ok
+test tools::shell::tests::shell_respects_hinted_workspace_over_session_scope_default ... ok
+test tools::shell::tests::test_ask_command_denied_without_approval ... ok
+test tools::shell::tests::test_denied_command ... ok
+test tools::shell::tests::shell_uses_scope_workspace_when_present ... ok
+test tools::shell::tests::test_timeout_clamped_to_max ... ok
+kill: -56678: No such process
+kill: -56678: No such process
+test tools::shell::tests::test_timeout_zero_clamped_to_min ... FAILED
+[硬编码检测提示] 检查超时（超过2秒），终止扫描。
+[硬编码检测提示] 检查超时（超过2秒），终止扫描。
+[硬编码检测提示] 检查超时（超过2秒），终止扫描。
+[硬编码检测提示] 检查超时（超过2秒），终止扫描。
+[main (root-commit) 6e7f2cf] init
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+test tools::shell::change_receipt_tests::listing_caps_at_twenty_with_total ... ok
+[main (root-commit) 6e7f2cf] init
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+[main (root-commit) 6e7f2cf] init
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+test tools::shell::change_receipt_tests::phantom_edit_reports_zero ... ok
+[main (root-commit) 6e7f2cf] init
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+test tools::shell::change_receipt_tests::real_edit_lists_the_file ... ok
+[main ffd9af9] ignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+test tools::shell::change_receipt_tests::gitignored_paths_are_excluded ... ok
+test tools::shell::build_cache_usage_tests::foreground_child_retains_build_cache_claim ... FAILED
+test tools::shell::build_cache_usage_tests::background_child_retains_build_cache_claim ... FAILED
+test tools::shell::build_cache_usage_tests::cancelled_foreground_retains_build_cache_claim_until_child_exit ... FAILED
+test tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_kernel_allows_own_slot_and_denies_sibling_then_revoked_slot has been running for over 60 seconds
+test tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_foreground_sandbox_without_stale_grants has been running for over 60 seconds
+test tools::shell::tests::applies_git_protection_to_wrapped_git_invocation has been running for over 60 seconds
+test tools::shell::tests::background_command_registers_and_flips_terminal_with_supervisor has been running for over 60 seconds
+test tools::shell::tests::background_disabled_refuses_explicit_and_trailing_ampersand has been running for over 60 seconds
+test tools::shell::tests::background_command_registers_and_flips_terminal_with_supervisor ... FAILED
+test tools::shell::tests::bash_file_writes_warn_nudges_only_when_files_changed has been running for over 60 seconds
+test tools::shell::tests::test_shell_sets_frontend_build_env has been running for over 60 seconds
+kill: -56503: No such process
+kill: -56520: No such process
+kill: -56537: No such process
+kill: -56503: No such process
+test tools::shell::tests::applies_git_protection_to_wrapped_git_invocation ... FAILED
+kill: -56520: No such process
+test tools::shell::tests::background_disabled_refuses_explicit_and_trailing_ampersand ... FAILED
+kill: -56537: No such process
+test tools::shell::tests::bash_file_writes_warn_nudges_only_when_files_changed ... FAILED
+kill: -56597: No such process
+kill: -56597: No such process
+kill: -56670: No such process
+kill: -56676: No such process
+kill: -56670: No such process
+kill: -56676: No such process
+test tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_foreground_sandbox_without_stale_grants ... FAILED
+test tools::shell::tests::test_shell_sets_frontend_build_env ... FAILED
+kill: -57190: No such process
+kill: -57190: No such process
+kill: -57492: No such process
+kill: -57492: No such process
+kill: -57680: No such process
+kill: -57680: No such process
+test tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_kernel_allows_own_slot_and_denies_sibling_then_revoked_slot ... ok
+
+failures:
+
+---- tools::shell::tests::test_timeout_zero_clamped_to_min stdout ----
+
+thread 'tools::shell::tests::test_timeout_zero_clamped_to_min' (6089577) panicked at crates/octos-agent/src/tools/shell.rs:1796:9:
+assertion failed: result.success
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tools::shell::build_cache_usage_tests::foreground_child_retains_build_cache_claim stdout ----
+
+thread 'tools::shell::build_cache_usage_tests::foreground_child_retains_build_cache_claim' (6088378) panicked at crates/octos-agent/src/tools/shell.rs:3134:10:
+called `Result::unwrap()` on an `Err` value: Elapsed(())
+
+---- tools::shell::build_cache_usage_tests::background_child_retains_build_cache_claim stdout ----
+
+thread 'tools::shell::build_cache_usage_tests::background_child_retains_build_cache_claim' (6088376) panicked at crates/octos-agent/src/tools/shell.rs:3134:10:
+called `Result::unwrap()` on an `Err` value: Elapsed(())
+
+---- tools::shell::build_cache_usage_tests::cancelled_foreground_retains_build_cache_claim_until_child_exit stdout ----
+
+thread 'tools::shell::build_cache_usage_tests::cancelled_foreground_retains_build_cache_claim_until_child_exit' (6088377) panicked at crates/octos-agent/src/tools/shell.rs:3134:10:
+called `Result::unwrap()` on an `Err` value: Elapsed(())
+
+---- tools::shell::tests::background_command_registers_and_flips_terminal_with_supervisor stdout ----
+
+thread 'tools::shell::tests::background_command_registers_and_flips_terminal_with_supervisor' (6088388) panicked at crates/octos-agent/src/tools/shell.rs:2292:17:
+background task did not complete in 15s: ["running"]
+
+---- tools::shell::tests::applies_git_protection_to_wrapped_git_invocation stdout ----
+
+thread 'tools::shell::tests::applies_git_protection_to_wrapped_git_invocation' (6088384) panicked at crates/octos-agent/src/tools/shell.rs:2013:9:
+shell command failed: Command timed out after 120 seconds
+
+---- tools::shell::tests::background_disabled_refuses_explicit_and_trailing_ampersand stdout ----
+
+thread 'tools::shell::tests::background_disabled_refuses_explicit_and_trailing_ampersand' (6088390) panicked at crates/octos-agent/src/tools/shell.rs:2368:9:
+foreground command must still run: Command timed out after 120 seconds
+
+---- tools::shell::tests::bash_file_writes_warn_nudges_only_when_files_changed stdout ----
+
+thread 'tools::shell::tests::bash_file_writes_warn_nudges_only_when_files_changed' (6088753) panicked at crates/octos-agent/src/tools/shell.rs:1621:9:
+assertion failed: out.success
+
+---- tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_foreground_sandbox_without_stale_grants stdout ----
+
+thread 'tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_foreground_sandbox_without_stale_grants' (6088375) panicked at crates/octos-agent/src/tools/shell.rs:2965:13:
+Command timed out after 120 seconds
+
+---- tools::shell::tests::test_shell_sets_frontend_build_env stdout ----
+
+thread 'tools::shell::tests::test_shell_sets_frontend_build_env' (6089558) panicked at crates/octos-agent/src/tools/shell.rs:1934:9:
+assertion failed: result.success
+
+
+failures:
+    tools::shell::build_cache_sandbox_handoff_tests::build_cache_context_reaches_foreground_sandbox_without_stale_grants
+    tools::shell::build_cache_usage_tests::background_child_retains_build_cache_claim
+    tools::shell::build_cache_usage_tests::cancelled_foreground_retains_build_cache_claim_until_child_exit
+    tools::shell::build_cache_usage_tests::foreground_child_retains_build_cache_claim
+    tools::shell::tests::applies_git_protection_to_wrapped_git_invocation
+    tools::shell::tests::background_command_registers_and_flips_terminal_with_supervisor
+    tools::shell::tests::background_disabled_refuses_explicit_and_trailing_ampersand
+    tools::shell::tests::bash_file_writes_warn_nudges_only_when_files_changed
+    tools::shell::tests::test_shell_sets_frontend_build_env
+    tools::shell::tests::test_timeout_zero_clamped_to_min
+
+test result: FAILED. 45 passed; 10 failed; 1 ignored; 0 measured; 2896 filtered out; finished in 484.88s
+
+error: test failed, to rerun pass `-p octos-agent --lib`

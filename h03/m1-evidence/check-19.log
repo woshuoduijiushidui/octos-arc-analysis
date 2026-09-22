@@ -1,0 +1,20 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.40s
+     Running tests/mcp_serve_integration.rs (target/debug/deps/mcp_serve_integration-d539c50aaa45fde1)
+
+running 14 tests
+test arc_agent_task_accepts_artifact_matching_response_schema ... ok
+test arc_agent_task_rejects_artifact_violating_response_schema ... ok
+test arc_agent_task_rejects_stale_artifact_when_agent_reports_failure ... ok
+test arc_agent_task_uses_native_system_prompt_and_structured_task ... ok
+test legacy_prompt_session_remains_compatible_without_arc_task ... ok
+test repeated_read_through_mcp_dispatch_uses_verified_receipt ... ok
+test separate_mcp_invocations_do_not_share_read_receipts ... ok
+test should_block_shell_write_outside_workspace_via_sandbox ... ok
+test should_execute_real_agent_session_via_mcp_dispatch_and_return_artifact ... ok
+test should_not_leak_internal_iteration_messages_via_dispatch ... ok
+test should_populate_validator_results_when_workspace_policy_declares_validators ... ok
+test should_propagate_task_lifecycle_state_through_dispatch_observer ... ok
+test should_return_contract_artifact_on_session_ready_via_mcp ... ok
+test should_return_typed_failure_on_session_failed_via_mcp ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.10s

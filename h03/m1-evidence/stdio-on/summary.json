@@ -1,0 +1,97 @@
+{
+  "binary_sha256": "8e9ff7d821da119da184374fef45f25dda59fd963eba8e8c86d1696a2476331f",
+  "source_sha256": "4d4fbc409a5ced6c094c5f6b8a44691d1f2d3a06626829114fd2e84578b63a68",
+  "requests": 5,
+  "outputs": [
+    {
+      "output_id": "91762a9c46c4488a94a55e5ebf11be9d",
+      "view_digest": "cb8ce8031308c2c76e47c0867ac5447ef3e3361a307f8cf25cadaed6d4fbfd52",
+      "bytes": 8178,
+      "ranges": [
+        {
+          "stream": "file",
+          "start": 948,
+          "end": 7474,
+          "lines": [
+            30,
+            223
+          ]
+        }
+      ]
+    },
+    {
+      "output_id": "cc026b4d88994742a539ceed4dfa481d",
+      "view_digest": "e3e45081354734215acf13a55fd160eeaddcd96c14fba2d4e2848ff7f46522f8",
+      "bytes": 3258,
+      "ranges": [
+        {
+          "stream": "stdout",
+          "start": 0,
+          "end": 2712
+        },
+        {
+          "stream": "stderr",
+          "start": 0,
+          "end": 22
+        },
+        {
+          "stream": "display",
+          "start": 0,
+          "end": 31
+        }
+      ]
+    },
+    {
+      "output_id": "cedcd7f067754e1f9455bdda6d3e3d71",
+      "view_digest": "6e17741255a28b1ecaf9aa2407383bd6075256d4d328137752dabe488446efdf",
+      "bytes": 3273,
+      "ranges": [
+        {
+          "stream": "stdout",
+          "start": 0,
+          "end": 2712
+        },
+        {
+          "stream": "stderr",
+          "start": 0,
+          "end": 22
+        },
+        {
+          "stream": "display",
+          "start": 0,
+          "end": 46
+        }
+      ]
+    },
+    {
+      "output_id": "6b2b3c3d90514f3bbd1d4921ff9938c6",
+      "view_digest": "091d13836901acfa22f4b1838bad83083a3a35ea3687fc795454b40422b5e834",
+      "bytes": 3273,
+      "ranges": [
+        {
+          "stream": "stdout",
+          "start": 0,
+          "end": 2712
+        },
+        {
+          "stream": "stderr",
+          "start": 0,
+          "end": 22
+        },
+        {
+          "stream": "display",
+          "start": 0,
+          "end": 46
+        }
+      ]
+    }
+  ],
+  "persisted_views": 4,
+  "effective_policy": {
+    "enabled": true,
+    "page_bytes": 8192,
+    "read_window": false
+  },
+  "approval_events": 0,
+  "provider": "loopback fake; usage is synthetic"
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "octos.h05-m1-guidance.v1",
+  "binary_sha256": "0996d664918bf8453b29cd5bb9cc65dbffd2b70f0efe1547d612d1468bf44bac",
+  "provider": "loopback fake; usage fields are synthetic",
+  "off_schema_sha256": "79f97b610f4178e8820be561ce5fac943e6d43d04cb07e0147ac31aec2acdafa",
+  "on_schema_sha256": "94c02f8749a2be6d76d7412ccb25b21a5bf2c5b20555a6d58906bdbade45615f",
+  "unknown_schema_sha256": "79f97b610f4178e8820be561ce5fac943e6d43d04cb07e0147ac31aec2acdafa",
+  "off_schema_bytes": 9286,
+  "on_schema_bytes": 9379,
+  "schema_delta_bytes": 93,
+  "system_prompt_delta_bytes": 410,
+  "fixed_input_delta_bytes": 503,
+  "trimmed_schema_delta_bytes": 93,
+  "trimmed_system_prompt_delta_bytes": 410,
+  "trimmed_fixed_input_delta_bytes": 503,
+  "changed_tools": [
+    "diff_edit",
+    "edit_file",
+    "write_file"
+  ],
+  "tool_names_unchanged": true,
+  "guidance_occurrences": 1,
+  "unknown_value_fell_back_to_off": true
+}

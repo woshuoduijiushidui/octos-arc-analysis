@@ -1,0 +1,765 @@
+[
+  {
+    "method": "session/open",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "active_profile_id": "arc-57562-6598239",
+      "workspace_root": "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/stdio-run3/window_page/workspace",
+      "context": {
+        "schema": "octos.context.lifecycle.v1",
+        "state": {
+          "session_id": "arc-bundle:4e9d5f3d",
+          "thread_id": null,
+          "generation": 0,
+          "transcript_hash": "sha256:0e74cd27876341aae16268edde021c405954d5cb25dc017a81a491038e4033f1",
+          "last_checkpoint_id": null,
+          "last_compaction_id": null,
+          "token_estimate": 1,
+          "item_count": 0,
+          "recovery_state": "exact"
+        },
+        "compaction": {
+          "count": 0,
+          "last": null
+        }
+      },
+      "context_state": {
+        "session_id": "arc-bundle:4e9d5f3d",
+        "generation": 0,
+        "transcript_hash": "sha256:0e74cd27876341aae16268edde021c405954d5cb25dc017a81a491038e4033f1",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "cursor": {
+        "stream": "arc-bundle:4e9d5f3d\u0000~cwd-21879b9b767e45a7",
+        "seq": 1
+      },
+      "panes": {
+        "session_id": "arc-bundle:4e9d5f3d",
+        "generated_at": "2026-09-20T20:36:41.402110Z",
+        "workspace": {
+          "root": "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/stdio-run3/window_page/workspace",
+          "readable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/stdio-run3/window_page/workspace"
+          ],
+          "writable_roots": [
+            "/Users/bytedance/arc-bench/octos-arc-analysis/test-temp/h03/stdio-run3/window_page/workspace"
+          ],
+          "contract": [
+            "api octos-app-ui/v1alpha1",
+            "source session/open panes",
+            "feature pane.snapshots.v1"
+          ],
+          "entries": [
+            {
+              "path": ".octos",
+              "label": ".octos",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/active-profile",
+              "label": "active-profile",
+              "depth": 1,
+              "kind": "file",
+              "detail": "17 B"
+            },
+            {
+              "path": ".octos/arc-57562-6598239",
+              "label": "arc-57562-6598239",
+              "depth": 1,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-57562-6598239/.gitignore",
+              "label": ".gitignore",
+              "depth": 2,
+              "kind": "file",
+              "detail": "191 B"
+            },
+            {
+              "path": ".octos/arc-57562-6598239/context_ledgers",
+              "label": "context_ledgers",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos/arc-57562-6598239/context_ledgers/arc-bundle%3A4e9d5f3d.json",
+              "label": "arc-bundle%3A4e9d5f3d.json",
+              "depth": 3,
+              "kind": "file",
+              "detail": "563 B"
+            },
+            {
+              "path": ".octos/arc-57562-6598239/sessions",
+              "label": "sessions",
+              "depth": 2,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": ".octos-workspace.toml",
+              "label": ".octos-workspace.toml",
+              "depth": 0,
+              "kind": "file",
+              "detail": "4.7 KB"
+            },
+            {
+              "path": "large.txt",
+              "label": "large.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "167.2 KB"
+            },
+            {
+              "path": "skill-output",
+              "label": "skill-output",
+              "depth": 0,
+              "kind": "directory",
+              "detail": "dir"
+            },
+            {
+              "path": "stderr.txt",
+              "label": "stderr.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "22 B"
+            },
+            {
+              "path": "stdout.txt",
+              "label": "stdout.txt",
+              "depth": 0,
+              "kind": "file",
+              "detail": "167.2 KB"
+            }
+          ]
+        },
+        "artifacts": {
+          "items": [
+            {
+              "title": "arc-bundle%3A4e9d5f3d.json",
+              "kind": "file",
+              "path": ".octos/arc-57562-6598239/context_ledgers/arc-bundle%3A4e9d5f3d.json",
+              "uri": ".octos/arc-57562-6598239/context_ledgers/arc-bundle%3A4e9d5f3d.json",
+              "source": "workspace",
+              "status": "563 B",
+              "size_bytes": 563,
+              "updated_at": "2026-09-20T20:36:40.359880984Z"
+            },
+            {
+              "title": "active-profile",
+              "kind": "file",
+              "path": ".octos/active-profile",
+              "uri": ".octos/active-profile",
+              "source": "workspace",
+              "status": "17 B",
+              "size_bytes": 17,
+              "updated_at": "2026-09-20T20:36:40.358138199Z"
+            },
+            {
+              "title": ".gitignore",
+              "kind": "file",
+              "path": ".octos/arc-57562-6598239/.gitignore",
+              "uri": ".octos/arc-57562-6598239/.gitignore",
+              "source": "workspace",
+              "status": "191 B",
+              "size_bytes": 191,
+              "updated_at": "2026-09-20T20:36:40.355773998Z"
+            },
+            {
+              "title": ".octos-workspace.toml",
+              "kind": "file",
+              "path": ".octos-workspace.toml",
+              "uri": ".octos-workspace.toml",
+              "source": "workspace",
+              "status": "4.7 KB",
+              "size_bytes": 4822,
+              "updated_at": "2026-09-20T20:36:40.336110441Z"
+            },
+            {
+              "title": "stderr.txt",
+              "kind": "file",
+              "path": "stderr.txt",
+              "uri": "stderr.txt",
+              "source": "workspace",
+              "status": "22 B",
+              "size_bytes": 22,
+              "updated_at": "2026-09-20T20:36:37.089911642Z"
+            },
+            {
+              "title": "stdout.txt",
+              "kind": "file",
+              "path": "stdout.txt",
+              "uri": "stdout.txt",
+              "source": "workspace",
+              "status": "167.2 KB",
+              "size_bytes": 171230,
+              "updated_at": "2026-09-20T20:36:37.089604184Z"
+            },
+            {
+              "title": "large.txt",
+              "kind": "file",
+              "path": "large.txt",
+              "uri": "large.txt",
+              "source": "workspace",
+              "status": "167.2 KB",
+              "size_bytes": 171230,
+              "updated_at": "2026-09-20T20:36:37.089223477Z"
+            }
+          ]
+        },
+        "git": {
+          "repo_root": "/Users/bytedance/arc-bench/octos-arc-analysis",
+          "branch": "feat/output-recovery",
+          "head": "1bdb012",
+          "clean": true,
+          "history": [
+            {
+              "commit": "1bdb012",
+              "summary": "docs: 将分页恢复与搜索合并为两组对照"
+            },
+            {
+              "commit": "bab0505",
+              "summary": "docs: 添加文件分页与原文恢复实施清单"
+            },
+            {
+              "commit": "eff2f0b",
+              "summary": "docs: 调研文件分页、截断与原文恢复方案"
+            },
+            {
+              "commit": "f32ac07",
+              "summary": "Merge pull request #2 from woshuoduijiushidui/docs/h01-evidence-experiment"
+            },
+            {
+              "commit": "9fc2d4e",
+              "summary": "docs(h02): align variant c branch name"
+            },
+            {
+              "commit": "15530e5",
+              "summary": "docs(h02): record milestone 7 verification"
+            },
+            {
+              "commit": "cdf2f7c",
+              "summary": "docs(h02): record milestone 6 variant b freeze"
+            },
+            {
+              "commit": "d380d19",
+              "summary": "docs(h02): record milestone 5 verification"
+            },
+            {
+              "commit": "5efe76c",
+              "summary": "docs(h02): record milestone 4 verification"
+            },
+            {
+              "commit": "0bee2a1",
+              "summary": "docs(h02): record milestone 3 verification"
+            },
+            {
+              "commit": "772e313",
+              "summary": "docs(h02): record milestone 2 verification"
+            },
+            {
+              "commit": "9e8813d",
+              "summary": "docs: organize experiment notes and add H02 milestones"
+            }
+          ]
+        }
+      },
+      "capabilities": {
+        "version": {
+          "protocol": "octos-ui/v1alpha1",
+          "schema_version": 1,
+          "jsonrpc": "2.0"
+        },
+        "capabilities_schema_version": 2,
+        "supported_methods": [
+          "session/open",
+          "turn/start",
+          "turn/interrupt",
+          "approval/respond",
+          "approval/scopes/list",
+          "session/btw",
+          "user_question/respond",
+          "permission/profile/list",
+          "permission/profile/set",
+          "diff/preview/get",
+          "task/list",
+          "task/cancel",
+          "task/restart_from_node",
+          "task/output/read",
+          "session/hydrate",
+          "session/rollback",
+          "session/fork",
+          "thread/graph/get",
+          "turn/state/get",
+          "agent/list",
+          "agent/status/read",
+          "agent/output/read",
+          "agent/artifact/list",
+          "agent/artifact/read",
+          "task/artifact/list",
+          "task/artifact/read",
+          "agent/interrupt",
+          "agent/close",
+          "session/goal/get",
+          "session/goal/set",
+          "session/goal/clear",
+          "session/goal/operator_transition",
+          "loop/create",
+          "loop/list",
+          "loop/delete",
+          "loop/pause",
+          "loop/resume",
+          "loop/fire_now",
+          "monitor/create",
+          "monitor/list",
+          "monitor/pause",
+          "monitor/resume",
+          "monitor/delete",
+          "review/start",
+          "session/list",
+          "session/snapshot",
+          "session/messages_page",
+          "session/status.get",
+          "session/files.list",
+          "session/tasks.list",
+          "session/workspace.get",
+          "session/title.set",
+          "session/delete",
+          "system/status.get",
+          "router/set_mode",
+          "router/get_metrics",
+          "launch/resolve",
+          "client_hello",
+          "config/capabilities/list",
+          "session/status/read",
+          "profile/local/create",
+          "profile/llm/list",
+          "profile/llm/select",
+          "mcp/status/list",
+          "tool/status/list",
+          "auth/status",
+          "auth/send_code",
+          "auth/verify",
+          "profile/llm/catalog",
+          "profile/llm/upsert",
+          "profile/llm/delete",
+          "profile/llm/test",
+          "profile/llm/fetch_models",
+          "profile/sub_providers/list",
+          "profile/sub_providers/upsert",
+          "profile/sub_providers/remove",
+          "snapshot/list",
+          "snapshot/restore",
+          "peer/prepare",
+          "peer/gather",
+          "turn/steer",
+          "profile/skills/list",
+          "profile/skills/registry/search",
+          "profile/skills/install",
+          "profile/skills/remove",
+          "skill/action/list",
+          "skill/action/invoke",
+          "skill/action/job/list",
+          "skill/action/job/read",
+          "onboarding/workspace_probe",
+          "session/compact",
+          "session/compact/mode/set",
+          "voice/admit",
+          "voice/commit_admission"
+        ],
+        "supported_notifications": [
+          "session/open",
+          "turn/started",
+          "turn/completed",
+          "turn/error",
+          "message/delta",
+          "message/reasoning_delta",
+          "tool/started",
+          "tool/progress",
+          "tool/completed",
+          "approval/requested",
+          "approval/auto_resolved",
+          "approval/decided",
+          "approval/cancelled",
+          "user_question/requested",
+          "task/updated",
+          "plan/updated",
+          "task/output/delta",
+          "progress/updated",
+          "warning",
+          "protocol/replay_lossy",
+          "turn/spawn_complete",
+          "file/attached",
+          "visual/generating",
+          "visual/succeeded",
+          "visual/failed",
+          "voice/exit",
+          "skill/action/job/updated",
+          "voice/audio_chunk",
+          "projection/envelope",
+          "session/event",
+          "router/status",
+          "router/failover",
+          "queue/state",
+          "agent/updated",
+          "agent/output/delta",
+          "agent/artifact/updated",
+          "session/goal/updated",
+          "session/goal/cleared",
+          "loop/updated",
+          "loop/fired",
+          "loop/completed",
+          "monitor/fired",
+          "monitor/updated",
+          "monitor/expired",
+          "context/compaction_completed",
+          "context/compaction_started",
+          "context/normalization_reported",
+          "peer/staged",
+          "peer/closed",
+          "background/activity"
+        ],
+        "supported_features": [
+          "approval.typed.v1",
+          "pane.snapshots.v1",
+          "session.workspace_cwd.v1",
+          "session.sandbox.v1",
+          "harness.task_control.v1",
+          "state.session_hydrate.v1",
+          "state.thread_graph.v1",
+          "state.turn_state_get.v1",
+          "event.spawn_complete.v1",
+          "event.file_attached.v1",
+          "auxiliary.rest_to_ws.v1",
+          "coding.autonomy.v1",
+          "coding.agent_control.v1",
+          "coding.goal_runtime.v1",
+          "coding.loop_runtime.v1",
+          "coding.monitor_runtime.v1",
+          "review.start.v1",
+          "context.lifecycle.v1",
+          "harness.task_artifacts.v1",
+          "user_question.v1",
+          "event.voice_audio.v1",
+          "plan.todos.v1",
+          "event.background_activity.v1",
+          "event.turn_steer_dropped.v1",
+          "permission.profile.v1",
+          "voice.asr_admission.v1",
+          "runtime.policy_stamp.v1",
+          "coding.tool_contract.v1",
+          "coding.image_view.v1",
+          "coding.dynamic_tool_search.v1",
+          "coding.bash.v1",
+          "coding.delegate.v1",
+          "coding.browser.v1",
+          "skill.actions.v1",
+          "skill.action_jobs.v1",
+          "harness.task_supervision_inspection.v1",
+          "profile.local_create.v1",
+          "profile.local_create.requested_id.v1",
+          "profile.local_create.default.v1",
+          "onboarding.workspace_probe.v1"
+        ],
+        "unsupported": [
+          {
+            "method": "auth/me",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "auth/logout",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "content/bulk_delete",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/overview",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "memory/entity",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "cron/toggle",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/status.get",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.list",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/device.command",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_start",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          },
+          {
+            "method": "smart_home/camera.stream_stop",
+            "reason": "unauthenticated stdio transport has no AppUI auth identity"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "turn/started",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "timestamp": "2026-09-20T20:36:41.405367Z"
+    }
+  },
+  {
+    "method": "context/normalization_reported",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "context_state": {
+        "session_id": "arc-bundle:4e9d5f3d",
+        "generation": 0,
+        "transcript_hash": "sha256:0e74cd27876341aae16268edde021c405954d5cb25dc017a81a491038e4033f1",
+        "item_count": 0,
+        "token_estimate": 1,
+        "recovery_state": "exact"
+      },
+      "normalization": {
+        "generation": 0,
+        "input_transcript_hash": "sha256:0e74cd27876341aae16268edde021c405954d5cb25dc017a81a491038e4033f1",
+        "output_prompt_hash": "sha256:4af278e5450e8fa62b720ba4d0b00a9d1657c469fc77b4293f14a386835e38bd",
+        "model_capability_id": "openai@127/h03-local-fixture",
+        "prompt_message_count": 0,
+        "token_estimate": 1,
+        "repaired_count": 0,
+        "dropped_count": 0,
+        "synthetic_count": 0,
+        "truncated_count": 0
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 1 · 0 tokens · 0s · 0 reflections",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "response",
+        "iteration": 1
+      }
+    }
+  },
+  {
+    "method": "tool/started",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "tool_call_id": "call_0",
+      "tool_name": "read_file",
+      "arguments": {
+        "path": "large.txt"
+      }
+    }
+  },
+  {
+    "method": "tool/completed",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "tool_call_id": "call_0",
+      "tool_name": "read_file",
+      "success": true,
+      "output_preview": "   1│ LINE_0001 sample text sample text sample text sample text sample text sample text sample text sample text \n   2│ LINE_0002 sample text sample text sample text sample text sample text sample ...",
+      "duration_ms": 31
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "tool_completed",
+        "duration_ms": 31,
+        "success": true,
+        "tool": "read_file",
+        "tool_call_id": "call_0"
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "thinking",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "agent_progress",
+        "message": "Step 2 · 2 tokens · 0s · 0 reflections",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "response",
+        "iteration": 2
+      }
+    }
+  },
+  {
+    "method": "progress/updated",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "metadata": {
+        "kind": "token_cost_update",
+        "token_cost": {
+          "input_tokens": 2,
+          "output_tokens": 2,
+          "model": "h03-local-fixture",
+          "context_window": 128000
+        }
+      }
+    }
+  },
+  {
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "thread_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "seq": 3,
+      "cursor": {
+        "stream": "arc-bundle:4e9d5f3d\u0000~cwd-21879b9b767e45a7",
+        "seq": 15
+      },
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "payload": {
+        "type": "user_message",
+        "data": {
+          "text": "Execute the supplied local baseline fixture."
+        }
+      }
+    }
+  },
+  {
+    "method": "projection/envelope",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "thread_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "seq": 4,
+      "cursor": {
+        "stream": "arc-bundle:4e9d5f3d\u0000~cwd-21879b9b767e45a7",
+        "seq": 17
+      },
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "payload": {
+        "type": "assistant_persisted",
+        "data": {
+          "text": "Baseline fixture finished.",
+          "assistant_segment_id": "add04b3f-12ac-40a7-980f-85cf468e56ef:assistant:iteration:2",
+          "meta": {
+            "message_id": "arc-bundle:4e9d5f3d:3:1789936601584003000",
+            "persisted_at": "2026-09-20T20:36:41.584003Z"
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "session/orchestration",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "active": true,
+      "running_agents": 0,
+      "pending_continuations": 0,
+      "phase": "working"
+    }
+  },
+  {
+    "method": "message/delta",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "text": "Baseline fixture finished."
+    }
+  },
+  {
+    "method": "turn/completed",
+    "params": {
+      "session_id": "arc-bundle:4e9d5f3d",
+      "turn_id": "add04b3f-12ac-40a7-980f-85cf468e56ef",
+      "cursor": {
+        "stream": "arc-bundle:4e9d5f3d\u0000~cwd-21879b9b767e45a7",
+        "seq": 19
+      },
+      "tokens_in": 2,
+      "tokens_out": 2,
+      "cache_hit": 0,
+      "session_result": {
+        "committed_seq": 3,
+        "message_id": "arc-bundle:4e9d5f3d:3:1789936601584003000"
+      }
+    }
+  }
+]

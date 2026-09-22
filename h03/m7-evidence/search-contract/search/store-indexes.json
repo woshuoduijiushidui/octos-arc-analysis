@@ -1,0 +1,18 @@
+[
+  {
+    "version": 1,
+    "records": [
+      {
+        "id": "acd94d4157764ae489ff0b870d87c723",
+        "owner": "4b5aebbcc45d3ad83e6de4a428bc7214c3241cd67e56a20416c1fd843ed6ab14",
+        "session": "e92404dcaf34909499aace8215a80f5ea0789485117b22a8d0952b43eeca0ee3",
+        "running": false,
+        "call_id": "call_search_source",
+        "manifest": "697837196d329112a6972d37613e629c91295ccf82f8ce5e05e0489bdc07315c",
+        "payload_bytes": 32020,
+        "metadata_bytes": 1540,
+        "updated": 1789982554
+      }
+    ]
+  }
+]

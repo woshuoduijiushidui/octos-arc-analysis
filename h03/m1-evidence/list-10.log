@@ -1,0 +1,15 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+agent::llm_call::tests::before_llm_hook_deny_consumes_without_activating_read_candidates: test
+agent::llm_call::tests::cancelled_llm_call_consumes_without_activating_read_candidates: test
+agent::llm_call::tests::local_provider_receives_safe_boundaries_and_reports_exact_restore: test
+agent::llm_call::tests::provider_chain_reports_the_concrete_route_that_won_failover: test
+agent::llm_call::tests::should_call_once_and_skip_fallback_when_failfast_empty_response: test
+agent::llm_call::tests::should_call_once_and_skip_fallback_when_failfast_stream_error: test
+agent::llm_call::tests::should_not_apply_voice_deadline_when_normal_policy: test
+agent::llm_call::tests::should_report_attributed_spend_in_after_llm_hook_payload: test
+agent::llm_call::tests::should_timeout_build_stream_when_failfast: test
+agent::llm_call::tests::silent_llm_call_does_not_consume_or_activate_read_candidates: test
+agent::llm_call::tests::truncated_tool_call_retries_with_raised_output_budget: test
+
+11 tests, 0 benchmarks

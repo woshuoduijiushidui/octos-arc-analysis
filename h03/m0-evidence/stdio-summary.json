@@ -1,0 +1,139 @@
+{
+  "binary_sha256": "035c0ee3dad076954553765dbb8221dac364e18269b2869c10fcb2c84df81937",
+  "provider": "loopback fake; usage fields are synthetic, not measured tokens",
+  "approval_adapter": "test-only supplies session_id; production ARC wrapper remains unchanged",
+  "cases": [
+    {
+      "name": "window_page",
+      "read_window": true,
+      "requests": 2,
+      "tools_at_provider": [
+        "ask_user_question",
+        "bash",
+        "check",
+        "diff_edit",
+        "edit_file",
+        "exec_command",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "spawn",
+        "tool_search",
+        "update_plan",
+        "write_file"
+      ],
+      "tools_after_default_arc_trim": [
+        "bash",
+        "diff_edit",
+        "edit_file",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "write_file"
+      ],
+      "source_bytes": 171230,
+      "source_sha256": "70fca19ddd5bd6ffb578753f218a3ff4ef1c15e416e9108705f157cd60e1835f",
+      "first_visible_bytes": 8204,
+      "artifact_bytes": [
+        49242
+      ],
+      "middle_missing_from_final_messages": true,
+      "recall_unavailable": true,
+      "approval_events": 0,
+      "window_footer_lost": true
+    },
+    {
+      "name": "requested_range",
+      "read_window": false,
+      "requests": 3,
+      "tools_at_provider": [
+        "ask_user_question",
+        "bash",
+        "check",
+        "diff_edit",
+        "edit_file",
+        "exec_command",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "spawn",
+        "tool_search",
+        "update_plan",
+        "write_file"
+      ],
+      "tools_after_default_arc_trim": [
+        "bash",
+        "diff_edit",
+        "edit_file",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "write_file"
+      ],
+      "source_bytes": 171230,
+      "source_sha256": "70fca19ddd5bd6ffb578753f218a3ff4ef1c15e416e9108705f157cd60e1835f",
+      "first_visible_bytes": 8204,
+      "artifact_bytes": [
+        11534,
+        50127
+      ],
+      "middle_missing_from_final_messages": true,
+      "recall_unavailable": true,
+      "approval_events": 0,
+      "suggested_next_skips_missing_middle": true
+    },
+    {
+      "name": "shell_output",
+      "read_window": false,
+      "requests": 2,
+      "tools_at_provider": [
+        "ask_user_question",
+        "bash",
+        "check",
+        "diff_edit",
+        "edit_file",
+        "exec_command",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "spawn",
+        "tool_search",
+        "update_plan",
+        "write_file"
+      ],
+      "tools_after_default_arc_trim": [
+        "bash",
+        "diff_edit",
+        "edit_file",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "shell",
+        "write_file"
+      ],
+      "source_bytes": 171230,
+      "source_sha256": "70fca19ddd5bd6ffb578753f218a3ff4ef1c15e416e9108705f157cd60e1835f",
+      "first_visible_bytes": 8204,
+      "artifact_bytes": [
+        29983
+      ],
+      "middle_missing_from_final_messages": true,
+      "recall_unavailable": true,
+      "approval_events": 0,
+      "exit_code_lost": true,
+      "stderr_lost_before_storage": true,
+      "command_executions": 1
+    }
+  ]
+}

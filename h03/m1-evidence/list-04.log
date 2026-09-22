@@ -1,0 +1,20 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.58s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+tools::read_window::tests::armed_from_env_defaults_to_off: test
+tools::read_window::tests::from_metadata_binds_ctime_and_inode_on_unix: test
+tools::read_window::tests::should_bound_the_ledger_and_evict_oldest_first: test
+tools::read_window::tests::should_forget_and_reset: test
+tools::read_window::tests::should_mark_complete_after_note_full_write: test
+tools::read_window::tests::should_match_symlinked_and_canonical_forms_of_the_same_path: test
+tools::read_window::tests::should_never_complete_a_tainted_epoch: test
+tools::read_window::tests::should_never_complete_without_an_epoch: test
+tools::read_window::tests::should_not_mark_complete_when_written_bytes_disagree_with_disk: test
+tools::read_window::tests::should_not_stitch_across_a_gap: test
+tools::read_window::tests::should_record_nothing_for_an_empty_session: test
+tools::read_window::tests::should_report_partial_after_a_window_and_complete_after_paging_through: test
+tools::read_window::tests::should_reset_coverage_when_the_epoch_changes: test
+tools::read_window::tests::should_scope_views_to_the_session: test
+tools::read_window::tests::transformed_view_never_completes_even_at_full_coverage: test
+tools::read_window::tests::window_plus_footer_must_fit_under_the_loop_backstop: test
+
+16 tests, 0 benchmarks

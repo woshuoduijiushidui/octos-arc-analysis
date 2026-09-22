@@ -1,0 +1,142 @@
+{
+  "schema": "octos.h05-m7-acceptance-matrix.v1",
+  "b_sha": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "c_sha": "bb53c733ff6a40b477e5b6502dcb512a28be32ca",
+  "all_passed": true,
+  "cases": [
+    {
+      "id": "T01",
+      "status": "passed",
+      "evidence": [
+        "tools::mutation_guard::tests::concurrent_creates_never_overwrite_the_winning_file"
+      ]
+    },
+    {
+      "id": "T02",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::strict_match_keeps_exact_and_line_ending_equivalent_writes",
+        "m7-evidence C stdio call 8"
+      ]
+    },
+    {
+      "id": "T03",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::strict_match_keeps_exact_and_line_ending_equivalent_writes",
+        "m7-evidence B/C stdio call 12"
+      ]
+    },
+    {
+      "id": "T04",
+      "status": "passed",
+      "c_expectation": "fuzzy matches are suggestions and never write",
+      "evidence": [
+        "tools::edit_file::tests::strict_match_turns_every_fuzzy_stage_into_a_stable_suggestion",
+        "tools::edit_file::tests::strict_match_keeps_ambiguous_fuzzy_candidates_stably_sorted",
+        "tools::diff_edit::tests::strict_match_rejects_trailing_whitespace_as_a_suggestion",
+        "m7-evidence C stdio calls 0-7"
+      ]
+    },
+    {
+      "id": "T05",
+      "status": "passed",
+      "evidence": [
+        "h05_m5_replace_all::explicit_replace_all_and_rejections_reach_the_next_model_request",
+        "m7-evidence C stdio call 11"
+      ]
+    },
+    {
+      "id": "T06",
+      "status": "passed",
+      "evidence": [
+        "h05_m3_mutation_results::no_change_and_final_mutation_metadata_reach_the_next_model_request",
+        "m7-evidence B/C stdio call 13"
+      ]
+    },
+    {
+      "id": "T07",
+      "status": "passed",
+      "evidence": [
+        "strict Python indentation, Markdown double spaces, string literal, template, escape, and block-anchor cases",
+        "tools::edit_file::tests::strict_match_keeps_exact_and_line_ending_equivalent_writes",
+        "m7-evidence C stdio calls 0-6 and 9-10"
+      ]
+    },
+    {
+      "id": "T08",
+      "status": "passed",
+      "evidence": [
+        "tools::diff_edit::tests::strict_match_accepts_exact_context_with_crlf_line_endings",
+        "m7-evidence C stdio call 10 maps line 10 to line 1"
+      ]
+    },
+    {
+      "id": "T09",
+      "status": "passed",
+      "evidence": [
+        "tools::diff_edit::tests::strict_match_rejects_ambiguous_full_file_exact_context"
+      ]
+    },
+    {
+      "id": "T10",
+      "status": "passed",
+      "evidence": [
+        "tools::diff_edit::tests::strict_match_rejects_all_hunks_when_one_is_only_a_fuzzy_candidate"
+      ]
+    },
+    {
+      "id": "T11",
+      "status": "passed",
+      "evidence": [
+        "h03_m1_output::batch_allocation_is_repeatable_and_bounded",
+        "m7-evidence strict fuzzy outputs total 4615 bytes"
+      ]
+    },
+    {
+      "id": "T12",
+      "status": "passed",
+      "evidence": [
+        "tools::mutation_guard::tests::replacement_between_match_and_truncate_returns_typed_stale",
+        "tools::mutation_guard::tests::replacement_during_typed_rejection_returns_stale_not_old_evidence",
+        "tools::mutation_report::tests::final_report_never_claims_stale_written_bytes_after_disk_changes"
+      ]
+    },
+    {
+      "id": "T13",
+      "status": "passed",
+      "evidence": [
+        "tools::edit_file::tests::local_edit_formatter_metadata_uses_final_disk_content",
+        "format::tests::should_render_no_note_when_formatter_left_file_unchanged",
+        "tools::edit_file::tests::local_edit_formatter_failure_keeps_modified_result"
+      ]
+    },
+    {
+      "id": "T14",
+      "status": "passed",
+      "evidence": [
+        "h02_m2_read_receipts::eight_kib_projection_does_not_activate_a_receipt",
+        "h03_m3_file_pages::transformed_file_page_never_claims_raw_continuation_or_h02_coverage"
+      ]
+    },
+    {
+      "id": "T15",
+      "status": "passed",
+      "evidence": [
+        "m7-evidence real serve --stdio --solo B/C comparison",
+        "mcp_serve_integration: 18 passed",
+        "tools::spawn: 94 passed, 1 ignored",
+        "legacy Tool::execute coverage in edit_file/write_file/diff_edit"
+      ]
+    },
+    {
+      "id": "T16",
+      "status": "passed",
+      "evidence": [
+        "H05 off with strict=1: h05_m0_baseline 8 passed",
+        "B stdio replay M0-M6 passed",
+        "m7-evidence default tool list excludes apply_patch"
+      ]
+    }
+  ]
+}

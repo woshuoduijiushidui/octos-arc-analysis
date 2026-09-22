@@ -1,0 +1,32 @@
+{
+  "schema": "octos.h05-m7-scope-audit.v1",
+  "range": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45..bb53c733ff6a40b477e5b6502dcb512a28be32ca",
+  "commits": [
+    "bb53c733ff6a40b477e5b6502dcb512a28be32ca"
+  ],
+  "changed_paths": [
+    "arc/integration/local_edit_strict_match.py",
+    "crates/octos-agent/src/agent/mod.rs",
+    "crates/octos-agent/src/local_edit.rs",
+    "crates/octos-agent/src/tools/diff_edit.rs",
+    "crates/octos-agent/src/tools/edit_file.rs",
+    "crates/octos-agent/src/tools/registry.rs"
+  ],
+  "checks": {
+    "strict_flag_added": true,
+    "edit_fuzzy_write_boundary_changed": true,
+    "diff_trailing_whitespace_write_boundary_changed": true,
+    "b_feedback_shape_reused": true,
+    "input_schema_changed": false,
+    "system_prompt_changed": false,
+    "model_or_budget_changed": false,
+    "write_file_changed": false,
+    "mutation_guard_changed": false,
+    "mutation_report_changed": false,
+    "codegen_changed": false,
+    "official_inputs_changed": false,
+    "default_profile_changed": false,
+    "apply_patch_added_to_default_tools": false,
+    "unrelated_refactor_found": false
+  }
+}

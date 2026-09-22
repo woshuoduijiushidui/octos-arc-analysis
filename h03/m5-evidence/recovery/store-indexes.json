@@ -1,0 +1,40 @@
+[
+  {
+    "version": 1,
+    "records": [
+      {
+        "id": "34837a85b19040f4b09c2fbe5964cb3d",
+        "owner": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450",
+        "session": "3dbedf62ca530e7edba57577e370e0194f788083f8c163a23e0d639cadb51e63",
+        "running": false,
+        "call_id": "call_parallel",
+        "manifest": "99416e8a8ad638e02f6b8e5039dae2f486416a2237dc6740c625a50d5bd0cc3c",
+        "payload_bytes": 5700,
+        "metadata_bytes": 1441,
+        "updated": 1789975101
+      },
+      {
+        "id": "8cc3e58e345f4646b2dc08ca581ee36e",
+        "owner": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450",
+        "session": "3dbedf62ca530e7edba57577e370e0194f788083f8c163a23e0d639cadb51e63",
+        "running": false,
+        "call_id": "call_source",
+        "manifest": "e4c5a133621950ca4eb5b384cd66d01e7f4488bc6f749f456f0ef0a14c22a728",
+        "payload_bytes": 28824,
+        "metadata_bytes": 1441,
+        "updated": 1789975101
+      },
+      {
+        "id": "9550953b1bed4f62a2530de53b4183ce",
+        "owner": "56689871b1ec13320cfa732a45641a270ac4d0ec5eed5fb930c9d18f265f3450",
+        "session": "3dbedf62ca530e7edba57577e370e0194f788083f8c163a23e0d639cadb51e63",
+        "running": false,
+        "call_id": "call_shell",
+        "manifest": "df7a95c197409a232fabf58d485d1e35222e950be68b70f7226e81a2866adb78",
+        "payload_bytes": 16242,
+        "metadata_bytes": 1612,
+        "updated": 1789975103
+      }
+    ]
+  }
+]

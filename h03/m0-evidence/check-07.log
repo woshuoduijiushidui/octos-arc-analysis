@@ -1,0 +1,17 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 11 tests
+test tools::diff_edit::tests::test_parse_simple_diff ... ok
+test tools::diff_edit::tests::test_overlapping_hunks_rejected ... ok
+test tools::diff_edit::tests::test_apply_deletion ... ok
+test tools::diff_edit::tests::test_apply_simple_replacement ... ok
+test tools::diff_edit::tests::test_multiple_hunks ... ok
+test tools::diff_edit::tests::test_fuzzy_match_offset ... ok
+test tools::diff_edit::tests::test_apply_insertion ... ok
+test tools::diff_edit::tests::diff_edit_tool_is_exclusive ... ok
+test tools::diff_edit::tests::should_reject_ambiguous_diff_context_without_writing ... ok
+test tools::diff_edit::tests::should_invalidate_file_version_after_diff_edit ... ok
+test tools::diff_edit::tests::should_format_after_diff_edit_when_enabled ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 2941 filtered out; finished in 0.04s

@@ -1,0 +1,151 @@
+{
+  "milestone": "M6",
+  "code_commit": "fbcfd6b85214fa12316303f16599dbb3a97437ce",
+  "policy_id": "output_recovery_v1",
+  "environment": {
+    "os": "macOS 26.6.2",
+    "architecture": "arm64",
+    "rustc": "1.96.1 (31fca3adb 2026-06-26)",
+    "cargo": "1.96.1 (356927216 2026-06-26)"
+  },
+  "checks": [
+    {
+      "name": "h03_store_command_and_observation",
+      "command": "cargo test -p octos-agent h03_m --lib -- --test-threads=1",
+      "passed": 26,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m0_m3_final_provider_regression",
+      "command": "cargo test -p octos-agent --test h03_m0_dispatch --test h03_m1_output --test h03_m2_recall --test h03_m3_file_pages -- --test-threads=1",
+      "passed": 22,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h02_file_versions_and_receipts",
+      "command": "cargo test -p octos-agent --test h02_m1_file_versions --test h02_m2_read_receipts --test h02_m3_receipt_lifecycle -- --test-threads=1",
+      "passed": 19,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "context_manager",
+      "command": "cargo test -p octos-cli --lib context_manager::tests -- --test-threads=1",
+      "passed": 101,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "oup",
+      "command": "cargo test -p octos-cli --lib oup -- --test-threads=1",
+      "passed": 47,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0,
+      "note": "该过滤器与 ContextManager 集合存在少量重叠，不合并计算总数。"
+    },
+    {
+      "name": "shell",
+      "command": "cargo test -p octos-agent --lib tools::shell::tests -- --test-threads=1",
+      "passed": 44,
+      "failed": 0,
+      "ignored": 1,
+      "exit_code": 0
+    },
+    {
+      "name": "command_capture_and_legacy_recall",
+      "commands": [
+        "cargo test -p octos-agent --lib tools::command_capture::tests -- --test-threads=1",
+        "cargo test -p octos-agent --lib tools::recall::tests -- --test-threads=1"
+      ],
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "compaction_and_recovery_placeholders",
+      "commands": [
+        "cargo test -p octos-agent --test compaction_policy -- --test-threads=1",
+        "cargo test -p octos-agent tool_result_placeholder --lib -- --test-threads=1",
+        "cargo test -p octos-agent compacted_placeholder_recovery_arguments_restore_saved_output --lib -- --test-threads=1"
+      ],
+      "passed": 16,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "mcp_integration",
+      "command": "cargo test -p octos-cli --test mcp_serve_integration -- --test-threads=1",
+      "passed": 18,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "read_file_and_read_window",
+      "commands": [
+        "cargo test -p octos-agent --lib tools::read_file::tests -- --test-threads=1",
+        "cargo test -p octos-agent --lib tools::read_window::tests -- --test-threads=1"
+      ],
+      "passed": 73,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "model_receipts_and_file_state",
+      "commands": [
+        "cargo test -p octos-agent --lib model_read_receipts::tests -- --test-threads=1",
+        "cargo test -p octos-agent --lib file_state_cache::tests -- --test-threads=1"
+      ],
+      "passed": 31,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "workspace_check",
+      "command": "cargo check --workspace --tests",
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "exit_code": 0,
+      "note": "nonminimal-bool 仅沿用既有 serve.rs 基线豁免。"
+    },
+    {
+      "name": "format_and_diff",
+      "commands": [
+        "cargo fmt --all -- --check",
+        "git diff --check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "stdio_m6",
+      "command": "source ~/.zshrc && python3 arc/integration/output_recovery_m5.py target/debug/octos ../octos-arc-analysis/h03/m6-evidence",
+      "successful_provider_requests": 6,
+      "provider_retries": 1,
+      "parallel_tool_results": 2,
+      "approval_events": 1,
+      "same_process_recall": true,
+      "cold_process_recall": true,
+      "command_executions": 1,
+      "restricted_tools": [
+        "read_file"
+      ],
+      "exit_code": 0,
+      "binary_sha256": "69a29e0f6765076bfaa953f526a1cc12cc89fe7c5803520dc4cdc81d76b8d863",
+      "note": "脚本 PASS 后宿主沙箱额外打印一次进程启动提示；脚本退出码、摘要和全部断言均为成功。"
+    }
+  ]
+}

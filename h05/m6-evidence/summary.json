@@ -1,0 +1,60 @@
+{
+  "schema": "octos.h05-m6-b-freeze.v1",
+  "a_sha": "4c542e534e957d69a5ee05d24ffb7e166beb78bb",
+  "b_sha": "8287e8f8ae63a27a58ab5898ecb2753b9b946c45",
+  "binary_sha256": "99494dd7d1b56df47ab3dfce51ee835d8e6f2f44266c94c0c021943ba14375be",
+  "effective_flags": {
+    "OCTOS_LOCAL_EDIT": "1",
+    "OCTOS_LOCAL_EDIT_STRICT_MATCH": "unset",
+    "OCTOS_ARC_CODEGEN_PATCH": "unset"
+  },
+  "tool_schema": {
+    "off_bytes": 9286,
+    "on_bytes": 9555,
+    "delta_bytes": 269,
+    "off_sha256": "79f97b610f4178e8820be561ce5fac943e6d43d04cb07e0147ac31aec2acdafa",
+    "on_sha256": "406a092b1f72d91988bb96564652f3671dcee83eebb306c2b94c4cdaf35feda0",
+    "default_tools_exclude_apply_patch": true
+  },
+  "fixed_input_delta_bytes": 679,
+  "stdio": {
+    "requests": 16,
+    "tool_calls": 15,
+    "candidate_result_bytes": 6909,
+    "result_text_bytes": 9408,
+    "whole_file_argument_bytes": 44,
+    "local_edit_argument_bytes": 2749,
+    "candidate_count": 12,
+    "replacement_count": 6,
+    "hunk_count": 1,
+    "successful_mutations": 7,
+    "failed_recovery_attempts": 2,
+    "successful_next_edits": 2,
+    "recoveries_with_extra_read": 1,
+    "recoveries_without_extra_read": 1
+  },
+  "agent_observability": {
+    "tool_calls": 10,
+    "result_text_bytes": 1262,
+    "structured_metadata_bytes": 8691,
+    "changed_lines_before": 5,
+    "changed_lines_after": 6,
+    "formatter_expanded_count": 0
+  },
+  "acceptance": {
+    "passed": 16,
+    "failed": 0,
+    "not_applicable": 0
+  },
+  "safety": {
+    "failed_paths_modified": 0,
+    "stale_overwrites": 0,
+    "ambiguous_writes": 0,
+    "unreported_partial_writes": 0,
+    "ordinary_stderr_contains_source_or_credentials": false
+  },
+  "official_paid_tasks": {
+    "status": "not_run",
+    "reason": "M8 only; ARCBENCH_API_KEY is not configured"
+  }
+}

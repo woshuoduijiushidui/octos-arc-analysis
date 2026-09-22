@@ -1,0 +1,6 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+agent::compaction::tests::declarative_compaction_clears_model_read_receipts: test
+agent::compaction::tests::tier1_tool_result_replacement_clears_model_read_receipts: test
+
+2 tests, 0 benchmarks

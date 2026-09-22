@@ -1,0 +1,9 @@
+Error:
+   0: [91mfailed to start local goal operator-control RPC[0m
+   1: [91mpath must be shorter than SUN_LEN[0m
+
+Location:
+   [35mcrates/octos-cli/src/commands/goal.rs[0m:[35m120[0m
+
+Backtrace omitted. Run with RUST_BACKTRACE=1 environment variable to display it.
+Run with RUST_BACKTRACE=full to include source snippets.

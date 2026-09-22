@@ -1,0 +1,13 @@
+{
+  "schema": "octos.h05-m4-stdio-diff-fallback.v1",
+  "binary_sha256": "777a307097cd29e0a9431fe4a50c9da8dad19f7682f3b74b9ae17113a39c4566",
+  "provider": "loopback fake; usage fields are synthetic",
+  "requests": 5,
+  "unique_fallback_actual_line": 5,
+  "ambiguous_candidates": 2,
+  "typed_output_bytes": 1307,
+  "successful_mutations": 2,
+  "failed_mutations": 2,
+  "failed_files_unchanged": true,
+  "failed_snapshots_created": false
+}

@@ -1,0 +1,528 @@
+..........s/Users/bytedance/arc-bench/octos-arc/arc/tests/test_acceptance.py:907: ResourceWarning: unclosed file <_io.TextIOWrapper name='/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/octos-app-ea42am7_.log' mode='w' encoding='UTF-8'>
+  error = server.start(wait_seconds=8)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./Users/bytedance/arc-bench/octos-arc/arc/tests/test_acceptance.py:924: ResourceWarning: unclosed file <_io.TextIOWrapper name='/var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/octos-app-7ruxfkc7.log' mode='w' encoding='UTF-8'>
+  error = server.start(wait_seconds=6)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.sss....s......s............................../Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2059: ResourceWarning: unclosed <socket.socket fd=10, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61007)>
+  setattr(_type, entry, MagicProxy(entry, self))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.............s.........[acceptance] node round 0: 1/2
+[acceptance] node round 0: 1/2
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 1: 0/2
+[acceptance] node round 1: 0/2
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 2: 1/2
+[acceptance] node round 2: 1/2
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+.............................[acceptance] checkpoint 4: no reliable verdict; runner unavailable
+[acceptance] checkpoint 4: no reliable verdict; runner unavailable
+[acceptance] checkpoint 4: no reliable verdict; runner killed
+[acceptance] checkpoint 4: no reliable verdict; runner killed
+.[acceptance] checkpoint 4: 1/2; regressed nodes ['old']
+[acceptance] checkpoint 4: 1/2; regressed nodes ['old']
+[acceptance] checkpoint 8: 1/1; regressed nodes []
+[acceptance] checkpoint 8: 1/1; regressed nodes []
+[acceptance] checkpoint 16: 2/2; regressed nodes []
+[acceptance] checkpoint 16: 2/2; regressed nodes []
+.......[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 0
+[acceptance]   Observation: missing control 0
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 1
+[acceptance]   Observation: missing control 1
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 2
+[acceptance]   Observation: missing control 2
+[acceptance] node round 3: 1/1
+[acceptance] node round 3: 1/1
+[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 0
+[acceptance]   Observation: missing control 0
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 1
+[acceptance]   Observation: missing control 1
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 2
+[acceptance]   Observation: missing control 2
+[acceptance] node round 3: 0/1
+[acceptance] node round 3: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: still missing control
+[acceptance]   Observation: still missing control
+[flow] node: no improvement for two repairs; keeping the best state
+[flow] node: no improvement for two repairs; keeping the best state
+[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 0
+[acceptance]   Observation: missing control 0
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 1
+[acceptance]   Observation: missing control 1
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[flow] node: codegen attempt 2 still failing; repairs use tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control 2
+[acceptance]   Observation: missing control 2
+................................[acceptance] new-feature round 0: 0/1
+[acceptance] new-feature round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] new-feature round 1: 1/1
+[acceptance] new-feature round 1: 1/1
+.............[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[flow] node: no improvement for two repairs; keeping the best state
+[flow] node: no improvement for two repairs; keeping the best state
+.[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: wrong total
+[acceptance]   Observation: wrong total
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[flow] node: no improvement for two repairs; keeping the best state
+[flow] node: no improvement for two repairs; keeping the best state
+.[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[flow] node: identical failure, but the last repair wrote no files -- the app never changed, so this repeat is not evidence about the fix; staying in codegen mode
+[flow] node: identical failure, but the last repair wrote no files -- the app never changed, so this repeat is not evidence about the fix; staying in codegen mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: identical failure, but the last repair wrote no files -- the app never changed, so this repeat is not evidence about the fix; staying in codegen mode
+[flow] node: identical failure, but the last repair wrote no files -- the app never changed, so this repeat is not evidence about the fix; staying in codegen mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[flow] node: no improvement for two repairs; keeping the best state
+[flow] node: no improvement for two repairs; keeping the best state
+.[acceptance] node round 0: 0/1
+[acceptance] node round 0: 0/1
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 1: 0/1
+[acceptance] node round 1: 0/1
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[acceptance] node round 2: 0/1
+[acceptance] node round 2: 0/1
+[flow] node: identical failure twice; switching repairs to tool mode
+[flow] node: identical failure twice; switching repairs to tool mode
+[acceptance]   Failed at: ?
+[acceptance]   Failed at: ?
+[acceptance]   Observation: missing control
+[acceptance]   Observation: missing control
+[flow] node: no improvement for two repairs; keeping the best state
+[flow] node: no improvement for two repairs; keeping the best state
+................./Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2105: ResourceWarning: unclosed <socket.socket fd=10, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61019)>
+  self.name = name
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2105: ResourceWarning: unclosed <socket.socket fd=11, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61020)>
+  self.name = name
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2105: ResourceWarning: unclosed <socket.socket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61021)>
+  self.name = name
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2105: ResourceWarning: unclosed <socket.socket fd=14, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61022)>
+  self.name = name
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py:2105: ResourceWarning: unclosed <socket.socket fd=15, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61023)>
+  self.name = name
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..............[acceptance] probe REQ-1: 2/2 against the existing app
+[acceptance] probe REQ-1: 2/2 against the existing app
+[acceptance] probe REQ-2: 1/2 against the existing app
+[acceptance] probe REQ-2: 1/2 against the existing app
+.[acceptance] checkpoint 2: 0/3; regressed nodes ['REQ-0', 'REQ-1', 'REQ-2']
+[acceptance] checkpoint 2: 0/3; regressed nodes ['REQ-0', 'REQ-1', 'REQ-2']
+.[acceptance] checkpoint 2: 0/12; regressed nodes ['REQ-0', 'REQ-1', 'REQ-10', 'REQ-11', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5', 'REQ-6', 'REQ-7', 'REQ-8', 'REQ-9']
+[acceptance] checkpoint 2: 0/12; regressed nodes ['REQ-0', 'REQ-1', 'REQ-10', 'REQ-11', 'REQ-2', 'REQ-3', 'REQ-4', 'REQ-5', 'REQ-6', 'REQ-7', 'REQ-8', 'REQ-9']
+.[acceptance] checkpoint 2: 0/3; regressed nodes ['REQ-0', 'REQ-1', 'REQ-2']
+[acceptance] checkpoint 2: 0/3; regressed nodes ['REQ-0', 'REQ-1', 'REQ-2']
+.[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+.[acceptance] checkpoint 2: 2/2; regressed nodes []
+[acceptance] checkpoint 2: 2/2; regressed nodes []
+.[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2 after repair: 2/2; still regressed []
+[acceptance] checkpoint 2 after repair: 2/2; still regressed []
+..[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+.[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2: 1/2; regressed nodes ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 1/2; still regressed ['REQ-2']
+[acceptance] checkpoint 2 after repair: 2/2; still regressed []
+[acceptance] checkpoint 2 after repair: 2/2; still regressed []
+.........[guard] cost guard tripped: 75000000 billable tokens, 999 turns (limits 0 / 0 / abs 75000000); no further repair turns
+[guard] cost guard tripped: 75000000 billable tokens, 999 turns (limits 0 / 0 / abs 75000000); no further repair turns
+.[guard] cost guard tripped: 80000000 billable tokens, 35 turns (limits 80000000 / 128 / abs 0); no further repair turns
+[guard] cost guard tripped: 80000000 billable tokens, 35 turns (limits 80000000 / 128 / abs 0); no further repair turns
+.[guard] cost guard tripped: 1000 billable tokens, 0 turns (limits 1000 / 3 / abs 0); no further repair turns
+[guard] cost guard tripped: 1000 billable tokens, 0 turns (limits 1000 / 3 / abs 0); no further repair turns
+..[flow] existing app passes no spec; moved ['frontend', 'backend'] to .arc/template-discarded and building fresh
+[flow] existing app passes no spec; moved ['frontend', 'backend'] to .arc/template-discarded and building fresh
+.......[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+.[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+.[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+.[flow] node 1/1 feature starting (budget 300s, specs=[])
+[flow] node 1/1 feature starting (budget 300s, specs=[])
+.[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] feature: generation did not complete; testing the existing app
+[flow] feature: generation did not complete; testing the existing app
+.[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] node 1/1 feature starting (budget 300s, specs=['feature.spec.ts'])
+[flow] feature: generation did not complete; testing the existing app
+[flow] feature: generation did not complete; testing the existing app
+..[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 2/2; failing nodes []
+[acceptance] full suite round 2: 2/2; failing nodes []
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 2: 2/2; failing nodes []
+[acceptance] full suite round 2: 2/2; failing nodes []
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 2/2; failing nodes []
+[acceptance] full suite round 1: 2/2; failing nodes []
+.[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 1: 2/3; failing nodes ['REQ-3']
+[acceptance] full suite round 1: 2/3; failing nodes ['REQ-3']
+[acceptance] full suite round 2: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 2: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: last round 1 < best 2; restoring the best state
+[acceptance] full suite: last round 1 < best 2; restoring the best state
+[flow] full suite still failing with 100000s left; pass 2/2
+[flow] full suite still failing with 100000s left; pass 2/2
+[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 1: 2/3; failing nodes ['REQ-3']
+[acceptance] full suite round 1: 2/3; failing nodes ['REQ-3']
+[acceptance] full suite round 2: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 2: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: last round 1 < best 2; restoring the best state
+[acceptance] full suite: last round 1 < best 2; restoring the best state
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 2/2; failing nodes []
+[acceptance] full suite round 2: 2/2; failing nodes []
+.[acceptance] full suite round 0: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 0: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+..[flow] full suite still failing with 10000s left; pass 2/3
+[flow] full suite still failing with 10000s left; pass 2/3
+[flow] full suite still failing with 10000s left; pass 3/3
+[flow] full suite still failing with 10000s left; pass 3/3
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+.[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 0: 1/3; failing nodes ['REQ-2', 'REQ-3']
+[acceptance] full suite round 1: 0/3; failing nodes ['REQ-1', 'REQ-2', 'REQ-3']
+[acceptance] full suite round 1: 0/3; failing nodes ['REQ-1', 'REQ-2', 'REQ-3']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 0/3; failing nodes ['REQ-1', 'REQ-2', 'REQ-3']
+[acceptance] full suite round 2: 0/3; failing nodes ['REQ-1', 'REQ-2', 'REQ-3']
+[acceptance] full suite: two rounds behind 1/3; restored the best state
+[acceptance] full suite: two rounds behind 1/3; restored the best state
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+..[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 2: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+................[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+...[acceptance] full suite round 0: 1/2; failing nodes ['REQ-1']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 1: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite round 2: 0/2; failing nodes ['REQ-1', 'REQ-2']
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: two rounds behind 1/2; restored the best state
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+..[acceptance] full suite runner was killed; retrying with 2 worker(s)
+[acceptance] full suite runner was killed; retrying with 2 worker(s)
+[acceptance] full suite runner was killed; retrying with 1 worker(s)
+[acceptance] full suite runner was killed; retrying with 1 worker(s)
+[acceptance] full suite round 0: 2/2; failing nodes []
+[acceptance] full suite round 0: 2/2; failing nodes []
+.[acceptance] full suite runner was killed; retrying with 2 worker(s)
+[acceptance] full suite runner was killed; retrying with 2 worker(s)
+[acceptance] full suite runner was killed; retrying with 1 worker(s)
+[acceptance] full suite runner was killed; retrying with 1 worker(s)
+[acceptance] full suite could not run (playwright was killed (rc=-9)); keeping per-node verdicts
+[acceptance] full suite could not run (playwright was killed (rc=-9)); keeping per-node verdicts
+.....[git] could not read the last repair: git is gone
+[git] could not read the last repair: git is gone
+.....[flow] reaped 3 leftover process(es) before grading
+[flow] reaped 3 leftover process(es) before grading
+.[flow] changed implement FAILED in 0s (tools=0 wrote=False verified=False): 'partial implementation failed'
+[flow] changed implement FAILED in 0s (tools=0 wrote=False verified=False): 'partial implementation failed'
+.....[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpvczwv5ki/tests: ['REQ-EXTRA.spec.ts']
+[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpvczwv5ki/tests: ['REQ-EXTRA.spec.ts']
+..[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpojo5cygr/requirements: ['requirements.md']
+[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpojo5cygr/requirements: ['requirements.md']
+.[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpskrjazj0/tests: ['REQ-1.spec.ts']
+[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpskrjazj0/tests: ['REQ-1.spec.ts']
+.[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpyt4ag6r5/tests: ['REQ-1.spec.ts']
+[guard] restored 1 protected file(s) under /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmpyt4ag6r5/tests: ['REQ-1.spec.ts']
+..[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/z.html']; this node switches to tool mode
+[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/z.html']; this node switches to tool mode
+...[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/unseen.html']; this node switches to tool mode
+[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/unseen.html']; this node switches to tool mode
+........[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+.[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+.[flow] REQ-1 repair 3/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 repair 3/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+.[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 repair 1/3 ok in 0s (tools=0 wrote=False verified=False): 'done'
+..[driver] remaining turn budget cannot accommodate retry backoff
+[driver] remaining turn budget cannot accommodate retry backoff
+[driver] transient error, retry 2/3 after 30s: HTTP 503 temporarily unavailable
+[driver] transient error, retry 2/3 after 30s: HTTP 503 temporarily unavailable
+[driver] remaining turn budget cannot accommodate retry backoff
+[driver] remaining turn budget cannot accommodate retry backoff
+.E.[acceptance] no preinstalled Playwright found; private install of @playwright/test@1.63.0
+[acceptance] no preinstalled Playwright found; private install of @playwright/test@1.63.0
+[acceptance] using Playwright at /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmp7it2nggt/pw; workers=2
+[acceptance] using Playwright at /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/tmp7it2nggt/pw; workers=2
+[acceptance] removed private Playwright install /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/octos-arc-playwright-5no6kjw4
+[acceptance] removed private Playwright install /var/folders/hk/_4bld7vs28x14p4s6yr464hw0000gn/T/octos-arc-playwright-5no6kjw4
+......[flow] REQ-1: 2 source file(s) snapshotted to .arc/codegen/REQ-1-r0
+[flow] REQ-1: 2 source file(s) snapshotted to .arc/codegen/REQ-1-r0
+...[flow] item: tiny tier unverified (the turn did not complete); compact tier next
+[flow] item: tiny tier unverified (the turn did not complete); compact tier next
+........[flow] node implement FAILED in 0s (tools=0 wrote=False verified=False): 'HTTP 402 insufficient_balance'
+[flow] node implement FAILED in 0s (tools=0 wrote=False verified=False): 'HTTP 402 insufficient_balance'
+.....[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite: same failures, but the previous repair committed nothing -- the suite measured identical code, so this repeat is not evidence about the repair; keeping the unfinished plan
+[acceptance] full suite: same failures, but the previous repair committed nothing -- the suite measured identical code, so this repeat is not evidence about the repair; keeping the unfinished plan
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+...[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+...[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 0: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 1: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite round 2: 0/1; failing nodes ['REQ-1']
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+[acceptance] full suite: failures unchanged after a changed approach; stopping repairs
+.....[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/b.html']; this node switches to tool mode
+[codegen] node: refused 1 rewrite(s) of file(s) never shown to this turn: ['frontend/b.html']; this node switches to tool mode
+.[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+.[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+[flow] REQ-1 implement ok in 0s (tools=0 wrote=False verified=False): 'done'
+.[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 0: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite round 1: 1/2; failing nodes ['REQ-2']
+[acceptance] full suite: same failures as the previous round; changing repair approach
+[acceptance] full suite: same failures as the previous round; changing repair approach
+.......[proxy] LLM requests via http://localhost:1234/v1 -> http://localhost/v1 (reasoning=passthrough, destream=on, trim=on)
+[proxy] LLM requests via http://localhost:1234/v1 -> http://localhost/v1 (reasoning=passthrough, destream=on, trim=on)
+......................................[proxy] routed model glm-5.3 not found upstream; dropping that route and retrying on the caller's model (0 route(s) left)
+.[proxy] routed model glm-5.3 not found upstream; dropping that route and retrying on the caller's model (0 route(s) left)
+.[proxy] routed model glm-5.3 not found upstream; dropping that route and retrying on the caller's model (0 route(s) left)
+..........[codegen] REQ-1 repair 1/3: wrote 2 file(s): ['a.js', 'b.js'] (2 unchanged: ['a.js', 'b.js'])
+[codegen] REQ-1 repair 1/3: wrote 2 file(s): ['a.js', 'b.js'] (2 unchanged: ['a.js', 'b.js'])
+[codegen] REQ-1 repair 1/3: no progress -- every returned file was byte-identical
+[codegen] REQ-1 repair 1/3: no progress -- every returned file was byte-identical
+.[codegen] REQ-1 implement: wrote 1 file(s): ['fresh.js']
+[codegen] REQ-1 implement: wrote 1 file(s): ['fresh.js']
+.[codegen] REQ-1 repair 1/3: reply contained no file blocks; len=14 open=absent close=0 head='```json\n{}\n```'
+[codegen] REQ-1 repair 1/3: reply contained no file blocks; len=14 open=absent close=0 head='```json\n{}\n```'
+.[codegen] REQ-1 repair 1/3: wrote 2 file(s): ['a.js', 'b.js'] (1 unchanged: ['a.js'])
+[codegen] REQ-1 repair 1/3: wrote 2 file(s): ['a.js', 'b.js'] (1 unchanged: ['a.js'])
+.s..
+======================================================================
+ERROR: test_should_replace_a_stale_archive_before_recording_its_new_source (test_main_helpers.RuntimeCacheProvenanceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/bytedance/arc-bench/octos-arc/arc/tests/test_main_helpers.py", line 988, in test_should_replace_a_stale_archive_before_recording_its_new_source
+    binary=m._download_octos(cache)
+  File "/Users/bytedance/arc-bench/octos-arc/arc/main.py", line 562, in _download_octos
+    tf.extract(member, dest_dir, filter="data")
+TypeError: extract() got an unexpected keyword argument 'filter'
+
+----------------------------------------------------------------------
+Ran 408 tests in 31.311s
+
+FAILED (errors=1, skipped=8)

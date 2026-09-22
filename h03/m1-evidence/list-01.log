@@ -1,0 +1,25 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.95s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-599f6ec26aa56843)
+agent::compaction::tests::declarative_compaction_clears_model_read_receipts: test
+agent::compaction::tests::tier1_tool_result_replacement_clears_model_read_receipts: test
+agent::loop_compaction::tests::context_trim_clears_model_read_receipts: test
+agent::loop_compaction::tests::old_tool_result_replacement_clears_model_read_receipts: test
+model_read_receipts::tests::arguments_hash_ignores_object_key_order: test
+model_read_receipts::tests::bounded_candidate_eviction_drops_the_oldest_unconfirmed_read: test
+model_read_receipts::tests::bounded_receipt_eviction_is_a_safe_miss: test
+model_read_receipts::tests::changed_file_version_cannot_use_an_active_receipt: test
+model_read_receipts::tests::changed_or_missing_output_consumes_candidate_without_receipt: test
+model_read_receipts::tests::changed_projection_policy_revokes_active_receipt: test
+model_read_receipts::tests::clear_consumes_pending_receipts_and_records_reason: test
+model_read_receipts::tests::detailed_lookup_remembers_visibility_and_lifecycle_invalidation: test
+model_read_receipts::tests::detailed_lookup_reports_hit_and_version_rejection_reasons: test
+model_read_receipts::tests::exact_source_activates_only_after_success_is_committed: test
+model_read_receipts::tests::later_dispatch_without_source_revokes_active_receipt: test
+model_read_receipts::tests::miss_reason_labels_are_stable: test
+model_read_receipts::tests::mutation_revokes_only_the_target_and_invalidates_prepared_receipts: test
+model_read_receipts::tests::owner_workspace_mismatch_never_stages_or_hits: test
+model_read_receipts::tests::partial_receipt_covers_only_matching_coordinate_space_and_subranges: test
+model_read_receipts::tests::poisoned_store_clears_receipts_before_any_future_hit: test
+model_read_receipts::tests::repeated_call_id_binds_new_candidate_to_latest_exact_occurrence: test
+
+21 tests, 0 benchmarks

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "milestone": "H03-M3",
+  "date": "2026-09-21",
+  "code_commit": "2ced3def863a895c740559a891e2d256f2e13edf",
+  "environment": {
+    "os": "macOS 26.6.2 (25G83)",
+    "rustc": "1.96.1 (31fca3adb 2026-06-26)",
+    "cargo": "1.96.1 (356927216 2026-06-26)",
+    "setup": [
+      "source ~/.zshrc",
+      "export PATH=\"$HOME/.rustup/toolchains/1.96.1-aarch64-apple-darwin/bin:$PATH\""
+    ]
+  },
+  "checks": [
+    {
+      "name": "m3_final_provider_file_pages",
+      "list_command": "cargo test -p octos-agent --test h03_m3_file_pages -- --list",
+      "command": "cargo test -p octos-agent --test h03_m3_file_pages -- --test-threads=1",
+      "matched": 6,
+      "passed": 6,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "read_file",
+      "list_command": "cargo test -p octos-agent --lib tools::read_file::tests -- --list",
+      "command": "cargo test -p octos-agent --lib tools::read_file::tests -- --test-threads=1",
+      "matched": 57,
+      "passed": 57,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m2_store",
+      "command": "cargo test -p octos-agent --lib h03_m2 -- --test-threads=1",
+      "matched": 16,
+      "passed": 16,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m2_agent_recall",
+      "command": "cargo test -p octos-agent --test h03_m2_recall -- --test-threads=1",
+      "matched": 1,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m1_output",
+      "command": "cargo test -p octos-agent --test h03_m1_output -- --test-threads=1",
+      "matched": 13,
+      "passed": 13,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m0_dispatch",
+      "command": "cargo test -p octos-agent --test h03_m0_dispatch -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h02_m1_file_versions",
+      "command": "cargo test -p octos-agent --test h02_m1_file_versions -- --test-threads=1",
+      "matched": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h02_m2_read_receipts",
+      "command": "cargo test -p octos-agent --test h02_m2_read_receipts -- --test-threads=1",
+      "matched": 12,
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h02_m3_receipt_lifecycle",
+      "command": "cargo test -p octos-agent --test h02_m3_receipt_lifecycle -- --test-threads=1",
+      "matched": 4,
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "llm_call",
+      "command": "cargo test -p octos-agent --lib agent::llm_call::tests -- --test-threads=1",
+      "matched": 11,
+      "passed": 11,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "compaction",
+      "command": "cargo test -p octos-agent --lib agent::compaction::tests -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "loop_compaction",
+      "command": "cargo test -p octos-agent --lib agent::loop_compaction::tests -- --test-threads=1",
+      "matched": 6,
+      "passed": 6,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "read_window",
+      "command": "cargo test -p octos-agent --lib tools::read_window::tests -- --test-threads=1",
+      "matched": 16,
+      "passed": 16,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "mutation_guard",
+      "command": "cargo test -p octos-agent --lib tools::mutation_guard::tests -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "nofollow",
+      "command": "cargo test -p octos-agent --lib tools::nofollow_tests -- --test-threads=1",
+      "matched": 19,
+      "passed": 19,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "write_file",
+      "command": "cargo test -p octos-agent --lib tools::write_file::tests -- --test-threads=1",
+      "matched": 48,
+      "passed": 48,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "model_read_receipts",
+      "command": "cargo test -p octos-agent --lib model_read_receipts::tests -- --test-threads=1",
+      "matched": 17,
+      "passed": 17,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "file_state_cache",
+      "command": "cargo test -p octos-agent --lib file_state_cache::tests -- --test-threads=1",
+      "matched": 14,
+      "passed": 14,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m8_end_to_end_gate",
+      "command": "cargo test -p octos-agent --test m8_end_to_end_gate -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "context_manager",
+      "list_command": "cargo test -p octos-cli --lib context_manager::tests -- --list",
+      "command": "cargo test -p octos-cli --lib context_manager::tests -- --test-threads=1",
+      "matched": 101,
+      "passed": 101,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "session_actor_prompt_bridge",
+      "command": "cargo test -p octos-cli --lib session_actor_prompt_context_bridge -- --test-threads=1",
+      "matched": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "h02_stdio_mcp_wiring",
+      "command": "cargo test -p octos-cli --lib h02_m5_ -- --test-threads=1",
+      "matched": 2,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "stdio_h03_on",
+      "command": "OCTOS_DANGER_FULL_ACCESS=0 python3 arc/integration/output_recovery_contract.py target/debug/octos ../octos-arc-analysis/test-temp/h03/m3-stdio-on",
+      "requests": 5,
+      "exit_code": 0,
+      "binary_sha256": "0033bfd085c272960c986a0289cd9dabd7be1ac473565298e124484a6f63b918"
+    },
+    {
+      "name": "stdio_h03_off",
+      "command": "OCTOS_DANGER_FULL_ACCESS=0 python3 arc/integration/output_recovery_baseline.py target/debug/octos ../octos-arc-analysis/test-temp/h03/m3-stdio-off",
+      "cases": 3,
+      "requests": 7,
+      "exit_code": 0,
+      "binary_sha256": "0033bfd085c272960c986a0289cd9dabd7be1ac473565298e124484a6f63b918"
+    },
+    {
+      "name": "workspace_check",
+      "command": "cargo check --workspace --tests",
+      "exit_code": 0
+    },
+    {
+      "name": "format",
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "exit_code": 0,
+      "note": "The waiver is only for the unchanged serve.rs baseline warning documented in M1."
+    }
+  ],
+  "unique_test_totals": {
+    "passed": 357,
+    "failed": 0,
+    "ignored": 0
+  },
+  "stdio_file_page": {
+    "requested_lines": [30, 3029],
+    "visible_lines": [30, 219],
+    "visible_source_bytes": [948, 7338],
+    "message_bytes": 8183,
+    "next_arguments": {
+      "offset": 220,
+      "end_line": 3029,
+      "source_sha256": "sha256:4d4fbc409a5ced6c094c5f6b8a44691d1f2d3a06626829114fd2e84578b63a68"
+    }
+  },
+  "not_run": [
+    "paid model calls",
+    "official ARC A/B tasks",
+    "stdio persistent recall flow (scheduled for M5)"
+  ]
+}

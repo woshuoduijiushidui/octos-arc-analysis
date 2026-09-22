@@ -1,0 +1,20 @@
+{
+  "binary_sha256": "9061d50af703fdccd43960538de4f9864f86fabc714a8e45f341e930495aafe4",
+  "provider": "loopback fake; one scripted HTTP retry",
+  "recovery": {
+    "successful_provider_requests": 6,
+    "provider_retries": 1,
+    "parallel_tool_results": 2,
+    "approval_events": 1,
+    "same_process_recall": true,
+    "cold_process_recall": true,
+    "command_executions": 1
+  },
+  "restricted": {
+    "tools": [
+      "read_file"
+    ],
+    "recoverable": false,
+    "recovery_error": "recovery_tool_unavailable"
+  }
+}

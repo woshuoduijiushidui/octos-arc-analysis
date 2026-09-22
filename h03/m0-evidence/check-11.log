@@ -1,0 +1,9 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 3 tests
+test tools::recall::tests::unknown_id_fails_cleanly ... ok
+test tools::recall::tests::recalls_the_recorded_output_by_call_id ... ok
+test tools::recall::tests::large_output_is_paged_not_silently_truncated ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 2949 filtered out; finished in 0.00s

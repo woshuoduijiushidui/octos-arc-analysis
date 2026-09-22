@@ -1,0 +1,64 @@
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.92s
+     Running tests/h02_m1_file_versions.rs (target/debug/deps/h02_m1_file_versions-ec4a82d1997fa4f2)
+
+running 3 tests
+test same_target_path_is_isolated_by_workspace_owner ... ok
+test repeated_reads_return_body_while_m1_dedup_is_disabled ... ok
+test same_size_rewrite_with_restored_mtime_changes_strong_version ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/h02_m2_read_receipts.rs (target/debug/deps/h02_m2_read_receipts-9ca521bdc1544f35)
+
+running 12 tests
+test direct_repeated_reads_do_not_activate_staged_candidates ... ok
+test read_file_internal_100kb_truncation_does_not_stage_a_candidate ... ok
+test parallel_reads_do_not_authorize_each_other_before_dispatch ... ok
+test successful_provider_dispatch_enables_next_matching_read_stub ... ok
+test partial_receipt_covers_only_the_visible_line_range ... ok
+test eight_kib_projection_does_not_activate_a_receipt ... ok
+test rebuilt_agent_reuses_same_branch_receipt_when_source_remains_visible ... ok
+test sanitized_output_does_not_activate_a_receipt ... ok
+test context_pressure_source_drop_does_not_activate_a_receipt ... ok
+test failed_provider_dispatch_does_not_activate_a_receipt ... ok
+test execution_50kb_truncation_does_not_activate_a_receipt ... ok
+test after_tool_hook_feedback_does_not_activate_a_receipt ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests/h02_m3_receipt_lifecycle.rs (target/debug/deps/h02_m3_receipt_lifecycle-c2da79873d8760a4)
+
+running 4 tests
+test incomplete_owner_keeps_receipts_disabled ... ok
+test disabled_store_never_suppresses_file_content ... ok
+test prompt_replacement_clears_receipts_before_the_next_read ... ok
+test task_session_branch_and_workspace_stores_do_not_share_receipts ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+     Running tests/m8_end_to_end_gate.rs (target/debug/deps/m8_end_to_end_gate-992fd863d82dfb87)
+
+running 2 tests
+test end_to_end_resume_covers_transcript_and_worktree_and_cache ... ok
+test end_to_end_background_task_covers_disk_summary_terminal_detail ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+     Running tests/m8_integration_cache_handoff.rs (target/debug/deps/m8_integration_cache_handoff-0f122968dd740e86)
+
+running 2 tests
+test tier3_compatibility_helper_can_clear_file_version_ledger ... ok
+test read_file_returns_body_and_rebuilds_version_after_ledger_clear ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/m8_integration_tool_context.rs (target/debug/deps/m8_integration_tool_context-add5a17b0015d8cc)
+
+running 4 tests
+test spawn_only_background_path_receives_full_tool_context_after_m8_8_scheduler ... ok
+test threads_agent_definitions_into_spawn_tool_after_m8_8_scheduler ... ok
+test threads_profile_permissions_into_tool_context_after_m8_fix_8 ... ok
+test h02_m1_repeated_agent_reads_return_body_and_record_one_version ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s

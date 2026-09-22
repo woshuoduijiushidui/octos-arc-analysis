@@ -1,0 +1,16 @@
+[
+  {
+    "source": "workspace/.octos/arc-57562-6602119/context_ledgers/tool-output/sha256%3A0b0baa36743fcc91dfe6cefe8e7552eed1f11105ae5b691d3952e4e-b2cacbbd",
+    "evidence_file": "0.json",
+    "bytes": 11534,
+    "sha256": "0b0baa36743fcc91dfe6cefe8e7552eed1f11105ae5b691d3952e4ef57795883",
+    "content_field": "utf8_text"
+  },
+  {
+    "source": "workspace/.octos/arc-57562-6602119/context_ledgers/tool-output/sha256%3A16a26348bd0d905f0a464b4d0edb917e1264837eeb53372d8e0400c-7e40c664",
+    "evidence_file": "1.json",
+    "bytes": 50127,
+    "sha256": "16a26348bd0d905f0a464b4d0edb917e1264837eeb53372d8e0400cee1590d1b",
+    "content_field": "utf8_text"
+  }
+]

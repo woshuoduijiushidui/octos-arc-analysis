@@ -1,0 +1,43 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s
+     Running unittests src/lib.rs (target/debug/deps/octos_agent-e739df815db67e5d)
+
+running 37 tests
+test tools::edit_file::tests::schema_advertises_canonical_names_only ... ok
+test tools::edit_file::tests::edit_file_tool_is_exclusive ... ok
+test tools::edit_file::tests::should_keep_exact_success_output_stable ... ok
+test tools::edit_file::tests::edit_file_allows_in_workspace_path ... ok
+test tools::edit_file::tests::should_accept_camel_case_aliases_for_edit_input ... ok
+test tools::edit_file::tests::edit_file_refuses_out_of_scope_path ... ok
+test tools::edit_file::tests::edit_file_falls_back_to_legacy_when_no_scope ... ok
+test tools::edit_file::tests::current_unique_context_can_apply_and_revokes_the_old_receipt ... ok
+test tools::edit_file::tests::edit_file_refuses_ancestor_symlink_escape ... ok
+test tools::edit_file::tests::should_reject_empty_old_string ... ok
+test tools::edit_file::tests::edit_file_uses_scope_workspace_as_base_dir_for_relative_paths ... ok
+test tools::edit_file::tests::edit_file_refuses_write_to_shared_zone ... ok
+test tools::edit_file::tests::test_edit_file_ambiguous_match ... ok
+test tools::edit_file::tests::should_not_reject_multiline_escape_normalized_match_as_disproportionate ... ok
+test tools::edit_file::tests::should_reject_disproportionate_char_growth ... ok
+test tools::edit_file::tests::test_edit_file_multiline_replacement ... ok
+test tools::edit_file::tests::test_edit_file_nonexistent ... ok
+test tools::edit_file::tests::test_tool_metadata ... ok
+test tools::edit_file::tests::test_edit_file_traversal_blocked ... ok
+test tools::edit_file::tests::test_edit_file_string_not_found ... ok
+test tools::edit_file::tests::write_grant_create_only_refuses_edit_even_on_allowlisted_path ... ok
+test tools::edit_file::tests::should_match_via_escape_normalized_when_newline_double_escaped ... ok
+test tools::edit_file::tests::should_unescape_new_string_when_match_is_escape_normalized ... ok
+test tools::edit_file::tests::write_grant_edit_follows_allowlist_without_create_only ... ok
+test tools::edit_file::tests::should_fail_with_count_when_fuzzy_match_is_ambiguous ... ok
+test tools::edit_file::tests::test_edit_file_basic_replacement ... ok
+test tools::edit_file::tests::should_match_via_indentation_flexible_when_blank_boundary_lines ... ok
+test tools::edit_file::tests::should_match_via_whitespace_normalized_when_internal_runs_differ ... ok
+test tools::edit_file::tests::should_match_via_block_anchor_when_middle_line_drifted ... ok
+test tools::edit_file::tests::should_splice_fuzzy_match_at_located_span_not_first_substring ... ok
+test tools::edit_file::tests::should_refuse_block_anchor_span_far_exceeding_old_string ... ok
+test tools::edit_file::tests::should_not_run_formatter_when_format_after_edit_disabled ... ok
+test tools::edit_file::tests::should_edit_file_tool_invalidate_cache_after_edit ... ok
+test tools::edit_file::tests::should_match_via_line_trimmed_when_indentation_differs ... ok
+test tools::edit_file::tests::should_reject_disproportionate_byte_growth_on_block_anchor_match ... ok
+test tools::edit_file::tests::should_keep_edit_success_when_formatter_fails ... ok
+test tools::edit_file::tests::should_return_formatted_content_when_format_after_edit_enabled ... ok
+
+test result: ok. 37 passed; 0 failed; 0 ignored; 0 measured; 2915 filtered out; finished in 0.33s

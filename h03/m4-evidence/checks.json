@@ -1,0 +1,105 @@
+{
+  "milestone": "M4",
+  "code_commit": "d7931fbc55515aeb882b5feeca806e05f5582bd1",
+  "environment": {
+    "os": "macOS 26.6.2",
+    "rustc": "1.98.1 (48a229cea 2026-09-01)",
+    "cargo": "1.98.1 (797e8a9bc 2026-08-05)"
+  },
+  "checks": [
+    {
+      "name": "bounded_command_capture",
+      "command": "cargo test -p octos-agent --lib tools::command_capture::tests",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "m4_acceptance",
+      "command": "cargo test -p octos-agent --lib h03_m4",
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "cancelled_capture",
+      "command": "cargo test -p octos-agent --lib aborting_the_bash_tool_kills_the_command_it_launched",
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "output_store",
+      "command": "cargo test -p octos-agent --lib output_store::tests -- --nocapture",
+      "passed": 18,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "shell_regression",
+      "command": "cargo test -p octos-agent --lib tools::shell::tests -- --test-threads=1",
+      "passed": 44,
+      "failed": 0,
+      "ignored": 1,
+      "exit_code": 0
+    },
+    {
+      "name": "coding_tools_regression",
+      "command": "cargo test -p octos-agent --lib tools::coding_tools::tests -- --test-threads=1",
+      "passed": 88,
+      "failed": 1,
+      "ignored": 0,
+      "exit_code": 101,
+      "note": "唯一失败为未修改的 TTY/yield 时序探针 exec_session_captures_all_output_when_process_exits_at_deadline；40 次 5ms 竞争均返回 running，未进入其 completed 断言分支。前台非 TTY 的 M4 路径及原有超时/进程组测试均通过。"
+    },
+    {
+      "name": "m0_m3_regression",
+      "commands": [
+        "cargo test -p octos-agent --test h03_m0_dispatch -- --test-threads=1",
+        "cargo test -p octos-agent --test h03_m1_output -- --test-threads=1",
+        "cargo test -p octos-agent --test h03_m2_recall -- --test-threads=1",
+        "cargo test -p octos-agent --test h03_m3_file_pages -- --test-threads=1"
+      ],
+      "passed": 22,
+      "failed": 0,
+      "ignored": 0,
+      "exit_code": 0
+    },
+    {
+      "name": "workspace_check",
+      "command": "cargo check --workspace --tests",
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "exit_code": 0,
+      "note": "nonminimal-bool 仅沿用既有 serve.rs 基线豁免。"
+    },
+    {
+      "name": "format",
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    {
+      "name": "stdio_h03_on",
+      "command": "OCTOS_DANGER_FULL_ACCESS=0 python3 arc/integration/output_recovery_contract.py target/debug/octos ../octos-arc-analysis/test-temp/h03/m4-final-stdio-on",
+      "requests": 5,
+      "command_executions": 3,
+      "exit_code": 0,
+      "binary_sha256": "bfa40155add6a5be418f94dbf3df3fbcc5b9266a327299b0813754d1e5b6c22c"
+    },
+    {
+      "name": "stdio_h03_off",
+      "command": "OCTOS_DANGER_FULL_ACCESS=0 python3 arc/integration/output_recovery_baseline.py target/debug/octos ../octos-arc-analysis/test-temp/h03/m4-final-stdio-off",
+      "cases": 3,
+      "command_executions": 1,
+      "exit_code": 0,
+      "binary_sha256": "bfa40155add6a5be418f94dbf3df3fbcc5b9266a327299b0813754d1e5b6c22c"
+    }
+  ]
+}

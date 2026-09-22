@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.58s
+     Running tests/m8_parity.rs (target/debug/deps/m8_parity-725e6139af2a16a8)
+empty_pipeline_host_context_does_not_inject_anything: test
+handler_registry_default_with_codergen_carrying_host_context: test
+pipeline_node_cost_reservation_auto_refunds_on_drop: test
+pipeline_worker_agent_inherits_session_scope: test
+pipeline_worker_handler_carries_file_state_cache_from_host: test
+pipeline_worker_registers_node_task_with_supervisor: test
+
+6 tests, 0 benchmarks

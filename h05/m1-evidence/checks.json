@@ -1,0 +1,73 @@
+{
+  "schema": "octos.h05-m1-checks.v1",
+  "a_sha": "4c542e534e957d69a5ee05d24ffb7e166beb78bb",
+  "m0_test_sha": "01f7480e0426fa341e2cd2d3d0e06ad35d11c352",
+  "m1_sha": "f15f3a6c50bb2833a2c8475ffd7efd78c52f4fa1",
+  "binary_sha256": "0996d664918bf8453b29cd5bb9cc65dbffd2b70f0efe1547d612d1468bf44bac",
+  "checks": [
+    {
+      "command": "cargo test -p octos-agent --lib local_edit",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "6 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib profile_integration_tests",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "9 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::registry::",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "56 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --test h03_m1_output --test h05_m0_baseline",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "21 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --lib runtime::profile::tests::stdio_lean_defaults_exclude_only_bundled_skill_layers",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "1 passed"
+    },
+    {
+      "command": "cargo test -p octos-cli --test mcp_serve_integration",
+      "environment": "OCTOS_LOCAL_EDIT=1",
+      "result": "18 passed"
+    },
+    {
+      "command": "cargo test -p octos-agent --lib tools::spawn",
+      "environment": "OCTOS_LOCAL_EDIT=1; isolated global git config",
+      "result": "94 passed, 1 ignored"
+    },
+    {
+      "command": "cargo check --workspace --tests",
+      "environment": "OCTOS_LOCAL_EDIT unset",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check && git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings",
+      "result": "failed only on pre-existing crates/octos-cli/src/commands/serve.rs:878 clippy::nonminimal_bool"
+    },
+    {
+      "command": "cargo clippy -p octos-agent -p octos-cli --all-targets -- -D warnings -A clippy::nonminimal-bool",
+      "result": "passed"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_guidance.py target/debug/octos EVIDENCE_DIR",
+      "result": "passed for off, on, and unknown values"
+    },
+    {
+      "command": "python3 arc/integration/local_edit_baseline.py target/debug/octos EVIDENCE_DIR/off-behavior",
+      "result": "passed; 7 real stdio requests and all M0 behavior preserved"
+    }
+  ],
+  "not_run": {
+    "official_paid_tasks": "M8 only; user approval and ARCBENCH_API_KEY are required",
+    "full_octos_agent_suite": "not used as a gate because known sandbox/background-process tests hang or fail in this host; affected modules were run directly"
+  }
+}

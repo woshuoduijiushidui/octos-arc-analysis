@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.68s
+     Running unittests src/lib.rs (target/debug/deps/octos_cli-438f12ebf3c32a3a)
+
+running 2 tests
+test api::ui_protocol_transport::tests::h02_m5_oup_and_mcp_agents_receive_complete_file_state ... ok
+test api::ui_protocol_transport::tests::h02_m5_stdio_open_and_two_turns_reuse_verified_read_receipt ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 3700 filtered out; finished in 0.61s

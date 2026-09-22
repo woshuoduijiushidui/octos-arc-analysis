@@ -1,0 +1,9 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.83s
+     Running unittests src/lib.rs (target/debug/deps/octos_cli-438f12ebf3c32a3a)
+
+running 3 tests
+test context_manager::tests::h03_m0_reused_call_id_recalls_latest_instead_of_reporting_ambiguity ... ok
+test context_manager::tests::h03_m0_recall_page_is_cut_again_by_prompt_projection ... ok
+test context_manager::tests::h03_m0_cold_reload_keeps_artifact_but_loses_recall_index ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3699 filtered out; finished in 0.01s

@@ -1,0 +1,23 @@
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.36s
+     Running tests/h03_m0_dispatch.rs (target/debug/deps/h03_m0_dispatch-6ff04948584d49cd)
+h03_m0_bridge_error_uses_current_vector_without_rollback: test
+h03_m0_metadata_goes_to_response_not_provider_messages: test
+
+2 tests, 0 benchmarks
+     Running tests/h03_m1_output.rs (target/debug/deps/h03_m1_output-f2e2d4ba35c9f0ca)
+approved_tool_uses_same_identity_and_projection_path: test
+batch_allocation_is_repeatable_and_bounded: test
+bridge_failure_never_sends_a_cut_range_declaration: test
+capture_availability_execution_and_pending_are_independent: test
+command_aliases_preserve_nonzero_exit_and_both_streams: test
+empty_crlf_bom_and_no_newline_have_exact_source_ranges: test
+file_and_log_share_total_budget_including_all_metadata: test
+identities_and_owners_do_not_follow_content_hashes: test
+metadata_over_budget_and_unknown_config_fail_closed: test
+real_file_and_shell_reach_final_provider_with_typed_ranges_and_status: test
+recovery_off_preserves_file_output: test
+sanitization_and_hook_text_are_budgeted_without_source_coverage: test
+smaller_projection_restarts_from_source_and_updates_proof: test
+
+13 tests, 0 benchmarks

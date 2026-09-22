@@ -1,0 +1,14 @@
+   Compiling octos-agent v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-agent)
+   Compiling octos-pipeline v2.0.3-rc.11 (/Users/bytedance/arc-bench/octos-arc/crates/octos-pipeline)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.39s
+     Running tests/m8_parity.rs (target/debug/deps/m8_parity-725e6139af2a16a8)
+
+running 6 tests
+test empty_pipeline_host_context_does_not_inject_anything ... ok
+test pipeline_worker_registers_node_task_with_supervisor ... ok
+test pipeline_worker_agent_inherits_session_scope ... ok
+test pipeline_node_cost_reservation_auto_refunds_on_drop ... ok
+test pipeline_worker_handler_carries_file_state_cache_from_host ... ok
+test handler_registry_default_with_codergen_carrying_host_context ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
