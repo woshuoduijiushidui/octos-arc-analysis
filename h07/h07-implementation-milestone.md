@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0-M3 已完成；M4-M9 待实施
+- 状态：M0-M4 已完成；M5-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -314,18 +314,18 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 **依赖：**M3，开发时需有 H05 typed metadata。**目标：**不把“成功调用”误当成“真实进展”。
 
-- [ ] `outcome=no_change` 或 `file_modified=false` 记 no-progress，不增加 file churn。
-- [ ] `file_modified=true` 且最终确认版本变化时记 state change；同一路径相同最终版本不重复计数。
-- [ ] `final_state=unconfirmed` 或 typed 字段冲突时保持 unknown，不宣称 modified/no-progress。
-- [ ] formatter 改变内容时以 `final_version` 为准；`changed_range` 只作证据，不代表 validation improvement。
-- [ ] 真正连续版本变化可以触发现有 churn checkpoint，但 churn 本身不产生 semantic terminal。
-- [ ] 相同 read source/version/range 和相同可见 digest 可以记 no-progress；新页、新范围、新版本或新搜索命中记 evidence change。
-- [ ] H03 恢复页引用同一 source 但范围前进时不能误判为重复读取。
-- [ ] typed no-progress 不调用 `record_productive_tool_call`，不能获得 budget grace。
-- [ ] typed state/evidence change 可以记录 productive；旧无 typed 工具保留现有文本 heuristic 兼容路径。
-- [ ] 重复长输出、`Exit code: 0` 但无新 typed 证据、附 H07 hint 后长度超过 128 字节均有反例测试。
-- [ ] 回归 H02 receipt、H03 output envelope/recall 和 H05 M2-M6 测试。
-- [ ] 本地提交并记录 M4 证据。
+- [x] `outcome=no_change` 或 `file_modified=false` 记 no-progress，不增加 file churn。
+- [x] `file_modified=true` 且最终确认版本变化时记 state change；同一路径相同最终版本不重复计数。
+- [x] `final_state=unconfirmed` 或 typed 字段冲突时保持 unknown，不宣称 modified/no-progress。
+- [x] formatter 改变内容时以 `final_version` 为准；`changed_range` 只作证据，不代表 validation improvement。
+- [x] 真正连续版本变化可以触发现有 churn checkpoint，但 churn 本身不产生 semantic terminal。
+- [x] 相同 read source/version/range 和相同可见 digest 可以记 no-progress；新页、新范围、新版本或新搜索命中记 evidence change。
+- [x] H03 恢复页引用同一 source 但范围前进时不能误判为重复读取。
+- [x] typed no-progress 不调用 `record_productive_tool_call`，不能获得 budget grace。
+- [x] typed state/evidence change 可以记录 productive；旧无 typed 工具保留现有文本 heuristic 兼容路径。
+- [x] 重复长输出、`Exit code: 0` 但无新 typed 证据、附 H07 hint 后长度超过 128 字节均有反例测试。
+- [x] 回归 H02 receipt、H03 output envelope/recall 和 H05 M2-M6 测试。
+- [x] 本地提交并记录 [M4 证据](./h07-m4-evidence.md)；代码提交 `ba39ec5a2973dcf1ab4ed0bfd52615c33091415a`。
 
 **完成条件：**文件进展来自最终实际状态；no-op 不再抬高 churn 或 grace，正常分页与多次有效编辑不被误杀。
 
