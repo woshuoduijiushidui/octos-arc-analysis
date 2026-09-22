@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0-M2 已完成；M3-M9 待实施
+- 状态：M0-M3 已完成；M4-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -296,17 +296,17 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 **依赖：**M1-M2。**目标：**识别“参数在变，但目标和结果没变”的循环。
 
-- [ ] 实现第 3.2 节的 bounded episode；复用 `LoopDetector` 生命周期，不新建全局 singleton。
-- [ ] known typed producer 只使用稳定字段构造 key；忽略字段列表由 producer/adapter 明确提供。
-- [ ] H05 no-match/ambiguous 使用 path、error code、matcher、候选位置/计数等稳定事实；变化的调用 JSON 不自动创建新 episode。
-- [ ] HarnessError 使用 variant、recovery、稳定位置/原因；不把 backoff 次数或 provider request ID 算新证据。
-- [ ] unknown/text fallback 保留原 exact digest 语义，不做激进模糊归一化。
-- [ ] 同 failure location 但 expected/actual 改变时记 evidence change；仅耗时、时间戳、随机 ID 变化时保持同 episode。
-- [ ] episode 到第 2 次附定向提示；到语义阈值设置 `switch_required`，但 B 不产生额外模型请求。
-- [ ] switch 后允许一个不同 observation probe；同 key 继续出现时返回 typed terminal decision。
-- [ ] eviction、hash collision 防护、计数饱和和极长 task 均有测试；淘汰不能触发 terminal。
-- [ ] metrics label 只使用固定 enum，如 family/decision/confidence；path、tool args、error text 和 digest 不作 label。
-- [ ] 本地提交并记录 M3 证据。
+- [x] 实现第 3.2 节的 bounded episode；复用 `LoopDetector` 生命周期，不新建全局 singleton。
+- [x] known typed producer 只使用稳定字段构造 key；忽略字段列表由 producer/adapter 明确提供。
+- [x] H05 no-match/ambiguous 使用 path、error code、matcher、候选位置/计数等稳定事实；变化的调用 JSON 不自动创建新 episode。
+- [x] HarnessError 使用 variant、recovery、稳定位置/原因；不把 backoff 次数或 provider request ID 算新证据。
+- [x] unknown/text fallback 保留原 exact digest 语义，不做激进模糊归一化。
+- [x] 同 failure location 但 expected/actual 改变时记 evidence change；仅耗时、时间戳、随机 ID 变化时保持同 episode。
+- [x] episode 到第 2 次附定向提示；到语义阈值设置 `switch_required`，但 B 不产生额外模型请求。
+- [x] switch 后允许一个不同 observation probe；同 key 继续出现时返回 typed terminal decision。
+- [x] eviction、hash collision 防护、计数饱和和极长 task 均有测试；淘汰不能触发 terminal。
+- [x] metrics label 只使用固定 enum，如 family/decision/confidence；path、tool args、error text 和 digest 不作 label。
+- [x] 本地提交并记录 M3 证据：代码 `41729c6431669f2d6902875ba187665484ff5838`；[验证记录](./h07-m3-evidence.md)。
 
 **完成条件：**改空白、limit、无关参数或 request ID 不能绕过已知 typed episode；真正的新错误证据仍允许继续。
 
