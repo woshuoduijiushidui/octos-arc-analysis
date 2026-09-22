@@ -353,20 +353,20 @@ M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与�
 
 **依赖：**M2-M5。**目标：**同一实现同时支持零额外复盘的 B 和条件复盘的 C。
 
-- [ ] B/C 只使用一个 policy/state machine 和一个 `BC_SHA`；reflection 开关只改变 `request_reflection` 的处理。
-- [ ] B 在 `switch_required` 时把短而具体的策略提示附到现有结果，下一次正常 action call 就是换策略机会。
-- [ ] C 在相同状态下复用 `ConvergenceController` 和现有 tools-disabled 调用，不引入 verifier 或第二套 summary prompt。
-- [ ] 提取最小共享 checkpoint helper，使 conversation/task 都能执行同一 H07 semantic reflection；task 不因此开启普通周期性 checkpoint。
-- [ ] reflection prompt 只携带用户目标、episode 类别、有界证据和“选择不同可验证动作”；不复制完整工具输出。
-- [ ] 每个 episode 最多一次 H07 reflection，每 turn 最多一次；其他 episode 退回 B 的确定性提示。
-- [ ] H07 forced reason 与已有 periodic/file churn/peer reason 同时到期时合并为一次调用，不丢高优先级 typed 证据。
-- [ ] reflection 的 input/output/cache/reasoning token 计入真实 turn/task usage，但不推进 action-call threshold。
-- [ ] budget grace iteration 不用于 reflection；接近硬预算时直接使用 B 行为。
-- [ ] reflection 文本作为 transient background context，不能持久化成用户可见 assistant final，也不能自己标记任务 complete。
-- [ ] host 不解析 reflection 自述来重置 episode；后续工具 observation 才能证明策略变化或进展。
-- [ ] reflection 失败或空输出时不重试，记录失败后继续 B；复盘后同 episode 再现则 terminal。
-- [ ] verifier-configured Agent 不重复支付 verifier + H07 reflection；M0 选定并测试唯一所有者。
-- [ ] 本地提交；同一 commit/branch 冻结 B/C 代码，配置差异单独记录。
+- [x] B/C 只使用一个 policy/state machine 和一个 `BC_SHA`；reflection 开关只改变 `request_reflection` 的处理。
+- [x] B 在 `switch_required` 时把短而具体的策略提示附到现有结果，下一次正常 action call 就是换策略机会。
+- [x] C 在相同状态下复用 `ConvergenceController` 和现有 tools-disabled 调用，不引入 verifier 或第二套 summary prompt。
+- [x] 提取最小共享 checkpoint helper，使 conversation/task 都能执行同一 H07 semantic reflection；task 不因此开启普通周期性 checkpoint。
+- [x] reflection prompt 只携带用户目标、episode 类别、有界证据和“选择不同可验证动作”；不复制完整工具输出。
+- [x] 每个 episode 最多一次 H07 reflection，每 turn 最多一次；其他 episode 退回 B 的确定性提示。
+- [x] H07 forced reason 与已有 periodic/file churn/peer reason 同时到期时合并为一次调用，不丢高优先级 typed 证据。
+- [x] reflection 的 input/output/cache/reasoning token 计入真实 turn/task usage，但不推进 action-call threshold。
+- [x] budget grace iteration 不用于 reflection；接近硬预算时直接使用 B 行为。
+- [x] reflection 文本作为 transient background context，不能持久化成用户可见 assistant final，也不能自己标记任务 complete。
+- [x] host 不解析 reflection 自述来重置 episode；后续工具 observation 才能证明策略变化或进展。
+- [x] reflection 失败或空输出时不重试，记录失败后继续 B；复盘后同 episode 再现则 terminal。
+- [x] verifier-configured Agent 不重复支付 verifier + H07 reflection；M0 选定并测试唯一所有者。
+- [x] 本地提交；同一 commit/branch 冻结 B/C 代码，配置差异单独记录。
 
 **完成条件：**B 零新增模型请求；C 对一个停滞 turn 最多新增一次请求；两者除 reflection 开关外完全等价。
 
