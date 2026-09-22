@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0-M9 待实施
+- 状态：M0 已完成；M1-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -95,12 +95,12 @@ H07 不是简单地“调用多了就停”，而是判断一次操作有没有�
 
 这些 SHA 只用于复核调研结论，不能代替未来开工时的最新主线。
 
-- [ ] 检查 `octos-arc` 和 `octos-arc-analysis` 的分支、工作树、未跟踪文件及未推送提交；不自动清理用户改动。
-- [ ] 从最新 `origin/main` 创建 H07 分支或独立 worktree，记录 `MAIN_SHA`。
-- [ ] 核对 H01-H05 已合入能力和 H05 最终选择；必要依赖先单独移植、验证并冻结 `A_SHA`。
-- [ ] 证明 `A_SHA` 尚未开启 H07 新行为，现有 exact/cycle、peer polling、file churn、retry bucket 和 convergence 行为可重放。
-- [ ] 固定官方实验任务、需求/测试哈希、模型、reasoning、工具列表、session scope、预算、修复轮数、超时和重复次数。
-- [ ] 记录 Rust/Python/Node 版本、实际 `OCTOS_BIN`、二进制 SHA-256、现有 convergence 配置及全部有效 H01-H05 开关。
+- [x] 检查 `octos-arc` 和 `octos-arc-analysis` 的分支、工作树、未跟踪文件及未推送提交；不自动清理用户改动。
+- [x] 从最新 `origin/main` 创建 H07 分支或独立 worktree，记录 `MAIN_SHA`。
+- [x] 核对 H01-H05 已合入能力和 H05 最终选择；必要依赖先单独移植、验证并冻结 `A_SHA`。
+- [x] 证明 `A_SHA` 尚未开启 H07 新行为，现有 exact/cycle、peer polling、file churn、retry bucket 和 convergence 行为可重放。
+- [x] 固定官方实验任务、需求/测试哈希、模型、reasoning、工具列表、session scope、预算、修复轮数、超时和重复次数。
+- [x] 记录 Rust/Python/Node 版本、实际 `OCTOS_BIN`、二进制 SHA-256、现有 convergence 配置及全部有效 H01-H05 开关。
 
 ### 1.2 建议的功能开关
 
@@ -236,21 +236,21 @@ ProgressDecision
 
 **目标：**在写实现前证明当前行为和所有自动重试出口。M0 不开启 H07。
 
-- [ ] 完成第 1.1 节，冻结 `MAIN_SHA`、依赖提交和 `A_SHA`。
-- [ ] 追踪 conversation：模型响应、terminal tool 检查、`record_doom`、cycle warning、工具执行、`record_result`、file/peer signal、convergence、最终 response。
-- [ ] 追踪 task：`run_task_inner`、工具执行、verifier、budget/max-token continuation 和 `TaskResult` 返回；证明当前没有同等 pre-call hard guard 和 signal 消费。
-- [ ] 追踪 spawn/MCP：`TaskResult.success=false` 怎样触发 M8.9 单次恢复、lifecycle retryable 分类和上层再次派发。
-- [ ] 追踪 `ToolResult` 的 success、`file_modified`、`output_document`、structured metadata、清洗、截断、H03 envelope 和最终模型消息。
-- [ ] 追踪 H05 `modified/no_change/no_match/ambiguous` 的真实字段及 H05 off 时缺字段行为。
-- [ ] 追踪 peer/background 工具的 handle、live/terminal 状态和轮询调用；不能只按工具名假设异步。
-- [ ] 证明当前普通 conversation 在第 3 次 exact call 执行前终止，因此看不到第 3 个 result-aware soft hint。
-- [ ] 证明当前 task 可执行 conversation 已经会拦截的第 3 次 exact call。
-- [ ] 证明成功 `no_change` 会被当前 success+path 逻辑计入 file churn。
-- [ ] 证明重复长 read 或附带 no-progress hint 的文本可能被 `is_productive_tool_message` 视为 productive。
-- [ ] 证明 provider retry bucket 与 task observation 的真实边界，并记录 verifier 豁免路径。
-- [ ] 用 fake provider/计数工具建立可重放反例，不调用付费模型，不把预期失败测试留在绿色分支中。
-- [ ] 冻结 observation/episode/hint 的容量、文本字节、阈值和 metrics label 集合；记录选择依据。
-- [ ] 创建 `h07/h07-m0-baseline.md` 或等价证据，列出命令、结果、SHA 和未覆盖入口。
+- [x] 完成第 1.1 节，冻结 `MAIN_SHA`、依赖提交和 `A_SHA`。
+- [x] 追踪 conversation：模型响应、terminal tool 检查、`record_doom`、cycle warning、工具执行、`record_result`、file/peer signal、convergence、最终 response。
+- [x] 追踪 task：`run_task_inner`、工具执行、verifier、budget/max-token continuation 和 `TaskResult` 返回；证明当前没有同等 pre-call hard guard 和 signal 消费。
+- [x] 追踪 spawn/MCP：`TaskResult.success=false` 怎样触发 M8.9 单次恢复、lifecycle retryable 分类和上层再次派发。
+- [x] 追踪 `ToolResult` 的 success、`file_modified`、`output_document`、structured metadata、清洗、截断、H03 envelope 和最终模型消息。
+- [x] 追踪 H05 `modified/no_change/no_match/ambiguous` 的真实字段及 H05 off 时缺字段行为。
+- [x] 追踪 peer/background 工具的 handle、live/terminal 状态和轮询调用；不能只按工具名假设异步。
+- [x] 证明当前普通 conversation 在第 3 次 exact call 执行前终止，因此看不到第 3 个 result-aware soft hint。
+- [x] 证明当前 task 可执行 conversation 已经会拦截的第 3 次 exact call。
+- [x] 证明成功 `no_change` 会被当前 success+path 逻辑计入 file churn。
+- [x] 证明重复长 read 或附带 no-progress hint 的文本可能被 `is_productive_tool_message` 视为 productive。
+- [x] 证明 provider retry bucket 与 task observation 的真实边界，并记录 verifier 豁免路径。
+- [x] 用 fake provider/计数工具建立可重放反例，不调用付费模型，不把预期失败测试留在绿色分支中。
+- [x] 冻结 observation/episode/hint 的容量、文本字节、阈值和 metrics label 集合；记录选择依据。
+- [x] 创建 `h07/h07-m0-baseline.md` 或等价证据，列出命令、结果、SHA 和未覆盖入口。
 
 **完成条件：**A 可重放；所有执行前检查、结果后判断、模型复盘和自动重试出口都有所有者；B/C 的唯一变量已冻结。
 
