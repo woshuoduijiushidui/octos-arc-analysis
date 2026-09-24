@@ -1,6 +1,6 @@
 # H06 实施 Milestone：验证失败后聚焦修复
 
-- 状态：M0-M8 待实施
+- 状态：M0-M6 的实现与确定性验收已完成；M0 官方实验冻结项随 M7 执行，M7-M8 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H06 竞品调研](./h06-verification-failure-focused-repair-competitor-research.md)
 - 关联约束：[H03 实施清单](../h03/h03-implementation-milestone.md)、[H05 实施清单](../h05/h05-implementation-milestone.md)、[H07 竞品调研](../h07/h07-no-progress-strategy-switch-competitor-research.md)、[H08 竞品调研](../h08/h08-execution-budget-competitor-research.md)、[优化总表](../harness-optimization-table.md)
@@ -60,7 +60,7 @@ messages，不算完成 H06。
 7. 不新增通用 hook/plugin 系统，不让模型自评通过，不通过第二个 LLM verifier 判断确定性 validator 结果。
 8. 每个 Milestone 完成后做本地 Git 提交并记录 SHA；不推送远程、不创建 PR，除非用户另行要求。
 9. 不修改官方需求、测试、response schema、workspace policy、required tier、模型、reasoning、总预算或超时来换取通过。
-10. 真实环境运行前执行 `source ~/.zshrc`。缺少 `ARCBENCH_API_KEY` 或 provider 配置时，明确记录缺失项，不把未运行写成失败或零成本。
+10. 真实环境运行前加载当前 shell 的配置（WSL Bash 为交互式 `~/.bashrc`，zsh 为 `~/.zshrc`）。缺少 `ARCBENCH_API_KEY` 或 provider 配置时，明确记录缺失项，不把未运行写成失败或零成本。
 
 | Milestone | 主要产出 | 对应分组 |
 | --- | --- | --- |
@@ -78,11 +78,11 @@ messages，不算完成 H06。
 
 ### 1.1 M0 必须冻结的版本
 
-- [ ] 记录 `octos-arc`、`octos-arc-analysis` 当前分支、HEAD、远端跟踪、dirty 和未跟踪文件；不自动 stash、reset 或删除。
-- [ ] 拉取最新 `origin/main`，记录 `MAIN_SHA`，从它创建 H06 独立分支/worktree。
-- [ ] 核对 H01-H05 已合入与未合入能力，只移植 H06 必需的 typed validator、H03 有界证据和 H05 文件变化事实；每组依赖分别记录来源 SHA。
-- [ ] 依赖移植完成后运行专项回归并冻结 `A_SHA`。此时 H06 开关关闭，MCP 行为必须仍是验证失败后直接 Failed。
-- [ ] 记录 Rust/Python/Node 版本、实际二进制路径及 SHA-256、有效 sandbox/tool policy、MCP transport 和测试 fixture。
+- [x] 记录 `octos-arc`、`octos-arc-analysis` 当前分支、HEAD、远端跟踪、dirty 和未跟踪文件；不自动 stash、reset 或删除。
+- [x] 拉取最新 `origin/main`，记录 `MAIN_SHA`，从它创建 H06 独立分支/worktree。
+- [x] 核对 H01-H05 已合入与未合入能力，只移植 H06 必需的 typed validator、H03 有界证据和 H05 文件变化事实；每组依赖分别记录来源 SHA。
+- [x] 依赖移植完成后运行专项回归并冻结 `A_SHA`。此时 H06 开关关闭，MCP 行为必须仍是验证失败后直接 Failed。
+- [x] 记录 Rust/Python/Node 版本、实际二进制路径及 SHA-256、有效 sandbox/tool policy、MCP transport 和测试 fixture。
 - [ ] 固定官方实验任务、输入/测试/schema 哈希、模型、reasoning、请求预算、修复轮数和重复次数。
 
 建议开关合同：
@@ -234,19 +234,21 @@ rollback_unavailable
 
 **目标：**在改代码前证明验证在哪里运行、消息何时丢失、哪些状态能复用，并冻结 A。
 
+证据记录：[H06 M0 共同底座与 A 反例](./h06-m0-baseline.md)。
+
 - [ ] 完成第 1.1 节，记录 `MAIN_SHA`、依赖移植 SHA 和 `A_SHA`。
-- [ ] 追踪 native ARC 与 legacy prompt 两条 MCP 路径：输入校验、Agent 构造、`run_task`、workspace contract、completion validators、artifact resolve/location/schema、outcome 返回。
-- [ ] 追踪 `EndTurn` 时 assistant response 是否已经进入 `messages`、`TaskResult` 在何处构造、usage/iteration 在何处累计、`TaskCompleted` 事件何时发出。
-- [ ] 证明第二次调用 `run_task` 会重新构造 initial messages；记录哪些 Agent 状态会保留、哪些首轮消息会丢失。
-- [ ] 核对现有 LLM verifier 与 workspace contract 的顺序，冻结 H06 开启/关闭时的顺序要求；不得重复运行模型 verifier。
-- [ ] 核对 MCP observer/TaskSupervisor 允许的非终态转换，决定修复期间保持 `Running`、切换 `Verifying` 后返回 `Running`，或仅发内部 gate event；不得先发布 terminal Failed。
-- [ ] 核对 completion validators 与 core project-root validators 是否重叠，记录命令、phase、workspace root、ledger 和副作用；B 中同一 gate 不得无意执行两遍。
-- [ ] 核对 artifact 路径优先级、64 KiB 文本读取上限、JSON/schema 错误和 `files_to_send` 语义。
-- [ ] 核对 `SnapshotManager` 的启用方式、`.gitignore`、nested repo、无 Git、并发锁和 restore 边界；明确是否能安全保护 H06 候选。
-- [ ] 冻结 RepairTicket 模型可见字节上限、失败数上限、stderr tail 和 evidence ref 规则。
-- [ ] 用现有 `ScriptedLlmProvider` 固定至少五个 A 反例：required `Fail`、artifact missing、schema invalid、validator timeout/error、非法 `arc_task`。
-- [ ] 记录每个反例的 provider 请求数、lifecycle、最终 prefix、validator_results、artifact 字段和 token cost；非法输入必须为零 provider 请求。
-- [ ] 运行现有 MCP/Agent/validator 回归并记录基线失败；新增测试可以固定现状，但不能把主分支永久留红。
+- [x] 追踪 native ARC 与 legacy prompt 两条 MCP 路径：输入校验、Agent 构造、`run_task`、workspace contract、completion validators、artifact resolve/location/schema、outcome 返回。
+- [x] 追踪 `EndTurn` 时 assistant response 是否已经进入 `messages`、`TaskResult` 在何处构造、usage/iteration 在何处累计、`TaskCompleted` 事件何时发出。
+- [x] 证明第二次调用 `run_task` 会重新构造 initial messages；记录哪些 Agent 状态会保留、哪些首轮消息会丢失。
+- [x] 核对现有 LLM verifier 与 workspace contract 的顺序，冻结 H06 开启/关闭时的顺序要求；不得重复运行模型 verifier。
+- [x] 核对 MCP observer/TaskSupervisor 允许的非终态转换，决定修复期间保持 `Running`、切换 `Verifying` 后返回 `Running`，或仅发内部 gate event；不得先发布 terminal Failed。
+- [x] 核对 completion validators 与 core project-root validators 是否重叠，记录命令、phase、workspace root、ledger 和副作用；B 中同一 gate 不得无意执行两遍。
+- [x] 核对 artifact 路径优先级、64 KiB 文本读取上限、JSON/schema 错误和 `files_to_send` 语义。
+- [x] 核对 `SnapshotManager` 的启用方式、`.gitignore`、nested repo、无 Git、并发锁和 restore 边界；明确是否能安全保护 H06 候选。
+- [x] 冻结 RepairTicket 模型可见字节上限、失败数上限、stderr tail 和 evidence ref 规则。
+- [x] 用现有 `ScriptedLlmProvider` 固定至少五个 A 反例：required `Fail`、artifact missing、schema invalid、validator timeout/error、非法 `arc_task`。
+- [x] 记录每个反例的 provider 请求数、lifecycle、最终 prefix、validator_results、artifact 字段和 token cost；非法输入必须为零 provider 请求。
+- [x] 运行现有 MCP/Agent/validator 回归并记录基线失败；新增测试可以固定现状，但不能把主分支永久留红。
 
 **设计停止点：**若 completion gate 无法在不破坏 `TaskResult` ABI 的前提下把最终 receipt 返回 MCP，
 先在 M0 证据中比较“gated result wrapper”和“invocation-local handle”两种最小方案，再选一个。
@@ -258,70 +260,80 @@ rollback_unavailable
 
 **依赖：**M0。**目标：**先建立纯数据合同，不改变 Agent 或 MCP 控制流。
 
-- [ ] 在真正共享的最小模块定义 candidate、check outcome、decision、receipt、ticket 和 terminal reason；复用 `ValidatorOutcome`，不复制其状态/required/evidence 字段。
-- [ ] 为 artifact exists/location/text/JSON/schema 建立 typed check kind；不再依赖 `artifact_schema_invalid:` 等英文前缀做内部分支。
-- [ ] 实现纯 classifier：hard `Fail` 可修；optional 不阻塞；`Timeout/Error` terminal；混合 batch 采用最严格结果。
-- [ ] 实现稳定 failure signature，过滤 duration、timestamp、随机路径后缀和无关顺序。
-- [ ] 实现有界、确定性的 RepairTicket renderer；输出包含禁止修改测试/policy/schema 的约束。
-- [ ] 大 evidence 只给 H03 引用和短摘要；引用不可用时明确 `recoverable=false`，不虚构路径。
-- [ ] ticket 记录 candidate revision，旧 ticket 不能应用到新候选。
-- [ ] 添加纯单测：单/多 failure、optional、timeout/error、稳定排序、签名去噪、Unicode、长路径、超大 stderr、恶意日志文本和极小预算。
-- [ ] 证明 renderer 不产生额外 provider 请求，且相同输入字节级稳定。
+- [x] 在真正共享的最小模块定义 candidate、check outcome、decision、receipt、ticket 和 terminal reason；复用 `ValidatorOutcome`，不复制其状态/required/evidence 字段。
+- [x] 为 artifact exists/location/text/JSON/schema 建立 typed check kind；不再依赖 `artifact_schema_invalid:` 等英文前缀做内部分支。
+- [x] 实现纯 classifier：hard `Fail` 可修；optional 不阻塞；`Timeout/Error` terminal；混合 batch 采用最严格结果。
+- [x] 实现稳定 failure signature，过滤 duration、timestamp、随机路径后缀和无关顺序。
+- [x] 实现有界、确定性的 RepairTicket renderer；输出包含禁止修改测试/policy/schema 的约束。
+- [x] 大 evidence 只给 H03 引用和短摘要；引用不可用时明确 `recoverable=false`，不虚构路径。
+- [x] ticket 记录 candidate revision，旧 ticket 不能应用到新候选。
+- [x] 添加纯单测：单/多 failure、optional、timeout/error、稳定排序、签名去噪、Unicode、长路径、超大 stderr、恶意日志文本和极小预算。
+- [x] 证明 renderer 不产生额外 provider 请求，且相同输入字节级稳定。
 
 **完成条件：**任意现有 validator/artifact 结果都能得到唯一、typed、有界的 decision；尚未启用修复，生产行为与 A 相同。
+
+后续接线注意：M2-M4 必须从同一次检查构造 `CompletionReceipt` 的 task ID、candidate revision 和 policy version；工作区产生新候选时推进 revision。只有 invocation-local H03 store 确认可 recall 后才填入 `RecoveryReference`，否则票据保留 `recoverable=false`。`render(&self, budget) -> String` 是同步纯函数，没有 provider 句柄或 I/O；真实 MCP gate 与模型续行留待 M2-M4。
+
+WSL 交互式 Bash 已核对非敏感配置：`MODEL`/`OCTOS_MODEL=deepseek-v4-flash`、`OPENAI_BASE_URL=https://api.arc-bench.com/v1`、`OCTOS_ARC_REASONING=auto`。本次 M1 未读取密钥或发起真实模型请求；M7 前仍需核验真实密钥、官方任务的 MCP 入口、response schema 与总请求预算。
 
 ## 6. Milestone M2：抽取 MCP completion gate，保持 A 行为
 
 **依赖：**M1。**目标：**把多个直接 return 分支变成一个可复用检查器，但仍只检查一次并直接结束。
 
-- [ ] 抽取当前 completion validators、artifact resolve、位置、读取、JSON/schema 检查；保持执行顺序、sandbox、路径优先级和错误前缀。
-- [ ] gate 输入显式携带 native ARC schema、legacy expected artifact、contract、tools/sandbox 和 candidate files；不得从进程全局重新查找任务。
-- [ ] gate 输出包含本次完整 validator_results、artifact 状态和 candidate-bound receipt。
-- [ ] required validator 失败后仍保留完整 typed outcomes；optional failure 不阻止 artifact 检查和 Ready。
-- [ ] artifact 缺失、过大/非 UTF-8、JSON 错误、schema 错误和安全位置错误保持现有外部结果。
-- [ ] `task_result.success=false` 仍不得验证磁盘上的旧 artifact；max iteration、provider error 等路径保持原短路。
-- [ ] legacy prompt 路径保持兼容；没有 response schema 时不新增 schema 检查。
-- [ ] H06 off 和 M2 on-but-no-continuation 的 provider 请求、lifecycle、MCP outcome 和文件结果与 A 等价。
-- [ ] 删除被抽取逻辑的重复分支；不要保留两套 artifact validator 逐渐漂移。
-- [ ] 回归现有 `mcp_serve_integration` 全文件，并增加 gate 单测覆盖所有旧分支。
+- [x] 抽取当前 completion validators、artifact resolve、位置、读取、JSON/schema 检查；保持执行顺序、sandbox、路径优先级和错误前缀。
+- [x] gate 输入显式携带 native ARC schema、legacy expected artifact、contract、tools/sandbox 和 candidate files；不得从进程全局重新查找任务。
+- [x] gate 输出包含本次完整 validator_results、artifact 状态和 candidate-bound receipt。
+- [x] required validator 失败后仍保留完整 typed outcomes；optional failure 不阻止 artifact 检查和 Ready。
+- [x] artifact 缺失、过大/非 UTF-8、JSON 错误、schema 错误和安全位置错误保持现有外部结果。
+- [x] `task_result.success=false` 仍不得验证磁盘上的旧 artifact；max iteration、provider error 等路径保持原短路。
+- [x] legacy prompt 路径保持兼容；没有 response schema 时不新增 schema 检查。
+- [x] H06 off 和 M2 on-but-no-continuation 的 provider 请求、lifecycle、MCP outcome 和文件结果与 A 等价。
+- [x] 删除被抽取逻辑的重复分支；不要保留两套 artifact validator 逐渐漂移。
+- [x] 回归现有 `mcp_serve_integration` 全文件，并增加 gate 单测覆盖所有旧分支。
 
 **完成条件：**MCP 的成功/失败行为和 A 一致，但每次候选验证已经统一产生 typed decision + receipt，可供 M3 使用。
+
+后续接线注意：M2 的单次 MCP 验证把 candidate revision 固定为 1，`TaskResult` 尚未暴露真实 iteration，因此暂填 0。M3 的 Agent 终止拦截接入时必须传入真实 iteration；M4 每产生新候选须推进 revision，并从同一候选的 receipt 构造最终 MCP outcome。无法解析任何 artifact 路径属于 terminal；只有已知目标路径但文件缺失才可发修复票据。M2 仍只验证一次，不执行模型续行。
 
 ## 7. Milestone M3：Agent 终止拦截与一次同任务续行
 
 **依赖：**M2。**目标：**先用 fake gate 证明真正的 same-run continuation，再接真实 MCP。
 
-- [ ] 为 `Agent::run_task_inner` 增加可选的 async completion gate seam；默认不存在时保持旧字节行为，不扩张为通用插件系统。
-- [ ] 提供新的 gated 调用入口或等价 typed wrapper；旧 `run_task` 签名和所有旧 caller 保持兼容。
-- [ ] 在 `EndTurn` 候选形成后、真正 `TaskCompleted`/return 前调用 gate；具体与现有 LLM verifier/workspace contract 的顺序采用 M0 冻结结果。
-- [ ] `Repairable` 时，先把本轮 assistant candidate 按现有顺序记入历史，再追加一条 harness 生成的 user-role/internal RepairTicket。
-- [ ] 追加后走同一 loop 的 `continue`；不得新建 `Task`、不得重新拼完整需求、不得调用第二个 Agent。
-- [ ] 修复续行沿用同一个 `messages`、`LoopTurnState`、retry state、loop detector、file/output state、compaction 和 cumulative usage。
-- [ ] 一张 ticket 真正进入下一次 provider request 才计为一轮；gate 自身不消耗模型轮次。
-- [ ] fake gate 第一次返回 Repairable、第二次返回 Pass；断言 provider 第二次请求包含原历史和唯一 ticket，原需求没有被重复拼接。
-- [ ] 断言两次模型响应 usage 累计到一个最终结果，iteration 单调增加，`TaskCompleted` 只发一次。
-- [ ] fake gate 返回 TerminalFailure 时不产生第二个 provider 请求；取消和预算检查仍优先终止。
-- [ ] ticket 被 compaction/最终 prompt 投影时保持关键字段；若 H03/H01 未在底座中，至少保证有界、不可误解，不能假装具备恢复能力。
+- [x] 为 `Agent::run_task_inner` 增加可选的 async completion gate seam；默认不存在时保持旧字节行为，不扩张为通用插件系统。
+- [x] 提供新的 gated 调用入口或等价 typed wrapper；旧 `run_task` 签名和所有旧 caller 保持兼容。
+- [x] 在 `EndTurn` 候选形成后、真正 `TaskCompleted`/return 前调用 gate；具体与现有 LLM verifier/workspace contract 的顺序采用 M0 冻结结果。
+- [x] `Repairable` 时，先把本轮 assistant candidate 按现有顺序记入历史，再追加一条 harness 生成的 user-role/internal RepairTicket。
+- [x] 追加后走同一 loop 的 `continue`；不得新建 `Task`、不得重新拼完整需求、不得调用第二个 Agent。
+- [x] 修复续行沿用同一个 `messages`、`LoopTurnState`、retry state、loop detector、file/output state、compaction 和 cumulative usage。
+- [x] 一张 ticket 真正进入下一次 provider request 才计为一轮；gate 自身不消耗模型轮次。
+- [x] fake gate 第一次返回 Repairable、第二次返回 Pass；断言 provider 第二次请求包含原历史和唯一 ticket，原需求没有被重复拼接。
+- [x] 断言两次模型响应 usage 累计到一个最终结果，iteration 单调增加，`TaskCompleted` 只发一次。
+- [x] fake gate 返回 TerminalFailure 时不产生第二个 provider 请求；取消和预算检查仍优先终止。
+- [x] ticket 被 compaction/最终 prompt 投影时保持关键字段；若 H03/H01 未在底座中，至少保证有界、不可误解，不能假装具备恢复能力。
 
 **完成条件：**不依赖 MCP 文件检查，单靠 fake gate 已证明“EndTurn → ticket → 同一消息历史继续 → Pass/terminal”的核心状态机。
+
+后续接线注意：M3 的 `run_task_with_completion_gate` 返回任务结果及 invocation-local 最终 decision；budget/cancel 等在下一次请求前终止时也返回带原 receipt 的 terminal decision。M4 应把 M2 的真实 MCP gate 接到此入口，使用最终候选的 receipt 生成 outcome；普通 `run_task` 与 MCP 当前入口仍无模型续行。gate 收到 `core_contract_failure`，须把它纳入同一候选的硬门槛判断。
 
 ## 8. Milestone M4：接通 MCP 真实检查与单轮聚焦修复
 
 **依赖：**M3。**目标：**先只允许一次真实修复，关闭端到端缺口。
 
-- [ ] MCP 在 H06 on 时使用 M2 的 completion gate 调用 gated `run_task`；off 时继续旧入口。
-- [ ] 首版可修类型只包括：required validator `Fail`、artifact missing、可安全修复的位置问题、JSON/schema invalid。
-- [ ] `Timeout/Error`、配置/provider/sandbox、取消、budget 和非法输入保持 terminal，不触发第二次模型请求。
-- [ ] 真实 ticket 包含失败 gate、期望 artifact/schema 位置、短 reason/stderr、H03 evidence ref 和已通过 gate 摘要。
-- [ ] ticket 不包含完整原任务、完整 schema、完整 stdout/stderr、密钥或绝对用户目录；模型已有的不可变合同不重复发送。
-- [ ] Agent 修复后重新运行全部 hard validators、artifact location 和 schema；只有同一候选 receipt 全部通过才 Ready。
-- [ ] 最终 `McpSessionOutcome.validator_results`、artifact_path/content、cost 和 error 来自最终候选，不混用第一次失败数据。
-- [ ] 中间失败不向 observer 发布 terminal Failed；最终只发布一次 Ready/Failed/Cancelled。
-- [ ] 用 `ScriptedLlmProvider` 完成真实链路：首个 EndTurn 触发 missing/schema/validator Fail，第二个响应通过文件工具修复，再次 EndTurn 后 Ready。
-- [ ] 在最终 provider 请求中断言 RepairTicket 存在、原任务未重复、失败证据有界、工具权限未变化。
-- [ ] 加负例：同样脚本在 H06 off 时仍一次请求后 Failed，证明 A/B 开关有效。
+- [x] MCP 在 H06 on 时使用 M2 的 completion gate 调用 gated `run_task`；off 时继续旧入口。
+- [x] 首版可修类型只包括：required validator `Fail`、artifact missing、可安全修复的位置问题、JSON/schema invalid。
+- [x] `Timeout/Error`、配置/provider/sandbox、取消、budget 和非法输入保持 terminal，不触发第二次模型请求。
+- [x] 真实 ticket 包含失败 gate、期望 artifact/schema 位置、短 reason/stderr、H03 evidence ref 和已通过 gate 摘要。
+- [x] ticket 不包含完整原任务、完整 schema、完整 stdout/stderr、密钥或绝对用户目录；模型已有的不可变合同不重复发送。
+- [x] Agent 修复后重新运行全部 hard validators、artifact location 和 schema；只有同一候选 receipt 全部通过才 Ready。
+- [x] 最终 `McpSessionOutcome.validator_results`、artifact_path/content、cost 和 error 来自最终候选，不混用第一次失败数据。
+- [x] 中间失败不向 observer 发布 terminal Failed；最终只发布一次 Ready/Failed/Cancelled。
+- [x] 用 `ScriptedLlmProvider` 完成真实链路：首个 EndTurn 触发 missing/schema/validator Fail，第二个响应通过文件工具修复，再次 EndTurn 后 Ready。
+- [x] 在最终 provider 请求中断言 RepairTicket 存在、原任务未重复、失败证据有界、工具权限未变化。
+- [x] 加负例：同样脚本在 H06 off 时仍一次请求后 Failed，证明 A/B 开关有效。
 
 **完成条件：**至少 missing artifact、schema invalid 和 required validator Fail 各有一个同任务单轮修复成功测试；不可修失败零额外模型请求。
+
+后续接线注意：生产入口以 `octos mcp-serve --h06-completion-repair` 开启，默认关闭；M4 最多发送一张 ticket。已存在文件的覆盖受文件版本保护，模型应先用 `read_file` 观察当前内容再用 `write_file` 修复。M4 不伪造 H03 引用：只有 invocation-local store 已确认可 recall 时 ticket 才带引用；本轮 validator/artifact 检查未产生可验证的 H03 引用，因此票据明确标记 `recoverable=false`，短诊断采用固定安全文案，原始 stderr 不进入模型上下文。
 
 ## 9. Milestone M5：两轮上限、进展判断、预算和候选保护
 
@@ -329,43 +341,49 @@ rollback_unavailable
 
 ### 9.1 修复轮和停止规则
 
-- [ ] 生产 B 固定 `max_repair_rounds=2`；off/0、单轮和双轮由同一 policy 表达。
-- [ ] 第一次 repairable failure 在任务仍可继续时允许一轮。
-- [ ] 第二轮只允许两种情况：hard pass 集合严格改善；或工作区确实变化但稳定 failure signature 相同，使用唯一一次“换策略”机会。
-- [ ] 工作区未变化且 signature 相同立即停止为 `no_workspace_change`，不为必然相同的代码再付一次验证/模型成本。
-- [ ] signature 变化但 hard pass 集合未改善，只视为 `evidence_changed`；最多允许下一轮，不把它当验证成功。
-- [ ] 出现新 hard failure 或丢失已通过 gate，标记 `regressed`；不得仅按失败总数掩盖回归。
-- [ ] provider retry、等待轮询和普通工具 loop 使用原有计数，不消耗 H06 repair round。
-- [ ] H07 将来存在统一 `ProgressObservation` 时改为消费它；删除 H06 重复归一化，不保留两个不同判断器。
+- [x] 生产 B 固定 `max_repair_rounds=2`；off/0、单轮和双轮由同一 policy 表达。
+- [x] 第一次 repairable failure 在任务仍可继续时允许一轮。
+- [x] 第二轮只允许两种情况：hard pass 集合严格改善；或工作区确实变化但稳定 failure signature 相同，使用唯一一次“换策略”机会。
+- [x] 工作区未变化且 signature 相同立即停止为 `no_workspace_change`，不为必然相同的代码再付一次验证/模型成本。
+- [x] signature 变化但 hard pass 集合未改善，只视为 `evidence_changed`；最多允许下一轮，不把它当验证成功。
+- [x] 出现新 hard failure 或丢失已通过 gate，标记 `regressed`；不得仅按失败总数掩盖回归。
+- [x] provider retry、等待轮询和普通工具 loop 使用原有计数，不消耗 H06 repair round。
+- [x] H07 将来存在统一 `ProgressObservation` 时改为消费它；删除 H06 重复归一化，不保留两个不同判断器。
 
 ### 9.2 预算
 
-- [ ] 注入 ticket 前检查至少还允许一次真实模型 iteration；无法继续时直接返回 `task_budget_exhausted`。
-- [ ] 不为 H06 增加 grace call，不提高 `max_iterations`、`max_tokens`、`chat_max_tokens` 或 proxy 请求上限。
-- [ ] 两轮修复的所有正常 response usage 进入原 `LoopTurnState/TaskResult` 累计值，MCP cost 只做一次最终投影。
-- [ ] provider/transport 错误保留 partial/unknown 语义；H10 未完成前不为兼容字段伪造真实零消耗。
-- [ ] H08 接入后，修复必须使用它分配的交付保留额；H06 不再维护独立 token 余额。
+- [x] 注入 ticket 前检查至少还允许一次真实模型 iteration；无法继续时直接返回 `task_budget_exhausted`。
+- [x] 不为 H06 增加 grace call，不提高 `max_iterations`、`max_tokens`、`chat_max_tokens` 或 proxy 请求上限。
+- [x] 两轮修复的所有正常 response usage 进入原 `LoopTurnState/TaskResult` 累计值，MCP cost 只做一次最终投影。
+- [x] provider/transport 错误保留 partial/unknown 语义；H10 未完成前不为兼容字段伪造真实零消耗。
+- [x] H08 接入后，修复必须使用它分配的交付保留额；H06 不再维护独立 token 余额。
 
 ### 9.3 候选保护
 
-- [ ] M0 已证明目标工作区是否可由现有 `SnapshotManager` 完整覆盖，包括 `.gitignore` artifact、nested repo、无 Git 和并发锁场景。
-- [ ] 若覆盖成立，在第一次修复前保存候选；只有新候选不减少已通过 hard gate 且至少新增一个 pass 时更新 best。
-- [ ] 修复结束仍 Failed 时恢复 best，并重新验证恢复后的候选；最终 outcome 必须绑定恢复后 receipt。
-- [ ] snapshot/restore 失败时不得宣称已恢复，也不得用部分文件副本冒充原子工作区恢复。
-- [ ] 若现有 snapshot 无法覆盖 H06 合法目标，不临时手写半套回滚。暂停 M5，记录缺口并在本清单中明确选择：限制到可证明隔离的 disposable workspace，或另行设计完整候选机制。
-- [ ] 在候选保护未证明前，B 不得默认开启，也不得宣称满足“保留最佳状态”。
+- [x] M0 已证明目标工作区是否可由现有 `SnapshotManager` 完整覆盖，包括 `.gitignore` artifact、nested repo、无 Git 和并发锁场景。
+- [x] 若覆盖成立，在第一次修复前保存候选；只有新候选不减少已通过 hard gate 且至少新增一个 pass 时更新 best。
+- [x] 修复结束仍 Failed 时恢复 best，并重新验证恢复后的候选；最终 outcome 必须绑定恢复后 receipt。
+- [x] snapshot/restore 失败时不得宣称已恢复，也不得用部分文件副本冒充原子工作区恢复。
+- [x] 若现有 snapshot 无法覆盖 H06 合法目标，不临时手写半套回滚。暂停 M5，记录缺口并在本清单中明确选择：限制到可证明隔离的 disposable workspace，或另行设计完整候选机制。
+- [x] 在候选保护未证明前，B 不得默认开启，也不得宣称满足“保留最佳状态”。
 
 **完成条件：**双轮路径严格有界；无变化、同签名、回归、预算不足和 restore failure 都有 typed 终态，且不会产生 false Ready。
+
+M5 候选保护选择：B 仍默认关闭；显式 `--h06-completion-repair` 仅接受 Unix/WSL 下 OS 临时目录中的独占 disposable workspace，且 data_dir 必须在 workspace 外。入口持有跨进程工作区锁；拒绝 `.git`（含嵌套仓库）、`.gitignore`、`.gitattributes`、`.gitmodules`、符号/硬链接、特殊文件、无法由 Git 保存的权限、超限文件，以及除 `file_exists` 外的 policy validator。Windows 此入口 fail closed。调用方需保证该 disposable workspace 没有不遵守锁的外部写入者；命令/网络验证器与外部副作用不在此候选保护范围内。
+
+快照在独立 Git store 中保存；保存前后独立扫描须得到相同文件内容及目录清单，Git tree 的路径集合须覆盖全部扫描文件；失败时不发 RepairTicket。最佳候选只在 hard pass 严格增加且无回退时更新。修复仍失败时恢复该快照、核对文件字节和目录清单，再运行原 completion 检查并将最终 receipt 绑定到恢复后的新 revision。现有 `SnapshotManager::restore` 本身并非原子操作；任何恢复错误或清单不一致均报告 `rollback_unavailable`，不把部分恢复视为成功。文件时间戳和扩展属性不参与本范围的验收。provider 错误沿用兼容数值 cost 字段，并在 error 中标明 `usage_status=partial` 或 `unknown`；未知数值不是已确认的零消耗。
+
+后续接线注意：H07 若提供统一 `ProgressObservation`，替换 H06 本地的 hard gate/signature 归一化；H08 接入后沿用其交付保留额，不增加 H06 独立 token 余额。扩大到普通 Git 工作区、ignored artifact、nested repo 或其他 validator 前，先设计完整候选保护机制并重新验收恢复语义。
 
 ## 10. Milestone M6：观测、确定性验收与 B 冻结
 
 ### 10.1 最小观测
 
-- [ ] 每次 gate 记录 task/candidate ID、round、decision、失败类别、hard pass/fail 数、signature 和 gate duration。
-- [ ] 每次修复记录 ticket 可见字节、evidence 引用数、provider usage、文件是否变化和最终停止原因。
-- [ ] 记录首次验证到最终 Ready 的转化、第一/第二轮成功、无变化、同签名、回归和 restore 结果。
-- [ ] 普通日志不输出完整源码、完整 schema、完整 stderr、凭据或模型 reasoning。
-- [ ] 观测写入失败不改变 gate decision，也不能把真实 failure 改成 Ready。
+- [x] 每次 gate 记录 task/candidate ID、round、decision、失败类别、hard pass/fail 数、signature 和 gate duration。
+- [x] 每次修复记录 ticket 可见字节、evidence 引用数、provider usage、文件是否变化和最终停止原因。
+- [x] 记录首次验证到最终 Ready 的转化、第一/第二轮成功、无变化、同签名、回归和 restore 结果。
+- [x] 普通日志不输出完整源码、完整 schema、完整 stderr、凭据或模型 reasoning。
+- [x] 观测写入失败不改变 gate decision，也不能把真实 failure 改成 Ready。
 
 ### 10.2 必须覆盖的验收矩阵
 
@@ -396,13 +414,24 @@ rollback_unavailable
 | T23 | H06 off、legacy prompt、普通 `run_task`、spawn | A 行为和公共 API 兼容 |
 | T24 | best snapshot/restore 或明确受限模式 | 最终磁盘版本与最终 receipt 对应 |
 
-- [ ] T01-T24 均有自动化测试或有证据的“不适用”；T01-T16、T20-T23 不能标不适用。
-- [ ] T02-T04/T12/T14 至少通过真实 `RealSessionDispatch + ScriptedLlmProvider` 捕获最终 requests，不以纯 helper 单测代替。
-- [ ] 回归 validator、workspace contract、Agent loop、MCP server wire format、H02/H03/H05 受影响路径。
-- [ ] 检查 H06 off 的工具 schema、prompt、请求数和 outcome；固定输入增量应为零。
-- [ ] 审查 `A_SHA..HEAD`，不含 H07 通用循环、H08 全局预算、H10 计费重构、Python acceptance 改写或无关格式化。
-- [ ] 本地提交并冻结 `B_SHA`、二进制 SHA-256、功能开关、ticket policy、测试清单和限制。
-- [ ] 在分析仓库新增 M0-M6 对应验证记录时，每个文件只记录真实证据，不提前勾选未完成项。
+- [x] T01-T24 均有自动化测试或有证据的“不适用”；T01-T16、T20-T23 不能标不适用。
+- [x] T02-T04/T12/T14 至少通过真实 `RealSessionDispatch + ScriptedLlmProvider` 捕获最终 requests，不以纯 helper 单测代替。
+- [x] 回归 validator、workspace contract、Agent loop、MCP server wire format、H02/H03/H05 受影响路径。
+- [x] 检查 H06 off 的工具 schema、prompt、请求数和 outcome；固定输入增量应为零。
+- [x] 审查 `A_SHA..HEAD`，不含 H07 通用循环、H08 全局预算、H10 计费重构、Python acceptance 改写或无关格式化。
+- [x] 本地提交并冻结 `B_SHA`、二进制 SHA-256、功能开关、ticket policy、测试清单和限制。
+- [x] 在分析仓库新增 M0-M6 对应验证记录时，每个文件只记录真实证据，不提前勾选未完成项。
+
+### 10.3 M6 冻结证据
+
+- 冻结提交：`MAIN_SHA=27d057c206c0f8250b60309905737f7e26ee0ba9`，`A_SHA=8287e8f8ae63a27a58ab5898ecb2753b9b946c45`，`B_SHA=a64c976bc11112e18663cbb72bebc4d9da7b82a0`。代码提交为 `feat(h06): freeze observable repair acceptance`；M6 只修改 `loop_runner.rs`、`completion_gate_tests.rs`、`mcp_serve.rs` 和 `mcp_serve_integration.rs`。
+- 冻结二进制：在 WSL Ubuntu 中执行 `CARGO_TARGET_DIR=/mnt/d/projects/arc-bench/octos-arc/target/h06-m6-a64c976b CARGO_BUILD_JOBS=1 CARGO_PROFILE_DEV_DEBUG=0 CARGO_INCREMENTAL=0 cargo build -p octos-cli --bin octos`。产物为 `/mnt/d/projects/arc-bench/octos-arc/target/h06-m6-a64c976b/debug/octos`，大小 `264730800` 字节，版本 `octos 2.0.3-rc.11 (a64c976b 2026-09-23)`，SHA-256 为 `ab0edd6911fdcb99cf79e460f91baa14d6616cda16582a898b728fadfbc1d728`。
+- B 默认关闭；仅 `--h06-completion-repair` 开启生产 policy，固定最多 2 轮。RepairTicket 上限 `4096` 字节。候选保护限定为 Unix/WSL OS 临时目录中的可验证 disposable workspace、独占锁和 `file_exists` validator；拒绝 `.git*`、ignored 文件、nested repo、symlink、hardlink、特殊文件和超限文件。
+- 结构化事件为 `completion_gate`、`repair_ticket_injected`、`candidate_restore` 和 `repair_session_final`。字段覆盖 task/candidate、round/decision、typed failure category、hard pass/fail、signature、duration、ticket/evidence、workspace change、首次到最终 Ready、成功轮次、停止原因、restore 和累计 usage。日志不写完整源码/schema/stderr、凭据或 reasoning；观测函数无返回值且 best-effort，测试证明没有 subscriber 时 decision 不变。
+- T01-T07 由首次通过、required/artifact/schema 修复、安全位置、多失败稳定排序和 optional failure 集成测试覆盖；T08-T11 由 timeout/error、policy deny、非法输入零 provider 请求、预算耗尽与旧 artifact 禁止交付覆盖；T12-T16 由同任务历史、回归、双轮累计、无变化和唯一换策略覆盖；T17-T20 由 renderer 上限/稳定性/注入隔离、H02/H03/H05 回归、取消和 lifecycle 覆盖；T21-T24 由并发 invocation 隔离、partial/unknown usage、H06 off/legacy/run_task/spawn 回归及受限 snapshot/restore 覆盖。T02-T04/T12/T14 的 MCP 路径均使用 `RealSessionDispatch + ScriptedLlmProvider` 并断言最终 requests。
+- 回归结果共 `329 passed, 0 failed, 1 ignored`：MCP 集成 `43`；completion gate `14`；Agent loop `146 passed, 1 ignored`；validator `70`；workspace contract `32`；MCP wire `13`；H02/H03/H05 `6`；CLI H06/typed artifact helpers `5`。`cargo fmt --all -- --check` 与 `git diff --check` 通过。`cargo clippy -p octos-agent -p octos-cli --all-targets -- -A clippy::nonminimal-bool -D warnings` 通过；唯一放行项位于未修改的 `crates/octos-cli/src/commands/serve.rs:878`，已确认存在于 `A_SHA`。
+- `A_SHA..B_SHA` 审查只包含 H06 Rust 路径，不含 H07、H08、H10、Python acceptance 或无关格式化。MCP Docker sandbox 安全用例因已选择 Docker backend 在测试体内自跳过，Cargo 仍报告 pass；M7 前若要把它作为独立隔离后端证据，需要在非 Docker backend 环境补跑。
+- 后续步骤：M7 尚未运行付费真实模型或官方 A/B；开始前需要用户确认，并固定任务、模型、reasoning、重复次数、预算和输入/测试/schema 哈希。H07 统一 `ProgressObservation` 或 H08 交付保留额接入后，按第 9 节说明替换本地归一化并重跑受影响验收；provider 无法确认的 usage 继续明确记为 partial/unknown。
 
 **完成条件：**B 通过 T01-T24；所有成功均有最终 hard gate receipt；所有修复有界、同任务、可计量，H06 off 与 A 兼容。
 
@@ -411,7 +440,8 @@ rollback_unavailable
 ### 11.1 开跑条件
 
 - [ ] M6 冻结的完整 B 已通过确定性门槛，且用户确认可以运行付费真实模型实验。
-- [ ] 执行 `source ~/.zshrc`，确认 `ARCBENCH_API_KEY`、provider endpoint、`OCTOS_BIN`、二进制 SHA-256、端口和隔离目录。
+- [ ] 证明所选官方任务实际经过 H06 的 MCP `run_octos_session` 路径；现有 `arc/main.py` 使用 stdio/OUP，直接运行它不能测出 MCP-only H06 的效果。
+- [ ] 按运行 shell 加载环境（WSL 交互式 Bash 使用 `~/.bashrc`，zsh 使用 `~/.zshrc`），确认 `ARCBENCH_API_KEY`、provider endpoint、`OCTOS_BIN`、二进制 SHA-256、端口和隔离目录。
 - [ ] A/B 使用相同需求、测试、response schema、workspace policy、模型、reasoning、工具权限、sandbox、请求/token/iteration 预算和超时。
 - [ ] 每个 task×variant 使用独立 workspace/data/session；固定重复次数，建议至少 3 次并交错顺序。
 - [ ] 预注册任务类别：一次通过、构建失败、artifact missing、schema invalid、多 gate failure、不可修基础设施失败和容易回归的已有工程。
