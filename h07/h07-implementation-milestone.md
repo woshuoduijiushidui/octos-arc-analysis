@@ -1,6 +1,6 @@
 # H07 实施 Milestone：typed 进展判断与有界策略切换
 
-- 状态：M0-M9 待实施
+- 状态：M0-M4 已完成；M5-M9 待实施
 - 面向对象：后续 coding agent
 - 设计依据：[H07 竞品调研](./h07-no-progress-strategy-switch-competitor-research.md)
 - 关联约束：[H05 实施清单](../h05/h05-implementation-milestone.md)、[H03 实施清单](../h03/h03-implementation-milestone.md)、[优化总表](../harness-optimization-table.md)
@@ -95,12 +95,12 @@ H07 不是简单地“调用多了就停”，而是判断一次操作有没有�
 
 这些 SHA 只用于复核调研结论，不能代替未来开工时的最新主线。
 
-- [ ] 检查 `octos-arc` 和 `octos-arc-analysis` 的分支、工作树、未跟踪文件及未推送提交；不自动清理用户改动。
-- [ ] 从最新 `origin/main` 创建 H07 分支或独立 worktree，记录 `MAIN_SHA`。
-- [ ] 核对 H01-H05 已合入能力和 H05 最终选择；必要依赖先单独移植、验证并冻结 `A_SHA`。
-- [ ] 证明 `A_SHA` 尚未开启 H07 新行为，现有 exact/cycle、peer polling、file churn、retry bucket 和 convergence 行为可重放。
-- [ ] 固定官方实验任务、需求/测试哈希、模型、reasoning、工具列表、session scope、预算、修复轮数、超时和重复次数。
-- [ ] 记录 Rust/Python/Node 版本、实际 `OCTOS_BIN`、二进制 SHA-256、现有 convergence 配置及全部有效 H01-H05 开关。
+- [x] 检查 `octos-arc` 和 `octos-arc-analysis` 的分支、工作树、未跟踪文件及未推送提交；不自动清理用户改动。
+- [x] 从最新 `origin/main` 创建 H07 分支或独立 worktree，记录 `MAIN_SHA`。
+- [x] 核对 H01-H05 已合入能力和 H05 最终选择；必要依赖先单独移植、验证并冻结 `A_SHA`。
+- [x] 证明 `A_SHA` 尚未开启 H07 新行为，现有 exact/cycle、peer polling、file churn、retry bucket 和 convergence 行为可重放。
+- [x] 固定官方实验任务、需求/测试哈希、模型、reasoning、工具列表、session scope、预算、修复轮数、超时和重复次数。
+- [x] 记录 Rust/Python/Node 版本、实际 `OCTOS_BIN`、二进制 SHA-256、现有 convergence 配置及全部有效 H01-H05 开关。
 
 ### 1.2 建议的功能开关
 
@@ -236,21 +236,21 @@ ProgressDecision
 
 **目标：**在写实现前证明当前行为和所有自动重试出口。M0 不开启 H07。
 
-- [ ] 完成第 1.1 节，冻结 `MAIN_SHA`、依赖提交和 `A_SHA`。
-- [ ] 追踪 conversation：模型响应、terminal tool 检查、`record_doom`、cycle warning、工具执行、`record_result`、file/peer signal、convergence、最终 response。
-- [ ] 追踪 task：`run_task_inner`、工具执行、verifier、budget/max-token continuation 和 `TaskResult` 返回；证明当前没有同等 pre-call hard guard 和 signal 消费。
-- [ ] 追踪 spawn/MCP：`TaskResult.success=false` 怎样触发 M8.9 单次恢复、lifecycle retryable 分类和上层再次派发。
-- [ ] 追踪 `ToolResult` 的 success、`file_modified`、`output_document`、structured metadata、清洗、截断、H03 envelope 和最终模型消息。
-- [ ] 追踪 H05 `modified/no_change/no_match/ambiguous` 的真实字段及 H05 off 时缺字段行为。
-- [ ] 追踪 peer/background 工具的 handle、live/terminal 状态和轮询调用；不能只按工具名假设异步。
-- [ ] 证明当前普通 conversation 在第 3 次 exact call 执行前终止，因此看不到第 3 个 result-aware soft hint。
-- [ ] 证明当前 task 可执行 conversation 已经会拦截的第 3 次 exact call。
-- [ ] 证明成功 `no_change` 会被当前 success+path 逻辑计入 file churn。
-- [ ] 证明重复长 read 或附带 no-progress hint 的文本可能被 `is_productive_tool_message` 视为 productive。
-- [ ] 证明 provider retry bucket 与 task observation 的真实边界，并记录 verifier 豁免路径。
-- [ ] 用 fake provider/计数工具建立可重放反例，不调用付费模型，不把预期失败测试留在绿色分支中。
-- [ ] 冻结 observation/episode/hint 的容量、文本字节、阈值和 metrics label 集合；记录选择依据。
-- [ ] 创建 `h07/h07-m0-baseline.md` 或等价证据，列出命令、结果、SHA 和未覆盖入口。
+- [x] 完成第 1.1 节，冻结 `MAIN_SHA`、依赖提交和 `A_SHA`。
+- [x] 追踪 conversation：模型响应、terminal tool 检查、`record_doom`、cycle warning、工具执行、`record_result`、file/peer signal、convergence、最终 response。
+- [x] 追踪 task：`run_task_inner`、工具执行、verifier、budget/max-token continuation 和 `TaskResult` 返回；证明当前没有同等 pre-call hard guard 和 signal 消费。
+- [x] 追踪 spawn/MCP：`TaskResult.success=false` 怎样触发 M8.9 单次恢复、lifecycle retryable 分类和上层再次派发。
+- [x] 追踪 `ToolResult` 的 success、`file_modified`、`output_document`、structured metadata、清洗、截断、H03 envelope 和最终模型消息。
+- [x] 追踪 H05 `modified/no_change/no_match/ambiguous` 的真实字段及 H05 off 时缺字段行为。
+- [x] 追踪 peer/background 工具的 handle、live/terminal 状态和轮询调用；不能只按工具名假设异步。
+- [x] 证明当前普通 conversation 在第 3 次 exact call 执行前终止，因此看不到第 3 个 result-aware soft hint。
+- [x] 证明当前 task 可执行 conversation 已经会拦截的第 3 次 exact call。
+- [x] 证明成功 `no_change` 会被当前 success+path 逻辑计入 file churn。
+- [x] 证明重复长 read 或附带 no-progress hint 的文本可能被 `is_productive_tool_message` 视为 productive。
+- [x] 证明 provider retry bucket 与 task observation 的真实边界，并记录 verifier 豁免路径。
+- [x] 用 fake provider/计数工具建立可重放反例，不调用付费模型，不把预期失败测试留在绿色分支中。
+- [x] 冻结 observation/episode/hint 的容量、文本字节、阈值和 metrics label 集合；记录选择依据。
+- [x] 创建 `h07/h07-m0-baseline.md` 或等价证据，列出命令、结果、SHA 和未覆盖入口。
 
 **完成条件：**A 可重放；所有执行前检查、结果后判断、模型复盘和自动重试出口都有所有者；B/C 的唯一变量已冻结。
 
@@ -258,17 +258,19 @@ ProgressDecision
 
 **依赖：**M0。**目标：**先建立事实，不改变生产决策。
 
-- [ ] 在最靠近工具执行结果的共享边界构造 observation；保留 `ToolResult` 的 typed 事实后再做字符串渲染。
-- [ ] 通过 call ID 将并行/串行 batch 的 observation 与原 tool call 稳定关联；去重、限制和 blocked placeholder 不得错配。
-- [ ] operation family 和 target 提取只覆盖实际工具；未知工具进入 `other`，不靠工具名子串猜类别。
-- [ ] H05 mutation 优先读取 `ToolResult.file_modified` 与 typed metadata；字段冲突时标记 unknown 并计诊断，不任取一个“成功”值。
-- [ ] H03 read/recall 优先读取 source/view/version/range identity；没有可信 source 时只保留最终模型可见 exact digest。
-- [ ] typed tool error 使用已有 `HarnessError`/error code；不得在上层解析 `"Error:"` 文本恢复类型。
-- [ ] 为未来授权 validator 预留可选 `validation_key`，但本阶段没有 typed producer 时保持空值，不解析 shell 测试输出。
-- [ ] 所有路径、detail 和列表按 M0 上限截断；episode key 不保存原始源码和完整命令。
-- [ ] 增加纯单元测试：typed、缺字段、冲突字段、Unicode、长路径、长错误、未知工具、重复 call ID 和多 call batch。
-- [ ] H07 off 时 observation 可以不构造或只做无副作用观测；模型消息、工具结果、metrics 和请求数与 A 等价。
-- [ ] 本地提交并记录代码 SHA、测试命令和 M1 证据。
+- [x] 在最靠近工具执行结果的共享边界构造 observation；保留 `ToolResult` 的 typed 事实后再做字符串渲染。
+- [x] 通过 call ID 将并行/串行 batch 的 observation 与原 tool call 稳定关联；去重、限制和 blocked placeholder 不得错配。
+- [x] operation family 和 target 提取只覆盖实际工具；未知工具进入 `other`，不靠工具名子串猜类别。
+- [x] H05 mutation 优先读取 `ToolResult.file_modified` 与 typed metadata；字段冲突时标记 unknown 并计诊断，不任取一个“成功”值。
+- [x] H03 read/recall 优先读取 source/view/version/range identity；没有可信 source 时只保留最终模型可见 exact digest。
+- [x] typed tool error 使用已有 `HarnessError`/error code；不得在上层解析 `"Error:"` 文本恢复类型。
+- [x] 为未来授权 validator 预留可选 `validation_key`，但本阶段没有 typed producer 时保持空值，不解析 shell 测试输出。
+- [x] 所有路径、detail 和列表按 M0 上限截断；episode key 不保存原始源码和完整命令。
+- [x] 增加纯单元测试：typed、缺字段、冲突字段、Unicode、长路径、长错误、未知工具、重复 call ID 和多 call batch。
+- [x] H07 off 时 observation 可以不构造或只做无副作用观测；模型消息、工具结果、metrics 和请求数与 A 等价。
+- [x] 本地提交并记录代码 SHA、测试命令和 M1 证据。
+
+M1 代码提交 `38c607cd0a54482e95bec2a3a9e13871d97379fe`；命令、结果与未覆盖入口见 [M1 证据](./h07-m1-evidence.md)。
 
 **完成条件：**给定同一个工具结果，conversation/task 可得到相同、有界、可解释的 observation；尚未改变提示、拒绝或终止。
 
@@ -276,17 +278,17 @@ ProgressDecision
 
 **依赖：**M1。**目标：**先修复最明确、无需模型判断的重复调用。
 
-- [ ] 将 exact 同步调用的结果历史与 pre-call 检查统一：第 2 个等价结果附提示，第 3 次相同调用执行前拒绝。
-- [ ] 更新旧注释、常量和测试，不能继续声称“第 3 次软提示、第 4 次硬停”。
-- [ ] conversation 与 `run_task` 调用同一 `before_call`/`after_result` 语义；不得只复制一段 if 到第二个 loop。
-- [ ] exact 拒绝必须保留合法 tool call/result 配对或在写入 assistant tool-call 历史前终止；不能留下协议残缺消息。
-- [ ] 多工具 batch 中命中拒绝时保持当前批处理安全语义，并明确其他 call 是否执行；测试不能只覆盖单 call。
-- [ ] 保留 cycle length 2/3 的现有两阶段 warning/terminal 行为，除非 M3 用更强 typed key 明确接管。
-- [ ] 保留 shell spiral 的既有恢复优先级、verifier 明确豁免和 peer async 特例；任何变化必须有专项测试。
-- [ ] exact hint 经过 H03 最终预算，仍保留 read/recall 的范围、版本和恢复参数。
-- [ ] H07 off 时旧 threshold、消息和工具执行次数与 A 一致。
-- [ ] fake provider 测试同时断言 LLM 请求数、工具实际执行数、最终消息和 token 计量。
-- [ ] 本地提交并记录 M2 证据。
+- [x] 将 exact 同步调用的结果历史与 pre-call 检查统一：第 2 个等价结果附提示，第 3 次相同调用执行前拒绝。
+- [x] 更新旧注释、常量和测试，不能继续声称“第 3 次软提示、第 4 次硬停”。
+- [x] conversation 与 `run_task` 调用同一 `before_call`/`after_result` 语义；不得只复制一段 if 到第二个 loop。
+- [x] exact 拒绝必须保留合法 tool call/result 配对或在写入 assistant tool-call 历史前终止；不能留下协议残缺消息。
+- [x] 多工具 batch 中命中拒绝时保持当前批处理安全语义，并明确其他 call 是否执行；测试不能只覆盖单 call。
+- [x] 保留 cycle length 2/3 的现有两阶段 warning/terminal 行为，除非 M3 用更强 typed key 明确接管。
+- [x] 保留 shell spiral 的既有恢复优先级、verifier 明确豁免和 peer async 特例；任何变化必须有专项测试。
+- [x] exact hint 经过 H03 最终预算，仍保留 read/recall 的范围、版本和恢复参数。
+- [x] H07 off 时旧 threshold、消息和工具执行次数与 A 一致。
+- [x] fake provider 测试同时断言 LLM 请求数、工具实际执行数、最终消息和 token 计量。
+- [x] 本地提交并记录 M2 证据：代码 `c658ad0a6544c49c231143708bac3ae09cfd284d`；[验证记录](./h07-m2-evidence.md)。
 
 **完成条件：**B 下两个 loop 的 exact 同步重复都只执行两次；提示先于拒绝到达模型，旧循环和特殊路径无回归。
 
@@ -294,17 +296,17 @@ ProgressDecision
 
 **依赖：**M1-M2。**目标：**识别“参数在变，但目标和结果没变”的循环。
 
-- [ ] 实现第 3.2 节的 bounded episode；复用 `LoopDetector` 生命周期，不新建全局 singleton。
-- [ ] known typed producer 只使用稳定字段构造 key；忽略字段列表由 producer/adapter 明确提供。
-- [ ] H05 no-match/ambiguous 使用 path、error code、matcher、候选位置/计数等稳定事实；变化的调用 JSON 不自动创建新 episode。
-- [ ] HarnessError 使用 variant、recovery、稳定位置/原因；不把 backoff 次数或 provider request ID 算新证据。
-- [ ] unknown/text fallback 保留原 exact digest 语义，不做激进模糊归一化。
-- [ ] 同 failure location 但 expected/actual 改变时记 evidence change；仅耗时、时间戳、随机 ID 变化时保持同 episode。
-- [ ] episode 到第 2 次附定向提示；到语义阈值设置 `switch_required`，但 B 不产生额外模型请求。
-- [ ] switch 后允许一个不同 observation probe；同 key 继续出现时返回 typed terminal decision。
-- [ ] eviction、hash collision 防护、计数饱和和极长 task 均有测试；淘汰不能触发 terminal。
-- [ ] metrics label 只使用固定 enum，如 family/decision/confidence；path、tool args、error text 和 digest 不作 label。
-- [ ] 本地提交并记录 M3 证据。
+- [x] 实现第 3.2 节的 bounded episode；复用 `LoopDetector` 生命周期，不新建全局 singleton。
+- [x] known typed producer 只使用稳定字段构造 key；忽略字段列表由 producer/adapter 明确提供。
+- [x] H05 no-match/ambiguous 使用 path、error code、matcher、候选位置/计数等稳定事实；变化的调用 JSON 不自动创建新 episode。
+- [x] HarnessError 使用 variant、recovery、稳定位置/原因；不把 backoff 次数或 provider request ID 算新证据。
+- [x] unknown/text fallback 保留原 exact digest 语义，不做激进模糊归一化。
+- [x] 同 failure location 但 expected/actual 改变时记 evidence change；仅耗时、时间戳、随机 ID 变化时保持同 episode。
+- [x] episode 到第 2 次附定向提示；到语义阈值设置 `switch_required`，但 B 不产生额外模型请求。
+- [x] switch 后允许一个不同 observation probe；同 key 继续出现时返回 typed terminal decision。
+- [x] eviction、hash collision 防护、计数饱和和极长 task 均有测试；淘汰不能触发 terminal。
+- [x] metrics label 只使用固定 enum，如 family/decision/confidence；path、tool args、error text 和 digest 不作 label。
+- [x] 本地提交并记录 M3 证据：代码 `41729c6431669f2d6902875ba187665484ff5838`；[验证记录](./h07-m3-evidence.md)。
 
 **完成条件：**改空白、limit、无关参数或 request ID 不能绕过已知 typed episode；真正的新错误证据仍允许继续。
 
@@ -312,18 +314,18 @@ ProgressDecision
 
 **依赖：**M3，开发时需有 H05 typed metadata。**目标：**不把“成功调用”误当成“真实进展”。
 
-- [ ] `outcome=no_change` 或 `file_modified=false` 记 no-progress，不增加 file churn。
-- [ ] `file_modified=true` 且最终确认版本变化时记 state change；同一路径相同最终版本不重复计数。
-- [ ] `final_state=unconfirmed` 或 typed 字段冲突时保持 unknown，不宣称 modified/no-progress。
-- [ ] formatter 改变内容时以 `final_version` 为准；`changed_range` 只作证据，不代表 validation improvement。
-- [ ] 真正连续版本变化可以触发现有 churn checkpoint，但 churn 本身不产生 semantic terminal。
-- [ ] 相同 read source/version/range 和相同可见 digest 可以记 no-progress；新页、新范围、新版本或新搜索命中记 evidence change。
-- [ ] H03 恢复页引用同一 source 但范围前进时不能误判为重复读取。
-- [ ] typed no-progress 不调用 `record_productive_tool_call`，不能获得 budget grace。
-- [ ] typed state/evidence change 可以记录 productive；旧无 typed 工具保留现有文本 heuristic 兼容路径。
-- [ ] 重复长输出、`Exit code: 0` 但无新 typed 证据、附 H07 hint 后长度超过 128 字节均有反例测试。
-- [ ] 回归 H02 receipt、H03 output envelope/recall 和 H05 M2-M6 测试。
-- [ ] 本地提交并记录 M4 证据。
+- [x] `outcome=no_change` 或 `file_modified=false` 记 no-progress，不增加 file churn。
+- [x] `file_modified=true` 且最终确认版本变化时记 state change；同一路径相同最终版本不重复计数。
+- [x] `final_state=unconfirmed` 或 typed 字段冲突时保持 unknown，不宣称 modified/no-progress。
+- [x] formatter 改变内容时以 `final_version` 为准；`changed_range` 只作证据，不代表 validation improvement。
+- [x] 真正连续版本变化可以触发现有 churn checkpoint，但 churn 本身不产生 semantic terminal。
+- [x] 相同 read source/version/range 和相同可见 digest 可以记 no-progress；新页、新范围、新版本或新搜索命中记 evidence change。
+- [x] H03 恢复页引用同一 source 但范围前进时不能误判为重复读取。
+- [x] typed no-progress 不调用 `record_productive_tool_call`，不能获得 budget grace。
+- [x] typed state/evidence change 可以记录 productive；旧无 typed 工具保留现有文本 heuristic 兼容路径。
+- [x] 重复长输出、`Exit code: 0` 但无新 typed 证据、附 H07 hint 后长度超过 128 字节均有反例测试。
+- [x] 回归 H02 receipt、H03 output envelope/recall 和 H05 M2-M6 测试。
+- [x] 本地提交并记录 [M4 证据](./h07-m4-evidence.md)；代码提交 `ba39ec5a2973dcf1ab4ed0bfd52615c33091415a`。
 
 **完成条件：**文件进展来自最终实际状态；no-op 不再抬高 churn 或 grace，正常分页与多次有效编辑不被误杀。
 
@@ -331,19 +333,19 @@ ProgressDecision
 
 **依赖：**M3-M4。**目标：**把“正在等”“基础设施重试”和“任务卡住”彻底分开。
 
-- [ ] 为声明 async 的工具提取当前 live handle；只有运行时确认存活才返回 `verified_wait`。
-- [ ] 同 handle 状态未变时采用现有 bounded wait/退避；不 busy-wait，不因一次 observation timeout 重启任务。
-- [ ] handle 终止、缺失或状态不可确认时不再标记 verified wait；根据真实结果进入 completed/failed/unknown。
-- [ ] 保留 peer changed-result、unchanged-result reflection 和最终结果测试；不要用通用 exact guard 覆盖它们。
-- [ ] provider rate limit/network/stream/context retry 不增加 task episode，不因任意成功 read 清空 retry bucket。
-- [ ] policy deny、approval pending、cancel 和 verifier 结果保持各自状态，不重复发 H07 提示。
-- [ ] 为 `terminal_non_retryable` 定义稳定内部 code 和 `retryable=false`；用户文本只显示短原因和已观察事实。
-- [ ] conversation 收到 terminal 后结束当前 turn，不再调用模型或工具。
-- [ ] task 收到 terminal 后返回 `success=false` 和机器可识别的非重试身份；不得只靠英文关键词分类。
-- [ ] `run_task_with_m8_9_recovery` 遇到 H07 terminal 不发起那一次自动恢复；普通可恢复失败仍保持原行为。
-- [ ] child lifecycle 将 H07 terminal 分类为 `TerminalFailed`；输出中即使含有 “retry” 也不能变成 `RetryableFailed`。
-- [ ] 若必须扩展 `TaskResult` ABI，按现有版本规则增加 optional 字段、更新所有构造者/serde/消费者和兼容测试；不得私自改 schema version。
-- [ ] 本地提交并记录 M5 证据。
+- [x] 为声明 async 的工具提取当前 live handle；只有运行时确认存活才返回 `verified_wait`。
+- [x] 同 handle 状态未变时采用现有 bounded wait/退避；不 busy-wait，不因一次 observation timeout 重启任务。
+- [x] handle 终止、缺失或状态不可确认时不再标记 verified wait；根据真实结果进入 completed/failed/unknown。
+- [x] 保留 peer changed-result、unchanged-result reflection 和最终结果测试；不要用通用 exact guard 覆盖它们。
+- [x] provider rate limit/network/stream/context retry 不增加 task episode，不因任意成功 read 清空 retry bucket。
+- [x] policy deny、approval pending、cancel 和 verifier 结果保持各自状态，不重复发 H07 提示。
+- [x] 为 `terminal_non_retryable` 定义稳定内部 code 和 `retryable=false`；用户文本只显示短原因和已观察事实。
+- [x] conversation 收到 terminal 后结束当前 turn，不再调用模型或工具。
+- [x] task 收到 terminal 后返回 `success=false` 和机器可识别的非重试身份；不得只靠英文关键词分类。
+- [x] `run_task_with_m8_9_recovery` 遇到 H07 terminal 不发起那一次自动恢复；普通可恢复失败仍保持原行为。
+- [x] child lifecycle 将 H07 terminal 分类为 `TerminalFailed`；输出中即使含有 “retry” 也不能变成 `RetryableFailed`。
+- [x] 若必须扩展 `TaskResult` ABI，按现有版本规则增加 optional 字段、更新所有构造者/serde/消费者和兼容测试；不得私自改 schema version。
+- [x] 本地提交并记录 [M5 证据](./h07-m5-evidence.md)；代码提交 `66f5506100bd5eee5dfec638f141cfe77a34cd1c`。
 
 **完成条件：**合法等待不会被当作死循环；基础设施 retry 不污染 H07；semantic terminal 在 task/spawn 全链路只终止一次。
 
@@ -351,20 +353,20 @@ ProgressDecision
 
 **依赖：**M2-M5。**目标：**同一实现同时支持零额外复盘的 B 和条件复盘的 C。
 
-- [ ] B/C 只使用一个 policy/state machine 和一个 `BC_SHA`；reflection 开关只改变 `request_reflection` 的处理。
-- [ ] B 在 `switch_required` 时把短而具体的策略提示附到现有结果，下一次正常 action call 就是换策略机会。
-- [ ] C 在相同状态下复用 `ConvergenceController` 和现有 tools-disabled 调用，不引入 verifier 或第二套 summary prompt。
-- [ ] 提取最小共享 checkpoint helper，使 conversation/task 都能执行同一 H07 semantic reflection；task 不因此开启普通周期性 checkpoint。
-- [ ] reflection prompt 只携带用户目标、episode 类别、有界证据和“选择不同可验证动作”；不复制完整工具输出。
-- [ ] 每个 episode 最多一次 H07 reflection，每 turn 最多一次；其他 episode 退回 B 的确定性提示。
-- [ ] H07 forced reason 与已有 periodic/file churn/peer reason 同时到期时合并为一次调用，不丢高优先级 typed 证据。
-- [ ] reflection 的 input/output/cache/reasoning token 计入真实 turn/task usage，但不推进 action-call threshold。
-- [ ] budget grace iteration 不用于 reflection；接近硬预算时直接使用 B 行为。
-- [ ] reflection 文本作为 transient background context，不能持久化成用户可见 assistant final，也不能自己标记任务 complete。
-- [ ] host 不解析 reflection 自述来重置 episode；后续工具 observation 才能证明策略变化或进展。
-- [ ] reflection 失败或空输出时不重试，记录失败后继续 B；复盘后同 episode 再现则 terminal。
-- [ ] verifier-configured Agent 不重复支付 verifier + H07 reflection；M0 选定并测试唯一所有者。
-- [ ] 本地提交；同一 commit/branch 冻结 B/C 代码，配置差异单独记录。
+- [x] B/C 只使用一个 policy/state machine 和一个 `BC_SHA`；reflection 开关只改变 `request_reflection` 的处理。
+- [x] B 在 `switch_required` 时把短而具体的策略提示附到现有结果，下一次正常 action call 就是换策略机会。
+- [x] C 在相同状态下复用 `ConvergenceController` 和现有 tools-disabled 调用，不引入 verifier 或第二套 summary prompt。
+- [x] 提取最小共享 checkpoint helper，使 conversation/task 都能执行同一 H07 semantic reflection；task 不因此开启普通周期性 checkpoint。
+- [x] reflection prompt 只携带用户目标、episode 类别、有界证据和“选择不同可验证动作”；不复制完整工具输出。
+- [x] 每个 episode 最多一次 H07 reflection，每 turn 最多一次；其他 episode 退回 B 的确定性提示。
+- [x] H07 forced reason 与已有 periodic/file churn/peer reason 同时到期时合并为一次调用，不丢高优先级 typed 证据。
+- [x] reflection 的 input/output/cache/reasoning token 计入真实 turn/task usage，但不推进 action-call threshold。
+- [x] budget grace iteration 不用于 reflection；接近硬预算时直接使用 B 行为。
+- [x] reflection 文本作为 transient background context，不能持久化成用户可见 assistant final，也不能自己标记任务 complete。
+- [x] host 不解析 reflection 自述来重置 episode；后续工具 observation 才能证明策略变化或进展。
+- [x] reflection 失败或空输出时不重试，记录失败后继续 B；复盘后同 episode 再现则 terminal。
+- [x] verifier-configured Agent 不重复支付 verifier + H07 reflection；M0 选定并测试唯一所有者。
+- [x] 本地提交；同一 commit/branch 冻结 B/C 代码，配置差异单独记录。
 
 **完成条件：**B 零新增模型请求；C 对一个停滞 turn 最多新增一次请求；两者除 reflection 开关外完全等价。
 
@@ -372,11 +374,11 @@ ProgressDecision
 
 ### 11.1 最小观测
 
-- [ ] 记录固定枚举：operation family、progress class、decision、confidence、reflection requested/completed/failed。
-- [ ] 记录 episode count、实际工具执行数、pre-call reject、hint、switch、terminal 和 H07 reflection token。
-- [ ] observation/decision 指标失败不改变 Agent 结果；日志不包含源码、完整命令、完整结果、凭据或绝对路径。
-- [ ] provider retry 指标继续使用原有命名；H07 task stall 使用独立 metric/event，不混入 `octos_loop_retry_total`。
-- [ ] 如复用 harness progress/failure event，extra 字段有 schema/大小验证，terminal 明确 `retryable=false`。
+- [x] 记录固定枚举：operation family、progress class、decision、confidence、reflection requested/completed/failed。
+- [x] 记录 episode count、实际工具执行数、pre-call reject、hint、switch、terminal 和 H07 reflection token。
+- [x] observation/decision 指标失败不改变 Agent 结果；日志不包含源码、完整命令、完整结果、凭据或绝对路径。
+- [x] provider retry 指标继续使用原有命名；H07 task stall 使用独立 metric/event，不混入 `octos_loop_retry_total`。
+- [x] 如复用 harness progress/failure event，extra 字段有 schema/大小验证，terminal 明确 `retryable=false`。
 
 ### 11.2 必须覆盖的 24 项验收矩阵
 
@@ -407,13 +409,13 @@ ProgressDecision
 | T23 | 长路径、Unicode、长结果、episode 淘汰 | 状态与提示有界，无敏感正文 |
 | T24 | ARC outer acceptance | failure signature、策略切换、最佳状态恢复不变 |
 
-- [ ] T01-T24 均有自动化测试或有证据的“不适用”；T02、T03、T05、T08、T15、T18、T21 不能标不适用。
-- [ ] 至少用真实 `process_message`、真实 `run_task` 和 spawn recovery 测试，而不是只测纯 detector。
-- [ ] 增加真实 stdio + fake provider 场景，捕获最终 messages/tools、请求数、工具执行数和 reflection tool choice。
-- [ ] 回归 `loop_retry_state`、convergence、peer polling、H02 receipt、H03 output/recall、H05 mutation 和 spawn lifecycle。
-- [ ] 回归 ARC `failure_signature`、identical failure gate、no-improvement stop 和 best-state restore。
-- [ ] 检查 H07 off 与 A 的兼容 diff；审查 `A_SHA..HEAD` 不含 H06/H08/H09、官方输入或无关重构。
-- [ ] 本地提交并冻结唯一 `BC_SHA`、二进制 SHA-256、两个开关、精确阈值、schema/固定输入增量和测试证据。
+- [x] T01-T24 均有自动化测试或有证据的“不适用”；T02、T03、T05、T08、T15、T18、T21 不能标不适用。
+- [x] 至少用真实 `process_message`、真实 `run_task` 和 spawn recovery 测试，而不是只测纯 detector。
+- [x] 增加真实 stdio + fake provider 场景，捕获最终 messages/tools、请求数、工具执行数和 reflection tool choice。
+- [x] 回归 `loop_retry_state`、convergence、peer polling、H02 receipt、H03 output/recall、H05 mutation 和 spawn lifecycle。
+- [x] 回归 ARC `failure_signature`、identical failure gate、no-improvement stop 和 best-state restore。
+- [x] 检查 H07 off 与 A 的兼容 diff；审查 `A_SHA..HEAD` 不含 H06/H08/H09、官方输入或无关重构。
+- [x] 本地提交并冻结唯一 `BC_SHA`、二进制 SHA-256、两个开关、精确阈值、schema/固定输入增量和测试证据；见 [M7 证据](./h07-m7-evidence.md)。
 
 **完成条件：**T01-T24 通过；B/C 共用 `BC_SHA`；H07 off 可回到 A；真实入口没有重复执行 terminal episode。
 
